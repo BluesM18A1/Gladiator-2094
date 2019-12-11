@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PlayerDown.wav-43f4fb88ccc340e7e3dd20dbe81d6d9b.sample"
+
+[deps]
+
+source_file="res://Sounds/PlayerDown.wav"
+dest_files=[ "res://.import/PlayerDown.wav-43f4fb88ccc340e7e3dd20dbe81d6d9b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

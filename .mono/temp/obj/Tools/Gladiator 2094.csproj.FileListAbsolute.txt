@@ -1,0 +1,6 @@
+E:\personal projects\source code\Gladiator 2094\.mono\temp\bin\Tools\Gladiator 2094.dll
+E:\personal projects\source code\Gladiator 2094\.mono\temp\bin\Tools\Gladiator 2094.pdb
+E:\personal projects\source code\Gladiator 2094\.mono\temp\obj\Tools\Gladiator 2094.csprojAssemblyReference.cache
+E:\personal projects\source code\Gladiator 2094\.mono\temp\obj\Tools\Gladiator 2094.csproj.CoreCompileInputs.cache
+E:\personal projects\source code\Gladiator 2094\.mono\temp\obj\Tools\Gladiator 2094.dll
+E:\personal projects\source code\Gladiator 2094\.mono\temp\obj\Tools\Gladiator 2094.pdb
