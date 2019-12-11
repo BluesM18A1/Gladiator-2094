@@ -1,0 +1,5 @@
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\obj\Tools\.NETFramework,Version=v4.5.AssemblyAttribute.cs
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\bin\Tools\Gladiator 2094.pdb
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\bin\Tools\Gladiator 2094.dll
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.dll
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.pdb

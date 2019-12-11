@@ -4,3 +4,8 @@ E:\personal projects\source code\Gladiator 2094\.mono\temp\obj\Tools\Gladiator 2
 E:\personal projects\source code\Gladiator 2094\.mono\temp\obj\Tools\Gladiator 2094.csproj.CoreCompileInputs.cache
 E:\personal projects\source code\Gladiator 2094\.mono\temp\obj\Tools\Gladiator 2094.dll
 E:\personal projects\source code\Gladiator 2094\.mono\temp\obj\Tools\Gladiator 2094.pdb
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.csprojAssemblyReference.cache
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.dll
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.pdb
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\bin\Tools\Gladiator 2094.dll
+C:\Users\catho\Documents\NOT GARBAGE\source code\Gladiator-2094\.mono\temp\bin\Tools\Gladiator 2094.pdb

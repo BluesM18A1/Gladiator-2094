@@ -43,6 +43,14 @@ public class Player : Combatant
 
     private void ProcessInput(float delta)
     {
+        //  Capturing/Freeing the cursor
+        if (Input.IsActionJustPressed("ui_cancel"))
+        {
+            if (Input.GetMouseMode() == Input.MouseMode.Visible)
+                 Input.SetMouseMode(Input.MouseMode.Captured);
+            else
+                Input.SetMouseMode(Input.MouseMode.Visible);
+        }
         if (HP > 0)
         {
             //  Walking
@@ -80,14 +88,7 @@ public class Player : Combatant
                 }
             }
 
-            //  Capturing/Freeing the cursor
-            if (Input.IsActionJustPressed("ui_cancel"))
-            {
-                if (Input.GetMouseMode() == Input.MouseMode.Visible)
-                    Input.SetMouseMode(Input.MouseMode.Captured);
-                else
-                    Input.SetMouseMode(Input.MouseMode.Visible);
-            }
+            
         }
         
     }
