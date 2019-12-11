@@ -72,11 +72,11 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 value = 100.0
 texture_progress = ExtResource( 3 )
-fill_mode = 4
+fill_mode = 5
 tint_progress = Color( 0, 0, 1, 1 )
-radial_initial_angle = 180.0
+radial_initial_angle = 90.0
 radial_fill_degrees = 90.0
-radial_center_offset = Vector2( 256, -256 )
+radial_center_offset = Vector2( -256, 256 )
 
 [node name="HealthNum" type="Label" parent="HUD/HealthMeter"]
 anchor_left = 0.5
@@ -107,11 +107,11 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 value = 100.0
 texture_progress = ExtResource( 3 )
-fill_mode = 4
+fill_mode = 5
 tint_progress = Color( 0.729412, 0, 0, 1 )
-radial_initial_angle = 180.0
+radial_initial_angle = 90.0
 radial_fill_degrees = 90.0
-radial_center_offset = Vector2( 256, -256 )
+radial_center_offset = Vector2( -256, 256 )
 
 [node name="AmmoNum" type="Label" parent="HUD/FuelMeter"]
 anchor_left = 0.5
