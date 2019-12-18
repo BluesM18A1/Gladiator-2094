@@ -8,7 +8,7 @@ This is a "sequel" to a multiplayer arcade-style FPS game I made in high school 
 2092 was never "completed" so to speak. Many features we wanted were either broken or never implemented.
 
 Being an ex-Unity dev, Godot's recent addition of C# support was very very enticing.
-What wasn't enticing, was how half-backed the documentation for C# was.
+What wasn't enticing, was how half-baked the documentation for C# was.
 So I have decided that this port/sequel will be open-source so that newcomers to the Godot engine have a strong example of how to use C# in the engine.
 
 ADDITIONAL NOTES:
