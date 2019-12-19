@@ -3,11 +3,8 @@ using System;
 
 public class Bullet : RigidBody
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
     [Export]
-    public byte damage = 1;
+    public int damage = -1;
     [Export]
     public float speed = 15;
     public bool friendly = false;
@@ -19,20 +16,20 @@ public class Bullet : RigidBody
         
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-            
+        if (Translation.y > 20) QueueFree();
     }
 	private void _OnCollisionEnter(Node body)
 	{
-        if (friendly && body.GetType().Name == "Player")
+        if (friendly && body.IsInGroup("Players")) //this if statement doesnt really have to exist but if I ever want to make a multiplayer mode and prevent friendly fire, this better exist.
         {
             return;
         }
-        if (body.HasMethod("TakeDamage"))
+        if (body.HasMethod("UpdateHealth"))
         {
-            Connect(nameof(DealDamage), body, "TakeDamage");
+            Connect(nameof(DealDamage), body, "UpdateHealth");
             EmitSignal(nameof(DealDamage), damage);
         }
     	QueueFree();

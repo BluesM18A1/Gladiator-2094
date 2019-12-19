@@ -27,10 +27,11 @@ public class EnemyGun : Gun
     }
     protected override void Fire()
     {
+        //TODO: fire sound
         Bullet newBullet = (Bullet)bullet.Instance();
         GetTree().Root.AddChild(newBullet);
         newBullet.GlobalTransform = barrel.GlobalTransform;
-        newBullet.damage = 8;
+        newBullet.damage = -8;
         newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
     }
 }

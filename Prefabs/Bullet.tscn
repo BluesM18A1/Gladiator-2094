@@ -22,12 +22,15 @@ emission_on_uv2 = false
 [sub_resource type="SphereShape" id=3]
 radius = 0.1
 
-[node name="Bullet" type="RigidBody"]
+[node name="Bullet" type="RigidBody" groups=[
+"projectiles",
+]]
+collision_layer = 2
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
-damage = 10
+damage = -10
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )

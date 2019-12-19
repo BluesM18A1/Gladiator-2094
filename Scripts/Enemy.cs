@@ -38,10 +38,10 @@ public class Enemy : Combatant
         dir += -camXform.basis.z.Normalized() * inputMovementVector.y;
         dir += camXform.basis.x.Normalized() * inputMovementVector.x;
     }
-    public override void TakeDamage(byte damage)
+    public override void UpdateHealth(int delta)
     {
         //hit sound
-        HP -= damage;
+        HP += delta;
         if (HP <= 0)
         {
             //die sound

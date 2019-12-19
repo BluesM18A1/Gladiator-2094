@@ -61,10 +61,10 @@ public class Combatant : KinematicBody
         vel.z = hvel.z;
         vel = MoveAndSlide(vel, new Vector3(0, 1, 0), false, 4, Mathf.Deg2Rad(MaxSlopeAngle));
     }
-    public virtual void TakeDamage(byte damage)
+    public virtual void UpdateHealth(int damage)
     {
         GD.Print("owie" + damage.ToString());
-        //hit sound
+        //TODO: hit sound
         HP -= damage;
     }
 }

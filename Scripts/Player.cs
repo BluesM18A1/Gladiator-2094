@@ -12,11 +12,10 @@ public class Player : Combatant
     public float MouseSensitivity = 0.3f;
     
     //GAMEPLAY VARIABLES-------------------------------------
-
+    public bool alive = true;
     //COMPONENT VARIABLES------------------------------------
-    [Export]
-    public NodePath labelPath;
     private Camera camera;
+    public PlayerGun gun;
     private TextureProgress healthMeter, fuelMeter;
     private Label healthNum;
     
@@ -26,7 +25,8 @@ public class Player : Combatant
     {
         head = GetNode<Spatial>("Head");
         camera = GetNode<Camera>("Head/Camera");
-        topText = GetNode<Label>(labelPath);
+        gun = GetNode<PlayerGun>("Head/Gun");
+        topText = GetNode<Label>("../TopText");
         healthMeter = GetNode<TextureProgress>("HUD/HealthMeter");
         fuelMeter = GetNode<TextureProgress>("HUD/FuelMeter");
         healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
@@ -51,25 +51,28 @@ public class Player : Combatant
             else
                 Input.SetMouseMode(Input.MouseMode.Visible);
         }
-        if (HP > 0)
+        
+        
+        //  Walking
+        dir = new Vector3();
+        Transform camXform = camera.GetGlobalTransform();
+
+        Vector2 inputMovementVector = new Vector2();
+
+        if (Input.IsActionPressed("player_forward"))
+            inputMovementVector.y += 1;
+        if (Input.IsActionPressed("player_backward"))
+            inputMovementVector.y -= 1;
+        if (Input.IsActionPressed("player_left"))
+            inputMovementVector.x -= 1;
+        if (Input.IsActionPressed("player_right"))
+            inputMovementVector.x += 1;
+
+        inputMovementVector = inputMovementVector.Normalized();
+
+        if (alive)
         {
-            //  Walking
-            dir = new Vector3();
-            Transform camXform = camera.GetGlobalTransform();
-
-            Vector2 inputMovementVector = new Vector2();
-
-            if (Input.IsActionPressed("player_forward"))
-                inputMovementVector.y += 1;
-            if (Input.IsActionPressed("player_backward"))
-                inputMovementVector.y -= 1;
-            if (Input.IsActionPressed("player_left"))
-                inputMovementVector.x -= 1;
-            if (Input.IsActionPressed("player_right"))
-                inputMovementVector.x += 1;
-
-            inputMovementVector = inputMovementVector.Normalized();
-
+            //apply movement vector
             dir += -camXform.basis.z.Normalized() * inputMovementVector.y;
             dir += camXform.basis.x.Normalized() * inputMovementVector.x;
 
@@ -79,7 +82,6 @@ public class Player : Combatant
                 vel.y = JetForce;
                 fuelMeter.Value -= FuelDrainRate * delta;
             }         
-        
             if (IsOnFloor())
             {   
                 if (fuelMeter.Value < 100)
@@ -87,10 +89,12 @@ public class Player : Combatant
                     fuelMeter.Value += RechargeRate * delta;
                 }
             }
-
-            
         }
-        
+        else if (Input.IsActionJustPressed("ui_cancel"))
+        {
+            GetTree().ReloadCurrentScene();
+        }
+            
     }
 
     public override void _Input(InputEvent @event)
@@ -107,11 +111,25 @@ public class Player : Combatant
         }
     }
     
-    public override void TakeDamage(byte damage)
+    public override void UpdateHealth(int delta)
     {
-        //hurtsound
-        HP -= damage;
+        if (delta < 0)
+        {
+            //TODO: hurtsound
+        }
+        else
+        {
+            //TODO: healsound
+        }
+        HP += delta;
+        HP = Mathf.Clamp(HP, 0, (int)healthMeter.MaxValue);
         healthMeter.Value = HP;
-        healthNum.Text = healthMeter.Value.ToString();
+        healthNum.Text = HP.ToString();
+        if (HP <= 0)
+        {
+            topText.Text = "You're dead";
+            alive = false;
+            gun.disabled = true;
+        }
     }
 }

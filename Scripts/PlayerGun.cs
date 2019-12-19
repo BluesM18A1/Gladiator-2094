@@ -6,8 +6,9 @@ public class PlayerGun : Gun
     [Export]
     public NodePath HUDpath;
     [Export]
-    public byte ammo = 100;
+    public int ammo = 100;
     private Label ammoNum;
+    public bool disabled = false;
     
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -24,19 +25,20 @@ public class PlayerGun : Gun
     }
     protected void ProcessInput(float delta)
     {
-        if (Input.IsActionJustPressed("player_fire1"))
+        if (Input.IsActionJustPressed("player_fire1") && !disabled)
         {
             if (ammo > 0)
             {
+                //TODO: fire sound
                 Fire();
             }
             else
             {
-                //empty clip ticking sound
+                //TODO: empty clip ticking sound
             }
         }
     }
-    protected override void Fire()
+    protected override void Fire()//this one is gonna need extra parameters when we add multiple weapons
     {
         ammo--;
         ammoNum.Text = ammo.ToString();
@@ -44,7 +46,14 @@ public class PlayerGun : Gun
         GetTree().Root.AddChild(newBullet);
         newBullet.GlobalTransform = barrel.GlobalTransform;
         newBullet.friendly = true;
-        newBullet.damage = 8;
+        newBullet.damage = -8;
         newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
+    }
+    public void AddAmmo(int delta)//this one is gonna need extra parameters when we add multiple weapons
+    {
+        //TODO: ammo pickup sound
+        ammo += delta;
+        ammo = Mathf.Clamp(ammo, 0, 999);
+        ammoNum.Text = ammo.ToString();
     }
 }

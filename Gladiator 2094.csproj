@@ -56,6 +56,7 @@
     <Compile Include="Scripts\Enemy.cs" />
     <Compile Include="Scripts\EnemyGun.cs" />
     <Compile Include="Scripts\Gun.cs" />
+    <Compile Include="Scripts\ItemBox.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\PlayerGun.cs" />
   </ItemGroup>
