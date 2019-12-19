@@ -4,15 +4,19 @@ using System;
 public class PlayerGun : Gun
 {
     [Export]
+    public TextureProgress coolMeter;
+    [Export]
     public NodePath HUDpath;
     [Export]
     public int ammo = 100;
+    [Export]
+    public float coolTime = 3f;
     private Label ammoNum;
     public bool disabled = false;
-    
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        coolMeter = GetNode<TextureProgress>("Meter/Viewport/TextureProgress");
         barrel = GetNode<Position3D>("Barrel");
         ammoNum = GetNode<Label>(HUDpath + "/FuelMeter/AmmoNum");
         ammoNum.Text = ammo.ToString();
@@ -22,19 +26,16 @@ public class PlayerGun : Gun
     public override void _Process(float delta)
     {
         ProcessInput(delta);
+        coolMeter.Value -= coolTime;
     }
     protected void ProcessInput(float delta)
     {
-        if (Input.IsActionJustPressed("player_fire1") && !disabled)
+        if (Input.IsActionPressed("player_fire1") && !disabled && coolMeter.Value == 0)
         {
             if (ammo > 0)
             {
-                //TODO: fire sound
+                coolMeter.Value = 100;
                 Fire();
-            }
-            else
-            {
-                //TODO: empty clip ticking sound
             }
         }
     }

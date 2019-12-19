@@ -40,7 +40,6 @@ public class Arena : Spatial
         for (byte i = 0; i < 6 /*- difficultyModifier */; i++)
         {
             int randomItem = (Int16)GD.RandRange(0,2); //A note about RandRange: the minimum value is INCLUSIVE and the max value is EXCLUSIVE
-            GD.Print(randomItem.ToString());
             switch (randomItem)
             {
                 case (0):
