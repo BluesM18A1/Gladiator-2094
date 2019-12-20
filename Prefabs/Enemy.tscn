@@ -38,10 +38,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 shape = SubResource( 3 )
 
 [node name="Head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="Gun" type="MeshInstance" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.3 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.55 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 script = ExtResource( 2 )

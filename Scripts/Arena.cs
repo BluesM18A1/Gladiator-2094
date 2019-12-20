@@ -3,6 +3,7 @@ using System;
 
 public class Arena : Spatial
 {
+    public Navigation nav;
     [Export]
     public float spawnRate = 20f, time = 0;
     [Export]
@@ -11,10 +12,12 @@ public class Arena : Spatial
     public PackedScene HealthPack = (PackedScene)ResourceLoader.Load("res://Prefabs/Box_Health.tscn");
     [Export]
     public PackedScene AmmoBox = (PackedScene)ResourceLoader.Load("res://Prefabs/Box_Ammo.tscn");
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        ItemSpawn();
+        nav = GetNode<Navigation>("Navigation");
+        //ItemSpawn();
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,7 +35,7 @@ public class Arena : Spatial
     {
         for (byte i = 0; i < 6 /*+ difficultyModifier */; i++)
         {
-            RandomSpawn(Enemy);
+            RandomGroundSpawn(Enemy);
         }
     }
     void ItemSpawn()
@@ -43,19 +46,19 @@ public class Arena : Spatial
             switch (randomItem)
             {
                 case (0):
-                RandomSpawn(AmmoBox);
+                RandomGroundSpawn(AmmoBox);
                 break;
                 case (1):
-                RandomSpawn(HealthPack);
+                RandomGroundSpawn(HealthPack);
                 break;
             }
         }
     }
-    void RandomSpawn(PackedScene item) //place object randomly in the air, within map limits.
+    void RandomGroundSpawn(PackedScene item) //place object randomly within navmesh bounds
     {
         Spatial newItem = (Spatial)item.Instance();
-        Vector3 randomPos = new Vector3((float)GD.RandRange(-15, 15), 10,(float)GD.RandRange(-15, 15));
+        Vector3 randomPos = new Vector3((float)GD.RandRange(-15, 15), 2,(float)GD.RandRange(-15, 15));
         AddChild(newItem);
-        newItem.Translation = randomPos;
+        newItem.Translation = nav.GetClosestPoint(randomPos);
     }
 }

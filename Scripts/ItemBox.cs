@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class ItemBox : RigidBody
+public class ItemBox : Area
 {
     //GAMEPLAY VARIABLES-------------------------------------
     [Export]

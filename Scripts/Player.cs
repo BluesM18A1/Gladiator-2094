@@ -37,6 +37,7 @@ public class Player : Combatant
 
     public override void _PhysicsProcess(float delta)
     {
+        
         ProcessInput(delta);
         ProcessMovement(delta);
     }
