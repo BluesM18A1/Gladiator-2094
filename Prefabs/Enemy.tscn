@@ -45,6 +45,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.55 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 script = ExtResource( 2 )
+parentPath = NodePath("../..")
 
 [node name="Barrel" type="Position3D" parent="Head/Gun"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4 )

@@ -26,13 +26,11 @@ public class Player : Combatant
         head = GetNode<Spatial>("Head");
         camera = GetNode<Camera>("Head/Camera");
         gun = GetNode<PlayerGun>("Head/Gun");
-        topText = GetNode<Label>("../TopText");
         healthMeter = GetNode<TextureProgress>("HUD/HealthMeter");
         fuelMeter = GetNode<TextureProgress>("HUD/FuelMeter");
         healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
         healthNum.Text = healthMeter.Value.ToString();
         Input.SetMouseMode(Input.MouseMode.Captured);
-        topText.Text = "Show no mercy!";
     }
 
     public override void _PhysicsProcess(float delta)
@@ -128,7 +126,7 @@ public class Player : Combatant
         healthNum.Text = HP.ToString();
         if (HP <= 0)
         {
-            topText.Text = "You're dead";
+            //send signal to arena.cs for saying u dead
             alive = false;
             gun.disabled = true;
         }

@@ -20,7 +20,6 @@ public class Combatant : KinematicBody
     public int HP = 100;
 
     //COMPONENT VARIABLES------------------------------------
-    public Label topText;
     protected Spatial head;
     protected Vector3 vel = new Vector3();
     protected Vector3 dir = new Vector3();

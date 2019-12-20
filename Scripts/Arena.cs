@@ -3,6 +3,8 @@ using System;
 
 public class Arena : Spatial
 {
+    int score = 0;
+    public Label topText;
     public Navigation nav;
     [Export]
     public float spawnRate = 20f, time = 0;
@@ -16,8 +18,10 @@ public class Arena : Spatial
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        topText = GetNode<Label>("TopText");
         nav = GetNode<Navigation>("Navigation");
-        //ItemSpawn();
+        ItemSpawn();
+        topText.Text = "SCORE: " + score.ToString();
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +44,7 @@ public class Arena : Spatial
     }
     void ItemSpawn()
     {
-        for (byte i = 0; i < 6 /*- difficultyModifier */; i++)
+        for (byte i = 0; i < 4 /*- difficultyModifier */; i++)
         {
             int randomItem = (Int16)GD.RandRange(0,2); //A note about RandRange: the minimum value is INCLUSIVE and the max value is EXCLUSIVE
             switch (randomItem)
@@ -60,5 +64,10 @@ public class Arena : Spatial
         Vector3 randomPos = new Vector3((float)GD.RandRange(-15, 15), 2,(float)GD.RandRange(-15, 15));
         AddChild(newItem);
         newItem.Translation = nav.GetClosestPoint(randomPos);
+    }
+    public void UpdateScore(int delta)
+    {
+        score += delta;
+        topText.Text = "SCORE: " + score.ToString();
     }
 }

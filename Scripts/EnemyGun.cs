@@ -5,9 +5,13 @@ public class EnemyGun : Gun
 {
     [Export]
     public float fireRate = 0.5f, time = 0;
+    [Export]
+    public NodePath parentPath;
+    public Enemy parent;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        parent = GetNode<Enemy>(parentPath);
         barrel = GetNode<Position3D>("Barrel");
     }
 
@@ -33,5 +37,6 @@ public class EnemyGun : Gun
         newBullet.GlobalTransform = barrel.GlobalTransform;
         newBullet.damage = -8;
         newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
+        parent.UpdatePath(parent.playerPos);
     }
 }

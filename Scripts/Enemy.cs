@@ -4,8 +4,8 @@ using System;
 public class Enemy : Combatant
 {
     [Export]
-    public PackedScene AmmoBox = (PackedScene)ResourceLoader.Load("res://Prefabs/Box_Ammo.tscn");
-
+    public int bounty = 10;
+    public Arena arena;
     public Navigation nav;
     public KinematicBody player;
     public Vector3 playerPos;
@@ -16,6 +16,7 @@ public class Enemy : Combatant
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        arena = GetTree().GetRoot().GetNode<Arena>("Spatial");
         nav = GetNode<Navigation>("../Navigation");
         head = GetNode<Spatial>("Head");
         player = GetNode<KinematicBody>("../Player");
@@ -31,7 +32,7 @@ public class Enemy : Combatant
         
         playerPos = nav.GetClosestPoint(player.Translation);
         ProcessInput(delta);
-        SetPath(playerPos);
+        SetPathPos(playerPos);
     }
     protected void ProcessInput(float delta) //this is where all the AI happens
     {
@@ -39,7 +40,7 @@ public class Enemy : Combatant
         Vector2 inputMovementVector = Vector2.Zero;
         dir = new Vector3();
 
-        if (Input.IsActionJustPressed("ui_accept")) SetPath(playerPos);
+        if (Input.IsActionJustPressed("ui_accept")) SetPathPos(playerPos);
         
         float distanceToPoint = Translation.DistanceTo(pathPos);
         float distanceToPlayer = Translation.DistanceTo(playerPos);
@@ -66,11 +67,12 @@ public class Enemy : Combatant
         {
             //die sound
             //spawn a nice explosion maybe
+            arena.UpdateScore(bounty);
             QueueFree();
         }
         
     }
-    void SetPath(Vector3 newPos)
+    void SetPathPos(Vector3 newPos)
     {
         
         pathPos = path[pathPoint];
@@ -87,20 +89,15 @@ public class Enemy : Combatant
             }
             else 
             {
-                pathPoint = 0;
-                path = nav.GetSimplePath(Translation, newPos, true);
+                UpdatePath(newPos);
             }
         }
-        /*
-        for (int i = 0; i < nav.GetSimplePath(Translation, newPos, true).Length; i++)
-        {
-            Spatial newItem = (Spatial)AmmoBox.Instance();
-            GetTree().GetRoot().AddChild(newItem);
-            newItem.Translation = nav.GetSimplePath(Translation, newPos, true)[i];
-            
-        } 
-         */
         
+    }
+    public void UpdatePath(Vector3 newPos)
+    {
+        pathPoint = 0;
+        path = nav.GetSimplePath(Translation, newPos, true);
     }
     
 }
