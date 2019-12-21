@@ -5,6 +5,11 @@
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=4]
 
+[sub_resource type="DynamicFont" id=19]
+size = 86
+outline_color = Color( 0, 1, 0, 1 )
+font_data = ExtResource( 3 )
+
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 40, 25, 2 )
 
@@ -70,15 +75,27 @@ albedo_color = Color( 0.788235, 0, 0.294118, 1 )
 [sub_resource type="BoxShape" id=18]
 extents = Vector3( 20, 0.125, 2 )
 
-[sub_resource type="DynamicFont" id=19]
-size = 86
-outline_color = Color( 0, 1, 0, 1 )
-font_data = ExtResource( 3 )
-
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
 
+[node name="TextureRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+margin_bottom = 100.0
+texture = ExtResource( 2 )
+patch_margin_left = 10
+patch_margin_right = 10
+
+[node name="TopText" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "Debug Text"
+align = 1
+valign = 1
+
 [node name="Walls_Outer" type="Spatial" parent="."]
+editor/display_folded = true
 
 [node name="Wall1" type="MeshInstance" parent="Walls_Outer"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 21 )
@@ -124,6 +141,7 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="Navigation" type="Navigation" parent="."]
+editor/display_folded = true
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 4 )
@@ -258,15 +276,6 @@ material/0 = SubResource( 17 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/upperFloor/Deck2/StaticBody"]
 shape = SubResource( 18 )
-
-[node name="TopText" type="Label" parent="."]
-anchor_right = 1.0
-margin_bottom = 100.0
-custom_fonts/font = SubResource( 19 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Debug Text"
-align = 1
-valign = 1
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.894982, 0.0265408, -0.445313, 0.223425, 0.83734, 0.498942, 0.38612, -0.546038, 0.743474, 0, 15.0141, 0 )

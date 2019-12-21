@@ -7,7 +7,7 @@ public class Player : Combatant
     [Export]
     public float RechargeRate = 100, FuelDrainRate = 60;
     [Export]
-    public float JetForce = 5f;
+    public float JetForce = 4f;
     [Export]
     public float normalSpeed = 7f;
     [Export]
@@ -87,13 +87,13 @@ public class Player : Combatant
             //  Jumping / Jetpack thrust
             if (Input.IsActionPressed("player_jump") && fuelMeter.Value > 0)
             {
-                if (vel.y >= JetForce) //if the current momentum is greater than the desired jump height
+                if (!IsOnFloor()) //if the current momentum is greater than the desired jump height
                 {
-                    vel.y += JetForce / 10; //add a smaller amount of upward thrust
-                }
-                else if (!IsOnFloor())
-                {
-                    vel.y = JetForce / 2; //add a not-so-large burst of upward momentum
+                    if (vel.y > 0)
+                    {
+                        vel.y += JetForce / 10; //add a smaller amount of upward thrust
+                    }
+                    else vel.y += JetForce / 5; //add a smaller amount of upward thrust
                 }
                 else vel.y = JetForce; //add a burst of upward momentum
                 fuel -= FuelDrainRate * delta;
