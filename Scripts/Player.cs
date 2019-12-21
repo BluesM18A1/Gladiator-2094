@@ -7,7 +7,7 @@ public class Player : Combatant
     [Export]
     public float RechargeRate = 100, FuelDrainRate = 60;
     [Export]
-    public float JetForce = 4f;
+    public float JetForce = 3f;
     [Export]
     public float normalSpeed = 7f;
     [Export]
