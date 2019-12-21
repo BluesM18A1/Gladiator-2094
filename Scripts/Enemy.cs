@@ -6,17 +6,20 @@ public class Enemy : Combatant
     [Export]
     public int bounty = 10;
     public Arena arena;
-    public Navigation nav;
-    public KinematicBody player;
+    Navigation nav;
+    KinematicBody player;
     public Vector3 playerPos;
     Vector3 pathPos;
     Vector3[] path;
+    AnimationPlayer ani;
+
     public float minDistance = 6;
     int pathPoint = 0;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         arena = GetTree().GetRoot().GetNode<Arena>("Spatial");
+        ani = GetNode<AnimationPlayer>("AnimationPlayer");
         nav = GetNode<Navigation>("../Navigation");
         head = GetNode<Spatial>("Head");
         player = GetNode<KinematicBody>("../Player");
@@ -63,6 +66,14 @@ public class Enemy : Combatant
     {
         //hit sound
         HP += delta;
+        if (delta > 0)
+        {
+
+        }
+        else 
+        {
+            //ani.Play("Hurt");
+        }
         if (HP <= 0)
         {
             //die sound

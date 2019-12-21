@@ -1,37 +1,50 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=1]
-[ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=2]
+[ext_resource path="res://Materials/Red.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=3]
 
-[sub_resource type="CylinderMesh" id=1]
+[sub_resource type="CylinderMesh" id=6]
+material = ExtResource( 2 )
 top_radius = 0.3
 bottom_radius = 0.3
 height = 1.5
 radial_segments = 16
 rings = 1
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 1, 0, 0, 1 )
-
 [sub_resource type="CylinderShape" id=3]
 radius = 0.3
 height = 1.5
 
 [sub_resource type="CubeMesh" id=4]
+material = ExtResource( 2 )
 size = Vector3( 0.2, 0.2, 0.5 )
 
-[sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0.501961, 0, 0, 1 )
+[sub_resource type="Animation" id=8]
+resource_name = "Hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:mesh:material:emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
 
 [node name="Enemy" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 script = ExtResource( 1 )
-HP = 10
+HP = 20
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+mesh = SubResource( 6 )
+material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
@@ -43,9 +56,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 [node name="Gun" type="MeshInstance" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.55 )
 mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
-script = ExtResource( 2 )
+material/0 = null
+script = ExtResource( 3 )
 parentPath = NodePath("../..")
 
 [node name="Barrel" type="Position3D" parent="Head/Gun"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hurt = SubResource( 8 )

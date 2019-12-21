@@ -48,16 +48,16 @@ albedo_color = Color( 1, 1, 0, 1 )
 [sub_resource type="ConvexPolygonShape" id=11]
 points = PoolVector3Array( 3.5, 2.5, 2, 3.5, 2.5, -2, 3.5, 2.5, 2, 3.5, 2.5, -2, -3.5, -2.5, 2, 3.5, -2.5, -2, 3.5, -2.5, 2, -3.5, -2.5, -2, 3.5, 2.5, 2, 3.5, 2.5, -2, 3.5, 2.5, -2, 3.5, 2.5, 2, 3.5, -2.5, 2, -3.5, -2.5, -2, 3.5, -2.5, -2, -3.5, -2.5, 2, -3.5, -2.5, 2, 3.5, -2.5, 2, -3.5, -2.5, -2, 3.5, -2.5, -2 )
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="SpatialMaterial" id=12]
 albedo_color = Color( 0, 0.588235, 0, 1 )
 
-[sub_resource type="SpatialMaterial" id=14]
+[sub_resource type="SpatialMaterial" id=13]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="ConvexPolygonShape" id=21]
+[sub_resource type="ConvexPolygonShape" id=14]
 points = PoolVector3Array( 3.5, 2.5, 2, 3.5, 2.5, -2, 3.5, 2.5, 2, 3.5, 2.5, -2, -3.5, -2.5, 2, 3.5, -2.5, -2, 3.5, -2.5, 2, -3.5, -2.5, -2, 3.5, 2.5, 2, 3.5, 2.5, -2, 3.5, 2.5, -2, 3.5, 2.5, 2, 3.5, -2.5, 2, -3.5, -2.5, -2, 3.5, -2.5, -2, -3.5, -2.5, 2, -3.5, -2.5, 2, 3.5, -2.5, 2, -3.5, -2.5, -2, 3.5, -2.5, -2 )
 
-[sub_resource type="SpatialMaterial" id=12]
+[sub_resource type="SpatialMaterial" id=15]
 albedo_color = Color( 0, 0, 1, 1 )
 
 [sub_resource type="CubeMesh" id=16]
@@ -141,6 +141,7 @@ material/0 = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="Navigation" type="Navigation" parent="."]
+editor/display_folded = true
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 5 )
@@ -157,6 +158,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00073719, -9.53674e-07, 0.02
 shape = SubResource( 8 )
 
 [node name="Stairs" type="Spatial" parent="Navigation/NavigationMeshInstance"]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0473726, 0 )
 
 [node name="Stairs1" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Stairs"]
@@ -174,7 +176,7 @@ shape = SubResource( 11 )
 editor/display_folded = true
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 1.5, -13 )
 mesh = SubResource( 9 )
-material/0 = SubResource( 13 )
+material/0 = SubResource( 12 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Stairs/Stairs2"]
 
@@ -185,18 +187,18 @@ shape = SubResource( 11 )
 editor/display_folded = true
 transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -17.9973, 1.52055, 12.9795 )
 mesh = SubResource( 9 )
-material/0 = SubResource( 14 )
+material/0 = SubResource( 13 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Stairs/Stairs3"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Stairs/Stairs3/StaticBody"]
-shape = SubResource( 21 )
+shape = SubResource( 14 )
 
 [node name="Stairs4" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Stairs"]
 editor/display_folded = true
 transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18.0027, 1.52055, 12.9795 )
 mesh = SubResource( 9 )
-material/0 = SubResource( 12 )
+material/0 = SubResource( 15 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Stairs/Stairs4"]
 
@@ -204,6 +206,7 @@ material/0 = SubResource( 12 )
 shape = SubResource( 11 )
 
 [node name="Walls_Inner" type="Spatial" parent="Navigation/NavigationMeshInstance"]
+editor/display_folded = true
 
 [node name="InnerWall1" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Walls_Inner"]
 editor/display_folded = true
@@ -221,7 +224,7 @@ shape = SubResource( 17 )
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 1.5, 0 )
 mesh = SubResource( 16 )
-material/0 = SubResource( 12 )
+material/0 = SubResource( 15 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Walls_Inner/InnerWall2"]
 
@@ -232,7 +235,7 @@ shape = SubResource( 17 )
 editor/display_folded = true
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.84124e-07, 1.5, 10.5 )
 mesh = SubResource( 16 )
-material/0 = SubResource( 14 )
+material/0 = SubResource( 13 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Walls_Inner/InnerWall3"]
 
@@ -243,7 +246,7 @@ shape = SubResource( 17 )
 editor/display_folded = true
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.84124e-07, 1.5, -10.5 )
 mesh = SubResource( 16 )
-material/0 = SubResource( 13 )
+material/0 = SubResource( 12 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Walls_Inner/InnerWall4"]
 
@@ -285,4 +288,5 @@ transform = Transform( -0.814336, -0.120956, 0.56765, 0.223425, 0.83734, 0.49894
 light_energy = 0.7
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
+Deaccel = 20.0
 MouseSensitivity = 0.05
