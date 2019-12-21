@@ -37,7 +37,7 @@ public class Arena : Spatial
     }
     void EnemySpawn()
     {
-        for (byte i = 0; i < 6 /*+ difficultyModifier */; i++)
+        for (byte i = 0; i < 8 /*+ difficultyModifier */; i++)
         {
             RandomGroundSpawn(Enemy);
         }
@@ -61,7 +61,7 @@ public class Arena : Spatial
     void RandomGroundSpawn(PackedScene item) //place object randomly within navmesh bounds
     {
         Spatial newItem = (Spatial)item.Instance();
-        Vector3 randomPos = new Vector3((float)GD.RandRange(-15, 15), 2,(float)GD.RandRange(-15, 15));
+        Vector3 randomPos = new Vector3((float)GD.RandRange(-18, 18), 2,(float)GD.RandRange(-18, 18));
         AddChild(newItem);
         newItem.Translation = nav.GetClosestPoint(randomPos);
     }

@@ -10,7 +10,7 @@ public class PlayerGun : Gun
     [Export]
     public int ammo = 100;
     [Export]
-    public float coolTime = 3f;
+    public float coolSpeed = 3f;
     private Label ammoNum;
     public bool disabled = false;
     // Called when the node enters the scene tree for the first time.
@@ -26,7 +26,7 @@ public class PlayerGun : Gun
     public override void _Process(float delta)
     {
         ProcessInput(delta);
-        coolMeter.Value -= coolTime;
+        coolMeter.Value -= coolSpeed;
     }
     protected void ProcessInput(float delta)
     {

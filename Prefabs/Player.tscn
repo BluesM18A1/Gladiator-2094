@@ -28,6 +28,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 collision_layer = 5
 collision_mask = 5
 script = ExtResource( 1 )
+JetForce = 6.0
 MouseSensitivity = 0.1
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -48,6 +49,7 @@ fov = 90.0
 near = 0.01
 
 [node name="Gun" parent="Head" instance=ExtResource( 2 )]
+coolSpeed = 6.0
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0

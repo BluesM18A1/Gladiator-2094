@@ -5,14 +5,19 @@ public class Player : Combatant
 {
     //PHYSICS VARIABLES--------------------------------
     [Export]
-    public float RechargeRate = 60, FuelDrainRate = 60;
+    public float RechargeRate = 100, FuelDrainRate = 60;
     [Export]
-    public float JetForce = 4.0f;
+    public float JetForce = 5f;
+    [Export]
+    public float normalSpeed = 7f;
+    [Export]
+    public float sprintSpeed = 14f;
     [Export]
     public float MouseSensitivity = 0.3f;
     
     //GAMEPLAY VARIABLES-------------------------------------
     public bool alive = true;
+    float fuel = 100;
     //COMPONENT VARIABLES------------------------------------
     private Camera camera;
     public PlayerGun gun;
@@ -53,19 +58,22 @@ public class Player : Combatant
         
         
         //  Walking
-        dir = new Vector3();
         Transform camXform = camera.GetGlobalTransform();
 
         Vector2 inputMovementVector = new Vector2();
-
-        if (Input.IsActionPressed("player_forward"))
+        
+        
+            dir = new Vector3();
+            if (Input.IsActionPressed("player_forward"))
             inputMovementVector.y += 1;
-        if (Input.IsActionPressed("player_backward"))
-            inputMovementVector.y -= 1;
-        if (Input.IsActionPressed("player_left"))
-            inputMovementVector.x -= 1;
-        if (Input.IsActionPressed("player_right"))
-            inputMovementVector.x += 1;
+            if (Input.IsActionPressed("player_backward"))
+                inputMovementVector.y -= 1;
+            if (Input.IsActionPressed("player_left"))
+                inputMovementVector.x -= 1;
+            if (Input.IsActionPressed("player_right"))
+                inputMovementVector.x += 1;
+        
+        
 
         inputMovementVector = inputMovementVector.Normalized();
 
@@ -74,18 +82,37 @@ public class Player : Combatant
             //apply movement vector
             dir += -camXform.basis.z.Normalized() * inputMovementVector.y;
             dir += camXform.basis.x.Normalized() * inputMovementVector.x;
-
-            //  Jumping
+            
+            
+            //  Jumping / Jetpack thrust
             if (Input.IsActionPressed("player_jump") && fuelMeter.Value > 0)
             {
-                vel.y = JetForce;
-                fuelMeter.Value -= FuelDrainRate * delta;
-            }         
-            if (IsOnFloor())
-            {   
-                if (fuelMeter.Value < 100)
+                if (vel.y >= JetForce) //if the current momentum is greater than the desired jump height
                 {
-                    fuelMeter.Value += RechargeRate * delta;
+                    vel.y += JetForce / 10; //add a smaller amount of upward thrust
+                }
+                else if (!IsOnFloor())
+                {
+                    vel.y = JetForce / 2; //add a not-so-large burst of upward momentum
+                }
+                else vel.y = JetForce; //add a burst of upward momentum
+                fuel -= FuelDrainRate * delta;
+            }
+
+            //sprinting
+            if (Input.IsActionPressed("player_sprint") && fuelMeter.Value > 0)
+            {
+                MaxSpeed = sprintSpeed;
+                fuel -= (FuelDrainRate / 2) * delta;
+            }
+            else MaxSpeed = normalSpeed;
+
+            //recharging
+            if (IsOnFloor() && !Input.IsActionPressed("player_sprint"))
+            {   
+                if (fuel < 100)
+                {
+                    fuel += RechargeRate * delta;
                 }
             }
         }
@@ -93,7 +120,8 @@ public class Player : Combatant
         {
             GetTree().ReloadCurrentScene();
         }
-            
+        fuel = Mathf.Clamp(fuel, 0, 100);
+        fuelMeter.Value = fuel;
     }
 
     public override void _Input(InputEvent @event)
