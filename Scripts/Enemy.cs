@@ -26,7 +26,6 @@ public class Enemy : Combatant
         playerPos = player.Translation;
         path = nav.GetSimplePath(Translation, playerPos, true);
         pathPos = Translation;
-        
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,9 +41,6 @@ public class Enemy : Combatant
         Transform camXform = GetGlobalTransform();
         Vector2 inputMovementVector = Vector2.Zero;
         dir = new Vector3();
-
-        if (Input.IsActionJustPressed("ui_accept")) SetPathPos(playerPos);
-        
         float distanceToPoint = Translation.DistanceTo(pathPos);
         float distanceToPlayer = Translation.DistanceTo(playerPos);
         if (distanceToPoint > 0.5f && distanceToPlayer > minDistance)
@@ -64,7 +60,6 @@ public class Enemy : Combatant
     }
     public override void UpdateHealth(int delta)
     {
-        //hit sound
         HP += delta;
         if (delta > 0)
         {
@@ -72,7 +67,7 @@ public class Enemy : Combatant
         }
         else 
         {
-            //ani.Play("Hurt");
+            ani.Play("Hurt");//Add hit sound to this animation!
         }
         if (HP <= 0)
         {

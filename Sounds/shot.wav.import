@@ -12,7 +12,7 @@ dest_files=[ "res://.import/shot.wav-be060a9bb9c740be1e609fc840a1a543.sample" ]
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true

@@ -4,8 +4,9 @@ using System;
 public class ItemBox : Area
 {
     //GAMEPLAY VARIABLES-------------------------------------
+    public enum ITEM {MEDKIT, BULLETS, SHELLS, GRENADES}
     [Export]
-    public byte itemType = 0; //this was going to be an ENUM but exporting enums in C# is currently broken.
+    ITEM itemType;
     [Export]
     public byte itemCount;
 
@@ -20,10 +21,16 @@ public class ItemBox : Area
         {
             switch (itemType)
             {
-                case (0): //IF HEALTH
+                case ITEM.MEDKIT: //IF HEALTH
                 body.UpdateHealth(itemCount);
                 break;
-                case (1):
+                case ITEM.BULLETS:
+                body.gun.AddAmmo(itemCount);
+                break;
+                case ITEM.SHELLS:
+                body.gun.AddAmmo(itemCount);
+                break;
+                case ITEM.GRENADES:
                 body.gun.AddAmmo(itemCount);
                 break;
             }

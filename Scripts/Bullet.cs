@@ -3,6 +3,7 @@ using System;
 
 public class Bullet : RigidBody
 {
+	float timer = 0;
     [Export]
     public int damage = -1;
     [Export]
@@ -10,6 +11,8 @@ public class Bullet : RigidBody
     public bool friendly = false;
     [Signal]
     public delegate void DealDamage(byte damagePoints);
+    [Export]
+    public PackedScene sparks = (PackedScene)ResourceLoader.Load("res://Prefabs/sparks.tscn");
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -19,7 +22,8 @@ public class Bullet : RigidBody
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (Translation.y > 20) QueueFree();
+        timer+= delta;
+		if (timer > 10) QueueFree();
     }
 	private void _OnCollisionEnter(Node body)
 	{
@@ -31,6 +35,14 @@ public class Bullet : RigidBody
         {
             Connect(nameof(DealDamage), body, "UpdateHealth");
             EmitSignal(nameof(DealDamage), damage);
+        }
+        else
+        {
+            CPUParticles newSparks = (CPUParticles)sparks.Instance();
+            GetTree().Root.AddChild(newSparks);
+            newSparks.Emitting = true;
+            newSparks.Translation = Translation;
+            //newSparks.Rotation = Rotation;
         }
     	QueueFree();
 	}

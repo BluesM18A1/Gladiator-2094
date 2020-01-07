@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Prefabs/PlayerGun.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Textures/UI/LifeMeter.png" type="Texture" id=4]
 [ext_resource path="res://Textures/UI/Font1.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Textures/UI/placeholder_crosshair.png" type="Texture" id=6]
+[ext_resource path="res://Sounds/boost.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/healthPickup.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/hurtsound.wav" type="AudioStream" id=9]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.3
@@ -49,7 +52,7 @@ fov = 90.0
 near = 0.01
 
 [node name="Gun" parent="Head" instance=ExtResource( 2 )]
-coolSpeed = 6.0
+coolSpeed = 12.0
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
@@ -135,3 +138,13 @@ margin_top = -25.0
 margin_right = 25.0
 margin_bottom = 25.0
 texture = ExtResource( 6 )
+
+[node name="boostSnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+pitch_scale = 0.8
+
+[node name="medSnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="hurtSnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )

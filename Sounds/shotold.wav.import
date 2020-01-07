@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shotold.wav-82c444ddba768cfc5bd1dba91f4c6101.sample"
+
+[deps]
+
+source_file="res://Sounds/shotold.wav"
+dest_files=[ "res://.import/shotold.wav-82c444ddba768cfc5bd1dba91f4c6101.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -3,6 +3,7 @@ using System;
 
 public class EnemyGun : Gun
 {
+    public AudioStreamPlayer3D snd;
     [Export]
     public float fireRate = 0.5f, time = 0;
     [Export]
@@ -11,8 +12,10 @@ public class EnemyGun : Gun
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        snd = GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D");
         parent = GetNode<Enemy>(parentPath);
         barrel = GetNode<Position3D>("Barrel");
+        fireRate = (float)GD.RandRange(0.5f, 0.8f);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +30,11 @@ public class EnemyGun : Gun
             Fire();
             time = 0;
         }
-        else time += delta;
+        else
+        {
+            time += delta;
+            fireRate = (float)GD.RandRange(0.5f, 0.8f);
+        }
     }
     protected override void Fire()
     {
@@ -38,5 +45,7 @@ public class EnemyGun : Gun
         newBullet.damage = -8;
         newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
         parent.UpdatePath(parent.playerPos);
+        snd.PitchScale = fireRate;
+        snd.Play();
     }
 }

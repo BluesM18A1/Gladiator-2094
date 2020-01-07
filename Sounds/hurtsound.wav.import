@@ -12,7 +12,7 @@ dest_files=[ "res://.import/hurtsound.wav-119f2cd3ce8df57d7606a714dce5054a.sampl
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true

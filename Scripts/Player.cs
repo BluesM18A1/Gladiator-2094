@@ -23,11 +23,14 @@ public class Player : Combatant
     public PlayerGun gun;
     private TextureProgress healthMeter, fuelMeter;
     private Label healthNum;
-    
+    public AudioStreamPlayer boostSnd, medSnd, hurtSnd;
     
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        boostSnd = GetNode<AudioStreamPlayer>("boostSnd");
+        medSnd = GetNode<AudioStreamPlayer>("medSnd");
+        hurtSnd = GetNode<AudioStreamPlayer>("hurtSnd");
         head = GetNode<Spatial>("Head");
         camera = GetNode<Camera>("Head/Camera");
         gun = GetNode<PlayerGun>("Head/Gun");
@@ -36,6 +39,7 @@ public class Player : Combatant
         healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
         healthNum.Text = healthMeter.Value.ToString();
         Input.SetMouseMode(Input.MouseMode.Captured);
+        
     }
 
     public override void _PhysicsProcess(float delta)
@@ -87,6 +91,8 @@ public class Player : Combatant
             //  Jumping / Jetpack thrust
             if (Input.IsActionPressed("player_jump") && fuelMeter.Value > 0)
             {
+                if (Input.IsActionJustPressed("player_jump")) boostSnd.Play();
+                
                 if (!IsOnFloor()) //if the current momentum is greater than the desired jump height
                 {
                     if (vel.y > 0)
@@ -102,11 +108,16 @@ public class Player : Combatant
             //sprinting
             if (Input.IsActionPressed("player_sprint") && fuelMeter.Value > 0)
             {
+                if (Input.IsActionJustPressed("player_sprint")) boostSnd.Play();
+                
                 MaxSpeed = sprintSpeed;
                 fuel -= (FuelDrainRate / 2) * delta;
             }
             else MaxSpeed = normalSpeed;
 
+            //stop jetpack sounds
+            if (!Input.IsActionPressed("player_sprint") && !Input.IsActionPressed("player_jump")) boostSnd.Stop();
+            
             //recharging
             if (IsOnFloor() && !Input.IsActionPressed("player_sprint"))
             {   
@@ -142,11 +153,11 @@ public class Player : Combatant
     {
         if (delta < 0)
         {
-            //TODO: hurtsound
+            hurtSnd.Play();
         }
         else
         {
-            //TODO: healsound
+            medSnd.Play();
         }
         HP += delta;
         HP = Mathf.Clamp(HP, 0, (int)healthMeter.MaxValue);

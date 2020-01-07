@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/PlayerGun.cs" type="Script" id=1]
 [ext_resource path="res://Textures/UI/CooldownMeter_overlay.png" type="Texture" id=2]
 [ext_resource path="res://Textures/UI/CooldownMeter_fill.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/shot.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/ammoPickup.wav" type="AudioStream" id=5]
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.2, 0.2, 0.5 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0, 0, 0.501961, 1 )
 
 [sub_resource type="ViewportTexture" id=3]
@@ -15,8 +17,8 @@ viewport_path = NodePath("Meter/Viewport")
 
 [node name="Gun" type="MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.3 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
 script = ExtResource( 1 )
 HUDpath = NodePath("../../HUD")
 
@@ -24,7 +26,7 @@ HUDpath = NodePath("../../HUD")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 
 [node name="Meter" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.103, -0.045 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0.103, -0.045 )
 pixel_size = 0.0006
 texture = SubResource( 3 )
 
@@ -40,3 +42,9 @@ texture_over = ExtResource( 2 )
 texture_progress = ExtResource( 3 )
 fill_mode = 2
 tint_over = Color( 0, 1, 0, 1 )
+
+[node name="fireSnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="pickupSnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
