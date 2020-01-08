@@ -9,6 +9,11 @@
             
             </summary>
         </member>
+        <member name="M:Godot.EditorExportPlugin._ExportEnd">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Godot.EditorExportPlugin._ExportFile(System.String,System.String,System.String[])">
             <summary>
             
@@ -177,12 +182,12 @@
         </member>
         <member name="M:Godot.EditorFileSystem.IsScanning">
             <summary>
-            <para>Return true of the filesystem is being scanned.</para>
+            <para>Returns <c>true</c> of the filesystem is being scanned.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorFileSystem.GetScanningProgress">
             <summary>
-            <para>Return the scan progress for 0 to 1 if the FS is being scanned.</para>
+            <para>Returns the scan progress for 0 to 1 if the FS is being scanned.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorFileSystem.Scan">
@@ -599,7 +604,7 @@
         </member>
         <member name="F:Godot.EditorPlugin.DockSlot.Max">
             <summary>
-            
+            <para>Represents the size of the <see cref="T:Godot.EditorPlugin.DockSlot"/> enum.</para>
             </summary>
         </member>
         <member name="F:Godot.EditorPlugin.CustomControlContainer.Toolbar">
@@ -740,12 +745,12 @@
         </member>
         <member name="M:Godot.EditorPlugin.Handles(Godot.Object)">
             <summary>
-            <para>Implement this function if your plugin edits a specific type of object (Resource or Node). If you return true, then you will get the functions <see cref="M:Godot.EditorPlugin.Edit(Godot.Object)"/> and <see cref="M:Godot.EditorPlugin.MakeVisible(System.Boolean)"/> called when the editor requests them. If you have declared the methods <see cref="M:Godot.EditorPlugin.ForwardCanvasGuiInput(Godot.InputEvent)"/> and <see cref="M:Godot.EditorPlugin.ForwardSpatialGuiInput(Godot.Camera,Godot.InputEvent)"/> these will be called too.</para>
+            <para>Implement this function if your plugin edits a specific type of object (Resource or Node). If you return <c>true</c>, then you will get the functions <see cref="M:Godot.EditorPlugin.Edit(Godot.Object)"/> and <see cref="M:Godot.EditorPlugin.MakeVisible(System.Boolean)"/> called when the editor requests them. If you have declared the methods <see cref="M:Godot.EditorPlugin.ForwardCanvasGuiInput(Godot.InputEvent)"/> and <see cref="M:Godot.EditorPlugin.ForwardSpatialGuiInput(Godot.Camera,Godot.InputEvent)"/> these will be called too.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorPlugin.HasMainScreen">
             <summary>
-            <para>Return true if this is a main screen editor plugin (it goes in the workspaces selector together with '2D', '3D', and 'Script').</para>
+            <para>Returns <c>true</c> if this is a main screen editor plugin (it goes in the workspaces selector together with '2D', '3D', and 'Script').</para>
             </summary>
         </member>
         <member name="M:Godot.EditorPlugin.MakeVisible(System.Boolean)">
@@ -805,12 +810,12 @@
         </member>
         <member name="M:Godot.EditorPlugin.AddToolMenuItem(System.String,Godot.Object,System.String,System.Object)">
             <summary>
-            <para>Add a custom menu to 'Project &gt; Tools' as <c>name</c> that calls <c>callback</c> on an instance of <c>handler</c> with a parameter <c>ud</c> when user activates it.</para>
+            <para>Adds a custom menu item to Project &gt; Tools as <c>name</c> that calls <c>callback</c> on an instance of <c>handler</c> with a parameter <c>ud</c> when user activates it.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorPlugin.AddToolSubmenuItem(System.String,Godot.Object)">
             <summary>
-            <para>Like <see cref="M:Godot.EditorPlugin.AddToolMenuItem(System.String,Godot.Object,System.String,System.Object)"/> but adds the <c>submenu</c> item inside the <c>name</c> menu.</para>
+            <para>Adds a custom submenu under Project &gt; Tools &gt; <c>name</c>. <c>submenu</c> should be an object of class <see cref="T:Godot.PopupMenu"/>. This submenu should be cleaned up using <c>remove_tool_menu_item(name)</c>.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorPlugin.RemoveToolMenuItem(System.String)">
@@ -843,7 +848,7 @@
         </member>
         <member name="M:Godot.EditorPlugin.UpdateOverlays">
             <summary>
-            
+            <para>Updates the overlays of the editor (2D/3D) viewport.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorPlugin.MakeBottomPanelItemVisible(Godot.Control)">
@@ -928,7 +933,7 @@
         </member>
         <member name="M:Godot.EditorPlugin.GetEditorInterface">
             <summary>
-            <para>Return the <see cref="T:Godot.EditorInterface"/> object that gives you control over Godot editor's window and its functionalities.</para>
+            <para>Returns the <see cref="T:Godot.EditorInterface"/> object that gives you control over Godot editor's window and its functionalities.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorPlugin.GetScriptCreateDialog">
@@ -1052,7 +1057,7 @@
         </member>
         <member name="M:Godot.EditorResourcePreviewGenerator.Handles(System.String)">
             <summary>
-            <para>Return if your generator supports this resource type.</para>
+            <para>Returns if your generator supports this resource type.</para>
             </summary>
         </member>
         <member name="F:Godot.EditorSceneImporter.ImportScene">
@@ -1353,7 +1358,7 @@
         <member name="M:Godot.EditorSpatialGizmo.CommitHandle(System.Int32,System.Object,System.Boolean)">
             <summary>
             <para>Commit a handle being edited (handles must have been previously added by <see cref="M:Godot.EditorSpatialGizmo.AddHandles(Godot.Vector3[],Godot.Material,System.Boolean,System.Boolean)"/>).</para>
-            <para>If the cancel parameter is true, an option to restore the edited value to the original is provided.</para>
+            <para>If the cancel parameter is <c>true</c>, an option to restore the edited value to the original is provided.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorSpatialGizmo.GetHandleName(System.Int32)">
@@ -1427,7 +1432,7 @@
         </member>
         <member name="M:Godot.EditorSpatialGizmo.GetPlugin">
             <summary>
-            <para>Return the <see cref="T:Godot.EditorSpatialGizmoPlugin"/> that owns this gizmo. It's useful to retrieve materials using <see cref="M:Godot.EditorSpatialGizmoPlugin.GetMaterial(System.String,Godot.EditorSpatialGizmo)"/>.</para>
+            <para>Returns the <see cref="T:Godot.EditorSpatialGizmoPlugin"/> that owns this gizmo. It's useful to retrieve materials using <see cref="M:Godot.EditorSpatialGizmoPlugin.GetMaterial(System.String,Godot.EditorSpatialGizmo)"/>.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorSpatialGizmo.Clear">
@@ -1447,7 +1452,7 @@
         </member>
         <member name="M:Godot.EditorSpatialGizmoPlugin.CanBeHidden">
             <summary>
-            <para>Override this method to define whether the gizmo can be hidden or not. Defaults to true.</para>
+            <para>Override this method to define whether the gizmo can be hidden or not. Defaults to <c>true</c>.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorSpatialGizmoPlugin.CommitHandle(Godot.EditorSpatialGizmo,System.Int32,System.Object,System.Boolean)">

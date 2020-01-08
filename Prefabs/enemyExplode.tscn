@@ -31,7 +31,7 @@ explosiveness = 0.95
 mesh = SubResource( 2 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = 9.27555e-039
+angular_velocity = 9.27555e-39
 scale_amount = 0.2
 color = Color( 0.0784314, 0, 1, 1 )
 hue_variation = 1.0
@@ -39,8 +39,7 @@ hue_variation_random = 1.0
 hue_variation_curve = SubResource( 3 )
 script = ExtResource( 2 )
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="killGong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-unit_db = 1.0
-unit_size = 4.0
+volume_db = -5.0
 autoplay = true

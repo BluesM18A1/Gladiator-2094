@@ -6,10 +6,11 @@ public class Title : Control
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
-
+    AudioStreamPlayer bloop;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        bloop = GetNode<AudioStreamPlayer>("bloop");
         Input.SetMouseMode(Input.MouseMode.Visible);
     }
 
@@ -22,12 +23,22 @@ public class Title : Control
 	{
     	GetTree().ChangeScene("res://arena.tscn");
 	}
-
-
+    private void OptionsButtonDown()
+    {
+        GD.Print("WIP");
+    }
+    private void CredsButtonDown()
+    {
+        GD.Print("WIP");
+    }
 	private void ExitButtonDown()
 	{
     	GetTree().Quit();
 	}
+    private void onButtonHover()
+    {
+        bloop.Play();
+    }
 }
 
 

@@ -6,8 +6,8 @@ public class PlayerGun : Gun
     public AudioStreamPlayer fireSnd;
 	public AudioStreamPlayer pickupSnd;
     public Weapon minigun = new Weapon(3, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Minigun.tscn"), 100);
-    public Weapon buckshot = new Weapon(2, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Buckshot.tscn"), 100);
-    public Weapon grenade = new Weapon(1, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Grenade.tscn"), 100);
+    //public Weapon buckshot = new Weapon(2, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Buckshot.tscn"), 100);
+    //public Weapon grenade = new Weapon(1, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Grenade.tscn"), 100);
     public byte currentWeapon;
     public TextureProgress coolMeter;
     [Export]

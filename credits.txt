@@ -1,0 +1,15 @@
+Gladiator 2092 original staff:
+Bruce Heiner II (me)
+Jonah Scanzon
+Ethan Sewall
+
+SFX:
+Hitsound: Quake 3
+Minigun: Doom 3 plasma rifle
+Some other weapons and pickup sounds: Brutal Doom? (need to figure out ITS sources)
+Misc: 3D space cadet pinball (I think most of the sounds from that game are public-domain anyways)
+
+MUSIC:
+(I think the music here is in legal limbo since the copyright holders are long dead, some of the composers may still be around, though.)
+Boss theme: One Man and his Droid  - Rob Hubbard
+BGM 1: Monty on the Run - Rob Hubbard
