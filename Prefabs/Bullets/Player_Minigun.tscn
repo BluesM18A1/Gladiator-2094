@@ -27,7 +27,7 @@ radius = 0.1
 ]]
 collision_layer = 2
 gravity_scale = 0.0
-contacts_reported = 1
+contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 1 )
 damage = -5

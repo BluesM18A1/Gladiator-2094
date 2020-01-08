@@ -60,7 +60,7 @@ fov = 90.0
 near = 0.01
 
 [node name="Gun" parent="Head" instance=ExtResource( 2 )]
-coolSpeed = 16.0
+coolSpeed = 12.0
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0

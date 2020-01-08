@@ -33,7 +33,7 @@ public class PlayerGun : Gun
     public override void _Process(float delta)
     {
         ProcessInput(delta);
-        coolMeter.Value -= coolSpeed;
+        coolMeter.Value -= coolSpeed * 100 * delta;
     }
     protected void ProcessInput(float delta)
     {
