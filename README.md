@@ -7,9 +7,7 @@ This is a "sequel" to a multiplayer arcade-style FPS game I made in high school 
 2092 was made in Unity Engine v2018.3, and half of the development time went towards figuring out the broken networking API.
 2092 was never "completed" so to speak. Many features we wanted were either broken or never implemented.
 
-Being an ex-Unity dev, Godot's recent addition of C# support was very very enticing.
-What wasn't enticing, was how half-baked the documentation for C# was.
-So I have decided that this port/sequel will be open-source so that newcomers to the Godot engine have a strong example of how to use C# in the engine.
+While C# support in the Godot Engine isn't quite feature-complete yet, as C# support grows in the Godot Engine, this game, too, will become more feature complete. This project's goal, first and foremost, is to teach both me and you about how C# works in this engine.
 
 ADDITIONAL NOTES:
 
