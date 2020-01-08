@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/shotold.wav-82c444ddba768cfc5bd1dba91f4c6101.sample"
+path="res://.import/minigun.wav-058608c4e035a4ff19f37770b1959e98.sample"
 
 [deps]
 
-source_file="res://Sounds/shotold.wav"
-dest_files=[ "res://.import/shotold.wav-82c444ddba768cfc5bd1dba91f4c6101.sample" ]
+source_file="res://Sounds/guns/minigun.wav"
+dest_files=[ "res://.import/minigun.wav-058608c4e035a4ff19f37770b1959e98.sample" ]
 
 [params]
 

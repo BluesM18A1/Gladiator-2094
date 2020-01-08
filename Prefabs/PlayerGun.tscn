@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/PlayerGun.cs" type="Script" id=1]
 [ext_resource path="res://Textures/UI/CooldownMeter_overlay.png" type="Texture" id=2]
 [ext_resource path="res://Textures/UI/CooldownMeter_fill.png" type="Texture" id=3]
-[ext_resource path="res://Sounds/shot.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/guns/minigun.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sounds/ammoPickup.wav" type="AudioStream" id=5]
 
 [sub_resource type="CubeMesh" id=1]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
+
+[sub_resource type="SphereMesh" id=1]
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0, 0.498039, 1, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.2
+emission_enabled = true
+emission = Color( 0.00784314, 0.0313726, 0.0941176, 1 )
+emission_energy = 13.73
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.1
+
+[node name="Bullet" type="RigidBody" groups=[
+"projectiles",
+]]
+collision_layer = 2
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 1 )
+damage = -5
+speed = 60.0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
+[connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

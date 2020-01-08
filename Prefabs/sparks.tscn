@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Textures/particle.png" type="Texture" id=1]
 [ext_resource path="res://Prefabs/despawn.cs" type="Script" id=2]
@@ -16,13 +16,9 @@ albedo_texture = ExtResource( 1 )
 [sub_resource type="QuadMesh" id=2]
 material = SubResource( 1 )
 
-[sub_resource type="Curve" id=3]
-min_value = -1.0
-_data = [ Vector2( 0, -1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
 [node name="CPUParticles" type="CPUParticles"]
 emitting = false
-amount = 32
+amount = 24
 lifetime = 1.5
 one_shot = true
 speed_scale = 2.0
@@ -30,10 +26,8 @@ explosiveness = 0.95
 mesh = SubResource( 2 )
 spread = 180.0
 gravity = Vector3( 0, -1, 0 )
+initial_velocity = 0.5
 angular_velocity = 9.27555e-039
-scale_amount = 0.1
-color = Color( 0.0784314, 0, 1, 1 )
-hue_variation = 1.0
-hue_variation_random = 1.0
-hue_variation_curve = SubResource( 3 )
+scale_amount = 0.08
+color = Color( 1, 0.866667, 0, 1 )
 script = ExtResource( 2 )

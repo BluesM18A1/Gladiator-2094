@@ -5,9 +5,9 @@ public class PlayerGun : Gun
 {
     public AudioStreamPlayer fireSnd;
 	public AudioStreamPlayer pickupSnd;
-    public Weapon minigun = new Weapon(3, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullet.tscn"), 100);
-    public Weapon buckshot = new Weapon(2, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullet.tscn"), 100);
-    public Weapon grenade = new Weapon(1, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullet.tscn"), 100);
+    public Weapon minigun = new Weapon(3, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Minigun.tscn"), 100);
+    public Weapon buckshot = new Weapon(2, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Buckshot.tscn"), 100);
+    public Weapon grenade = new Weapon(1, (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Grenade.tscn"), 100);
     public byte currentWeapon;
     public TextureProgress coolMeter;
     [Export]
@@ -42,20 +42,18 @@ public class PlayerGun : Gun
             if (ammo > 0)
             {
                 coolMeter.Value = 100;
-                Fire();
+                Fire(minigun);
             }
         }
     }
-    protected override void Fire()//this one is gonna need extra parameters when we add multiple weapons
+    protected void Fire(Weapon newWeapon)//this one is gonna need extra parameters when we add multiple weapons
     {
         ammo--;
         ammoNum.Text = ammo.ToString();
-        Bullet newBullet = (Bullet)bullet.Instance();
+        Bullet newBullet = (Bullet)newWeapon.weapon.Instance();
         GetTree().Root.AddChild(newBullet);
         newBullet.GlobalTransform = barrel.GlobalTransform;
         newBullet.friendly = true;
-        newBullet.damage = -5;
-        newBullet.speed = 50;
         newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
         fireSnd.Play();
     }

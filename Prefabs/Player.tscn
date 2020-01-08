@@ -1,14 +1,19 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Prefabs/PlayerGun.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Textures/UI/LifeMeter_background.png" type="Texture" id=3]
-[ext_resource path="res://Textures/UI/LifeMeter.png" type="Texture" id=4]
-[ext_resource path="res://Textures/UI/Font1.tres" type="DynamicFont" id=5]
-[ext_resource path="res://Textures/UI/placeholder_crosshair.png" type="Texture" id=6]
-[ext_resource path="res://Sounds/boost.wav" type="AudioStream" id=7]
-[ext_resource path="res://Sounds/healthPickup.wav" type="AudioStream" id=8]
-[ext_resource path="res://Sounds/hurtsound.wav" type="AudioStream" id=9]
+[ext_resource path="res://Textures/grid.png" type="Texture" id=3]
+[ext_resource path="res://Textures/UI/Icon_Grenade.png" type="Texture" id=4]
+[ext_resource path="res://Textures/UI/Icon_Flamethrower.png" type="Texture" id=5]
+[ext_resource path="res://Textures/UI/Icon_Minigun.png" type="Texture" id=6]
+[ext_resource path="res://Textures/UI/Icon_Shotgun.png" type="Texture" id=7]
+[ext_resource path="res://Textures/UI/LifeMeter_background.png" type="Texture" id=8]
+[ext_resource path="res://Textures/UI/LifeMeter.png" type="Texture" id=9]
+[ext_resource path="res://Textures/UI/Font1.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Textures/UI/placeholder_crosshair.png" type="Texture" id=11]
+[ext_resource path="res://Sounds/boost.wav" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/healthPickup.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/hurtsound.wav" type="AudioStream" id=14]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.3
@@ -31,7 +36,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 collision_layer = 5
 collision_mask = 5
 script = ExtResource( 1 )
-JetForce = 3.5
+Deaccel = 24.0
+JetForce = 4.5
+normalSpeed = 8.0
+sprintSpeed = 15.0
 MouseSensitivity = 0.1
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -52,11 +60,54 @@ fov = 90.0
 near = 0.01
 
 [node name="Gun" parent="Head" instance=ExtResource( 2 )]
-coolSpeed = 12.0
+coolSpeed = 16.0
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="WeaponBar" type="NinePatchRect" parent="HUD"]
+self_modulate = Color( 0, 1, 0, 1 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -128.0
+texture = ExtResource( 3 )
+
+[node name="IconGren" type="TextureRect" parent="HUD/WeaponBar"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 855.933
+margin_top = 22.3328
+margin_right = 941.933
+margin_bottom = 105.533
+texture = ExtResource( 4 )
+expand = true
+
+[node name="IconFlam" type="TextureRect" parent="HUD/WeaponBar"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 754.052
+margin_top = 22.3328
+margin_right = 840.052
+margin_bottom = 105.533
+texture = ExtResource( 5 )
+expand = true
+
+[node name="IconMini" type="TextureRect" parent="HUD/WeaponBar"]
+margin_left = 955.401
+margin_top = 23.5605
+margin_right = 1041.4
+margin_bottom = 106.76
+texture = ExtResource( 6 )
+expand = true
+
+[node name="IconShot" type="TextureRect" parent="HUD/WeaponBar"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 1060.99
+margin_top = 23.5605
+margin_right = 1146.99
+margin_bottom = 106.76
+texture = ExtResource( 7 )
+expand = true
 
 [node name="HealthMeter" type="TextureProgress" parent="HUD"]
 anchor_top = 1.0
@@ -68,8 +119,8 @@ rect_scale = Vector2( 0.8, 0.45 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 value = 100.0
-texture_under = ExtResource( 3 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 9 )
 fill_mode = 5
 tint_progress = Color( 0, 0, 1, 1 )
 radial_initial_angle = 90.0
@@ -86,7 +137,7 @@ margin_top = 8.99939
 margin_right = 53.0
 margin_bottom = 136.999
 rect_scale = Vector2( 0.8, 1.5 )
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0, 0.501961, 1, 1 )
 text = "ERR"
 align = 1
@@ -104,8 +155,8 @@ rect_scale = Vector2( -0.8, 0.45 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 value = 100.0
-texture_under = ExtResource( 3 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 9 )
 fill_mode = 5
 tint_progress = Color( 0.729412, 0, 0, 1 )
 radial_initial_angle = 90.0
@@ -122,13 +173,14 @@ margin_top = 8.99939
 margin_right = 294.999
 margin_bottom = 136.999
 rect_scale = Vector2( -0.8, 1.5 )
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 1, 0.501961, 0, 1 )
 text = "ERR"
 align = 1
 valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="HUD"]
+[node name="Crosshair" type="TextureRect" parent="HUD"]
+self_modulate = Color( 0, 1, 0, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -137,14 +189,14 @@ margin_left = -25.0
 margin_top = -25.0
 margin_right = 25.0
 margin_bottom = 25.0
-texture = ExtResource( 6 )
+texture = ExtResource( 11 )
 
 [node name="boostSnd" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 12 )
 pitch_scale = 0.8
 
 [node name="medSnd" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 13 )
 
 [node name="hurtSnd" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 14 )

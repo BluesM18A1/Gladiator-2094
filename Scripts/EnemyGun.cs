@@ -36,7 +36,7 @@ public class EnemyGun : Gun
             fireRate = (float)GD.RandRange(0.5f, 0.8f);
         }
     }
-    protected override void Fire()
+    protected void Fire()
     {
         //TODO: fire sound
         Bullet newBullet = (Bullet)bullet.Instance();

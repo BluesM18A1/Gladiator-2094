@@ -4,6 +4,8 @@ using System;
 public class Enemy : Combatant
 {
     [Export]
+    public PackedScene deathExplosion = (PackedScene)ResourceLoader.Load("res://Prefabs/enemyExplode.tscn");
+    [Export]
     public int bounty = 10;
     public Arena arena;
     Navigation nav;
@@ -71,8 +73,11 @@ public class Enemy : Combatant
         }
         if (HP <= 0)
         {
-            //die sound
-            //spawn a nice explosion maybe
+            CPUParticles boom = (CPUParticles)deathExplosion.Instance();
+            GetTree().Root.AddChild(boom);
+            boom.Emitting = true;
+            boom.Translation = Translation;
+            
             arena.UpdateScore(bounty);
             QueueFree();
         }

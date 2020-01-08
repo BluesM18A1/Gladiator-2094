@@ -111,12 +111,12 @@ public class Player : Combatant
                 if (Input.IsActionJustPressed("player_sprint")) boostSnd.Play();
                 
                 MaxSpeed = sprintSpeed;
-                fuel -= (FuelDrainRate / 2) * delta;
+                fuel -= (FuelDrainRate / 3) * delta;
             }
             else MaxSpeed = normalSpeed;
 
             //stop jetpack sounds
-            if (!Input.IsActionPressed("player_sprint") && !Input.IsActionPressed("player_jump")) boostSnd.Stop();
+            if ((!Input.IsActionPressed("player_sprint") && !Input.IsActionPressed("player_jump")) || fuelMeter.Value == 0) boostSnd.Stop();
             
             //recharging
             if (IsOnFloor() && !Input.IsActionPressed("player_sprint"))
@@ -127,9 +127,9 @@ public class Player : Combatant
                 }
             }
         }
-        else if (Input.IsActionJustPressed("ui_cancel"))
+        else
         {
-            GetTree().ReloadCurrentScene();
+            GetTree().ChangeScene("res://GameOver.tscn");
         }
         fuel = Mathf.Clamp(fuel, 0, 100);
         fuelMeter.Value = fuel;
@@ -153,7 +153,7 @@ public class Player : Combatant
     {
         if (delta < 0)
         {
-            hurtSnd.Play();
+            if (alive) hurtSnd.Play();
         }
         else
         {

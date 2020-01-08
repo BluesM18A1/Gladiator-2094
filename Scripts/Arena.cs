@@ -13,7 +13,7 @@ public class Arena : Spatial
     [Export]
     public PackedScene HealthPack = (PackedScene)ResourceLoader.Load("res://Prefabs/Box_Health.tscn");
     [Export]
-    public PackedScene AmmoBox = (PackedScene)ResourceLoader.Load("res://Prefabs/Box_Grenades.tscn");
+    public PackedScene AmmoBox = (PackedScene)ResourceLoader.Load("res://Prefabs/Box_Minigun.tscn");
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
