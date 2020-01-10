@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
+[ext_resource path="res://Sounds/enemyShot.wav" type="AudioStream" id=2]
 
 [sub_resource type="SphereMesh" id=1]
 radius = 0.1
@@ -39,4 +40,8 @@ material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

@@ -5,7 +5,9 @@ public class despawn : CPUParticles
 {
     //this is for particle systems that can't despawn automatically
 	
-	float timer = 0;
+	[Export]
+  public float lifeSpan = 2;
+  float timer = 0;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -16,6 +18,6 @@ public class despawn : CPUParticles
   public override void _Process(float delta)
   {
       timer+= delta;
-	if (timer > 2) QueueFree();
+	    if (timer > lifeSpan) QueueFree();
   }
 }

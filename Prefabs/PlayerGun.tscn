@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/PlayerGun.cs" type="Script" id=1]
 [ext_resource path="res://Textures/UI/CooldownMeter_overlay.png" type="Texture" id=2]
 [ext_resource path="res://Textures/UI/CooldownMeter_fill.png" type="Texture" id=3]
-[ext_resource path="res://Sounds/guns/minigun.wav" type="AudioStream" id=4]
-[ext_resource path="res://Sounds/ammoPickup.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/ammoPickup.wav" type="AudioStream" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.2, 0.2, 0.5 )
@@ -26,7 +25,7 @@ HUDpath = NodePath("../../HUD")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 
 [node name="Meter" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0.103, -0.045 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.103, -0.045 )
 pixel_size = 0.0006
 texture = SubResource( 3 )
 
@@ -43,8 +42,5 @@ texture_progress = ExtResource( 3 )
 fill_mode = 2
 tint_over = Color( 0, 1, 0, 1 )
 
-[node name="fireSnd" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-
 [node name="pickupSnd" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 4 )

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/shot2.wav-7dc662bba3c1fb57e433bdfdd364b536.sample"
+path="res://.import/enemyShot.wav-5f321457fe334c9d4871735b2dbe6ce5.sample"
 
 [deps]
 
-source_file="res://Sounds/shot2.wav"
-dest_files=[ "res://.import/shot2.wav-7dc662bba3c1fb57e433bdfdd364b536.sample" ]
+source_file="res://Sounds/enemyShot.wav"
+dest_files=[ "res://.import/enemyShot.wav-5f321457fe334c9d4871735b2dbe6ce5.sample" ]
 
 [params]
 

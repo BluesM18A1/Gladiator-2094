@@ -49,7 +49,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Prefabs\despawn.cs" />
+    <Compile Include="Scripts\despawn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Arena.cs" />
     <Compile Include="Scripts\Bullet.cs" />

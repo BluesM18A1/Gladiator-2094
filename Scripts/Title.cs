@@ -25,11 +25,11 @@ public class Title : Control
 	}
     private void OptionsButtonDown()
     {
-        GD.Print("WIP");
+        GetTree().ChangeScene("res://Options.tscn");
     }
     private void CredsButtonDown()
     {
-        GD.Print("WIP");
+        GetTree().ChangeScene("res://Creds.tscn");
     }
 	private void ExitButtonDown()
 	{
@@ -39,7 +39,8 @@ public class Title : Control
     {
         bloop.Play();
     }
+    private void BackButtonDown()
+    {
+        GetTree().ChangeScene("res://Title.tscn");
+    }
 }
-
-
-
