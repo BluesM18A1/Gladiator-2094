@@ -6,15 +6,15 @@
 [ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=4]
 [ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=5]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Sounds/menuBlip2.wav" type="AudioStream" id=7]
-[ext_resource path="res://Sounds/menuBlip.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/UI/menuBlip2.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 64
+size = 50
 font_data = ExtResource( 6 )
 
 [node name="CredsScreen" type="Control"]
@@ -57,25 +57,29 @@ autoplay = true
 [node name="bloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="RichTextLabel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "    Gladiator 2092 original team:
--Bruce Heiner
--Jonah Scanzon
--Ethan Sewall
+margin_left = 287.0
+margin_top = 18.0
+margin_right = -307.0
+margin_bottom = -14.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 1, 0, 1 )
+text = "			<Gladiator 2094 Contributors:>
 
-    3rd party SFX:
--Quake 3
--3D space cadet pinball
--freesound.org
+-CathodeRayBlues (Bruce H.)
 
-    MUSIC:
+			<Gladiator 2092 original team:>
+	
+-Bruce Heiner (Art, Sounds, player code, announcer VA)
+-Jonah Scanzon (Netcode (god bless his poor soul), UI)
+-Ethan Sewall (Enemy AI, bugfixing sorcerer)
+
+						<MUSIC:>
+
 - 'Monty on the Run' - Rob Hubbard
-- 'One Man and his Droid' - Rob Hubbard"
+"
+scroll_active = false
 [connection signal="button_down" from="Back" to="." method="BackButtonDown"]
 [connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]

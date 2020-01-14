@@ -3,37 +3,76 @@ using System;
 
 public class Arena : Spatial
 {
+    [Export]
+    public byte MaxSubWaves = 3;
     int score = 0;
+    byte wave, subwave;
     public Label topText;
     public Navigation nav;
+    [Export]
+    public AudioStreamPlayer maestro, announcer, crowd;
+    [Export]
+    public AudioStreamSample an_waveComplete = (AudioStreamSample)ResourceLoader.Load("res://Sounds/announcer/countdown20sec.wav")
+    , an_go = (AudioStreamSample)ResourceLoader.Load("res://Sounds/announcer/GO-1.wav");
     [Export]
     public float spawnRate = 20f, time = 0;
     [Export]
     public PackedScene Enemy = (PackedScene)ResourceLoader.Load("res://Prefabs/Enemy.tscn");
     [Export]
-    public PackedScene HealthPack = (PackedScene)ResourceLoader.Load("res://Prefabs/Box_Health.tscn");
+    public PackedScene HealthPack = (PackedScene)ResourceLoader.Load("res://Prefabs/Boxes/Box_Health.tscn");
     [Export]
-    public PackedScene AmmoBox = (PackedScene)ResourceLoader.Load("res://Prefabs/Box_Minigun.tscn");
-
+    public PackedScene AmmoRepeater = (PackedScene)ResourceLoader.Load("res://Prefabs/Boxes/Box_Repeater.tscn");
+    [Export]
+    public PackedScene AmmoShells = (PackedScene)ResourceLoader.Load("res://Prefabs/Boxes/Box_Shells.tscn");
+    [Export]
+    public PackedScene AmmoGrenades = (PackedScene)ResourceLoader.Load("res://Prefabs/Boxes/Box_Grenades.tscn");
+    
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        maestro = GetNode<AudioStreamPlayer>("Maestro");
+        crowd = GetNode<AudioStreamPlayer>("Crowd");
+        announcer = GetNode<AudioStreamPlayer>("Announcer");
         topText = GetNode<Label>("TopText");
         nav = GetNode<Navigation>("Navigation");
-        //ItemSpawn();
-        topText.Text = "SCORE: " + score.ToString();
+        wave = 1;
+        UpdateScore(0);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (time >= spawnRate)
+        if (subwave < MaxSubWaves)//note that the counter will go above 'maxsubwaves' by one before resetting to the en
         {
-            EnemySpawn();
-            ItemSpawn();
-            time = 0;
+            if (time >= spawnRate)
+            {
+                if (subwave == 0 && wave > 1)
+                {
+                    announcer.SetStream(an_go);
+                    announcer.Play();
+                }
+                EnemySpawn();
+                maestro.SetStreamPaused(false);
+                subwave++;
+                UpdateScore(0);
+                time = 0;
+            }
+            else time += delta;
         }
-        else time += delta;
+        else if(!GetTree().HasGroup("Enemies"))
+        {
+            maestro.SetStreamPaused(true);
+            announcer.SetStream(an_waveComplete);
+            announcer.Play();
+            crowd.Play();
+            score += wave * 100;
+            wave++;
+            subwave = 0;
+            time = 0;
+            UpdateScore(0);
+            ItemSpawn();
+        }
+        
     }
     void EnemySpawn()
     {
@@ -46,19 +85,23 @@ public class Arena : Spatial
     {
         for (byte i = 0; i < 6 /*- difficultyModifier */; i++)
         {
-            int randomItem = (Int16)GD.RandRange(0,3); //A note about RandRange: the minimum value is INCLUSIVE and the max value is EXCLUSIVE
+            int randomItem = (Int16)GD.RandRange(0,5); //A note about RandRange:
+            // the minimum value is INCLUSIVE 
+            //and the max value is EXCLUSIVE
             switch (randomItem)
             {
-                case (0):
-                RandomGroundSpawn(AmmoBox);
-                break;
-                case (1):
+                default:
                 RandomGroundSpawn(HealthPack);
                 break;
-                default:
-                RandomGroundSpawn(AmmoBox);
+                case (1):
+                RandomGroundSpawn(AmmoRepeater);
                 break;
-
+                case (2):
+                RandomGroundSpawn(AmmoGrenades);
+                break;
+                case (3):
+                RandomGroundSpawn(AmmoShells);
+                break;
             }
         }
     }
@@ -73,6 +116,6 @@ public class Arena : Spatial
     public void UpdateScore(int delta)
     {
         score += delta;
-        topText.Text = "SCORE: " + score.ToString();
+        topText.Text = "WAVE: " + wave.ToString()+"." + subwave.ToString() +"        " + "SCORE: " + score.ToString();
     }
 }

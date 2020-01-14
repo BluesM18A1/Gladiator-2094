@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
+[ext_resource path="res://Textures/particle.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/guns/flame.wav" type="AudioStream" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 0, 0, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 0.5, 0.5 )
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.25
+
+[node name="Bullet" type="RigidBody" groups=[
+"projectiles",
+]]
+collision_layer = 2
+gravity_scale = 0.0
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 1 )
+damage = -3
+speed = 50.0
+lifetime = 0.08
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+[connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

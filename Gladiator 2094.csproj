@@ -49,20 +49,20 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scripts\despawn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Arena.cs" />
     <Compile Include="Scripts\Bullet.cs" />
     <Compile Include="Scripts\Combatant.cs" />
     <Compile Include="Scripts\Enemy.cs" />
     <Compile Include="Scripts\EnemyGun.cs" />
+    <Compile Include="Scripts\Explosion.cs" />
     <Compile Include="Scripts\GameOver.cs" />
     <Compile Include="Scripts\Gun.cs" />
     <Compile Include="Scripts\ItemBox.cs" />
+    <Compile Include="Scripts\ParticleDespawn.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\PlayerGun.cs" />
     <Compile Include="Scripts\Title.cs" />
-    <Compile Include="Scripts\Weapon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

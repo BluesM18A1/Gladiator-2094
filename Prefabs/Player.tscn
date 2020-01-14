@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Prefabs/PlayerGun.tscn" type="PackedScene" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://Textures/UI/Font1.tres" type="DynamicFont" id=10]
 [ext_resource path="res://Textures/UI/placeholder_crosshair.png" type="Texture" id=11]
 [ext_resource path="res://Sounds/boost.wav" type="AudioStream" id=12]
-[ext_resource path="res://Sounds/healthPickup.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/pickups/healthPickup.wav" type="AudioStream" id=13]
 [ext_resource path="res://Sounds/hurtsound.wav" type="AudioStream" id=14]
 
 [sub_resource type="CylinderMesh" id=1]
@@ -28,6 +28,12 @@ albedo_color = Color( 0, 0, 1, 1 )
 [sub_resource type="CylinderShape" id=3]
 radius = 0.3
 height = 1.5
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 0, 1, 1 )
+metallic = 0.54
+metallic_specular = 0.8
+roughness = 0.18
 
 [node name="Player" type="KinematicBody" groups=[
 "Players",
@@ -60,7 +66,10 @@ fov = 90.0
 near = 0.01
 
 [node name="Gun" parent="Head" instance=ExtResource( 2 )]
+material/0 = SubResource( 4 )
 coolSpeed = 12.0
+HUDPath = NodePath("../../HUD")
+PlayerPath = NodePath("../..")
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
@@ -76,10 +85,10 @@ texture = ExtResource( 3 )
 
 [node name="IconGren" type="TextureRect" parent="HUD/WeaponBar"]
 modulate = Color( 1, 1, 1, 0.501961 )
-margin_left = 855.933
-margin_top = 22.3328
-margin_right = 941.933
-margin_bottom = 105.533
+margin_left = 1056.29
+margin_top = 25.0403
+margin_right = 1142.29
+margin_bottom = 108.241
 texture = ExtResource( 4 )
 expand = true
 
@@ -92,19 +101,19 @@ margin_bottom = 105.533
 texture = ExtResource( 5 )
 expand = true
 
-[node name="IconMini" type="TextureRect" parent="HUD/WeaponBar"]
-margin_left = 955.401
-margin_top = 23.5605
-margin_right = 1041.4
-margin_bottom = 106.76
+[node name="IconRptr" type="TextureRect" parent="HUD/WeaponBar"]
+margin_left = 843.491
+margin_top = 22.658
+margin_right = 929.49
+margin_bottom = 105.857
 texture = ExtResource( 6 )
 expand = true
 
 [node name="IconShot" type="TextureRect" parent="HUD/WeaponBar"]
 modulate = Color( 1, 1, 1, 0.501961 )
-margin_left = 1060.99
+margin_left = 951.787
 margin_top = 23.5605
-margin_right = 1146.99
+margin_right = 1037.79
 margin_bottom = 106.76
 texture = ExtResource( 7 )
 expand = true

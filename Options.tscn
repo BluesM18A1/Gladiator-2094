@@ -6,8 +6,8 @@
 [ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=4]
 [ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=5]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Sounds/menuBlip2.wav" type="AudioStream" id=7]
-[ext_resource path="res://Sounds/menuBlip.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/UI/menuBlip2.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -60,17 +60,19 @@ stream = ExtResource( 8 )
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
+margin_left = 162.0
 margin_top = 32.0
+margin_right = -214.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "    CONTROLS:
+text = "                       CONTROLS:
 
 -WASD = walking/strafing
 -Spacebar = hover
 -L-Shift = sprint
 -L-Mouseclick = fire
+-Middle Mouseclick / number keys = switch weapon
 
- I promise there will be actual options soon"
+And remember, a sitting duck is a dead duck!"
 [connection signal="button_down" from="Back" to="." method="BackButtonDown"]
 [connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]

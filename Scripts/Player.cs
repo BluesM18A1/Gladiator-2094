@@ -17,7 +17,8 @@ public class Player : Combatant
     
     //GAMEPLAY VARIABLES-------------------------------------
     public bool alive = true;
-    float fuel = 100;
+    public bool flameThrowerOn = false;
+    public float fuel = 100;
     //COMPONENT VARIABLES------------------------------------
     private Camera camera;
     public PlayerGun gun;
@@ -119,7 +120,7 @@ public class Player : Combatant
             if ((!Input.IsActionPressed("player_sprint") && !Input.IsActionPressed("player_jump")) || fuelMeter.Value == 0) boostSnd.Stop();
             
             //recharging
-            if (IsOnFloor() && !Input.IsActionPressed("player_sprint"))
+            if (IsOnFloor() && !Input.IsActionPressed("player_sprint") && !flameThrowerOn)
             {   
                 if (fuel < 100)
                 {
@@ -165,9 +166,9 @@ public class Player : Combatant
         healthNum.Text = HP.ToString();
         if (HP <= 0)
         {
-            //send signal to arena.cs for saying u dead
             alive = false;
             gun.disabled = true;
         }
     }
+    
 }

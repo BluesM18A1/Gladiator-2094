@@ -4,7 +4,7 @@ using System;
 public class Enemy : Combatant
 {
     [Export]
-    public PackedScene deathExplosion = (PackedScene)ResourceLoader.Load("res://Prefabs/enemyExplode.tscn");
+    public PackedScene deathExplosion = (PackedScene)ResourceLoader.Load("res://Prefabs/EnemyExplosion.tscn");
     [Export]
     public int bounty = 10;
     public Arena arena;
@@ -37,6 +37,16 @@ public class Enemy : Combatant
         playerPos = nav.GetClosestPoint(player.Translation);
         ProcessInput(delta);
         SetPathPos(playerPos);
+        if (HP <= 0)
+        {
+            CPUParticles boom = (CPUParticles)deathExplosion.Instance();
+            GetTree().Root.AddChild(boom);
+            boom.Emitting = true;
+            boom.Translation = Translation;
+            
+            arena.UpdateScore(bounty);
+            QueueFree();
+        }
     }
     protected void ProcessInput(float delta) //this is where all the AI happens
     {
@@ -70,16 +80,6 @@ public class Enemy : Combatant
         else 
         {
             ani.Play("Hurt");//Add hit sound to this animation!
-        }
-        if (HP <= 0)
-        {
-            CPUParticles boom = (CPUParticles)deathExplosion.Instance();
-            GetTree().Root.AddChild(boom);
-            boom.Emitting = true;
-            boom.Translation = Translation;
-            
-            arena.UpdateScore(bounty);
-            QueueFree();
         }
         
     }

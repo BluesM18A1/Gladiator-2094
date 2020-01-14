@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/grenadeLaunch.wav-84698408bb7c20686355a1c7f9a111e4.sample"
+
+[deps]
+
+source_file="res://Sounds/guns/grenadeLaunch.wav"
+dest_files=[ "res://.import/grenadeLaunch.wav-84698408bb7c20686355a1c7f9a111e4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

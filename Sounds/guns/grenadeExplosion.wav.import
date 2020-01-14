@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/grenadeExplosion.wav-b44acdb5c4d60fd7ba9b7f5461d46239.sample"
+
+[deps]
+
+source_file="res://Sounds/guns/grenadeExplosion.wav"
+dest_files=[ "res://.import/grenadeExplosion.wav-b44acdb5c4d60fd7ba9b7f5461d46239.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -25,13 +25,13 @@ public class ItemBox : Area
                 body.UpdateHealth(itemCount);
                 break;
                 case ITEM.BULLETS:
-                body.gun.AddAmmo(itemCount);
+                body.gun.AddBullets(itemCount);
                 break;
                 case ITEM.SHELLS:
-                body.gun.AddAmmo(itemCount);
+                body.gun.AddShells(itemCount);
                 break;
                 case ITEM.GRENADES:
-                body.gun.AddAmmo(itemCount);
+                body.gun.AddGrenades(itemCount);
                 break;
             }
             QueueFree();

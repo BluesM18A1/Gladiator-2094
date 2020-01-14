@@ -7,8 +7,8 @@
 [ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=5]
 [ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=6]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Sounds/bootup.wav" type="AudioStream" id=8]
-[ext_resource path="res://Sounds/menuBlip.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/UI/bootup.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=9]
 [ext_resource path="res://Textures/grid.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
@@ -73,7 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Options"
+text = "Help"
 align = 1
 valign = 1
 
@@ -143,7 +143,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Beta 00:00:0C"
+text = "Beta 00:00:1A"
 align = 1
 valign = 1
 [connection signal="button_down" from="Play" to="." method="PlayButtonDown"]

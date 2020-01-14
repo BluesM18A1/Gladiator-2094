@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/GameOver.cs" type="Script" id=1]
 [ext_resource path="res://Textures/UI/Font1.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Sounds/gameOver.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/UI/gameOver.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/announcer/gameOver.wav" type="AudioStream" id=4]
 
 [node name="GameOver" type="Control"]
@@ -36,10 +36,10 @@ valign = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -2.869
+volume_db = -6.0
 autoplay = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = 1.434
+volume_db = 10.0
 autoplay = true

@@ -4,7 +4,9 @@ using System;
 public class Gun : MeshInstance
 {
     //GAMEPLAY VARIABLES-------------------------------------
-
+    public enum Weapons {REPEATER = 2, BUCKSHOT = 3, GRENADES = 4, FLAMETHROWER = 1};
+    [Export]
+    public Weapons currentWeapon;
     //COMPONENT VARIABLES------------------------------------
     [Export]
     public PackedScene bullet = (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Bullet.tscn");
