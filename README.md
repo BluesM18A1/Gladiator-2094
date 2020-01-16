@@ -8,3 +8,7 @@ This is a "director's cut" of a multiplayer arcade-style FPS game I made in high
 2092 was never "completed" so to speak. Many features we wanted were either broken or never implemented.
 
 As support for C# in this engine grows more feature complete, this game will be further optimized and refined.
+
+TO-DO:
+
+Add different kinds of enemies and bosses.
