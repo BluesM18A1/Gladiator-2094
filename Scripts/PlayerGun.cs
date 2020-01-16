@@ -308,7 +308,27 @@ public class PlayerGun : Gun
         {
             if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key1)
             {
-                
+                currentWeapon = Weapons.FLAMETHROWER;
+                switchSnd.SetStream(wepSwitch);
+                switchSnd.Play();
+            }
+            if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key2)
+            {
+                currentWeapon = Weapons.REPEATER;
+                switchSnd.SetStream(wepSwitch);
+                switchSnd.Play();
+            }
+            if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key3)
+            {
+                currentWeapon = Weapons.BUCKSHOT;
+                switchSnd.SetStream(wepSwitch);
+                switchSnd.Play();
+            }
+            if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key4)
+            {
+                currentWeapon = Weapons.GRENADES;
+                switchSnd.SetStream(wepSwitch);
+                switchSnd.Play();
             }
         }      
     }

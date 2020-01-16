@@ -94,15 +94,7 @@ public class Player : Combatant
             {
                 if (Input.IsActionJustPressed("player_jump")) boostSnd.Play();
                 
-                if (!IsOnFloor()) //if the current momentum is greater than the desired jump height
-                {
-                    if (vel.y > 0)
-                    {
-                        vel.y += JetForce / 10; //add a smaller amount of upward thrust
-                    }
-                    else vel.y += JetForce / 5; //add a smaller amount of upward thrust
-                }
-                else vel.y = JetForce; //add a burst of upward momentum
+                vel.y = (fuel / 10);
                 fuel -= FuelDrainRate * delta;
             }
 

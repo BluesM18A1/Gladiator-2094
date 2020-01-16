@@ -3,6 +3,7 @@ using System;
 
 public class Arena : Spatial
 {
+    Config config;
     [Export]
     public byte MaxSubWaves = 3;
     int score = 0;
@@ -30,6 +31,7 @@ public class Arena : Spatial
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        config = GetNode<Config>("/root/Config");
         maestro = GetNode<AudioStreamPlayer>("Maestro");
         crowd = GetNode<AudioStreamPlayer>("Crowd");
         announcer = GetNode<AudioStreamPlayer>("Announcer");
@@ -76,16 +78,16 @@ public class Arena : Spatial
     }
     void EnemySpawn()
     {
-        for (byte i = 0; i < 8 /*+ difficultyModifier */; i++)
+        for (byte i = 0; i < 8 + (config.difficulty * 2); i++)
         {
             RandomGroundSpawn(Enemy);
         }
     }
     void ItemSpawn()
     {
-        for (byte i = 0; i < 6 /*- difficultyModifier */; i++)
+        for (byte i = 0; i < 8 - (config.difficulty * 2); i++)
         {
-            int randomItem = (Int16)GD.RandRange(0,5); //A note about RandRange:
+            int randomItem = (Int16)GD.RandRange(0,6); //A note about RandRange:
             // the minimum value is INCLUSIVE 
             //and the max value is EXCLUSIVE
             switch (randomItem)

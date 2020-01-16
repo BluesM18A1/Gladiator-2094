@@ -53,6 +53,7 @@
     <Compile Include="Scripts\Arena.cs" />
     <Compile Include="Scripts\Bullet.cs" />
     <Compile Include="Scripts\Combatant.cs" />
+    <Compile Include="Scripts\Config.cs" />
     <Compile Include="Scripts\Enemy.cs" />
     <Compile Include="Scripts\EnemyGun.cs" />
     <Compile Include="Scripts\Explosion.cs" />

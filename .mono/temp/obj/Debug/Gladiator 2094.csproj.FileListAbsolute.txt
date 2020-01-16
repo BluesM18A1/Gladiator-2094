@@ -1,0 +1,5 @@
+/home/blues/Documents/NOT GARBAGE/source code/Gladiator-2094/.mono/temp/bin/Debug/Gladiator 2094.dll
+/home/blues/Documents/NOT GARBAGE/source code/Gladiator-2094/.mono/temp/bin/Debug/Gladiator 2094.dll.mdb
+/home/blues/Documents/NOT GARBAGE/source code/Gladiator-2094/.mono/temp/obj/Debug/Gladiator 2094.csprojResolveAssemblyReference.cache
+/home/blues/Documents/NOT GARBAGE/source code/Gladiator-2094/.mono/temp/obj/Debug/Gladiator 2094.dll
+/home/blues/Documents/NOT GARBAGE/source code/Gladiator-2094/.mono/temp/obj/Debug/Gladiator 2094.dll.mdb

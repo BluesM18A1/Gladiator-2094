@@ -1,19 +1,37 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
 [ext_resource path="res://Textures/Star_Sky.png" type="Texture" id=2]
 [ext_resource path="res://Textures/UI/logo.png" type="Texture" id=3]
-[ext_resource path="res://Textures/UI/button_normal.png" type="Texture" id=4]
-[ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=5]
-[ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=6]
-[ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Sounds/UI/bootup.wav" type="AudioStream" id=8]
-[ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=9]
-[ext_resource path="res://Textures/grid.png" type="Texture" id=10]
+[ext_resource path="res://Textures/UI/icon.png" type="Texture" id=4]
+[ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Textures/UI/button_normal.png" type="Texture" id=6]
+[ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=7]
+[ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=8]
+[ext_resource path="res://Sounds/UI/bootup.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=10]
+[ext_resource path="res://Textures/grid.png" type="Texture" id=11]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.501961, 0, 1 )
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 0, 1, 0, 1 )
+thickness = 10
+
+[sub_resource type="DynamicFont" id=3]
+size = 86
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 100
-font_data = ExtResource( 7 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 86
+font_data = ExtResource( 5 )
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -35,6 +53,46 @@ margin_right = 640.0
 margin_bottom = 480.0
 texture = ExtResource( 3 )
 
+[node name="DSlider" type="HSlider" parent="."]
+margin_left = 651.646
+margin_top = 521.13
+margin_right = 1733.65
+margin_bottom = 616.13
+custom_icons/grabber_disabled = ExtResource( 4 )
+custom_icons/grabber_highlight = ExtResource( 4 )
+custom_icons/grabber = ExtResource( 4 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area = SubResource( 2 )
+min_value = -2.0
+max_value = 2.0
+tick_count = 5
+
+[node name="Difficulty" type="Label" parent="DSlider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 87.0
+margin_right = -722.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "Difficulty:"
+align = 1
+valign = 1
+
+[node name="Setting" type="Label" parent="DSlider/Difficulty"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 384.887
+margin_top = 7.24194
+margin_right = 655.887
+margin_bottom = 4.24194
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "Normal"
+align = 1
+valign = 1
+
 [node name="Play" type="TextureButton" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -42,15 +100,15 @@ margin_left = 64.0521
 margin_top = -537.062
 margin_right = 580.052
 margin_bottom = -369.062
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
 expand = true
 
 [node name="Label" type="Label" parent="Play"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Play"
 align = 1
@@ -63,15 +121,15 @@ margin_left = 66.0
 margin_top = -340.312
 margin_right = 582.0
 margin_bottom = -172.312
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
 expand = true
 
 [node name="Label" type="Label" parent="Options"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Help"
 align = 1
@@ -84,15 +142,15 @@ margin_left = 642.614
 margin_top = -336.416
 margin_right = 1158.61
 margin_bottom = -168.416
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
 expand = true
 
 [node name="Label" type="Label" parent="Credits"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Credits"
 align = 1
@@ -105,47 +163,48 @@ margin_left = 1223.12
 margin_top = -332.52
 margin_right = 1739.12
 margin_bottom = -164.52
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
 expand = true
 
 [node name="Label" type="Label" parent="Quit"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Exit"
 align = 1
 valign = 1
 
 [node name="bootup" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 autoplay = true
 
 [node name="bloop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="Version Num" type="NinePatchRect" parent="."]
 self_modulate = Color( 0, 1, 0, 1 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -128.0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="Label" type="Label" parent="NinePatchRect"]
+[node name="Label" type="Label" parent="Version Num"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Beta 00:00:1A"
+text = "Beta 00:00:1C"
 align = 1
 valign = 1
+[connection signal="value_changed" from="DSlider" to="." method="OnDifficultyChange"]
 [connection signal="button_down" from="Play" to="." method="PlayButtonDown"]
 [connection signal="focus_entered" from="Play" to="." method="onButtonHover"]
 [connection signal="mouse_entered" from="Play" to="." method="onButtonHover"]

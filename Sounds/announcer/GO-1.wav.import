@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/GO-2.wav-fa4423613677102d4e1a1945c22b3590.sample"
+path="res://.import/GO-1.wav-284e896cdbaa84b0b8db9f08976d7977.sample"
 
 [deps]
 
-source_file="res://Sounds/announcer/GO-2.wav"
-dest_files=[ "res://.import/GO-2.wav-fa4423613677102d4e1a1945c22b3590.sample" ]
+source_file="res://Sounds/announcer/GO-1.wav"
+dest_files=[ "res://.import/GO-1.wav-284e896cdbaa84b0b8db9f08976d7977.sample" ]
 
 [params]
 
