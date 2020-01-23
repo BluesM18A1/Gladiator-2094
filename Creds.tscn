@@ -76,10 +76,7 @@ text = "			<Gladiator 2094 Contributors:>
 -Jonah Scanzon (Netcode (god bless his poor soul), UI)
 -Ethan Sewall (Enemy AI, bugfixing sorcerer)
 
-						<MUSIC:>
-
-- 'Monty on the Run' - Rob Hubbard
-"
+					"
 scroll_active = false
 [connection signal="button_down" from="Back" to="." method="BackButtonDown"]
 [connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]
