@@ -203,9 +203,12 @@ texture = ExtResource( 11 )
 [node name="boostSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 pitch_scale = 0.8
+bus = "SFX"
 
 [node name="medSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+bus = "SFX"
 
 [node name="hurtSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+bus = "SFX"

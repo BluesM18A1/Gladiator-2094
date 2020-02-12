@@ -4,7 +4,7 @@ using System;
 public class Config : Node
 {
     public int difficulty = 0;
-    public int mouseSensitivity;
+    public float mouseSensitivity = 0.10f;
     public int score, highScore;
     public override void _Ready()
     {

@@ -61,6 +61,7 @@ lifeSpan = 3.0
 stream = ExtResource( 3 )
 volume_db = -4.0
 autoplay = true
+bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "gravityManipulation"

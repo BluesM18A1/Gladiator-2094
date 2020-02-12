@@ -43,4 +43,5 @@ shape = SubResource( 3 )
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 autoplay = true
+bus = "SFX"
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

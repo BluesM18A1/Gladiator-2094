@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=1]
-[ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=2]
-[ext_resource path="res://Sounds/guns/enemyShot.wav" type="AudioStream" id=3]
-[ext_resource path="res://Sounds/enemyHit.wav" type="AudioStream" id=4]
+[ext_resource path="res://models/basicGun.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=3]
+[ext_resource path="res://Sounds/guns/enemyShot.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/enemyHit.wav" type="AudioStream" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
@@ -28,21 +29,12 @@ rings = 1
 [sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( 0, 0.75, 0.3, 0.114805, 0.75, 0.277164, 0.212132, 0.75, 0.212132, 0.277164, 0.75, 0.114805, 0.3, 0.75, 1.83691e-017, 0.277164, 0.75, -0.114805, 0.212132, 0.75, -0.212132, 0.114805, 0.75, -0.277164, 3.67382e-017, 0.75, -0.3, -0.114805, 0.75, -0.277164, -0.212132, 0.75, -0.212132, -0.277164, 0.75, -0.114805, -0.3, 0.75, -5.51073e-017, -0.277164, 0.75, 0.114805, -0.212132, 0.75, 0.212132, -0.114805, 0.75, 0.277164, -7.34764e-017, 0.75, 0.3, 0, 0, 0.4, 0.153073, 0, 0.369552, 0.282843, 0, 0.282843, 0.369552, 0, 0.153073, 0.4, 0, 2.44921e-017, 0.369552, 0, -0.153073, 0.282843, 0, -0.282843, 0.153073, 0, -0.369552, 4.89843e-017, 0, -0.4, -0.153073, 0, -0.369552, -0.282843, 0, -0.282843, -0.369552, 0, -0.153073, -0.4, 0, -7.34764e-017, -0.369552, 0, 0.153073, -0.282843, 0, 0.282843, -0.153073, 0, 0.369552, -9.79685e-017, 0, 0.4, 0, -0.75, 0.5, 0.191342, -0.75, 0.46194, 0.353553, -0.75, 0.353553, 0.46194, -0.75, 0.191342, 0.5, -0.75, 3.06152e-017, 0.46194, -0.75, -0.191342, 0.353553, -0.75, -0.353553, 0.191342, -0.75, -0.46194, 6.12303e-017, -0.75, -0.5, -0.191342, -0.75, -0.46194, -0.353553, -0.75, -0.353553, -0.46194, -0.75, -0.191342, -0.5, -0.75, -9.18455e-017, -0.46194, -0.75, 0.191342, -0.353553, -0.75, 0.353553, -0.191342, -0.75, 0.46194, -1.22461e-016, -0.75, 0.5, 0, 0.75, 0, 0, 0.75, 0.3, 0.114805, 0.75, 0.277164, 0.212132, 0.75, 0.212132, 0.277164, 0.75, 0.114805, 0.3, 0.75, 1.83691e-017, 0.277164, 0.75, -0.114805, 0.212132, 0.75, -0.212132, 0.114805, 0.75, -0.277164, 3.67382e-017, 0.75, -0.3, -0.114805, 0.75, -0.277164, -0.212132, 0.75, -0.212132, -0.277164, 0.75, -0.114805, -0.3, 0.75, -5.51073e-017, -0.277164, 0.75, 0.114805, -0.212132, 0.75, 0.212132, -0.114805, 0.75, 0.277164, -7.34764e-017, 0.75, 0.3, 0, -0.75, 0, 0, -0.75, 0.5, 0.191342, -0.75, 0.46194, 0.353553, -0.75, 0.353553, 0.46194, -0.75, 0.191342, 0.5, -0.75, 3.06152e-017, 0.46194, -0.75, -0.191342, 0.353553, -0.75, -0.353553, 0.191342, -0.75, -0.46194, 6.12303e-017, -0.75, -0.5, -0.191342, -0.75, -0.46194, -0.353553, -0.75, -0.353553, -0.46194, -0.75, -0.191342, -0.5, -0.75, -9.18455e-017, -0.46194, -0.75, 0.191342, -0.353553, -0.75, 0.353553, -0.191342, -0.75, 0.46194, -1.22461e-016, -0.75, 0.5 )
 
-[sub_resource type="SpatialMaterial" id=4]
-resource_local_to_scene = true
-albedo_color = Color( 1, 0.701961, 0, 1 )
-metallic = 0.5
+[sub_resource type="SpatialMaterial" id=7]
+metallic = 0.28
 metallic_specular = 1.0
-roughness = 0.22
-emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
 
-[sub_resource type="CubeMesh" id=5]
-material = SubResource( 4 )
-size = Vector3( 0.2, 0.2, 0.5 )
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.623529, 0, 0, 1 )
 
 [sub_resource type="Animation" id=6]
 length = 0.1
@@ -68,7 +60,7 @@ tracks/1/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 4 )
+"stream": ExtResource( 5 )
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -109,20 +101,24 @@ shape = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="Gun" type="MeshInstance" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.55 )
-mesh = SubResource( 5 )
-material/0 = null
-script = ExtResource( 2 )
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.26, -0.222002 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 7 )
+material/1 = null
+material/2 = SubResource( 8 )
+script = ExtResource( 3 )
 parentPath = NodePath("../..")
 
 [node name="Barrel" type="Position3D" parent="Head/Gun"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12711 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun"]
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Hurt = SubResource( 6 )
 
 [node name="hitsound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
+bus = "SFX"

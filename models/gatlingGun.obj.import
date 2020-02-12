@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/gatlingGun.obj-7203f2ba5e331167c9d83098f2d6595f.mesh"
+
+[deps]
+
+files=[ "res://.import/gatlingGun.obj-7203f2ba5e331167c9d83098f2d6595f.mesh" ]
+
+source_file="res://models/gatlingGun.obj"
+dest_files=[ "res://.import/gatlingGun.obj-7203f2ba5e331167c9d83098f2d6595f.mesh", "res://.import/gatlingGun.obj-7203f2ba5e331167c9d83098f2d6595f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

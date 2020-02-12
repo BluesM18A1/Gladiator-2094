@@ -54,35 +54,35 @@ public class PlayerGun : Gun
         switch (currentWeapon)
         {
             case (Weapons.REPEATER):
-            iconRptr.SetModulate(new Color(1,1,1,1));
-            iconGren.SetModulate(new Color(1,1,1,0.5f));
-            iconShot.SetModulate(new Color(1,1,1,0.5f));
-            iconFlam.SetModulate(new Color(1,1,1,0.5f));
+            iconRptr.Modulate = new Color(1,1,1,1);
+            iconGren.Modulate = new Color(1,1,1,0.5f);
+            iconShot.Modulate = new Color(1,1,1,0.5f);
+            iconFlam.Modulate = new Color(1,1,1,0.5f);
             coolSpeed = coolRepeater;
             ammoNum.Text = bullets.ToString();
             
             break;
             case (Weapons.BUCKSHOT):
-            iconRptr.SetModulate(new Color(1,1,1,0.5f));
-            iconGren.SetModulate(new Color(1,1,1,0.5f));
-            iconShot.SetModulate(new Color(1,1,1,1));
-            iconFlam.SetModulate(new Color(1,1,1,0.5f));
+            iconRptr.Modulate = new Color(1,1,1,0.5f);
+            iconGren.Modulate = new Color(1,1,1,0.5f);
+            iconShot.Modulate = new Color(1,1,1,1);
+            iconFlam.Modulate = new Color(1,1,1,0.5f);
             coolSpeed = coolBuckshot;
             ammoNum.Text = shells.ToString();
             break;
             case (Weapons.GRENADES):
-            iconRptr.SetModulate(new Color(1,1,1,0.5f));
-            iconGren.SetModulate(new Color(1,1,1,1));
-            iconShot.SetModulate(new Color(1,1,1,0.5f));
-            iconFlam.SetModulate(new Color(1,1,1,0.5f));
+            iconRptr.Modulate = new Color(1,1,1,0.5f);
+            iconGren.Modulate = new Color(1,1,1,1);
+            iconShot.Modulate = new Color(1,1,1,0.5f);
+            iconFlam.Modulate = new Color(1,1,1,0.5f);
             coolSpeed = coolGrenades;
             ammoNum.Text = grenades.ToString();
             break;
             case (Weapons.FLAMETHROWER):
-            iconRptr.SetModulate(new Color(1,1,1,0.5f));
-            iconGren.SetModulate(new Color(1,1,1,0.5f));
-            iconShot.SetModulate(new Color(1,1,1,0.5f));
-            iconFlam.SetModulate(new Color(1,1,1,1));
+            iconRptr.Modulate = new Color(1,1,1,0.5f);
+            iconGren.Modulate = new Color(1,1,1,0.5f);
+            iconShot.Modulate = new Color(1,1,1,0.5f);
+            iconFlam.Modulate = new Color(1,1,1,1);
             coolSpeed = coolFlames;
             int fuelInt = (int)player.fuel;
             ammoNum.Text = fuelInt.ToString();
@@ -127,7 +127,7 @@ public class PlayerGun : Gun
     {
         if (bullets > 0)
         {
-            switchSnd.SetStream(fireShot);
+            switchSnd.Stream = fireShot;
             switchSnd.Play();
             coolMeter.Value = 100;
             bullets--;
@@ -146,7 +146,7 @@ public class PlayerGun : Gun
         //forgive me master, but this code is going to be super messy.
         if (shells > 0)
         {
-            switchSnd.SetStream(fireShot);
+            switchSnd.Stream = fireShot;
             switchSnd.Play();
             coolMeter.Value = 100;
             shells--;
@@ -224,7 +224,7 @@ public class PlayerGun : Gun
     {
         if (grenades > 0)
         {
-            switchSnd.SetStream(fireGren);
+            switchSnd.Stream = fireGren;
             switchSnd.Play();
             coolMeter.Value = 100;
             grenades--;
@@ -279,7 +279,7 @@ public class PlayerGun : Gun
             currentWeapon = Weapons.FLAMETHROWER;
         }
         else currentWeapon++;
-        switchSnd.SetStream(wepSwitch);
+        switchSnd.Stream = wepSwitch;
         switchSnd.Play();
     }
     public void PrevWeapon()
@@ -289,7 +289,7 @@ public class PlayerGun : Gun
             currentWeapon = Weapons.GRENADES;
         }
         else currentWeapon--;
-        switchSnd.SetStream(wepSwitch);
+        switchSnd.Stream = wepSwitch;
         switchSnd.Play();
     }
     public override void _Input(InputEvent @event){
@@ -309,25 +309,25 @@ public class PlayerGun : Gun
             if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key1)
             {
                 currentWeapon = Weapons.FLAMETHROWER;
-                switchSnd.SetStream(wepSwitch);
+                switchSnd.Stream = wepSwitch;
                 switchSnd.Play();
             }
             if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key2)
             {
                 currentWeapon = Weapons.REPEATER;
-                switchSnd.SetStream(wepSwitch);
+                switchSnd.Stream = wepSwitch;
                 switchSnd.Play();
             }
             if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key3)
             {
                 currentWeapon = Weapons.BUCKSHOT;
-                switchSnd.SetStream(wepSwitch);
+                switchSnd.Stream = wepSwitch;
                 switchSnd.Play();
             }
             if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key4)
             {
                 currentWeapon = Weapons.GRENADES;
-                switchSnd.SetStream(wepSwitch);
+                switchSnd.Stream = wepSwitch;
                 switchSnd.Play();
             }
         }      

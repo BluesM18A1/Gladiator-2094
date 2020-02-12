@@ -50,11 +50,11 @@ public class Arena : Spatial
             {
                 if (subwave == 0 && wave > 1)
                 {
-                    announcer.SetStream(an_go);
+                    announcer.Stream = an_go;
                     announcer.Play();
                 }
                 EnemySpawn();
-                maestro.SetStreamPaused(false);
+                maestro.StreamPaused = false;
                 subwave++;
                 UpdateScore(0);
                 time = 0;
@@ -63,8 +63,8 @@ public class Arena : Spatial
         }
         else if(!GetTree().HasGroup("Enemies"))
         {
-            maestro.SetStreamPaused(true);
-            announcer.SetStream(an_waveComplete);
+            maestro.StreamPaused = true;
+            announcer.Stream = an_waveComplete;
             announcer.Play();
             crowd.Play();
             score += wave * 100;
@@ -118,6 +118,6 @@ public class Arena : Spatial
     public void UpdateScore(int delta)
     {
         score += delta;
-        topText.Text = "WAVE: " + wave.ToString()+"." + subwave.ToString() +"        " + "SCORE: " + score.ToString();
+        topText.Text = "WAVE: " + wave.ToString()+"." + subwave.ToString() +"        " + "SCORE: " + score.ToString("000,000");
     }
 }

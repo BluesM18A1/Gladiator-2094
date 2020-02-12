@@ -34,7 +34,7 @@ coolFlames = 25.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 
 [node name="Meter" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.103, -0.045 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0.103, -0.045 )
 pixel_size = 0.0006
 texture = SubResource( 3 )
 
@@ -53,7 +53,9 @@ tint_over = Color( 0, 1, 0, 1 )
 
 [node name="pickupSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="switchSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = 4.0
+bus = "SFX"

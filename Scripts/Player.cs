@@ -3,6 +3,7 @@ using System;
 
 public class Player : Combatant
 {
+    Config config;
     //PHYSICS VARIABLES--------------------------------
     [Export]
     public float RechargeRate = 100, FuelDrainRate = 60;
@@ -13,7 +14,7 @@ public class Player : Combatant
     [Export]
     public float sprintSpeed = 14f;
     [Export]
-    public float MouseSensitivity = 0.3f;
+    public float mouseSensitivity = 0.3f;
     
     //GAMEPLAY VARIABLES-------------------------------------
     public bool alive = true;
@@ -29,6 +30,7 @@ public class Player : Combatant
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        config = GetNode<Config>("/root/Config");
         boostSnd = GetNode<AudioStreamPlayer>("boostSnd");
         medSnd = GetNode<AudioStreamPlayer>("medSnd");
         hurtSnd = GetNode<AudioStreamPlayer>("hurtSnd");
@@ -40,7 +42,7 @@ public class Player : Combatant
         healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
         healthNum.Text = healthMeter.Value.ToString();
         Input.SetMouseMode(Input.MouseMode.Captured);
-        
+        mouseSensitivity = config.mouseSensitivity;
     }
 
     public override void _PhysicsProcess(float delta)
@@ -63,7 +65,7 @@ public class Player : Combatant
         
         
         //  Walking
-        Transform camXform = camera.GetGlobalTransform();
+        Transform camXform = camera.GlobalTransform;
 
         Vector2 inputMovementVector = new Vector2();
         
@@ -133,8 +135,8 @@ public class Player : Combatant
         if (@event is InputEventMouseMotion && Input.GetMouseMode() == Input.MouseMode.Captured)
         {
             InputEventMouseMotion mouseEvent = @event as InputEventMouseMotion;
-            head.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -MouseSensitivity));
-            RotateY(Mathf.Deg2Rad(-mouseEvent.Relative.x * MouseSensitivity));
+            head.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -mouseSensitivity));
+            RotateY(Mathf.Deg2Rad(-mouseEvent.Relative.x * mouseSensitivity));
 
             Vector3 cameraRot = head.RotationDegrees;
             cameraRot.x = Mathf.Clamp(cameraRot.x, -85, 85);

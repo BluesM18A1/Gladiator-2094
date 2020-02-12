@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
 [ext_resource path="res://Textures/Star_Sky.png" type="Texture" id=2]
@@ -8,14 +8,36 @@
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Sounds/UI/menuBlip2.wav" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=8]
+[ext_resource path="res://Textures/grid.png" type="Texture" id=9]
+[ext_resource path="res://Textures/UI/icon.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/VolSlider.cs" type="Script" id=11]
+[ext_resource path="res://DifficultySlider.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Textures/UI/grabber area.stylebox" type="StyleBox" id=13]
+[ext_resource path="res://Scripts/SensSlider.cs" type="Script" id=14]
+[ext_resource path="res://Textures/UI/slider.stylebox" type="StyleBox" id=15]
 
 [sub_resource type="DynamicFont" id=1]
-size = 100
+size = 86
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 64
+size = 100
 font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 48
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxLine" id=5]
+color = Color( 0, 1, 0, 1 )
+thickness = 8
+vertical = true
 
 [node name="OptsScreen" type="Control"]
 anchor_right = 1.0
@@ -23,56 +45,435 @@ anchor_bottom = 1.0
 margin_left = -1.50732
 margin_right = -1.50732
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="Sprite" parent="."]
 position = Vector2( 952.243, 549.789 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
+[node name="Difficulty" parent="." instance=ExtResource( 12 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 61.5163
+margin_top = -538.109
+margin_right = 1143.53
+margin_bottom = -410.109
+
+[node name="Sensitivity" type="HSlider" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 57.4152
+margin_top = -320.751
+margin_right = 1139.43
+margin_bottom = -192.751
+custom_icons/grabber_disabled = ExtResource( 10 )
+custom_icons/grabber_highlight = ExtResource( 10 )
+custom_icons/grabber = ExtResource( 10 )
+custom_styles/slider = ExtResource( 15 )
+custom_styles/grabber_area = ExtResource( 13 )
+min_value = 0.005
+max_value = 0.5
+step = 0.005
+value = 0.005
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Difficulty" type="Label" parent="Sensitivity"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 86.0
+margin_right = -722.0
+margin_bottom = 92.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 9
+custom_constants/shadow_offset_y = 6
+text = "Look Sensitivity:"
+align = 1
+valign = 1
+
+[node name="Setting" type="Label" parent="Sensitivity/Difficulty"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 709.0
+margin_top = 7.0
+margin_right = 291.0
+margin_bottom = 4.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 9
+custom_constants/shadow_offset_y = 6
+text = "0%"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Back" type="TextureButton" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -309.0
-margin_top = -168.0
+margin_left = -605.0
+margin_top = -179.0
+margin_right = -20.0
+margin_bottom = -11.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 5 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Back"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="bootup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 autoplay = true
 
+[node name="elevatorMusicidk" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
 [node name="bloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="RichTextLabel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 162.0
-margin_top = 32.0
-margin_right = -214.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "                       CONTROLS:
+margin_left = 61.0
+margin_top = 35.0
+margin_right = -708.0
+margin_bottom = -562.0
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 0, 1, 0, 1 )
+text = "               C O N T R O L S :
 
--WASD = walking/strafing
--Spacebar = hover
--L-Shift = sprint
+-WASD		= walking/strafing
+-Spacebar	 = hover
+-L-Shift	   = sprint
 -L-Mouseclick = fire
 -Middle Mouseclick / number keys = switch weapon
 
 And remember, a sitting duck is a dead duck!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterSlider" type="NinePatchRect" parent="."]
+self_modulate = Color( 0, 1, 0.12549, 1 )
+anchor_left = 0.885
+anchor_right = 1.0
+anchor_bottom = 0.824
+margin_left = -384.697
+margin_top = 21.8653
+margin_right = -405.817
+margin_bottom = -0.814575
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dbLabel" type="NinePatchRect" parent="MasterSlider"]
+modulate = Color( 0, 1, 0, 1 )
+anchor_top = 0.897
+anchor_right = 1.002
+anchor_bottom = 1.0
+margin_top = -1.91437
+margin_right = -0.0793152
+margin_bottom = 0.759949
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MasterSlider/dbLabel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -85.0
+custom_fonts/font = SubResource( 4 )
+text = "-0 db"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grpLabel" type="NinePatchRect" parent="MasterSlider"]
+modulate = Color( 0, 1, 0, 1 )
+anchor_right = 1.002
+anchor_bottom = 0.105
+margin_right = -0.0793152
+margin_bottom = -0.0602188
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MasterSlider/grpLabel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 4 )
+text = "Master"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSlider" type="VSlider" parent="MasterSlider"]
+anchor_top = 0.121
+anchor_right = 1.002
+anchor_bottom = 0.88
+margin_top = 0.063942
+margin_right = -0.0793152
+margin_bottom = -0.171326
+custom_icons/grabber_disabled = ExtResource( 10 )
+custom_icons/grabber_highlight = ExtResource( 10 )
+custom_icons/grabber = ExtResource( 10 )
+custom_styles/slider = SubResource( 5 )
+custom_styles/grabber_area = SubResource( 5 )
+min_value = -80.0
+max_value = 6.0
+tick_count = 32
+ticks_on_borders = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+lblPath = NodePath("../dbLabel/Label")
+sndPath = NodePath("../../bloop")
+
+[node name="BGMslider" type="NinePatchRect" parent="."]
+self_modulate = Color( 0, 1, 0.12549, 1 )
+anchor_left = 0.885
+anchor_right = 1.0
+anchor_bottom = 0.824
+margin_left = -192.176
+margin_top = 22.1213
+margin_right = -213.296
+margin_bottom = -0.558655
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dbLabel" type="NinePatchRect" parent="BGMslider"]
+modulate = Color( 0, 1, 0, 1 )
+anchor_top = 0.897
+anchor_right = 1.002
+anchor_bottom = 1.0
+margin_top = -1.91437
+margin_right = -0.0793152
+margin_bottom = 0.759949
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="BGMslider/dbLabel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -85.0
+custom_fonts/font = SubResource( 4 )
+text = "-0 db"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grpLabel" type="NinePatchRect" parent="BGMslider"]
+modulate = Color( 0, 1, 0, 1 )
+anchor_right = 1.002
+anchor_bottom = 0.105
+margin_right = -0.0793152
+margin_bottom = -0.0602188
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="BGMslider/grpLabel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 4 )
+text = "BGM"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSlider" type="VSlider" parent="BGMslider"]
+anchor_top = 0.121
+anchor_right = 1.002
+anchor_bottom = 0.88
+margin_top = 0.063942
+margin_right = -0.0793152
+margin_bottom = -0.171326
+custom_icons/grabber_disabled = ExtResource( 10 )
+custom_icons/grabber_highlight = ExtResource( 10 )
+custom_icons/grabber = ExtResource( 10 )
+custom_styles/slider = SubResource( 5 )
+custom_styles/grabber_area = SubResource( 5 )
+min_value = -80.0
+max_value = 6.0
+rounded = true
+tick_count = 32
+ticks_on_borders = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+lblPath = NodePath("../dbLabel/Label")
+sndPath = NodePath("../../elevatorMusicidk")
+
+[node name="SFXslider" type="NinePatchRect" parent="."]
+self_modulate = Color( 0, 1, 0.12549, 1 )
+anchor_left = 0.885
+anchor_right = 1.0
+anchor_bottom = 0.824
+margin_left = 0.763062
+margin_top = 22.2074
+margin_right = -20.3569
+margin_bottom = -0.472534
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dbLabel" type="NinePatchRect" parent="SFXslider"]
+modulate = Color( 0, 1, 0, 1 )
+anchor_top = 0.897
+anchor_right = 1.002
+anchor_bottom = 1.0
+margin_top = -1.91437
+margin_right = -0.0793152
+margin_bottom = 0.759949
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SFXslider/dbLabel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -85.0
+custom_fonts/font = SubResource( 4 )
+text = "-0 db"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grpLabel" type="NinePatchRect" parent="SFXslider"]
+modulate = Color( 0, 1, 0, 1 )
+anchor_right = 1.002
+anchor_bottom = 0.105
+margin_right = -0.0793152
+margin_bottom = -0.0602188
+texture = ExtResource( 9 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SFXslider/grpLabel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 4 )
+text = "SFX"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSlider" type="VSlider" parent="SFXslider"]
+anchor_top = 0.121
+anchor_right = 1.002
+anchor_bottom = 0.88
+margin_top = 0.063942
+margin_right = -0.0793152
+margin_bottom = -0.171326
+custom_icons/grabber_disabled = ExtResource( 10 )
+custom_icons/grabber_highlight = ExtResource( 10 )
+custom_icons/grabber = ExtResource( 10 )
+custom_styles/slider = SubResource( 5 )
+custom_styles/grabber_area = SubResource( 5 )
+min_value = -80.0
+max_value = 6.0
+rounded = true
+tick_count = 32
+ticks_on_borders = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+lblPath = NodePath("../dbLabel/Label")
+sndPath = NodePath("../../bloop")
+[connection signal="value_changed" from="Sensitivity" to="Sensitivity" method="OnSensitivityChange"]
 [connection signal="button_down" from="Back" to="." method="BackButtonDown"]
 [connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]
+[connection signal="value_changed" from="MasterSlider/VSlider" to="MasterSlider/VSlider" method="OnValueChange"]
+[connection signal="value_changed" from="BGMslider/VSlider" to="BGMslider/VSlider" method="OnValueChange"]
+[connection signal="value_changed" from="SFXslider/VSlider" to="SFXslider/VSlider" method="OnValueChange"]

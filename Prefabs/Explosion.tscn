@@ -44,3 +44,4 @@ stream = ExtResource( 3 )
 unit_db = 3.0
 unit_size = 6.0
 autoplay = true
+bus = "SFX"

@@ -20,7 +20,7 @@ public class Enemy : Combatant
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        arena = GetTree().GetRoot().GetNode<Arena>("Spatial");
+        arena = GetTree().Root.GetNode<Arena>("Spatial");
         ani = GetNode<AnimationPlayer>("AnimationPlayer");
         nav = GetNode<Navigation>("../Navigation");
         head = GetNode<Spatial>("Head");
@@ -50,7 +50,7 @@ public class Enemy : Combatant
     }
     protected void ProcessInput(float delta) //this is where all the AI happens
     {
-        Transform camXform = GetGlobalTransform();
+        Transform camXform = GlobalTransform;
         Vector2 inputMovementVector = Vector2.Zero;
         dir = new Vector3();
         float distanceToPoint = Translation.DistanceTo(pathPos);
