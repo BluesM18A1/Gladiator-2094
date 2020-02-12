@@ -11,8 +11,8 @@ As support for C# in this engine grows more feature complete, this game will be 
 
 TO-DO:
 
-Add different kinds of enemies and bosses.
-Pause Menu
+Add different kinds of enemies and bosses,
+Pause Menu,
 High Score table
 
 STRETCH GOALS:
