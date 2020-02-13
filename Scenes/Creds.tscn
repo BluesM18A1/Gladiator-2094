@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
-[ext_resource path="res://Textures/Star_Sky.png" type="Texture" id=2]
+[ext_resource path="res://Wallpaper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/UI/button_normal.png" type="Texture" id=3]
 [ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=4]
 [ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=5]
@@ -23,11 +23,11 @@ anchor_bottom = 1.0
 margin_left = -1.50732
 margin_right = -1.50732
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="TextureRect" type="Sprite" parent="."]
-position = Vector2( 952.243, 549.789 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
+[node name="Wallpaper" parent="." instance=ExtResource( 2 )]
 
 [node name="Back" type="TextureButton" parent="."]
 anchor_left = 1.0

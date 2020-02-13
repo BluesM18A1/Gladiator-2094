@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/GameOver.cs" type="Script" id=1]
+[ext_resource path="res://Textures/UI/Font1.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Sounds/UI/gameOver.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/announcer/gameOver.wav" type="AudioStream" id=4]
+[ext_resource path="res://Wallpaper.tscn" type="PackedScene" id=5]
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wallpaper" parent="." instance=ExtResource( 5 )]
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 172.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -86.0
+margin_right = 960.0
+margin_bottom = 86.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "Press Esc to restart"
+align = 1
+valign = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -6.0
+autoplay = true
+bus = "SFX"
+
+[node name="VO" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 10.0
+autoplay = true
+bus = "SFX"

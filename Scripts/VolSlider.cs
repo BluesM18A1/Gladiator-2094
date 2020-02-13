@@ -14,11 +14,10 @@ public class VolSlider : VSlider
     public Label DBlabel;
     public override void _Ready()
     {
-        //Value = AudioServer.GetBusVolumeDb((int)bus); why does this line crash the game when the db isn't 0?
-        
         DBlabel = GetNode<Label>(lblPath);
         bloop = GetNode<AudioStreamPlayer>(sndPath);
-        //UpdateText();
+        Value = AudioServer.GetBusVolumeDb((int)bus); 
+        UpdateText();
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,9 +28,9 @@ public class VolSlider : VSlider
     void OnValueChange(float delta)
     {
         AudioServer.SetBusVolumeDb((int)bus, (float)Value);
-        
-        UpdateText();
         bloop.Play();
+        UpdateText();
+        
     }
     string InfOrNot()
     {

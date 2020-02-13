@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
-[ext_resource path="res://Textures/Star_Sky.png" type="Texture" id=2]
+[ext_resource path="res://Wallpaper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/UI/button_normal.png" type="Texture" id=3]
 [ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=4]
 [ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=5]
@@ -49,10 +49,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="Sprite" parent="."]
-position = Vector2( 952.243, 549.789 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
+[node name="Wallpaper" parent="." instance=ExtResource( 2 )]
 
 [node name="Difficulty" parent="." instance=ExtResource( 12 )]
 anchor_top = 1.0
@@ -150,12 +147,15 @@ __meta__ = {
 [node name="bootup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 autoplay = true
+bus = "SFX"
 
 [node name="elevatorMusicidk" type="AudioStreamPlayer" parent="."]
 autoplay = true
+bus = "BGM"
 
 [node name="bloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+bus = "SFX"
 
 [node name="Label" type="RichTextLabel" parent="."]
 anchor_right = 1.0
@@ -371,6 +371,7 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+bus = 1
 lblPath = NodePath("../dbLabel/Label")
 sndPath = NodePath("../../elevatorMusicidk")
 
@@ -469,6 +470,7 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+bus = 2
 lblPath = NodePath("../dbLabel/Label")
 sndPath = NodePath("../../bloop")
 [connection signal="value_changed" from="Sensitivity" to="Sensitivity" method="OnSensitivityChange"]

@@ -124,7 +124,7 @@ public class Player : Combatant
         }
         else
         {
-            GetTree().ChangeScene("res://GameOver.tscn");
+            GetTree().ChangeScene("res://Scenes/GameOver.tscn");
         }
         fuel = Mathf.Clamp(fuel, 0, 100);
         fuelMeter.Value = fuel;

@@ -8,19 +8,19 @@
 albedo_color = Color( 0, 0, 0, 1 )
 emission_enabled = true
 emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.0
+emission_energy = 0.63
 emission_operator = 0
 emission_on_uv2 = false
 emission_texture = ExtResource( 3 )
 
 [sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0, 0.498039, 1, 1 )
+albedo_color = Color( 0, 0.133333, 1, 1 )
 metallic = 1.0
 metallic_specular = 1.0
-roughness = 0.2
+roughness = 0.27
 emission_enabled = true
-emission = Color( 0.00784314, 0.0313726, 0.0941176, 1 )
-emission_energy = 13.73
+emission = Color( 0, 0.0352941, 0.384314, 1 )
+emission_energy = 8.53
 emission_operator = 0
 emission_on_uv2 = false
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
-[ext_resource path="res://Textures/space1.jpg" type="Texture" id=2]
+[ext_resource path="res://Wallpaper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/UI/logo.png" type="Texture" id=3]
 [ext_resource path="res://DifficultySlider.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=6]
@@ -30,10 +30,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Sprite" parent="."]
-position = Vector2( 959.224, 591.364 )
-scale = Vector2( 0.996529, 1.10035 )
-texture = ExtResource( 2 )
+[node name="Wallpaper" parent="." instance=ExtResource( 2 )]
 
 [node name="logo" type="TextureRect" parent="."]
 anchor_left = 0.5
@@ -42,8 +39,16 @@ margin_left = -640.0
 margin_right = 640.0
 margin_bottom = 480.0
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DSlider" parent="." instance=ExtResource( 4 )]
+anchor_right = 6.35783e-08
+margin_left = 655.497
+margin_top = 535.962
+margin_right = 1737.5
+margin_bottom = 663.962
 
 [node name="Play" type="TextureButton" parent="."]
 anchor_top = 1.0
@@ -76,9 +81,9 @@ __meta__ = {
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 66.0
-margin_top = -340.312
+margin_top = -336.019
 margin_right = 582.0
-margin_bottom = -172.312
+margin_bottom = -168.019
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 9 )
@@ -120,10 +125,10 @@ valign = 1
 [node name="Quit" type="TextureButton" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 1223.12
-margin_top = -332.52
-margin_right = 1739.12
-margin_bottom = -164.52
+margin_left = 1226.19
+margin_top = -335.594
+margin_right = 1742.19
+margin_bottom = -167.594
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 9 )
@@ -137,6 +142,9 @@ custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Exit"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="bootup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
@@ -164,9 +172,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Beta 00:00:1E"
+text = "Beta 00:20 game by CathodeRayBlues"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="button_down" from="Play" to="." method="PlayButtonDown"]
 [connection signal="focus_entered" from="Play" to="." method="onButtonHover"]
 [connection signal="mouse_entered" from="Play" to="." method="onButtonHover"]

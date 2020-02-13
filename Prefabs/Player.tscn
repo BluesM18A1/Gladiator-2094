@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Prefabs/PlayerGun.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Sounds/boost.wav" type="AudioStream" id=12]
 [ext_resource path="res://Sounds/pickups/healthPickup.wav" type="AudioStream" id=13]
 [ext_resource path="res://Sounds/hurtsound.wav" type="AudioStream" id=14]
+[ext_resource path="res://default_env.tres" type="Environment" id=15]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.3
@@ -35,6 +36,9 @@ metallic = 0.54
 metallic_specular = 0.8
 roughness = 0.18
 
+[sub_resource type="CanvasItemMaterial" id=5]
+light_mode = 1
+
 [node name="Player" type="KinematicBody" groups=[
 "Players",
 ]]
@@ -46,7 +50,6 @@ Deaccel = 24.0
 JetForce = 4.5
 normalSpeed = 8.0
 sprintSpeed = 15.0
-MouseSensitivity = 0.1
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
@@ -61,6 +64,7 @@ shape = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25 )
 
 [node name="Camera" type="Camera" parent="Head"]
+environment = ExtResource( 15 )
 current = true
 fov = 90.0
 near = 0.01
@@ -68,57 +72,106 @@ near = 0.01
 [node name="Gun" parent="Head" instance=ExtResource( 2 )]
 material/0 = SubResource( 4 )
 coolSpeed = 12.0
+buckshotSpread = 0.06
+coolBuckshot = 3.0
 HUDPath = NodePath("../../HUD")
 PlayerPath = NodePath("../..")
 
 [node name="HUD" type="Control" parent="."]
+light_mask = 2
+material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="WeaponBar" type="NinePatchRect" parent="HUD"]
 self_modulate = Color( 0, 1, 0, 1 )
+light_mask = 2
+use_parent_material = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -128.0
 texture = ExtResource( 3 )
-
-[node name="IconGren" type="TextureRect" parent="HUD/WeaponBar"]
-modulate = Color( 1, 1, 1, 0.501961 )
-margin_left = 1056.29
-margin_top = 25.0403
-margin_right = 1142.29
-margin_bottom = 108.241
-texture = ExtResource( 4 )
-expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="IconFlam" type="TextureRect" parent="HUD/WeaponBar"]
 modulate = Color( 1, 1, 1, 0.501961 )
+light_mask = 2
+use_parent_material = true
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 754.052
-margin_top = 22.3328
-margin_right = 840.052
-margin_bottom = 105.533
+margin_top = -105.667
+margin_right = -1079.95
+margin_bottom = -22.467
 texture = ExtResource( 5 )
 expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="IconRptr" type="TextureRect" parent="HUD/WeaponBar"]
+light_mask = 2
+use_parent_material = true
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 843.491
-margin_top = 22.658
-margin_right = 929.49
-margin_bottom = 105.857
+margin_top = -105.342
+margin_right = -990.51
+margin_bottom = -22.143
 texture = ExtResource( 6 )
 expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="IconShot" type="TextureRect" parent="HUD/WeaponBar"]
 modulate = Color( 1, 1, 1, 0.501961 )
+light_mask = 2
+use_parent_material = true
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 951.787
-margin_top = 23.5605
-margin_right = 1037.79
-margin_bottom = 106.76
+margin_top = -104.439
+margin_right = -882.21
+margin_bottom = -21.24
 texture = ExtResource( 7 )
 expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="IconGren" type="TextureRect" parent="HUD/WeaponBar"]
+modulate = Color( 1, 1, 1, 0.501961 )
+light_mask = 2
+use_parent_material = true
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1056.29
+margin_top = -102.96
+margin_right = -777.71
+margin_bottom = -19.759
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HealthMeter" type="TextureProgress" parent="HUD"]
+use_parent_material = true
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -230.0
@@ -137,6 +190,7 @@ radial_fill_degrees = 90.0
 radial_center_offset = Vector2( -256, 256 )
 
 [node name="HealthNum" type="Label" parent="HUD/HealthMeter"]
+use_parent_material = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -153,6 +207,7 @@ align = 1
 valign = 1
 
 [node name="FuelMeter" type="TextureProgress" parent="HUD"]
+use_parent_material = true
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -173,6 +228,7 @@ radial_fill_degrees = 90.0
 radial_center_offset = Vector2( -256, 256 )
 
 [node name="AmmoNum" type="Label" parent="HUD/FuelMeter"]
+use_parent_material = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -190,6 +246,7 @@ valign = 1
 
 [node name="Crosshair" type="TextureRect" parent="HUD"]
 self_modulate = Color( 0, 1, 0, 1 )
+use_parent_material = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
