@@ -11,10 +11,17 @@ As support for C# in this engine grows more feature complete, this game will be 
 
 TO-DO:
 
-Add different kinds of enemies and bosses,
-Pause Menu,
-High Score table
+-Add different kinds of enemies and bosses,
+
+-Pause Menu,
+
+-Background music
+
+-High Score table
+
 
 STRETCH GOALS:
-Restore networked multiplayer functionality.
-Global High Scores
+-Restore networked multiplayer functionality.
+
+-Global High Scores
+
