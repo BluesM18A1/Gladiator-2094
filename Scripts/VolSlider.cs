@@ -27,7 +27,7 @@ public class VolSlider : VSlider
 //  }
     void OnValueChange(float delta)
     {
-        AudioServer.SetBusVolumeDb((int)bus, (float)Value);
+        AudioServer.SetBusVolumeDb((int)bus, (float)Value); //db2linear or linear2db might be useful for volume controls
         bloop.Play();
         UpdateText();
         

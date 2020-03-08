@@ -1,20 +1,16 @@
 using Godot;
 using System;
 
-public class Gun : MeshInstance
+public class Gun : Spatial
 {
     //GAMEPLAY VARIABLES-------------------------------------
     public enum Weapons {REPEATER = 2, BUCKSHOT = 3, GRENADES = 4, FLAMETHROWER = 1};
     [Export]
     public Weapons currentWeapon;
     //COMPONENT VARIABLES------------------------------------
-    [Export]
-    public PackedScene bullet = (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Bullet.tscn");
-    protected Position3D barrel;
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        barrel = GetNode<Position3D>("Barrel");
-    }
+    
+    
+    [Export((PropertyHint) 13)] //I'm gonna specify array length using the inspector https://github.com/godotengine/godot/issues/15467#issuecomment-487341656
+    public Godot.Collections.Array<Transform> barrels;
     
 }

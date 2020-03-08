@@ -21,8 +21,8 @@ public class Combatant : KinematicBody
 
     //COMPONENT VARIABLES------------------------------------
     protected Spatial head;
-    protected Vector3 vel = new Vector3();
-    protected Vector3 dir = new Vector3();
+    public Vector3 vel = new Vector3();
+    public Vector3 dir = new Vector3();
     
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

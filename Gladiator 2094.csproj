@@ -8,7 +8,7 @@
     <OutputPath>.mono\temp\bin\$(Configuration)</OutputPath>
     <RootNamespace>Gladiator2094</RootNamespace>
     <AssemblyName>Gladiator 2094</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <GodotProjectGeneratorVersion>1.0.7333.3918</GodotProjectGeneratorVersion>
     <BaseIntermediateOutputPath>.mono\temp\obj</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Arena.cs" />
+    <Compile Include="Scripts\AutoAim.cs" />
+    <Compile Include="Scripts\AxelAnimation.cs" />
     <Compile Include="Scripts\Bullet.cs" />
     <Compile Include="Scripts\Combatant.cs" />
     <Compile Include="Scripts\Config.cs" />

@@ -33,6 +33,10 @@ public class Bullet : RigidBody
         {
             return;
         }
+        /*if (!friendly && body.IsInGroup("Enemies")) //this if statement doesnt really have to exist but if I ever want to make a multiplayer mode and prevent friendly fire, this better exist.
+        {
+            return;
+        }*/ // un comment this statement to disable monster infighting
         if (body.HasMethod("UpdateHealth"))
         {
             Connect(nameof(DealDamage), body, "UpdateHealth");

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Textures/tread.png" type="Texture" id=1]
+[ext_resource path="res://Models/singleAxel.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Scripts/AxelAnimation.cs" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_name = "Material.001"
+albedo_color = Color( 0, 0, 0, 1 )
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color( 0.555, 0.555, 0.75, 1 )
+emission_energy = 1.0
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = ExtResource( 1 )
+uv1_scale = Vector3( 2, 2, 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Spin"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -360, 0, 0 ) ]
+}
+
+[node name="Axel" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
+material/1 = null
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Spin"
+anims/Spin = SubResource( 2 )

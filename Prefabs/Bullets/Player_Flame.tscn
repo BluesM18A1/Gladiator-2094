@@ -4,6 +4,8 @@
 [ext_resource path="res://Textures/particle.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/guns/flame.wav" type="AudioStream" id=3]
 
+
+
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
 flags_unshaded = true
@@ -24,11 +26,17 @@ radius = 0.25
 [node name="Bullet" type="RigidBody" groups=[
 "projectiles",
 ]]
-collision_layer = 2
+collision_layer = 3
+collision_mask = 3
 gravity_scale = 0.0
 contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "The collision matrix on flames are different from regular bullets.
+
+These guys delete enemy projectiles (although for some reason it reflects them half the time, even if this is unintended, I like the idea so I'm keeping it as a feature.)"
+}
 damage = -3
 speed = 50.0
 lifetime = 0.08

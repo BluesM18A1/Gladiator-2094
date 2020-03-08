@@ -2,17 +2,18 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/singleAxel.obj-772edd2a897c12fd507fab0f46294428.mesh"
+path="res://.import/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh"
 
 [deps]
 
-files=[ "res://.import/singleAxel.obj-772edd2a897c12fd507fab0f46294428.mesh" ]
+files=[ "res://.import/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh" ]
 
-source_file="res://models/singleAxel.obj"
-dest_files=[ "res://.import/singleAxel.obj-772edd2a897c12fd507fab0f46294428.mesh", "res://.import/singleAxel.obj-772edd2a897c12fd507fab0f46294428.mesh" ]
+source_file="res://Models/singleAxel.obj"
+dest_files=[ "res://.import/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh", "res://.import/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh" ]
 
 [params]
 
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
 optimize_mesh=true

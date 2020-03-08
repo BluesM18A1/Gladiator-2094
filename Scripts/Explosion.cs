@@ -30,10 +30,10 @@ public class Explosion : Area
     }
 	private void _OnCollisionEnter(Node body)
 	{
-        if (friendly && body.IsInGroup("Players")) //this if statement doesnt really have to exist but if I ever want to make a multiplayer mode and prevent friendly fire, this better exist.
+        /*if (friendly && body.IsInGroup("Players")) //this if statement doesnt really have to exist but if I ever want to make a multiplayer mode and prevent friendly fire, this better exist.
         {
             return;
-        }
+        }*/
         if (body.HasMethod("UpdateHealth"))
         {
             Connect(nameof(DealExplosiveDamage), body, "UpdateHealth");

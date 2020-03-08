@@ -8,4 +8,8 @@ E:\Source Code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.pdb
 E:\Source Code\Gladiator-2094\.mono\temp\bin\Tools\Gladiator 2094.dll
 E:\Source Code\Gladiator-2094\.mono\temp\bin\Tools\Gladiator 2094.pdb
 E:\Source Code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.csprojAssemblyReference.cache
-E:\Source Code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.csproj.CoreCompileInputs.cache
+D:\Source Code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.dll
+D:\Source Code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.pdb
+D:\Source Code\Gladiator-2094\.mono\temp\bin\Tools\Gladiator 2094.dll
+D:\Source Code\Gladiator-2094\.mono\temp\bin\Tools\Gladiator 2094.pdb
+D:\Source Code\Gladiator-2094\.mono\temp\obj\Tools\Gladiator 2094.csprojAssemblyReference.cache

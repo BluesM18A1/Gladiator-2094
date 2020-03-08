@@ -1,8 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/ItemBox.cs" type="Script" id=1]
-[ext_resource path="res://models/itembox.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Models/itembox.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://Textures/UI/Icon_Health.png" type="Texture" id=3]
+
+
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0, 0, 0, 1 )

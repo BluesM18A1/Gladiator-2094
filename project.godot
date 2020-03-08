@@ -27,8 +27,8 @@ Config="*res://Scripts/Config.cs"
 
 window/size/width=1920
 window/size/height=1080
-window/size/test_width=1280
-window/size/test_height=720
+window/size/test_width=1680
+window/size/test_height=960
 window/stretch/mode="2d"
 window/stretch/aspect="keep_height"
 

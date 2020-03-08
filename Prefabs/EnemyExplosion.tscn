@@ -22,7 +22,6 @@ min_value = -1.0
 _data = [ Vector2( 0, -1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Animation" id=4]
-resource_name = "gravityManipulation"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:gravity")
 tracks/0/interp = 1
@@ -37,7 +36,7 @@ tracks/0/keys = {
 }
 
 [node name="CPUParticles" type="CPUParticles"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 emitting = false
 amount = 48
 lifetime = 1.5

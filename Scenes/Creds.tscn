@@ -74,9 +74,12 @@ text = "			<Gladiator 2094 Contributors:>
 	
 -Bruce Heiner (Art, Sounds, player code, announcer VA)
 -Jonah Scanzon (Netcode (god bless his poor soul), UI)
--Ethan Sewall (Enemy AI, bugfixing sorcerer)
+-Ethan Sewall (Enemy AI, Gladiator series founder)
 
 					"
 scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="button_down" from="Back" to="." method="BackButtonDown"]
 [connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]

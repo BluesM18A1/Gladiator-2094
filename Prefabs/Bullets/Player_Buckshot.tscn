@@ -7,13 +7,13 @@ radius = 0.1
 mid_height = 0.2
 
 [sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 1, 0.913725, 0, 1 )
+albedo_color = Color( 1, 0.72549, 0, 1 )
 metallic = 1.0
 metallic_specular = 1.0
-roughness = 0.27
+roughness = 0.2
 emission_enabled = true
-emission = Color( 0.227451, 0.180392, 0, 1 )
-emission_energy = 16.82
+emission = Color( 0.239216, 0.160784, 0.0196078, 1 )
+emission_energy = 14.95
 emission_operator = 0
 emission_on_uv2 = false
 

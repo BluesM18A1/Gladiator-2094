@@ -121,6 +121,9 @@ custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Credits"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Quit" type="TextureButton" parent="."]
 anchor_top = 1.0

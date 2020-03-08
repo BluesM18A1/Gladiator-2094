@@ -1,7 +1,7 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
-[ext_resource path="res://Prefabs/PlayerGun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Parts/PlayerGun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/grid.png" type="Texture" id=3]
 [ext_resource path="res://Textures/UI/Icon_Grenade.png" type="Texture" id=4]
 [ext_resource path="res://Textures/UI/Icon_Flamethrower.png" type="Texture" id=5]
@@ -14,30 +14,117 @@
 [ext_resource path="res://Sounds/boost.wav" type="AudioStream" id=12]
 [ext_resource path="res://Sounds/pickups/healthPickup.wav" type="AudioStream" id=13]
 [ext_resource path="res://Sounds/hurtsound.wav" type="AudioStream" id=14]
-[ext_resource path="res://default_env.tres" type="Environment" id=15]
+[ext_resource path="res://Models/singleAxel.obj" type="ArrayMesh" id=15]
+[ext_resource path="res://Textures/smile.png" type="Texture" id=16]
+[ext_resource path="res://Scripts/AxelAnimation.cs" type="Script" id=17]
+[ext_resource path="res://Textures/tread.png" type="Texture" id=18]
 
-[sub_resource type="CylinderMesh" id=1]
-top_radius = 0.3
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 0, 1 )
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color( 0.555, 0.555, 0.75, 1 )
+emission_energy = 1.0
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = ExtResource( 18 )
+uv1_scale = Vector3( 2, 2, 1 )
+
+[sub_resource type="Animation" id=2]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -360, 0, 0 ) ]
+}
+
+[sub_resource type="CylinderMesh" id=8]
+top_radius = 0.2
 bottom_radius = 0.3
-height = 1.5
+height = 0.7
 radial_segments = 16
 rings = 1
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=9]
 albedo_color = Color( 0, 0, 1, 1 )
 
 [sub_resource type="CylinderShape" id=3]
 radius = 0.3
-height = 1.5
+height = 1.7
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SphereMesh" id=4]
+radius = 0.35
+height = 0.75
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=5]
+resource_local_to_scene = true
+albedo_color = Color( 0.968627, 1, 0, 1 )
+albedo_texture = ExtResource( 16 )
+metallic = 0.5
+emission_enabled = true
+emission = Color( 1, 0.74902, 0, 1 )
+emission_energy = 0.5
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = ExtResource( 16 )
+
+[sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0, 0, 1, 1 )
 metallic = 0.54
 metallic_specular = 0.8
 roughness = 0.18
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=7]
 light_mode = 1
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+width = 1920
+
+[sub_resource type="Animation" id=12]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Hurt"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.478431 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Player" type="KinematicBody" groups=[
 "Players",
@@ -47,30 +134,49 @@ collision_layer = 5
 collision_mask = 5
 script = ExtResource( 1 )
 Deaccel = 24.0
-JetForce = 4.5
-normalSpeed = 8.0
-sprintSpeed = 15.0
+JetForce = 5.0
+normalSpeed = 10.0
+sprintSpeed = 20.0
+
+[node name="Axel" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+visible = false
+mesh = ExtResource( 15 )
+material/0 = SubResource( 1 )
+material/1 = null
+script = ExtResource( 17 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Axel"]
+autoplay = "Spin"
+anims/Spin = SubResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.0319977, 0 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.392294, 0 )
 shape = SubResource( 3 )
 
-[node name="Head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.25 )
+[node name="Neck" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
-[node name="Camera" type="Camera" parent="Head"]
-environment = ExtResource( 15 )
+[node name="Head" type="MeshInstance" parent="Neck"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Camera" type="Camera" parent="Neck"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422942, -0.360513 )
 current = true
 fov = 90.0
+size = 0.1
 near = 0.01
 
-[node name="Gun" parent="Head" instance=ExtResource( 2 )]
-material/0 = SubResource( 4 )
+[node name="Gun" parent="Neck" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112467, -0.722072 )
+material/0 = SubResource( 6 )
 coolSpeed = 12.0
 buckshotSpread = 0.06
 coolBuckshot = 3.0
@@ -79,12 +185,27 @@ PlayerPath = NodePath("../..")
 
 [node name="HUD" type="Control" parent="."]
 light_mask = 2
-material = SubResource( 5 )
+material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ScreenFlash" type="TextureRect" parent="HUD"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenTransitions" type="AnimationPlayer" parent="HUD/ScreenFlash"]
+autoplay = "Enter"
+anims/Enter = SubResource( 12 )
+anims/Hurt = SubResource( 13 )
 
 [node name="WeaponBar" type="NinePatchRect" parent="HUD"]
 self_modulate = Color( 0, 1, 0, 1 )
