@@ -45,27 +45,27 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( -360, 0, 0 ) ]
 }
 
-[sub_resource type="CylinderMesh" id=8]
+[sub_resource type="CylinderMesh" id=3]
 top_radius = 0.2
 bottom_radius = 0.3
 height = 0.7
 radial_segments = 16
 rings = 1
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0, 0, 1, 1 )
 
-[sub_resource type="CylinderShape" id=3]
+[sub_resource type="CylinderShape" id=5]
 radius = 0.3
 height = 1.7
 
-[sub_resource type="SphereMesh" id=4]
+[sub_resource type="SphereMesh" id=6]
 radius = 0.35
 height = 0.75
 radial_segments = 16
 rings = 8
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=7]
 resource_local_to_scene = true
 albedo_color = Color( 0.968627, 1, 0, 1 )
 albedo_texture = ExtResource( 16 )
@@ -77,13 +77,13 @@ emission_operator = 1
 emission_on_uv2 = false
 emission_texture = ExtResource( 16 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=8]
 albedo_color = Color( 0, 0, 1, 1 )
 metallic = 0.54
 metallic_specular = 0.8
 roughness = 0.18
 
-[sub_resource type="CanvasItemMaterial" id=7]
+[sub_resource type="CanvasItemMaterial" id=9]
 light_mode = 1
 
 [sub_resource type="Gradient" id=10]
@@ -133,10 +133,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 collision_layer = 5
 collision_mask = 5
 script = ExtResource( 1 )
+MaxSpeed = 16.0
+Accel = 8.0
 Deaccel = 24.0
-JetForce = 5.0
-normalSpeed = 10.0
-sprintSpeed = 20.0
+JetForce = 8.0
+normalSpeed = 12.0
+sprintSpeed = 24.0
 
 [node name="Axel" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
@@ -152,20 +154,20 @@ anims/Spin = SubResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.0319977, 0 )
-mesh = SubResource( 8 )
-material/0 = SubResource( 9 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.392294, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="Neck" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="Head" type="MeshInstance" parent="Neck"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393, 0 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
 
 [node name="Camera" type="Camera" parent="Neck"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422942, -0.360513 )
@@ -176,7 +178,7 @@ near = 0.01
 
 [node name="Gun" parent="Neck" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112467, -0.722072 )
-material/0 = SubResource( 6 )
+material/0 = SubResource( 8 )
 coolSpeed = 12.0
 buckshotSpread = 0.06
 coolBuckshot = 3.0
@@ -185,7 +187,7 @@ PlayerPath = NodePath("../..")
 
 [node name="HUD" type="Control" parent="."]
 light_mask = 2
-material = SubResource( 7 )
+material = SubResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {

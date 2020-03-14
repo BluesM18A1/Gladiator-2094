@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sounds/enemyHit.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/guns/enemyShot.wav" type="AudioStream" id=2]
@@ -8,10 +8,14 @@
 [ext_resource path="res://Scripts/AutoAim.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=8]
+[ext_resource path="res://Prefabs/Bullets/catShot.tscn" type="PackedScene" id=9]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="CylinderShape" id=1]
+radius = 0.2921
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=2]
 resource_local_to_scene = true
-resource_name = "Material.001"
 albedo_color = Color( 0.945098, 1, 0, 1 )
 metallic = 0.5
 emission_enabled = true
@@ -20,13 +24,13 @@ emission_energy = 0.5
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 1, 0.584314, 0, 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 1, 0.282353, 0, 1 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.1
 tracks/0/type = "audio"
 tracks/0/path = NodePath("hitsound")
@@ -59,10 +63,6 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.701961, 0, 1 ) ]
 }
 
-[sub_resource type="CylinderShape" id=5]
-radius = 0.5
-height = 1.0
-
 [node name="Cat" type="KinematicBody" groups=[
 "Enemies",
 ]]
@@ -70,6 +70,12 @@ script = ExtResource( 7 )
 MaxSpeed = 12.0
 Accel = 5.0
 HP = 40
+rangeThreshold = 16.0
+closeRangeMode = 1
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+shape = SubResource( 1 )
 
 [node name="singleAxel" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
@@ -78,23 +84,25 @@ material/0 = null
 material/1 = null
 
 [node name="Head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281819, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
 script = ExtResource( 6 )
-vOffset = 0.75
+vOffset = 0.5
 
 [node name="catHead" type="MeshInstance" parent="Head"]
 transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
 mesh = ExtResource( 5 )
-material/0 = SubResource( 1 )
+material/0 = SubResource( 2 )
 
 [node name="Gun" type="MeshInstance" parent="Head"]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.5, 0.4, 0.346134, 0.297016 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.6, 0.4, 0.346134, 0.297016 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 2 )
+material/0 = SubResource( 3 )
 material/1 = null
-material/2 = SubResource( 3 )
+material/2 = SubResource( 4 )
 script = ExtResource( 8 )
-barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12 ) ]
+currentWeapon = 3
+barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 ), Transform( 1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 ), Transform( 1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 ), Transform( 1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.5 ), Transform( 1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.5 ) ]
+bullet = ExtResource( 9 )
 fireRateMax = 0.8
 parentPath = NodePath("../..")
 
@@ -104,15 +112,17 @@ bus = "SFX"
 doppler_tracking = 2
 
 [node name="Gun2" type="MeshInstance" parent="Head"]
-transform = Transform( 0.699971, 0.0059889, 0.00157677, -0.0059869, 0.699974, -0.000458223, -0.00221288, 0.000622605, 0.499997, -0.4, 0.346134, 0.297016 )
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.6, -0.4, 0.346, 0.297 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 2 )
+material/0 = SubResource( 3 )
 material/1 = null
-material/2 = SubResource( 3 )
+material/2 = SubResource( 4 )
 script = ExtResource( 8 )
-barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12 ) ]
+currentWeapon = 3
+barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 ), Transform( 1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 ), Transform( 1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 ), Transform( 1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.5 ), Transform( 1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.5 ) ]
+bullet = ExtResource( 9 )
 fireRateMax = 0.8
-parentPath = NodePath("../../../Cat")
+parentPath = NodePath("../..")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun2"]
 stream = ExtResource( 2 )
@@ -120,12 +130,8 @@ bus = "SFX"
 doppler_tracking = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hurt = SubResource( 4 )
+anims/Hurt = SubResource( 5 )
 
 [node name="hitsound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 bus = "SFX"
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
-shape = SubResource( 5 )

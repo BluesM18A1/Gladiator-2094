@@ -3,20 +3,30 @@ using System;
 
 public class Enemy : Combatant
 {
+	//GAMEPLAY VARIABLES----------------------------------------------------------
 	[Export]
-	public PackedScene deathExplosion = (PackedScene)ResourceLoader.Load("res://Prefabs/EnemyExplosion.tscn");
+	public int bounty = 10; //how much score do I add when killed
+	public enum PathMode {STALKER, WANDERER, DEFENDER}; //which way I find my next position to move towards
+    [Export]
+	public float rangeThreshold = 6;
 	[Export]
-	public int bounty = 10;
+    public PathMode  closeRangeMode, longRangeMode;
+	public PathMode currentMode;
+	
 	public Arena arena;
 	Navigation nav;
 	Spatial player;
-	public Vector3 playerNavPos;
+	public Vector3 targetNavPos;
 	Vector3 pathPos;
 	Vector3[] path;
 	AnimationPlayer ani;
-
-	public float minDistance = 6;
+	
 	int pathPoint = 0;
+	//COMPONENT VARIABLES---------------------------------------------------------
+	[Export]
+	public PackedScene deathExplosion = (PackedScene)ResourceLoader.Load("res://Prefabs/EnemyExplosion.tscn");
+	
+	Vector2 inputMovementVector = Vector2.Zero;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -24,17 +34,18 @@ public class Enemy : Combatant
 		ani = GetNode<AnimationPlayer>("AnimationPlayer");
 		nav = GetNode<Navigation>("../Navigation");
 		player = GetNode<Spatial>("../Player");
-		playerNavPos = player.Translation;
-		path = nav.GetSimplePath(Translation, playerNavPos, true);
+		targetNavPos = player.Translation;
+		path = nav.GetSimplePath(Translation, targetNavPos, true);
 		pathPos = Translation;
+		currentMode = longRangeMode;
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		playerNavPos = nav.GetClosestPoint(player.Translation);
+		GetTarget();
+		SetPathPos(targetNavPos);
 		ProcessInput(delta);
-		SetPathPos(playerNavPos);
 		if (HP <= 0)
 		{
 			CPUParticles boom = (CPUParticles)deathExplosion.Instance();
@@ -49,20 +60,24 @@ public class Enemy : Combatant
 	protected void ProcessInput(float delta) //this is where all the AI happens
 	{
 		Transform camXform = GlobalTransform;
-		Vector2 inputMovementVector = Vector2.Zero;
-		
 		dir = new Vector3();
 		
 		float distanceToPoint = Translation.DistanceTo(pathPos);
-		float distanceToPlayer = Translation.DistanceTo(playerNavPos);
+		float distanceToPlayer = Translation.DistanceTo(nav.GetClosestPoint(player.Translation));
 		
-		if (distanceToPoint > 0.5f && distanceToPlayer > minDistance)
+		if (distanceToPoint > 0.5f && distanceToPlayer > rangeThreshold)
 		{
-			inputMovementVector = new Vector2 (0,1);
+			//GD.Print("outside range");
+			currentMode = longRangeMode;
 		}
-		else inputMovementVector = Vector2.Zero;
+		else
+		{
+			//GD.Print("within range");
+			currentMode = closeRangeMode;
+		}
 		
-		LookAt(new Vector3(pathPos.x, Translation.y, pathPos.z), Vector3.Up); //rotation is going to look very odd and twitchy if I don't find some way to interpolate it....
+		if (currentMode != PathMode.DEFENDER) LookAt(new Vector3(pathPos.x, Translation.y, pathPos.z), Vector3.Up);
+		//this line exists to rotate enemy wheels if it has any. I should find a way to interpolate the rotation to make the animation more natural.
 		
 		inputMovementVector = inputMovementVector.Normalized();
 		dir += -camXform.basis.z.Normalized() * inputMovementVector.y;
@@ -114,6 +129,28 @@ public class Enemy : Combatant
 	{
 		pathPoint = 0;
 		path = nav.GetSimplePath(Translation, newPos, true);
+	}
+	public void GetTarget()
+	{
+		switch (currentMode)
+		{
+			case PathMode.STALKER:
+			targetNavPos = nav.GetClosestPoint(player.Translation);
+			inputMovementVector = new Vector2 (0,1);
+			break;
+			case PathMode.WANDERER:
+			targetNavPos = nav.GetClosestPoint(new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28)));
+			inputMovementVector = new Vector2 (0,1);
+			break;
+			case PathMode.DEFENDER:
+			targetNavPos = nav.GetClosestPoint(Translation);
+			inputMovementVector = new Vector2 (0,0);
+			break;
+			default:
+			targetNavPos = nav.GetClosestPoint(new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28)));
+			inputMovementVector = new Vector2 (0,1);
+			break;
+		}
 	}
 	public float GetDistanceToPlayer()
 	{

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
 [ext_resource path="res://Wallpaper.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Textures/UI/grabber area.stylebox" type="StyleBox" id=13]
 [ext_resource path="res://Scripts/SensSlider.cs" type="Script" id=14]
 [ext_resource path="res://Textures/UI/slider.stylebox" type="StyleBox" id=15]
+[ext_resource path="res://FullscreenButton.tscn" type="PackedScene" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -54,18 +55,18 @@ __meta__ = {
 [node name="Difficulty" parent="." instance=ExtResource( 12 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 61.5163
-margin_top = -538.109
-margin_right = 1143.53
-margin_bottom = -410.109
+margin_left = 67.3604
+margin_top = -675.939
+margin_right = 1149.37
+margin_bottom = -547.939
 
 [node name="Sensitivity" type="HSlider" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 57.4152
-margin_top = -320.751
-margin_right = 1139.43
-margin_bottom = -192.751
+margin_left = 61.8807
+margin_top = -477.252
+margin_right = 1143.9
+margin_bottom = -349.252
 custom_icons/grabber_disabled = ExtResource( 10 )
 custom_icons/grabber_highlight = ExtResource( 10 )
 custom_icons/grabber = ExtResource( 10 )
@@ -163,15 +164,13 @@ anchor_bottom = 1.0
 margin_left = 61.0
 margin_top = 35.0
 margin_right = -708.0
-margin_bottom = -562.0
+margin_bottom = -675.0
 custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
 custom_constants/shadow_offset_y = 4
-text = "               C O N T R O L S :
-
--WASD		= walking/strafing
+text = "-WASD		= walking/strafing
 -Spacebar	 = hover
 -L-Shift	   = sprint
 -L-Mouseclick = fire
@@ -476,6 +475,8 @@ __meta__ = {
 bus = 2
 lblPath = NodePath("../dbLabel/Label")
 sndPath = NodePath("../../bloop")
+
+[node name="FullscreenButton" parent="." instance=ExtResource( 16 )]
 [connection signal="value_changed" from="Sensitivity" to="Sensitivity" method="OnSensitivityChange"]
 [connection signal="button_down" from="Back" to="." method="BackButtonDown"]
 [connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]

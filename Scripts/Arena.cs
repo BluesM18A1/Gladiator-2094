@@ -12,6 +12,7 @@ public class Arena : Spatial
 	byte wave, subwave;
 	public Label topText;
 	public Navigation nav;
+	public Control pauseMenu;
 	[Export]
 	public AudioStreamPlayer maestro, announcer, crowd;
 	[Export]
@@ -19,8 +20,8 @@ public class Arena : Spatial
 	, an_go = (AudioStreamSample)ResourceLoader.Load("res://Sounds/announcer/GO-1.wav");
 	[Export]
 	public float spawnRate = 20f, time = 0;
-	[Export]
-	public PackedScene Enemy = (PackedScene)ResourceLoader.Load("res://Prefabs/Enemies/Siren.tscn");
+	public PackedScene Siren = (PackedScene)ResourceLoader.Load("res://Prefabs/Enemies/Siren.tscn");
+	public PackedScene Cat = (PackedScene)ResourceLoader.Load("res://Prefabs/Enemies/Cat.tscn");
 	[Export]
 	public PackedScene HealthPack = (PackedScene)ResourceLoader.Load("res://Prefabs/Boxes/Box_Health.tscn");
 	[Export]
@@ -33,11 +34,12 @@ public class Arena : Spatial
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		pauseMenu = GetNode<Control>("PauseScreen");
 		config = GetNode<Config>("/root/Config");
 		maestro = GetNode<AudioStreamPlayer>("Maestro");
 		crowd = GetNode<AudioStreamPlayer>("Crowd");
 		announcer = GetNode<AudioStreamPlayer>("Announcer");
-		topText = GetNode<Label>("TopText");
+		topText = GetNode<Label>("TextureRect/TopText");
 		nav = GetNode<Navigation>("Navigation");
 		wave = 1;
 		UpdateScore(0);
@@ -46,7 +48,25 @@ public class Arena : Spatial
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		if (debugMode) return;
+		if (!debugMode) ProcessGame(delta);
+		
+			
+	}
+
+	public override void _Input(InputEvent @event){
+		if (@event is InputEventKey eventKey)
+		{
+			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Escape)
+			{
+				if (Input.GetMouseMode() == Input.MouseMode.Captured)
+				{
+					
+				}
+			}
+		}
+	}
+	void ProcessGame(float delta)
+	{
 		if (subwave < MaxSubWaves)//note that the counter will go above 'maxsubwaves' by one before resetting to the en
 		{
 			if (time >= spawnRate)
@@ -78,13 +98,21 @@ public class Arena : Spatial
 			UpdateScore(0);
 			ItemSpawn();
 		}
-		
 	}
 	void EnemySpawn()
 	{
 		for (byte i = 0; i < 14 + (config.difficulty * 3); i++)
 		{
-			RandomGroundSpawn(Enemy);
+			int randomItem = (Int16)GD.RandRange(0,2);
+			switch (randomItem)
+			{
+				default:
+				RandomGroundSpawn(Siren);
+				break;
+				case (1):
+				RandomGroundSpawn(Cat);
+				break;
+			}
 		}
 	}
 	void ItemSpawn()

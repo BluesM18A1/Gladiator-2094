@@ -8,7 +8,7 @@
     <OutputPath>.mono\temp\bin\$(Configuration)</OutputPath>
     <RootNamespace>Gladiator2094</RootNamespace>
     <AssemblyName>Gladiator 2094</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <GodotProjectGeneratorVersion>1.0.7333.3918</GodotProjectGeneratorVersion>
     <BaseIntermediateOutputPath>.mono\temp\obj</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
@@ -64,10 +64,12 @@
     <Compile Include="Scripts\Enemy.cs" />
     <Compile Include="Scripts\EnemyGun.cs" />
     <Compile Include="Scripts\Explosion.cs" />
+    <Compile Include="Scripts\fullscreenCheck.cs" />
     <Compile Include="Scripts\GameOver.cs" />
     <Compile Include="Scripts\Gun.cs" />
     <Compile Include="Scripts\ItemBox.cs" />
     <Compile Include="Scripts\ParticleDespawn.cs" />
+    <Compile Include="Scripts\PauseScreen.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\PlayerGun.cs" />
     <Compile Include="Scripts\SensSlider.cs" />

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/grenadePickup.wav-dd9617da6d2e75f8486398aa3c9364c0.sample"
+
+[deps]
+
+source_file="res://Sounds/pickups/grenadePickup.wav"
+dest_files=[ "res://.import/grenadePickup.wav-dd9617da6d2e75f8486398aa3c9364c0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

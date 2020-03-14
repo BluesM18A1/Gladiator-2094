@@ -27,11 +27,17 @@ public class PlayerGun : Gun
 	public TextureProgress coolMeter;
 	public TextureRect iconRptr, iconShot, iconGren, iconFlam; 
 	private Label ammoNum;
-	public AudioStreamPlayer pickupSndRep, pickupSndShot, pickupSndGren, switchSnd;
+	public AudioStreamPlayer pickupSnd, switchSnd;
 	public AudioStreamSample fireGren = 
 	(AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/grenadeLaunch.wav"),
-	fireShot = (AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/shot.wav"), 
+	fireRep = (AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/repeater.wav"), 
+	fireShot = (AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/buckshot.wav"), 
 	wepSwitch = (AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/switch.wav");
+
+	public AudioStreamSample pickupGren = 
+	(AudioStreamSample)ResourceLoader.Load("res://Sounds/pickups/grenadePickup.wav"),
+	pickupRep = (AudioStreamSample)ResourceLoader.Load("res://Sounds/pickups/repeaterPickup.wav"), 
+	pickupShot = (AudioStreamSample)ResourceLoader.Load("res://Sounds/pickups/buckshotPickup.wav");
 	public bool disabled = false;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -43,9 +49,7 @@ public class PlayerGun : Gun
 		iconFlam = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconFlam");
 		coolMeter = GetNode<TextureProgress>("Meter/Viewport/TextureProgress");
 		ammoNum = GetNode<Label>(HUDPath + "/FuelMeter/AmmoNum");
-		pickupSndRep = GetNode<AudioStreamPlayer>("pickupSnd");
-		pickupSndShot = GetNode<AudioStreamPlayer>("pickupSnd");
-		pickupSndGren = GetNode<AudioStreamPlayer>("pickupSnd");
+		pickupSnd = GetNode<AudioStreamPlayer>("pickupSnd");
 		switchSnd = GetNode<AudioStreamPlayer>("switchSnd");
 		currentWeapon = Weapons.FLAMETHROWER;
 	}
@@ -131,7 +135,7 @@ public class PlayerGun : Gun
 	{
 		if (bullets > 0)
 		{
-			switchSnd.Stream = fireShot;
+			switchSnd.Stream = fireRep;
 			switchSnd.Play();
 			coolMeter.Value = 100;
 			bullets--;
@@ -201,19 +205,22 @@ public class PlayerGun : Gun
 	}
 	public void AddBullets(int delta)
 	{
-		pickupSndRep.Play();
+		pickupSnd.Stream = pickupRep;
+		pickupSnd.Play();
 		bullets += delta;
 		bullets = Mathf.Clamp(bullets, 0, 999);
 	}
 	public void AddShells(int delta)
 	{
-		pickupSndShot.Play();
+		pickupSnd.Stream = pickupShot;
+		pickupSnd.Play();
 		shells += delta;
 		shells = Mathf.Clamp(shells, 0, 999);
 	}
 	public void AddGrenades(int delta)
 	{
-		pickupSndGren.Play();
+		pickupSnd.Stream = pickupGren;
+		pickupSnd.Play();
 		grenades += delta;
 		grenades = Mathf.Clamp(grenades, 0, 999);
 	}

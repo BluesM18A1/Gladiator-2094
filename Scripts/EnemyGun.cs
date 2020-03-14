@@ -49,7 +49,8 @@ public class EnemyGun : Gun
 		newBullet.friendly = false;
 		newBullet.ApplyImpulse(new Vector3(0, 0, 0),
 		 -newBullet.GlobalTransform.basis.z * newBullet.speed * (launchSpeedByDistance ? parent.GetDistanceToPlayer() : 1));
-		parent.UpdatePath(parent.playerNavPos);
+		//parent.GetTarget(); //find a new target
+		parent.UpdatePath(parent.targetNavPos); //start over pathfinding using new target
 		//snd.PitchScale = fireRate; // should I use different randoms for pitchscale later?
 		if (snd != null) snd.Play();
 	}

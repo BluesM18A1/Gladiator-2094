@@ -1,8 +1,9 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Sounds/guns/shot.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sounds/guns/buckshot.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=2]
 [ext_resource path="res://Prefabs/Bullets/Dreadnaught_Bullet.tscn" type="PackedScene" id=3]
+
 
 
 

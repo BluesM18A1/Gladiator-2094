@@ -136,6 +136,9 @@ texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 9 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Quit"]
 anchor_right = 1.0
@@ -175,7 +178,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Beta 00:20 game by CathodeRayBlues"
+text = "Beta 00:5F game by CathodeRayBlues"
 align = 1
 valign = 1
 __meta__ = {

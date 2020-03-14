@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scripts/Arena.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/announcer/Round 1 start.wav" type="AudioStream" id=2]
@@ -12,7 +12,8 @@
 [ext_resource path="res://Textures/bricks/AmbientOcclusionMap.png" type="Texture" id=10]
 [ext_resource path="res://Textures/bricks/DisplacementMap.png" type="Texture" id=11]
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
-[ext_resource path="res://Prefabs/Enemies/Dreadnaught.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Prefabs/Enemies/Dreadnaught.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -165,25 +166,7 @@ data = PoolVector3Array( 0, 2, 2, 4, -2, 2, -4, -2, 2, 0, 2, -2, -4, -2, -2, 4, 
 script = ExtResource( 1 )
 debugMode = true
 
-[node name="Dreadnaught" parent="." instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 9 )
-
-[node name="Player" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.5, 13 )
-Deaccel = 20.0
-JetForce = 3.75
-
-[node name="Maestro" type="AudioStreamPlayer" parent="."]
-bus = "BGM"
-
-[node name="Announcer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-volume_db = 5.0
-bus = "SFX"
-
-[node name="Crowd" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-bus = "BGM"
+[node name="Dreadnaught" parent="." instance=ExtResource( 14 )]
 
 [node name="TextureRect" type="NinePatchRect" parent="."]
 modulate = Color( 0, 1, 0, 1 )
@@ -196,7 +179,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TopText" type="Label" parent="."]
+[node name="TopText" type="Label" parent="TextureRect"]
 anchor_right = 1.0
 margin_bottom = 100.0
 custom_fonts/font = SubResource( 1 )
@@ -207,6 +190,26 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.5, 13 )
+Deaccel = 20.0
+JetForce = 3.75
+
+[node name="PauseScreen" parent="." instance=ExtResource( 13 )]
+visible = false
+
+[node name="Maestro" type="AudioStreamPlayer" parent="."]
+bus = "BGM"
+
+[node name="Announcer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 5.0
+bus = "SFX"
+
+[node name="Crowd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "BGM"
 
 [node name="Walls_Outer" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0 )

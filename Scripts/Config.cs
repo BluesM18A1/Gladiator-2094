@@ -21,6 +21,7 @@ public class Config : Node
         saveConf.SetValue("Audio", "MasterVolume", AudioServer.GetBusVolumeDb(0));
         saveConf.SetValue("Audio", "BgmVolume", AudioServer.GetBusVolumeDb(1));
         saveConf.SetValue("Audio", "SfxVolume", AudioServer.GetBusVolumeDb(2));
+        saveConf.SetValue("Video", "Fullscreen", OS.WindowFullscreen);
         saveConf.Save("user://userConfig.ini");
         GD.Print("Saved");
     }
@@ -34,6 +35,7 @@ public class Config : Node
         AudioServer.SetBusVolumeDb(0, (float)saveConf.GetValue("Audio", "MasterVolume", AudioServer.GetBusVolumeDb(0))) ;
         AudioServer.SetBusVolumeDb(1, (float)saveConf.GetValue("Audio", "BgmVolume", AudioServer.GetBusVolumeDb(1)));
         AudioServer.SetBusVolumeDb(2, (float)saveConf.GetValue("Audio", "SfxVolume", AudioServer.GetBusVolumeDb(2)));
+        OS.WindowFullscreen = (bool)saveConf.GetValue("Video", "Fullscreen", OS.WindowFullscreen);
         GD.Print("Loaded");
     }
 }

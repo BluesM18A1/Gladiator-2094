@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Textures/UI/icon.png" type="Texture" id=1]
 [ext_resource path="res://Textures/UI/grabber area.stylebox" type="StyleBox" id=2]
@@ -8,53 +8,67 @@
 [ext_resource path="res://Textures/grid.png" type="Texture" id=6]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Textures/UI/button_normal.png" type="Texture" id=8]
-[ext_resource path="res://Sounds/UI/bootup.wav" type="AudioStream" id=9]
+[ext_resource path="res://FullscreenButton.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/VolSlider.cs" type="Script" id=10]
 [ext_resource path="res://Scripts/SensSlider.cs" type="Script" id=11]
-[ext_resource path="res://Scripts/Title.cs" type="Script" id=12]
+[ext_resource path="res://Scripts/PauseScreen.cs" type="Script" id=12]
 [ext_resource path="res://Textures/UI/slider.stylebox" type="StyleBox" id=13]
-[ext_resource path="res://Wallpaper.tscn" type="PackedScene" id=14]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 1920
+
+[sub_resource type="DynamicFont" id=3]
 size = 86
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 100
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 48
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 48
 font_data = ExtResource( 7 )
 
-[sub_resource type="StyleBoxLine" id=5]
+[sub_resource type="StyleBoxLine" id=7]
 color = Color( 0, 1, 0, 1 )
 thickness = 8
 vertical = true
 
 [node name="PauseScreen" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.50732
-margin_right = -1.50732
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Wallpaper" parent="." instance=ExtResource( 14 )]
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.768627 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Menu Label" type="Label" parent="."]
 anchor_right = 0.683
 margin_right = -0.360107
 margin_bottom = 145.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 9
@@ -69,10 +83,10 @@ __meta__ = {
 [node name="Sensitivity" type="HSlider" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 77.4752
-margin_top = -432.952
-margin_right = 1159.49
-margin_bottom = -304.952
+margin_left = 49.1074
+margin_top = -577.569
+margin_right = 1131.12
+margin_bottom = -449.569
 custom_icons/grabber_disabled = ExtResource( 1 )
 custom_icons/grabber_highlight = ExtResource( 1 )
 custom_icons/grabber = ExtResource( 1 )
@@ -87,14 +101,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Sensitivity"]
+[node name="Difficulty" type="Label" parent="Sensitivity"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
 margin_top = 86.0
 margin_right = -722.0
 margin_bottom = 92.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 9
@@ -106,14 +120,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Setting" type="Label" parent="Sensitivity/Label"]
+[node name="Setting" type="Label" parent="Sensitivity/Difficulty"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 709.0
 margin_top = 7.0
 margin_right = 291.0
 margin_bottom = 4.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 9
@@ -125,7 +139,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="TextureButton" parent="."]
+[node name="Quit" type="TextureButton" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -142,10 +156,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Back"]
+[node name="Label" type="Label" parent="Quit"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Quit"
 align = 1
@@ -154,9 +168,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Resume" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1206.94
+margin_top = -177.052
+margin_right = -621.937
+margin_bottom = -9.052
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Resume"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.948
+margin_top = 1.948
+margin_right = -1.948
+margin_bottom = 1.948
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "Resume"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="bootup" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-autoplay = true
 bus = "SFX"
 
 [node name="elevatorMusicidk" type="AudioStreamPlayer" parent="."]
@@ -170,18 +215,16 @@ bus = "SFX"
 [node name="ControlsText" type="RichTextLabel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 71.7924
-margin_top = 175.301
-margin_right = -697.208
-margin_bottom = -421.699
-custom_fonts/normal_font = SubResource( 3 )
+margin_left = 60.683
+margin_top = 129.792
+margin_right = -708.317
+margin_bottom = -592.208
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
 custom_constants/shadow_offset_y = 4
-text = "               C O N T R O L S :
-
--WASD		= walking/strafing
+text = "-WASD		= walking/strafing
 -Spacebar	 = hover
 -L-Shift	   = sprint
 -L-Mouseclick = fire
@@ -232,7 +275,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -85.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "-0 db"
 align = 1
 valign = 1
@@ -258,7 +301,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MasterSlider/grpLabel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Master"
 align = 1
 valign = 1
@@ -276,8 +319,8 @@ margin_bottom = -0.171326
 custom_icons/grabber_disabled = ExtResource( 1 )
 custom_icons/grabber_highlight = ExtResource( 1 )
 custom_icons/grabber = ExtResource( 1 )
-custom_styles/slider = SubResource( 5 )
-custom_styles/grabber_area = SubResource( 5 )
+custom_styles/slider = SubResource( 7 )
+custom_styles/grabber_area = SubResource( 7 )
 min_value = -80.0
 max_value = 6.0
 tick_count = 32
@@ -329,7 +372,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -85.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "-0 db"
 align = 1
 valign = 1
@@ -355,7 +398,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="BGMslider/grpLabel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "BGM"
 align = 1
 valign = 1
@@ -373,8 +416,8 @@ margin_bottom = -0.171326
 custom_icons/grabber_disabled = ExtResource( 1 )
 custom_icons/grabber_highlight = ExtResource( 1 )
 custom_icons/grabber = ExtResource( 1 )
-custom_styles/slider = SubResource( 5 )
-custom_styles/grabber_area = SubResource( 5 )
+custom_styles/slider = SubResource( 7 )
+custom_styles/grabber_area = SubResource( 7 )
 min_value = -80.0
 max_value = 6.0
 rounded = true
@@ -428,7 +471,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -85.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "-0 db"
 align = 1
 valign = 1
@@ -454,7 +497,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="SFXslider/grpLabel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "SFX"
 align = 1
 valign = 1
@@ -472,8 +515,8 @@ margin_bottom = -0.171326
 custom_icons/grabber_disabled = ExtResource( 1 )
 custom_icons/grabber_highlight = ExtResource( 1 )
 custom_icons/grabber = ExtResource( 1 )
-custom_styles/slider = SubResource( 5 )
-custom_styles/grabber_area = SubResource( 5 )
+custom_styles/slider = SubResource( 7 )
+custom_styles/grabber_area = SubResource( 7 )
 min_value = -80.0
 max_value = 6.0
 rounded = true
@@ -486,9 +529,13 @@ __meta__ = {
 bus = 2
 lblPath = NodePath("../../../PauseScreen/SFXslider/dbLabel/Label")
 sndPath = NodePath("../../../PauseScreen/bloop")
+
+[node name="FullscreenButton" parent="." instance=ExtResource( 9 )]
 [connection signal="value_changed" from="Sensitivity" to="Sensitivity" method="OnSensitivityChange"]
-[connection signal="button_down" from="Back" to="." method="BackButtonDown"]
-[connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]
+[connection signal="button_down" from="Quit" to="." method="QuitButtonDown"]
+[connection signal="mouse_entered" from="Quit" to="." method="onButtonHover"]
+[connection signal="button_down" from="Resume" to="." method="ResumeButtonDown"]
+[connection signal="mouse_entered" from="Resume" to="." method="onButtonHover"]
 [connection signal="value_changed" from="MasterSlider/VSlider" to="MasterSlider/VSlider" method="OnValueChange"]
 [connection signal="value_changed" from="BGMslider/VSlider" to="BGMslider/VSlider" method="OnValueChange"]
 [connection signal="value_changed" from="SFXslider/VSlider" to="SFXslider/VSlider" method="OnValueChange"]
