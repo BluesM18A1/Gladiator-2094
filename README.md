@@ -13,8 +13,6 @@ TO-DO:
 
 -Add different kinds of enemies and bosses,
 
--Pause Menu,
-
 -Background music
 
 -High Score table
@@ -23,6 +21,3 @@ TO-DO:
 STRETCH GOALS:
 
 -Restore networked multiplayer functionality.
-
--Global High Scores
-
