@@ -11,12 +11,18 @@ As the Godot Engine grows and its C# support more stable, so too, will this game
 
 TO-DO:
 
+-Overheal mechanics
+
 -Add different kinds of enemies and bosses,
 
 -Background music
 
 -High Score table
 
+KNOWN ISSUES:
+
+-Stuttering when too many objects spawn at once.
+May not occur depending on your hardware. I will be doing my best to fix the issue, although it may have to wait until Godot 4.0, as there will be overhauls to the 3D rendering system. Beta release 2 is on hold until then.
 
 STRETCH GOALS:
 
