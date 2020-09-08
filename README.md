@@ -27,4 +27,5 @@ May not occur depending on your hardware. I will be doing my best to fix the iss
 STRETCH GOALS:
 
 -Restore networked multiplayer functionality.
+
 -Port this game, and the godot engine by extension, to as many platforms as possible.
