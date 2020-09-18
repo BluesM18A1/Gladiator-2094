@@ -93,7 +93,7 @@ custom_icons/grabber = ExtResource( 1 )
 custom_styles/slider = ExtResource( 13 )
 custom_styles/grabber_area = ExtResource( 2 )
 min_value = 0.005
-max_value = 0.5
+max_value = 2.0
 step = 0.005
 value = 0.005
 script = ExtResource( 11 )
@@ -531,6 +531,14 @@ lblPath = NodePath("../../../PauseScreen/SFXslider/dbLabel/Label")
 sndPath = NodePath("../../../PauseScreen/bloop")
 
 [node name="FullscreenButton" parent="." instance=ExtResource( 9 )]
+anchor_left = 0.037
+anchor_top = 0.867
+anchor_right = 0.215
+anchor_bottom = 0.964
+margin_left = 1.0872
+margin_top = -0.507141
+margin_right = -0.672852
+margin_bottom = -0.266968
 [connection signal="value_changed" from="Sensitivity" to="Sensitivity" method="OnSensitivityChange"]
 [connection signal="button_down" from="Quit" to="." method="QuitButtonDown"]
 [connection signal="mouse_entered" from="Quit" to="." method="onButtonHover"]

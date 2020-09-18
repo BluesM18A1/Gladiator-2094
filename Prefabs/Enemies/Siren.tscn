@@ -13,6 +13,11 @@ flags_transparent = true
 albedo_color = Color( 0, 0, 0, 1 )
 metallic = 0.53
 metallic_specular = 1.0
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
 
 [sub_resource type="CylinderMesh" id=2]
 resource_local_to_scene = true
@@ -85,25 +90,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("MeshInstance:mesh:material:emission_enabled")
+tracks/1/type = "audio"
+tracks/1/path = NodePath("hitsound")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ true, false ]
-}
-tracks/2/type = "audio"
-tracks/2/path = NodePath("hitsound")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,

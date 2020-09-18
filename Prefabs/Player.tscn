@@ -142,7 +142,6 @@ sprintSpeed = 24.0
 
 [node name="Axel" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
-visible = false
 mesh = ExtResource( 15 )
 material/0 = SubResource( 1 )
 material/1 = null

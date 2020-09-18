@@ -13,7 +13,7 @@
 [ext_resource path="res://Textures/bricks/DisplacementMap.png" type="Texture" id=11]
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Prefabs/Enemies/Dreadnaught.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Prefabs/Enemies/Siren.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -165,8 +165,6 @@ data = PoolVector3Array( 0, 2, 2, 4, -2, 2, -4, -2, 2, 0, 2, -2, -4, -2, -2, 4, 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
 debugMode = true
-
-[node name="Dreadnaught" parent="." instance=ExtResource( 14 )]
 
 [node name="TextureRect" type="NinePatchRect" parent="."]
 modulate = Color( 0, 1, 0, 1 )
@@ -518,3 +516,6 @@ texture = ExtResource( 9 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 8 )
+
+[node name="Siren" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.56744, 0.0320292, 7.79269 )
