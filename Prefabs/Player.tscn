@@ -19,6 +19,16 @@
 [ext_resource path="res://Scripts/AxelAnimation.cs" type="Script" id=17]
 [ext_resource path="res://Textures/tread.png" type="Texture" id=18]
 
+[sub_resource type="CylinderMesh" id=3]
+top_radius = 0.2
+bottom_radius = 0.3
+height = 0.7
+radial_segments = 16
+rings = 1
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 0, 1, 1 )
+
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0, 0, 0, 1 )
 metallic_specular = 0.0
@@ -45,20 +55,6 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( -360, 0, 0 ) ]
 }
 
-[sub_resource type="CylinderMesh" id=3]
-top_radius = 0.2
-bottom_radius = 0.3
-height = 0.7
-radial_segments = 16
-rings = 1
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0, 0, 1, 1 )
-
-[sub_resource type="CylinderShape" id=5]
-radius = 0.3
-height = 1.7
-
 [sub_resource type="SphereMesh" id=6]
 radius = 0.35
 height = 0.75
@@ -82,6 +78,10 @@ albedo_color = Color( 0, 0, 1, 1 )
 metallic = 0.54
 metallic_specular = 0.8
 roughness = 0.18
+
+[sub_resource type="CylinderShape" id=5]
+radius = 0.3
+height = 1.7
 
 [sub_resource type="CanvasItemMaterial" id=9]
 light_mode = 1
@@ -140,6 +140,11 @@ JetForce = 8.0
 normalSpeed = 12.0
 sprintSpeed = 24.0
 
+[node name="Body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.0319977, -3.55271e-15 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
 [node name="Axel" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
 mesh = ExtResource( 15 )
@@ -151,15 +156,6 @@ script = ExtResource( 17 )
 autoplay = "Spin"
 anims/Spin = SubResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.0319977, 0 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.392294, 0 )
-shape = SubResource( 5 )
-
 [node name="Neck" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
@@ -169,7 +165,7 @@ mesh = SubResource( 6 )
 material/0 = SubResource( 7 )
 
 [node name="Camera" type="Camera" parent="Neck"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422942, -0.360513 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.36 )
 current = true
 fov = 90.0
 size = 0.1
@@ -184,6 +180,10 @@ coolBuckshot = 3.0
 HUDPath = NodePath("../../HUD")
 PlayerPath = NodePath("../..")
 
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0 )
+shape = SubResource( 5 )
+
 [node name="HUD" type="Control" parent="."]
 light_mask = 2
 material = SubResource( 9 )
@@ -194,7 +194,7 @@ __meta__ = {
 }
 
 [node name="ScreenFlash" type="TextureRect" parent="HUD"]
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 0, 0, 0, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource( 11 )
@@ -310,6 +310,9 @@ tint_progress = Color( 0, 0, 1, 1 )
 radial_initial_angle = 90.0
 radial_fill_degrees = 90.0
 radial_center_offset = Vector2( -256, 256 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HealthNum" type="Label" parent="HUD/HealthMeter"]
 use_parent_material = true

@@ -18,8 +18,20 @@ public class Player : Combatant
 	
 	//GAMEPLAY VARIABLES-------------------------------------
 	public bool alive = true;
+	[Export]
+	public int maxHP = 100; //in case I want to make max HP/max fuel upgrades a thing later.
+	[Export]
+	public int maxFuel = 100;
+	int HPcounter = 0;
+	public float fuel = 0;
 	public bool flameThrowerOn = false;
-	public float fuel = 100;
+	//public bool overheal = false;
+	
+	public float overhealDecrementRate = .25f;
+	float overhealTimer = 0;
+	
+	
+
 	//COMPONENT VARIABLES------------------------------------
 	private Camera camera;
 	public PlayerGun gun;
@@ -41,14 +53,34 @@ public class Player : Combatant
 		fuelMeter = GetNode<TextureProgress>("HUD/FuelMeter");
 		healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
 		screenAni = GetNode<AnimationPlayer>("HUD/ScreenFlash/ScreenTransitions");
-		healthNum.Text = healthMeter.Value.ToString();
 		Input.SetMouseMode(Input.MouseMode.Captured);
 		mouseSensitivity = config.mouseSensitivity;
+		HP = maxHP;
+		healthMeter.MaxValue = maxHP;
+		fuelMeter.MaxValue = maxFuel;
+		healthNum.Text = HPcounter.ToString();
+		healthMeter.Value = HPcounter;
 	}
-
+    public override void _Process(float delta)
+    {
+		
+		if (HP > healthMeter.MaxValue)
+		{
+			//overheal = true;
+			overhealTimer += delta;
+			if (overhealTimer >= overhealDecrementRate)
+			{
+				overhealTimer = 0;
+				HP--;
+				healthNum.Text = HP.ToString();
+			}
+		}
+		//else overheal = false;
+    }
+    
 	public override void _PhysicsProcess(float delta)
 	{
-		
+		ProcessHealthMeter(delta);
 		ProcessInput(delta);
 		ProcessMovement(delta);
 	}
@@ -114,6 +146,8 @@ public class Player : Combatant
 					fuel += RechargeRate * delta;
 				}
 			}
+			
+			
 		}
 		else
 		{
@@ -135,7 +169,35 @@ public class Player : Combatant
 			head.RotationDegrees = cameraRot;
 		}
 	}
-	
+	private void ProcessHealthMeter(float delta) //this is how I do health counter rolling
+	{
+		
+		if (HP != HPcounter)
+		{
+			//flash the color between blue and white every frame
+			if (healthMeter.TintProgress == Colors.White)
+			{
+				healthMeter.TintProgress = new Color(0,0,1,1);
+			}
+			else healthMeter.TintProgress = new Color(Colors.White);
+			//increment/decrement the meter towards the HP value every frame
+			if (HP > HPcounter)
+			{
+				HPcounter++;
+				
+			}
+			else if (HP < HPcounter)
+			{
+				HPcounter--;
+			}
+		}
+		else
+		{
+			healthMeter.TintProgress = new Color(0,0,1,1);
+		}
+		healthNum.Text = HPcounter.ToString();
+		healthMeter.Value = HPcounter;
+	}
 	public override void UpdateHealth(int delta)
 	{
 		if (delta < 0)
@@ -151,9 +213,8 @@ public class Player : Combatant
 			medSnd.Play();
 		}
 		HP += delta;
-		HP = Mathf.Clamp(HP, 0, (int)healthMeter.MaxValue);
-		healthMeter.Value = HP;
-		healthNum.Text = HP.ToString();
+		//healthMeter.Value = HP;
+		//healthNum.Text = HP.ToString();
 		if (HP <= 0)
 		{
 			alive = false;

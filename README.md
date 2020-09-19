@@ -12,8 +12,6 @@ As the Godot Engine grows and its C# support more stable, so too, will this game
 
 TO-DO:
 
--Overheal mechanics
-
 -Add different kinds of enemies and bosses,
 
 -Background music

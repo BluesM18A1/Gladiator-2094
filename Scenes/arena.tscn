@@ -166,7 +166,7 @@ script = ExtResource( 1 )
 
 [node name="TextureRect" type="NinePatchRect" parent="."]
 modulate = Color( 0, 1, 0, 1 )
-anchor_right = 1.0
+margin_right = 662.0
 margin_bottom = 100.0
 texture = ExtResource( 4 )
 patch_margin_left = 10

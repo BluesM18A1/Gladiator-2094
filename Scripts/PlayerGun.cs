@@ -42,12 +42,12 @@ public class PlayerGun : Gun
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		coolMeter = GetNode<TextureProgress>("Meter/Viewport/TextureProgress");
 		player = GetNode<Player>(PlayerPath);
 		iconRptr = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconRptr");
 		iconShot = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconShot");
 		iconGren = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconGren");
 		iconFlam = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconFlam");
-		coolMeter = GetNode<TextureProgress>("Meter/Viewport/TextureProgress");
 		ammoNum = GetNode<Label>(HUDPath + "/FuelMeter/AmmoNum");
 		pickupSnd = GetNode<AudioStreamPlayer>("pickupSnd");
 		switchSnd = GetNode<AudioStreamPlayer>("switchSnd");

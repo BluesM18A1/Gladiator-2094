@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scripts/Arena.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/announcer/Round 1 start.wav" type="AudioStream" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Prefabs/Enemies/Siren.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Prefabs/Boxes/Box_Health.tscn" type="PackedScene" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -519,3 +520,12 @@ environment = ExtResource( 8 )
 
 [node name="Siren" parent="." instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.56744, 0.0320292, 7.79269 )
+
+[node name="Box_Health" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.6938, 0.0320292, 12.1757 )
+
+[node name="Box_Health2" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2132, 0.0320292, 8.71205 )
+
+[node name="Box_Health3" parent="." instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3289, 0.0320292, 11.9696 )
