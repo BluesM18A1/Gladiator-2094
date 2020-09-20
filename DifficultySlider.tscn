@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Textures/UI/icon.png" type="Texture" id=1]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=2]
@@ -6,15 +6,20 @@
 [ext_resource path="res://Scripts/DiffSlider.cs" type="Script" id=4]
 [ext_resource path="res://Textures/UI/slider.stylebox" type="StyleBox" id=5]
 
-[sub_resource type="DynamicFont" id=4]
-size = 86
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [node name="DSlider" type="HSlider"]
 margin_left = 646.863
 margin_top = 554.613
-margin_right = 1728.87
+margin_right = 1414.86
 margin_bottom = 682.613
 custom_icons/grabber_disabled = ExtResource( 1 )
 custom_icons/grabber_highlight = ExtResource( 1 )
@@ -31,10 +36,9 @@ script = ExtResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
-margin_top = 86.0
+margin_top = 76.0
 margin_right = -722.0
-margin_bottom = 92.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 9
@@ -46,11 +50,10 @@ valign = 1
 [node name="Setting" type="Label" parent="Difficulty"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 384.887
-margin_top = 7.24194
-margin_right = 655.887
-margin_bottom = 4.24194
-custom_fonts/font = SubResource( 4 )
+margin_left = 218.0
+margin_top = 11.0
+margin_right = 490.979
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 9

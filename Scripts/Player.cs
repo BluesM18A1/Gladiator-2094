@@ -25,12 +25,8 @@ public class Player : Combatant
 	int HPcounter = 0;
 	public float fuel = 0;
 	public bool flameThrowerOn = false;
-	//public bool overheal = false;
-	
 	public float overhealDecrementRate = .25f;
 	float overhealTimer = 0;
-	
-	
 
 	//COMPONENT VARIABLES------------------------------------
 	private Camera camera;
@@ -63,7 +59,10 @@ public class Player : Combatant
 	}
     public override void _Process(float delta)
     {
-		
+		// Analog stick aiming
+		head.RotateX(Mathf.Deg2Rad(Input.GetJoyAxis(0, 3) * -mouseSensitivity));
+		RotateY(Mathf.Deg2Rad(-Input.GetJoyAxis(0, 2)* mouseSensitivity));
+		//overheal mechanics
 		if (HP > healthMeter.MaxValue)
 		{
 			//overheal = true;
@@ -87,8 +86,6 @@ public class Player : Combatant
 
 	private void ProcessInput(float delta)
 	{
-		
-		
 		//  Walking
 		Transform camXform = camera.GlobalTransform;
 
@@ -158,12 +155,13 @@ public class Player : Combatant
 	}
 	public override void _Input(InputEvent @event)
 	{
+		mouseSensitivity = config.mouseSensitivity;
 		if (@event is InputEventMouseMotion && Input.GetMouseMode() == Input.MouseMode.Captured)
 		{
 			InputEventMouseMotion mouseEvent = @event as InputEventMouseMotion;
 			head.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -mouseSensitivity));
 			RotateY(Mathf.Deg2Rad(-mouseEvent.Relative.x * mouseSensitivity));
-
+			//apply vertical clamping to rotation
 			Vector3 cameraRot = head.RotationDegrees;
 			cameraRot.x = Mathf.Clamp(cameraRot.x, -85, 85);
 			head.RotationDegrees = cameraRot;

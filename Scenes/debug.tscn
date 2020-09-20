@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scripts/Arena.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/announcer/Round 1 start.wav" type="AudioStream" id=2]
@@ -13,8 +13,6 @@
 [ext_resource path="res://Textures/bricks/DisplacementMap.png" type="Texture" id=11]
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Prefabs/Enemies/Siren.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Prefabs/Boxes/Box_Health.tscn" type="PackedScene" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -169,7 +167,7 @@ debugMode = true
 
 [node name="TextureRect" type="NinePatchRect" parent="."]
 modulate = Color( 0, 1, 0, 1 )
-anchor_right = 1.0
+margin_right = 662.0
 margin_bottom = 100.0
 texture = ExtResource( 4 )
 patch_margin_left = 10
@@ -199,11 +197,13 @@ JetForce = 3.75
 visible = false
 
 [node name="Maestro" type="AudioStreamPlayer" parent="."]
+autoplay = true
 bus = "BGM"
 
 [node name="Announcer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = 5.0
+autoplay = true
 bus = "SFX"
 
 [node name="Crowd" type="AudioStreamPlayer" parent="."]
@@ -471,6 +471,49 @@ material/0 = SubResource( 12 )
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Ramps2/Ramp4/StaticBody"]
 shape = SubResource( 26 )
 
+[node name="Ramps3" type="Spatial" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 8.5, 0 )
+
+[node name="Ramp" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Ramps3"]
+transform = Transform( -2.18557e-08, 0, 1, 0, 0.6, 0, -0.5, 0, -4.37114e-08, -20, 0, 0 )
+mesh = SubResource( 25 )
+material/0 = SubResource( 14 )
+
+[node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Ramps3/Ramp"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Ramps3/Ramp/StaticBody"]
+shape = SubResource( 26 )
+
+[node name="Ramp2" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Ramps3"]
+transform = Transform( -2.18557e-08, 0, 1, 0, 0.6, 0, -0.5, 0, -4.37114e-08, 20, 0, 0 )
+mesh = SubResource( 25 )
+material/0 = SubResource( 10 )
+
+[node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Ramps3/Ramp2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Ramps3/Ramp2/StaticBody"]
+shape = SubResource( 26 )
+
+[node name="Ramp3" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Ramps3"]
+transform = Transform( -0.5, 0, -1.50996e-07, 0, 0.6, 0, 7.54979e-08, 0, -1, 0, 0, -20 )
+mesh = SubResource( 25 )
+material/0 = SubResource( 13 )
+
+[node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Ramps3/Ramp3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Ramps3/Ramp3/StaticBody"]
+shape = SubResource( 26 )
+
+[node name="Ramp4" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Ramps3"]
+transform = Transform( -0.5, 0, -1.50996e-07, 0, 0.6, 0, 7.54979e-08, 0, -1, 0, 0, 20 )
+mesh = SubResource( 25 )
+material/0 = SubResource( 12 )
+
+[node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Ramps3/Ramp4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Ramps3/Ramp4/StaticBody"]
+shape = SubResource( 26 )
+
 [node name="Lights" type="Spatial" parent="."]
 
 [node name="OmniLight" type="OmniLight" parent="Lights"]
@@ -517,15 +560,3 @@ texture = ExtResource( 9 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 8 )
-
-[node name="Siren" parent="." instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.56744, 0.0320292, 7.79269 )
-
-[node name="Box_Health" parent="." instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.6938, 0.0320292, 12.1757 )
-
-[node name="Box_Health2" parent="." instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2132, 0.0320292, 8.71205 )
-
-[node name="Box_Health3" parent="." instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3289, 0.0320292, 11.9696 )

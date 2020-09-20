@@ -75,9 +75,9 @@ public class Enemy : Combatant
 			//GD.Print("within range");
 			currentMode = closeRangeMode;
 		}
-		
+		//the following line exists to rotate enemy wheels if it has any. I should find a way to interpolate the rotation to make the animation more natural.
 		if (currentMode != PathMode.DEFENDER) LookAt(new Vector3(pathPos.x, Translation.y, pathPos.z), Vector3.Up);
-		//this line exists to rotate enemy wheels if it has any. I should find a way to interpolate the rotation to make the animation more natural.
+		
 		
 		inputMovementVector = inputMovementVector.Normalized();
 		dir += -camXform.basis.z.Normalized() * inputMovementVector.y;
@@ -98,7 +98,7 @@ public class Enemy : Combatant
 		}
 		
 	}
-	void SetPathPos(Vector3 newPos)
+	void SetPathPos(Vector3 newPos) //This makes the movement vector follow the right point in the path array
 	{
 		
 		pathPos = path[pathPoint];
@@ -111,24 +111,21 @@ public class Enemy : Combatant
 				return;
 			}
 			//GD.Print("Target Reached");
-			if (pathPoint < path.Length -1)
+			if (pathPoint < path.Length -1) //if it isn't on the final path point
 			{
-				//GD.Print("Changing direction");
-				pathPoint++;
-				pathPos = path[pathPoint];
-				//GD.Print(pathPoint.ToString());
+				pathPoint++; //increment point counter
+				pathPos = path[pathPoint]; //set the movement target to the next point
 			}
 			else 
 			{
-				UpdatePath(newPos);
+				UpdatePath(newPos); //get a new array of path points
 			}
 		}
-		
 	}
 	public void UpdatePath(Vector3 newPos)
 	{
-		pathPoint = 0;
-		path = nav.GetSimplePath(Translation, newPos, true);
+		pathPoint = 0; //reset counter
+		path = nav.GetSimplePath(Translation, newPos, true); //generate new array of points
 	}
 	public void GetTarget()
 	{
@@ -139,7 +136,7 @@ public class Enemy : Combatant
 			inputMovementVector = new Vector2 (0,1);
 			break;
 			case PathMode.WANDERER:
-			targetNavPos = nav.GetClosestPoint(new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28)));
+			targetNavPos = nav.GetClosestPoint(new Vector3((float)GD.RandRange(-30, 30), 2,(float)GD.RandRange(-30, 30)));
 			inputMovementVector = new Vector2 (0,1);
 			break;
 			case PathMode.DEFENDER:
@@ -147,7 +144,7 @@ public class Enemy : Combatant
 			inputMovementVector = new Vector2 (0,0);
 			break;
 			default:
-			targetNavPos = nav.GetClosestPoint(new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28)));
+			targetNavPos = nav.GetClosestPoint(new Vector3((float)GD.RandRange(-30, 30), 2,(float)GD.RandRange(-30, 30)));
 			inputMovementVector = new Vector2 (0,1);
 			break;
 		}
