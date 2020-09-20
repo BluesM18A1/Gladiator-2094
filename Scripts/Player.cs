@@ -27,6 +27,7 @@ public class Player : Combatant
 	public bool flameThrowerOn = false;
 	public float overhealDecrementRate = .25f;
 	float overhealTimer = 0;
+	bool needToPlayLandSound = false;
 
 	//COMPONENT VARIABLES------------------------------------
 	private Camera camera;
@@ -34,7 +35,7 @@ public class Player : Combatant
 	private TextureProgress healthMeter, fuelMeter;
 	private Label healthNum;
 	private AnimationPlayer screenAni;
-	protected AudioStreamPlayer boostSnd, medSnd, hurtSnd;
+	protected AudioStreamPlayer boostSnd, medSnd, hurtSnd, landSnd;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -42,6 +43,7 @@ public class Player : Combatant
 		boostSnd = GetNode<AudioStreamPlayer>("boostSnd");
 		medSnd = GetNode<AudioStreamPlayer>("medSnd");
 		hurtSnd = GetNode<AudioStreamPlayer>("hurtSnd");
+		landSnd = GetNode<AudioStreamPlayer>("landSnd");
 		head = GetNode<Spatial>("Neck");
 		camera = GetNode<Camera>("Neck/Camera");
 		gun = GetNode<PlayerGun>("Neck/Gun");
@@ -80,8 +82,8 @@ public class Player : Combatant
 	public override void _PhysicsProcess(float delta)
 	{
 		ProcessHealthMeter(delta);
-		ProcessInput(delta);
-		ProcessMovement(delta);
+		ProcessMovement(delta); //it is very important that you do MoveAndSlide() before you do
+		ProcessInput(delta); //the IsOnFloor() calls that the input processing will do.
 	}
 
 	private void ProcessInput(float delta)
@@ -136,15 +138,22 @@ public class Player : Combatant
 			if ((!Input.IsActionPressed("player_sprint") && !Input.IsActionPressed("player_jump")) || fuelMeter.Value == 0) boostSnd.Stop();
 			
 			//recharging
-			if (IsOnFloor() && !Input.IsActionPressed("player_sprint") && !flameThrowerOn)
+			if (IsOnFloor())
 			{   
-				if (fuel < 100)
+				if (needToPlayLandSound)
 				{
-					fuel += RechargeRate * delta;
+					//landSnd.Play(); this doesn't quite work as predictably as I'd like. Oh well.
+					needToPlayLandSound = false;
+				}
+				if (!Input.IsActionPressed("player_sprint") && !flameThrowerOn)
+				{
+					if (fuel < 100)
+					{
+						fuel += RechargeRate * delta;
+					}
 				}
 			}
-			
-			
+			else needToPlayLandSound = true;
 		}
 		else
 		{

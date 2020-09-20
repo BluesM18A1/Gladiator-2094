@@ -119,6 +119,7 @@ __meta__ = {
 Accel = 5.0
 HP = 40
 closeRangeMode = 2
+pathUpdateRate = 0.5
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( -0.0152326, 0, 0.999884, 0, 1, 0, -0.999884, 0, -0.0152326, 0, 0.756574, 0 )

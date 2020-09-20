@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/playerSpawn.wav-8cafe9297c89c45d009a154562017e54.sample"
+
+[deps]
+
+source_file="res://Sounds/playerSpawn.wav"
+dest_files=[ "res://.import/playerSpawn.wav-8cafe9297c89c45d009a154562017e54.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

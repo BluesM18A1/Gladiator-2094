@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Prefabs/Parts/PlayerGun.tscn" type="PackedScene" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://Textures/smile.png" type="Texture" id=16]
 [ext_resource path="res://Scripts/AxelAnimation.cs" type="Script" id=17]
 [ext_resource path="res://Textures/tread.png" type="Texture" id=18]
+[ext_resource path="res://Sounds/playerSpawn.wav" type="AudioStream" id=19]
+[ext_resource path="res://Sounds/land.wav" type="AudioStream" id=20]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.2
@@ -393,4 +395,14 @@ bus = "SFX"
 
 [node name="hurtSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+bus = "SFX"
+
+[node name="spawnSnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+autoplay = true
+bus = "SFX"
+
+[node name="landSnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+autoplay = true
 bus = "SFX"

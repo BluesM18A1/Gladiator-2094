@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scripts/Arena.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/announcer/Round 1 start.wav" type="AudioStream" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Textures/bricks/DisplacementMap.png" type="Texture" id=11]
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Prefabs/Enemies/Dreadnaught.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -167,7 +168,7 @@ debugMode = true
 
 [node name="TextureRect" type="NinePatchRect" parent="."]
 modulate = Color( 0, 1, 0, 1 )
-margin_right = 662.0
+anchor_right = 1.0
 margin_bottom = 100.0
 texture = ExtResource( 4 )
 patch_margin_left = 10
@@ -189,7 +190,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.5, 13 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.5, 28 )
 Deaccel = 20.0
 JetForce = 3.75
 
@@ -197,13 +198,11 @@ JetForce = 3.75
 visible = false
 
 [node name="Maestro" type="AudioStreamPlayer" parent="."]
-autoplay = true
 bus = "BGM"
 
 [node name="Announcer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = 5.0
-autoplay = true
 bus = "SFX"
 
 [node name="Crowd" type="AudioStreamPlayer" parent="."]
@@ -560,3 +559,6 @@ texture = ExtResource( 9 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 8 )
+
+[node name="Dreadnaught" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.232, 0 )

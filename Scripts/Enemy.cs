@@ -11,8 +11,7 @@ public class Enemy : Combatant
 	public float rangeThreshold = 6;
 	[Export]
     public PathMode  closeRangeMode, longRangeMode;
-	public PathMode currentMode;
-	
+	public PathMode currentMode;	
 	public Arena arena;
 	Navigation nav;
 	Spatial player;
@@ -20,7 +19,9 @@ public class Enemy : Combatant
 	Vector3 pathPos;
 	Vector3[] path;
 	AnimationPlayer ani;
-	
+	[Export]
+	public float pathUpdateRate = 1;
+	float updateTimer = 0;
 	int pathPoint = 0;
 	//COMPONENT VARIABLES---------------------------------------------------------
 	[Export]
@@ -43,6 +44,7 @@ public class Enemy : Combatant
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
+		PathUpdateTimer(delta);
 		GetTarget();
 		SetPathPos(targetNavPos);
 		ProcessInput(delta);
@@ -148,6 +150,16 @@ public class Enemy : Combatant
 			inputMovementVector = new Vector2 (0,1);
 			break;
 		}
+	}
+	public void PathUpdateTimer(float delta)
+	{
+		updateTimer += delta;
+		if (updateTimer >= pathUpdateRate) 
+		{
+			UpdatePath(targetNavPos);
+			updateTimer = 0;
+		}
+			
 	}
 	public float GetDistanceToPlayer()
 	{
