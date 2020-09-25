@@ -207,9 +207,9 @@ __meta__ = {
 }
 
 [node name="Wallpaper" type="Sprite" parent="UI"]
-position = Vector2( 1938.47, 1080 )
+position = Vector2( 3724, 1080.01 )
 rotation = 1.5708
-scale = Vector2( -0.560333, 1.81874 )
+scale = Vector2( -0.560333, 4.75246 )
 texture = SubResource( 2 )
 centered = false
 region_enabled = true
@@ -364,7 +364,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Beta 0.2.0rc4 game by CathodeRayBlues"
+text = "Beta 0.2.0 game by CathodeRayBlues"
 align = 1
 valign = 1
 __meta__ = {
