@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scripts/Arena.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/announcer/Round 1 start.wav" type="AudioStream" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Textures/bricks/DisplacementMap.png" type="Texture" id=11]
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sounds/music/pathetique.wav" type="AudioStream" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -196,6 +197,7 @@ JetForce = 3.75
 visible = false
 
 [node name="Maestro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
 autoplay = true
 bus = "BGM"
 
