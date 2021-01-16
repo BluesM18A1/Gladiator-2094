@@ -16,11 +16,6 @@ TO-DO:
 
 -Upgrade system?
 
-KNOWN ISSUES:
-
--Stuttering when too many objects spawn at once.
-May not occur depending on your hardware. I will be doing my best to fix the issue, although it may have to wait until Godot 4.0, as there will be overhauls to the 3D rendering system. Beta release 2 is on hold until then.
-
 STRETCH GOALS:
 
 -Restore networked multiplayer functionality.
