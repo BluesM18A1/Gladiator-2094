@@ -14,9 +14,7 @@ TO-DO:
 
 -Add different kinds of enemies and bosses,
 
--Background music
-
--High Score table
+-Upgrade system?
 
 KNOWN ISSUES:
 
