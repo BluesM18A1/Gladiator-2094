@@ -138,6 +138,7 @@ script = ExtResource( 1 )
 MaxSpeed = 16.0
 Accel = 8.0
 Deaccel = 24.0
+FuelDrainRate = 50.0
 JetForce = 8.0
 normalSpeed = 12.0
 sprintSpeed = 24.0

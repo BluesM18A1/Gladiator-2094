@@ -4,8 +4,6 @@
 [ext_resource path="res://Textures/particle.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/guns/flame.wav" type="AudioStream" id=3]
 
-
-
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
 flags_unshaded = true
@@ -39,7 +37,7 @@ These guys delete enemy projectiles (although for some reason it reflects them h
 }
 damage = -3
 speed = 50.0
-lifetime = 0.08
+lifetime = 0.1
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )

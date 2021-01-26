@@ -192,7 +192,7 @@ public class PlayerGun : Gun
 		if (player.fuel > 0)
 		{
 			coolMeter.Value = 100;
-			player.fuel -= 2;
+			player.fuel--;
 			int fuelInt = (int)player.fuel;
 			ammoNum.Text = fuelInt.ToString();
 			Bullet newBullet = (Bullet)instanceFlame.Instance();
