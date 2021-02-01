@@ -13,7 +13,7 @@ public class Arena : Spatial
 	public Label topText;
 	public Navigation nav;
 	public Control pauseMenu;
-	[Export]
+	AnimationPlayer dj;
 	public AudioStreamPlayer maestro, announcer, crowd;
 	[Export]
 	public AudioStreamSample an_waveComplete = (AudioStreamSample)ResourceLoader.Load("res://Sounds/announcer/countdown20sec.wav")
@@ -34,6 +34,7 @@ public class Arena : Spatial
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		dj = GetNode<AnimationPlayer>("DJ");
 		pauseMenu = GetNode<Control>("PauseScreen");
 		config = GetNode<Config>("/root/Config");
 		maestro = GetNode<AudioStreamPlayer>("Maestro");
@@ -75,10 +76,10 @@ public class Arena : Spatial
 				{
 					announcer.Stream = an_go;
 					announcer.Play();
+					dj.Play("SongStart");
 				}
 				EnemySpawn();
 				ItemSpawn();
-				maestro.StreamPaused = false;
 				subwave++;
 				UpdateScore(0);
 				time = 0;
@@ -87,7 +88,7 @@ public class Arena : Spatial
 		}
 		else if(!GetTree().HasGroup("Enemies"))
 		{
-			maestro.StreamPaused = true;
+			dj.Play("SongStop");
 			announcer.Stream = an_waveComplete;
 			announcer.Play();
 			crowd.Play();

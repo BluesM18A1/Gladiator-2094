@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scripts/Arena.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/announcer/Round 1 start.wav" type="AudioStream" id=2]
@@ -14,6 +14,62 @@
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sounds/music/pathetique.wav" type="AudioStream" id=14]
+
+[sub_resource type="Animation" id=27]
+resource_name = "SongStart"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Maestro:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.01, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Maestro:stream_paused")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "SongStop"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Maestro:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Maestro:stream_paused")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 86
@@ -165,6 +221,25 @@ data = PoolVector3Array( 0, 2, 2, 4, -2, 2, -4, -2, 2, 0, 2, -2, -4, -2, -2, 4, 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
 
+[node name="Announcer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 5.0
+autoplay = true
+bus = "SFX"
+
+[node name="Crowd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "BGM"
+
+[node name="Maestro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+autoplay = true
+bus = "BGM"
+
+[node name="DJ" type="AnimationPlayer" parent="."]
+anims/SongStart = SubResource( 27 )
+anims/SongStop = SubResource( 28 )
+
 [node name="TextureRect" type="NinePatchRect" parent="."]
 modulate = Color( 0, 1, 0, 1 )
 anchor_right = 0.998
@@ -195,21 +270,6 @@ JetForce = 3.75
 
 [node name="PauseScreen" parent="." instance=ExtResource( 13 )]
 visible = false
-
-[node name="Maestro" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-autoplay = true
-bus = "BGM"
-
-[node name="Announcer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-volume_db = 5.0
-autoplay = true
-bus = "SFX"
-
-[node name="Crowd" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-bus = "BGM"
 
 [node name="Walls_Outer" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0 )
