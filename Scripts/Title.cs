@@ -9,6 +9,11 @@ public class Title : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if (OS.WindowSize > OS.GetScreenSize())
+        {
+			OS.WindowSize = OS.GetScreenSize();
+			OS.WindowMaximized = true;
+		}
 		config = GetNode<Config>("/root/Config");
 		bloop = GetNode<AudioStreamPlayer>("bloop");
 		Input.SetMouseMode(Input.MouseMode.Visible);

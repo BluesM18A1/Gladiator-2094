@@ -3,9 +3,16 @@ using System;
 
 public class Config : Node
 {
+    #region game
     public int difficulty = 0;
-    public float mouseSensitivity = 0.10f;
     public int score, highScore;
+    #endregion
+    #region controls
+    public float mouseSensitivity = 0.10f;
+    #endregion
+    #region video
+    bool vsync = false;
+    #endregion
     public override void _Ready()
     {
         LoadConf();
@@ -13,7 +20,7 @@ public class Config : Node
     public void SaveConf()
     {
         GD.Print("Saving settings....");
-        var saveConf = new ConfigFile();
+        ConfigFile saveConf = new ConfigFile();
         
         //write these lines
         saveConf.SetValue("Game", "Difficulty", difficulty);
@@ -22,13 +29,14 @@ public class Config : Node
         saveConf.SetValue("Audio", "BgmVolume", AudioServer.GetBusVolumeDb(1));
         saveConf.SetValue("Audio", "SfxVolume", AudioServer.GetBusVolumeDb(2));
         saveConf.SetValue("Video", "Fullscreen", OS.WindowFullscreen);
+        saveConf.SetValue("Video", "VSync", vsync);
         saveConf.Save("user://userConfig.ini");
         GD.Print("Saved");
     }
     public void LoadConf()
     {
         GD.Print("Loading settings....");
-        var saveConf = new ConfigFile();
+        ConfigFile saveConf = new ConfigFile();
         saveConf.Load("user://userConfig.ini");
         difficulty = (int)saveConf.GetValue("Game", "Difficulty", difficulty);
         mouseSensitivity =  (float)saveConf.GetValue("Controls", "LookSensitivity", mouseSensitivity);
