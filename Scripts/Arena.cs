@@ -9,6 +9,7 @@ public class Arena : Spatial
 	[Export]
 	public byte MaxSubWaves = 3;
 	int score = 0;
+	int randomItem;
 	byte wave, subwave;
 	public Label topText;
 	public Navigation nav;
@@ -104,7 +105,7 @@ public class Arena : Spatial
 	{
 		for (byte i = 0; i < 14 + (config.difficulty * 3); i++)
 		{
-			int randomItem = (Int16)GD.RandRange(0,2);
+			randomItem = (Int16)GD.RandRange(0,2);
 			switch (randomItem)
 			{
 				default:

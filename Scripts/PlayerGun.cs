@@ -3,6 +3,12 @@ using System;
 
 public class PlayerGun : Gun
 {
+	/*Currently, Godot engine in its vanilla form 
+	does not have an ideal amount of support for custom classes, data types, etc.
+	Ideally, weapons would be a struct or something to contain their 
+	firing sound, cooldown time, etc, but that isnt possible.
+	The engine developers have a solution in the works, 
+	but for now, we have this utterly riddiculous spaghetti code mess*/
 	//GAMEPLAY VARIABLES-----------------------------------------------------------
 	[Export]
 	public int shells, bullets, grenades;
@@ -52,6 +58,7 @@ public class PlayerGun : Gun
 		pickupSnd = GetNode<AudioStreamPlayer>("pickupSnd");
 		switchSnd = GetNode<AudioStreamPlayer>("switchSnd");
 		currentWeapon = Weapons.FLAMETHROWER;
+		UpdateWeaponData();
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,46 +66,17 @@ public class PlayerGun : Gun
 	{
 		Translation = new Vector3 (Translation.x, Translation.y, (recoilAnim * (float)coolMeter.Value) + recoilOffset);
 		ProcessInput(delta);
-		switch (currentWeapon)
-		{
-			case (Weapons.REPEATER):
-			iconRptr.Modulate = new Color(1,1,1,1);
-			iconGren.Modulate = new Color(1,1,1,0.5f);
-			iconShot.Modulate = new Color(1,1,1,0.5f);
-			iconFlam.Modulate = new Color(1,1,1,0.5f);
-			coolSpeed = coolRepeater;
-			ammoNum.Text = bullets.ToString();
-			
-			break;
-			case (Weapons.BUCKSHOT):
-			iconRptr.Modulate = new Color(1,1,1,0.5f);
-			iconGren.Modulate = new Color(1,1,1,0.5f);
-			iconShot.Modulate = new Color(1,1,1,1);
-			iconFlam.Modulate = new Color(1,1,1,0.5f);
-			coolSpeed = coolBuckshot;
-			ammoNum.Text = shells.ToString();
-			break;
-			case (Weapons.GRENADES):
-			iconRptr.Modulate = new Color(1,1,1,0.5f);
-			iconGren.Modulate = new Color(1,1,1,1);
-			iconShot.Modulate = new Color(1,1,1,0.5f);
-			iconFlam.Modulate = new Color(1,1,1,0.5f);
-			coolSpeed = coolGrenades;
-			ammoNum.Text = grenades.ToString();
-			break;
-			case (Weapons.FLAMETHROWER):
-			iconRptr.Modulate = new Color(1,1,1,0.5f);
-			iconGren.Modulate = new Color(1,1,1,0.5f);
-			iconShot.Modulate = new Color(1,1,1,0.5f);
-			iconFlam.Modulate = new Color(1,1,1,1);
-			coolSpeed = coolFlames;
-			int fuelInt = (int)player.fuel;
-			ammoNum.Text = fuelInt.ToString();
-			break;
-				
-		}
-		coolMeter.Value -= coolSpeed * 100 * delta;
+		
+		
 	}
+    public override void _PhysicsProcess(float delta)
+    {
+		coolMeter.Value -= coolSpeed;
+		//no idea why this needs to happen in _PhysicsProcess, 
+		//but the meter jams if I decrement it by coolSpeed * delta.
+		//and no other timers in the game malfunction when using delta but this one???
+    }
+    
 	protected void ProcessInput(float delta)
 	{
 		if (coolMeter.Value == 0  && !disabled)
@@ -131,6 +109,7 @@ public class PlayerGun : Gun
 		else player.flameThrowerOn = false;
 		
 	}
+	
 	protected void FireRepeater()//this one is gonna need extra parameters when we add multiple weapons
 	{
 		if (bullets > 0)
@@ -233,6 +212,7 @@ public class PlayerGun : Gun
 		else currentWeapon++;
 		switchSnd.Stream = wepSwitch;
 		switchSnd.Play();
+		UpdateWeaponData();
 	}
 	public void PrevWeapon()
 	{
@@ -243,6 +223,48 @@ public class PlayerGun : Gun
 		else currentWeapon--;
 		switchSnd.Stream = wepSwitch;
 		switchSnd.Play();
+		UpdateWeaponData();
+	}
+	void UpdateWeaponData()
+	{
+		switch (currentWeapon)
+		{
+			case (Weapons.REPEATER):
+			iconRptr.Modulate = new Color(1,1,1,1);
+			iconGren.Modulate = new Color(1,1,1,0.5f);
+			iconShot.Modulate = new Color(1,1,1,0.5f);
+			iconFlam.Modulate = new Color(1,1,1,0.5f);
+			coolSpeed = coolRepeater;
+			ammoNum.Text = bullets.ToString();
+			
+			break;
+			case (Weapons.BUCKSHOT):
+			iconRptr.Modulate = new Color(1,1,1,0.5f);
+			iconGren.Modulate = new Color(1,1,1,0.5f);
+			iconShot.Modulate = new Color(1,1,1,1);
+			iconFlam.Modulate = new Color(1,1,1,0.5f);
+			coolSpeed = coolBuckshot;
+			ammoNum.Text = shells.ToString();
+			break;
+			case (Weapons.GRENADES):
+			iconRptr.Modulate = new Color(1,1,1,0.5f);
+			iconGren.Modulate = new Color(1,1,1,1);
+			iconShot.Modulate = new Color(1,1,1,0.5f);
+			iconFlam.Modulate = new Color(1,1,1,0.5f);
+			coolSpeed = coolGrenades;
+			ammoNum.Text = grenades.ToString();
+			break;
+			case (Weapons.FLAMETHROWER):
+			iconRptr.Modulate = new Color(1,1,1,0.5f);
+			iconGren.Modulate = new Color(1,1,1,0.5f);
+			iconShot.Modulate = new Color(1,1,1,0.5f);
+			iconFlam.Modulate = new Color(1,1,1,1);
+			coolSpeed = coolFlames;
+			int fuelInt = (int)player.fuel;
+			ammoNum.Text = fuelInt.ToString();
+			break;
+				
+		}
 	}
 	public override void _Input(InputEvent @event){
 		if (coolMeter.Value == 0  && !disabled)
@@ -263,24 +285,28 @@ public class PlayerGun : Gun
 				currentWeapon = Weapons.FLAMETHROWER;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
+				UpdateWeaponData();
 			}
 			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key2)
 			{
 				currentWeapon = Weapons.REPEATER;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
+				UpdateWeaponData();
 			}
 			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key3)
 			{
 				currentWeapon = Weapons.BUCKSHOT;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
+				UpdateWeaponData();
 			}
 			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key4)
 			{
 				currentWeapon = Weapons.GRENADES;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
+				UpdateWeaponData();
 			}
 		}      
 	}

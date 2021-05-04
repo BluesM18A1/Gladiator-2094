@@ -177,9 +177,12 @@ near = 0.01
 [node name="Gun" parent="Neck" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112467, -0.722072 )
 material/0 = SubResource( 7 )
-coolSpeed = 12.0
+coolSpeed = 20.0
 buckshotSpread = 0.06
-coolBuckshot = 3.0
+coolRepeater = 20.0
+coolBuckshot = 6.0
+coolGrenades = 3.0
+coolFlames = 50.0
 HUDPath = NodePath("../../HUD")
 PlayerPath = NodePath("../..")
 

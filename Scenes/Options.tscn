@@ -477,6 +477,7 @@ lblPath = NodePath("../dbLabel/Label")
 sndPath = NodePath("../../bloop")
 
 [node name="FullscreenButton" parent="." instance=ExtResource( 16 )]
+
 [connection signal="value_changed" from="Sensitivity" to="Sensitivity" method="OnSensitivityChange"]
 [connection signal="button_down" from="Back" to="." method="BackButtonDown"]
 [connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]

@@ -720,6 +720,7 @@ environment = ExtResource( 13 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arena"]
 autoplay = "rotate"
 anims/rotate = SubResource( 29 )
+
 [connection signal="button_down" from="UI/Play" to="UI" method="PlayButtonDown"]
 [connection signal="focus_entered" from="UI/Play" to="UI" method="onButtonHover"]
 [connection signal="mouse_entered" from="UI/Play" to="UI" method="onButtonHover"]
