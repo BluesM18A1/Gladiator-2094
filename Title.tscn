@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
 [ext_resource path="res://Materials/grid.material" type="Material" id=2]
@@ -17,17 +17,23 @@
 [ext_resource path="res://Textures/bricks/AmbientOcclusionMap.png" type="Texture" id=15]
 [ext_resource path="res://Textures/bricks/DisplacementMap.png" type="Texture" id=16]
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=17]
+[ext_resource path="res://Font1.tres" type="DynamicFont" id=18]
+[ext_resource path="res://Textures/UI/arrow_l_h.svg" type="Texture" id=19]
+[ext_resource path="res://Textures/UI/arrow_l.svg" type="Texture" id=20]
+[ext_resource path="res://Textures/UI/arrow_r_h.svg" type="Texture" id=21]
+[ext_resource path="res://Textures/UI/arrow_r.svg" type="Texture" id=22]
+[ext_resource path="res://waveChanger.cs" type="Script" id=23]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.0520231, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 0.25098 )
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 0, 0, 0, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
-width = 1080
+width = 512
 
 [sub_resource type="DynamicFont" id=3]
-size = 86
+size = 50
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -74,7 +80,7 @@ filter/filter_walkable_low_height_spans = true
 size = Vector2( 64, 64 )
 
 [sub_resource type="BoxShape" id=10]
-extents = Vector3( 40, 0.01, 40 )
+extents = Vector3( 40, 10, 40 )
 
 [sub_resource type="PrismMesh" id=11]
 left_to_right = 1.0
@@ -194,14 +200,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Wallpaper" type="Sprite" parent="UI"]
-position = Vector2( 3724, 1080.01 )
-rotation = 1.5708
-scale = Vector2( -0.560333, 4.75246 )
+[node name="TextureRect" type="TextureRect" parent="UI"]
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1.0
 texture = SubResource( 2 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 1920, 1080 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="logo" type="TextureRect" parent="UI"]
 anchor_left = 1.0
@@ -213,20 +221,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DSlider" parent="UI" instance=ExtResource( 4 )]
-anchor_right = 6.35783e-08
-margin_left = 6.23792
-margin_top = 918.368
-margin_right = 662.238
-margin_bottom = 1046.37
-
 [node name="Play" type="TextureButton" parent="UI"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 8.47932
-margin_top = -320.4
-margin_right = 663.881
-margin_bottom = -177.4
+anchor_left = 0.006
+anchor_top = 0.615
+anchor_right = 0.347
+anchor_bottom = 0.768
+margin_left = -0.52
+margin_top = -0.200012
+margin_right = -0.23999
+margin_bottom = 0.559998
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 9 )
@@ -238,7 +241,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="UI/Play"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 18 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Play"
 align = 1
@@ -247,22 +250,55 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Options" type="TextureButton" parent="UI"]
-anchor_top = 1.0
+[node name="Training" type="TextureButton" parent="UI"]
+anchor_top = 0.776
+anchor_right = 0.347
 anchor_bottom = 1.0
-margin_left = 678.938
-margin_top = -242.0
-margin_right = 1078.94
+margin_left = 10.8553
+margin_top = -0.0650024
+margin_right = 0.0169678
+margin_bottom = -98.985
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Training"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "Training"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="TextureButton" parent="UI"]
+anchor_left = 0.354
+anchor_top = 0.776
+anchor_right = 0.562
+anchor_bottom = 1.0
+margin_left = -0.742004
+margin_top = -0.0800171
+margin_right = -0.100098
 margin_bottom = -99.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 9 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="UI/Options"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 18 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Options"
 align = 1
@@ -271,12 +307,121 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Wave" type="NinePatchRect" parent="UI"]
+anchor_left = 0.354
+anchor_top = 0.615
+anchor_right = 0.602
+anchor_bottom = 0.769
+margin_left = -0.679993
+margin_top = -0.200012
+margin_right = 0.159912
+margin_bottom = -0.52002
+texture = ExtResource( 7 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Wave"]
+anchor_left = 0.015
+anchor_top = 0.587
+anchor_right = 0.981
+anchor_bottom = 0.944
+margin_left = -0.155
+margin_top = 0.0589981
+margin_right = 0.0629578
+margin_bottom = 0.00799561
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "Start on Wave:"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Counter" type="Label" parent="UI/Wave"]
+anchor_right = 1.0
+anchor_bottom = 0.538
+margin_bottom = 0.0659943
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "???"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureButton" parent="UI/Wave"]
+anchor_left = 0.015
+anchor_top = 0.059
+anchor_right = 0.158
+anchor_bottom = 0.609
+margin_left = -0.172884
+margin_top = 0.0431633
+margin_right = 0.136108
+margin_bottom = 0.00215149
+texture_normal = ExtResource( 20 )
+texture_hover = ExtResource( 19 )
+expand = true
+
+[node name="Right" type="TextureButton" parent="UI/Wave"]
+anchor_left = 0.839
+anchor_top = 0.055
+anchor_right = 0.983
+anchor_bottom = 0.605
+margin_left = 0.138
+margin_top = -0.0158663
+margin_right = -0.209991
+margin_bottom = -0.0608215
+texture_normal = ExtResource( 22 )
+texture_hover = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sliderframe" type="NinePatchRect" parent="UI"]
+anchor_left = 0.611
+anchor_top = 0.614
+anchor_right = 0.995
+anchor_bottom = 0.769
+margin_left = -0.119995
+margin_top = -0.119995
+margin_right = -0.400146
+margin_bottom = -0.52002
+texture = ExtResource( 7 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DSlider" parent="UI/Sliderframe" instance=ExtResource( 4 )]
+anchor_left = 0.009
+anchor_top = 0.042
+anchor_right = 0.989
+anchor_bottom = 0.826
+margin_left = 1.367
+margin_top = -0.0140004
+margin_right = 0.106995
+margin_bottom = 0.0579987
+
 [node name="Credits" type="TextureButton" parent="UI"]
-anchor_top = 1.0
+anchor_left = 0.569
+anchor_top = 0.776
+anchor_right = 0.778
 anchor_bottom = 1.0
-margin_left = 1093.41
-margin_top = -242.0
-margin_right = 1493.41
+margin_left = 0.930054
+margin_top = -0.0800171
+margin_right = -0.350098
 margin_bottom = -99.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
@@ -286,7 +431,7 @@ expand = true
 [node name="Label" type="Label" parent="UI/Credits"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 18 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Credits"
 align = 1
@@ -296,11 +441,13 @@ __meta__ = {
 }
 
 [node name="Quit" type="TextureButton" parent="UI"]
-anchor_top = 1.0
+anchor_left = 0.786
+anchor_top = 0.776
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1509.5
-margin_top = -242.0
-margin_right = 1909.5
+margin_left = 0.380005
+margin_top = -0.0800171
+margin_right = -10.5
 margin_bottom = -99.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
@@ -313,7 +460,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="UI/Quit"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 18 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Exit"
 align = 1
@@ -324,19 +471,22 @@ __meta__ = {
 
 [node name="bootup" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource( 10 )
+volume_db = -5.0
 autoplay = true
 bus = "SFX"
 
 [node name="bloop" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource( 11 )
+volume_db = -5.0
 bus = "SFX"
 
 [node name="Version Num" type="NinePatchRect" parent="UI"]
 self_modulate = Color( 0, 1, 0, 1 )
+anchor_left = 0.001
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 680.0
+margin_left = 0.0799999
 margin_top = -88.0
 texture = ExtResource( 12 )
 patch_margin_left = 10
@@ -350,9 +500,10 @@ __meta__ = {
 [node name="Label" type="Label" parent="UI/Version Num"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -1.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Beta 0.2.1 game by CathodeRayBlues"
+text = "Beta Version 0.2.5      Game by CathodeRayBlues"
 align = 1
 valign = 1
 __meta__ = {
@@ -428,6 +579,7 @@ material/0 = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00073719, -9.53674e-07, 0.0266612 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Navigation/NavigationMeshInstance/Floor0/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0 )
 shape = SubResource( 10 )
 
 [node name="Stairs" type="Spatial" parent="Arena/Navigation/NavigationMeshInstance"]
@@ -724,8 +876,13 @@ anims/rotate = SubResource( 29 )
 [connection signal="button_down" from="UI/Play" to="UI" method="PlayButtonDown"]
 [connection signal="focus_entered" from="UI/Play" to="UI" method="onButtonHover"]
 [connection signal="mouse_entered" from="UI/Play" to="UI" method="onButtonHover"]
+[connection signal="button_down" from="UI/Training" to="UI" method="PlayButtonDown"]
+[connection signal="focus_entered" from="UI/Training" to="UI" method="onButtonHover"]
+[connection signal="mouse_entered" from="UI/Training" to="UI" method="onButtonHover"]
 [connection signal="button_down" from="UI/Options" to="UI" method="OptionsButtonDown"]
 [connection signal="mouse_entered" from="UI/Options" to="UI" method="onButtonHover"]
+[connection signal="button_down" from="UI/Wave/Left" to="UI/Wave" method="leftButtonDown"]
+[connection signal="button_down" from="UI/Wave/Right" to="UI/Wave" method="rightButtonDown"]
 [connection signal="button_down" from="UI/Credits" to="UI" method="CredsButtonDown"]
 [connection signal="mouse_entered" from="UI/Credits" to="UI" method="onButtonHover"]
 [connection signal="button_down" from="UI/Quit" to="UI" method="ExitButtonDown"]

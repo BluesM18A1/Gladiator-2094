@@ -14,7 +14,7 @@ public class Enemy : Combatant
 	public PathMode currentMode;	
 	public Arena arena;
 	Navigation nav;
-	Spatial player;
+	public Spatial player;
 	public Vector3 targetNavPos;
 	Vector3 pathPos;
 	Vector3[] path;
@@ -67,7 +67,7 @@ public class Enemy : Combatant
 		float distanceToPoint = Translation.DistanceTo(pathPos);
 		float distanceToPlayer = Translation.DistanceTo(nav.GetClosestPoint(player.Translation));
 		
-		if (distanceToPoint > 0.5f && distanceToPlayer > rangeThreshold)
+		if (distanceToPlayer > rangeThreshold)
 		{
 			//GD.Print("outside range");
 			currentMode = longRangeMode;
@@ -161,12 +161,5 @@ public class Enemy : Combatant
 		}
 			
 	}
-	public float GetDistanceToPlayer()
-	{
-		
-		Vector3 diff = player.Translation - Translation;
-		float f = Mathf.Sqrt((diff.x * diff.x) + (diff.y * diff.y) + (diff.z * diff.z)); //Godot has a Normalize function but no Magnitude function? why?
-		//GD.Print("magnitude: " + f);
-		return f;
-	}
+	//
 }

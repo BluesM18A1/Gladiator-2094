@@ -66,7 +66,11 @@ public class PlayerGun : Gun
 	{
 		Translation = new Vector3 (Translation.x, Translation.y, (recoilAnim * (float)coolMeter.Value) + recoilOffset);
 		ProcessInput(delta);
-		
+		if (currentWeapon == Weapons.FLAMETHROWER)
+		{
+			int fuelInt = (int)player.fuel;
+			ammoNum.Text = fuelInt.ToString();
+		}
 		
 	}
     public override void _PhysicsProcess(float delta)
@@ -123,7 +127,6 @@ public class PlayerGun : Gun
 			Bullet newBullet = (Bullet)instanceRepeater.Instance();
 			newBullet.Transform = GlobalTransform * barrels[0];
 			GetTree().Root.AddChild(newBullet);
-			newBullet.friendly = true;
 			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
 		}
 		
@@ -142,7 +145,6 @@ public class PlayerGun : Gun
 				Bullet newBullet = (Bullet)instanceBuckshot.Instance();
 				newBullet.Transform = GlobalTransform * barrels[i];
 				GetTree().Root.AddChild(newBullet);
-				newBullet.friendly = true;
 				newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
             }
 			
@@ -161,7 +163,6 @@ public class PlayerGun : Gun
 			Bullet newBullet = (Bullet)instanceGrenade.Instance();
 			newBullet.Transform = GlobalTransform * barrels[0];
 			GetTree().Root.AddChild(newBullet);
-			newBullet.friendly = true;
 			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
 		}
 	}
@@ -178,7 +179,6 @@ public class PlayerGun : Gun
 			newBullet.Transform = GlobalTransform * barrels[0];
 			//newBullet.Translate(barrels[0].origin);
 			GetTree().Root.AddChild(newBullet);
-			newBullet.friendly = true;
 			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
 		}
 	}
@@ -188,6 +188,7 @@ public class PlayerGun : Gun
 		pickupSnd.Play();
 		bullets += delta;
 		bullets = Mathf.Clamp(bullets, 0, 999);
+		UpdateWeaponData();
 	}
 	public void AddShells(int delta)
 	{
@@ -195,6 +196,7 @@ public class PlayerGun : Gun
 		pickupSnd.Play();
 		shells += delta;
 		shells = Mathf.Clamp(shells, 0, 999);
+		UpdateWeaponData();
 	}
 	public void AddGrenades(int delta)
 	{
@@ -202,6 +204,7 @@ public class PlayerGun : Gun
 		pickupSnd.Play();
 		grenades += delta;
 		grenades = Mathf.Clamp(grenades, 0, 999);
+		UpdateWeaponData();
 	}
 	public void NextWeapon()
 	{

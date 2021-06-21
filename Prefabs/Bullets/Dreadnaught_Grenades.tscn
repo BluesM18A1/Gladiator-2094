@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
-[ext_resource path="res://Prefabs/GrenadeExplosion.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/EnemyGrenadeExplosion.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SphereMesh" id=1]
 radius = 0.15
@@ -26,7 +26,8 @@ radius = 0.1
 [node name="Bullet" type="RigidBody" groups=[
 "projectiles",
 ]]
-collision_layer = 2
+collision_layer = 4096
+collision_mask = 7
 gravity_scale = 3.0
 contacts_reported = 1
 contact_monitor = true
@@ -41,4 +42,5 @@ material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 3 )
+
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

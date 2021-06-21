@@ -15,11 +15,11 @@ radius = 0.5
 
 [sub_resource type="SpatialMaterial" id=2]
 resource_local_to_scene = true
-albedo_color = Color( 0.945098, 1, 0, 1 )
+albedo_color = Color( 0.686275, 0.494118, 0.168627, 1 )
 metallic = 0.5
 emission_enabled = true
-emission = Color( 1, 0.701961, 0, 1 )
-emission_energy = 0.5
+emission = Color( 0.713726, 0.435294, 0.188235, 1 )
+emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
@@ -59,16 +59,18 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.701961, 0, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.6, 0.282353, 0, 1 ) ]
 }
 
 [node name="Cat" type="KinematicBody" groups=[
 "Enemies",
 ]]
+collision_layer = 4
+collision_mask = 2071
 script = ExtResource( 7 )
 MaxSpeed = 12.0
 Accel = 5.0
-HP = 25
+HP = 15
 rangeThreshold = 16.0
 longRangeMode = 1
 pathUpdateRate = 4.0

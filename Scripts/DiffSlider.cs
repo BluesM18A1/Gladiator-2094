@@ -22,20 +22,26 @@ public class DiffSlider : HSlider
     {
         switch (delta)
         {
-            case (-2):
+            case (-3):
             diffSetting.Text = "Game Journalist";
             break;
+            case (-2):
+            diffSetting.Text = "Beginner";
+            break;
             case (-1):
-            diffSetting.Text = "Easy";
+            diffSetting.Text = "Novice";
             break;
             case (-0):
-            diffSetting.Text = "Normal";
+            diffSetting.Text = "Intermediate";
             break;
             case (1):
-            diffSetting.Text = "Hard";
+            diffSetting.Text = "Adept";
             break;
             case (2):
-            diffSetting.Text = "Quake Pro";
+            diffSetting.Text = "Hardcore";
+            break;
+            case (3):
+            diffSetting.Text = "Masochist";
             break;
         }
         config.difficulty = delta;

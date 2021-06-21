@@ -6,6 +6,7 @@ public class Config : Node
     #region game
     public int difficulty = 0;
     public int score, highScore;
+    public byte startWave = 1;
     #endregion
     #region controls
     public float mouseSensitivity = 0.10f;

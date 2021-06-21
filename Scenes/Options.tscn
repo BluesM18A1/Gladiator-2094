@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
-[ext_resource path="res://Wallpaper.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Textures/skybox.png" type="Texture" id=2]
 [ext_resource path="res://Textures/UI/button_normal.png" type="Texture" id=3]
 [ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=4]
 [ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=5]
@@ -50,23 +50,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Wallpaper" parent="." instance=ExtResource( 2 )]
+[node name="Wallpaper" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Difficulty" parent="." instance=ExtResource( 12 )]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 67.3604
-margin_top = -675.939
-margin_right = 1149.37
-margin_bottom = -547.939
+anchor_left = 0.035
+anchor_top = 0.374
+anchor_right = 0.599
+anchor_bottom = 0.493
+margin_left = 0.1604
+margin_top = 0.140961
+margin_right = -0.710083
+margin_bottom = -0.379089
 
 [node name="Sensitivity" type="HSlider" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 61.8807
-margin_top = -477.252
-margin_right = 1143.9
-margin_bottom = -349.252
+anchor_left = 0.032
+anchor_top = 0.558
+anchor_right = 0.596
+anchor_bottom = 0.677
+margin_left = 0.440697
+margin_top = 0.107971
+margin_right = -0.420044
+margin_bottom = -0.412048
 custom_icons/grabber_disabled = ExtResource( 10 )
 custom_icons/grabber_highlight = ExtResource( 10 )
 custom_icons/grabber = ExtResource( 10 )
@@ -117,12 +128,12 @@ __meta__ = {
 }
 
 [node name="Back" type="TextureButton" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
+anchor_left = 0.685
+anchor_top = 0.834
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -605.0
-margin_top = -179.0
+margin_left = -0.200073
+margin_top = 0.279968
 margin_right = -20.0
 margin_bottom = -11.0
 texture_normal = ExtResource( 3 )
@@ -147,6 +158,7 @@ __meta__ = {
 
 [node name="bootup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = -5.0
 autoplay = true
 bus = "SFX"
 
@@ -156,15 +168,18 @@ bus = "BGM"
 
 [node name="bloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -5.0
 bus = "SFX"
 
 [node name="Label" type="RichTextLabel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 61.0
-margin_top = 35.0
-margin_right = -708.0
-margin_bottom = -675.0
+anchor_left = 0.032
+anchor_top = 0.032
+anchor_right = 0.631
+anchor_bottom = 0.375
+margin_left = -0.440002
+margin_top = 0.439999
+margin_right = 0.47998
+margin_bottom = -3.05176e-05
 custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -183,12 +198,13 @@ __meta__ = {
 
 [node name="MasterSlider" type="NinePatchRect" parent="."]
 self_modulate = Color( 0, 1, 0.12549, 1 )
-anchor_left = 0.885
-anchor_right = 1.0
+anchor_left = 0.685
+anchor_top = 0.02
+anchor_right = 0.789
 anchor_bottom = 0.824
-margin_left = -384.697
-margin_top = 21.8653
-margin_right = -405.817
+margin_left = -0.697144
+margin_top = 0.265297
+margin_right = -0.697144
 margin_bottom = -0.814575
 texture = ExtResource( 9 )
 patch_margin_left = 10
@@ -280,12 +296,13 @@ sndPath = NodePath("../../bloop")
 
 [node name="BGMslider" type="NinePatchRect" parent="."]
 self_modulate = Color( 0, 1, 0.12549, 1 )
-anchor_left = 0.885
-anchor_right = 1.0
+anchor_left = 0.785
+anchor_top = 0.02
+anchor_right = 0.889
 anchor_bottom = 0.824
-margin_left = -192.176
-margin_top = 22.1213
-margin_right = -213.296
+margin_left = -0.176147
+margin_top = 0.521297
+margin_right = -0.176147
 margin_bottom = -0.558655
 texture = ExtResource( 9 )
 patch_margin_left = 10
@@ -380,11 +397,12 @@ sndPath = NodePath("../../elevatorMusicidk")
 [node name="SFXslider" type="NinePatchRect" parent="."]
 self_modulate = Color( 0, 1, 0.12549, 1 )
 anchor_left = 0.885
-anchor_right = 1.0
+anchor_top = 0.021
+anchor_right = 0.989
 anchor_bottom = 0.824
 margin_left = 0.763062
-margin_top = 22.2074
-margin_right = -20.3569
+margin_top = -0.472603
+margin_right = 0.763062
 margin_bottom = -0.472534
 texture = ExtResource( 9 )
 patch_margin_left = 10

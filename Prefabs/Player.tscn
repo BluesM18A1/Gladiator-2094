@@ -74,6 +74,7 @@ emission_energy = 0.5
 emission_operator = 1
 emission_on_uv2 = false
 emission_texture = ExtResource( 16 )
+uv1_offset = Vector3( -0.01, 0, 0 )
 
 [sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 0, 0, 1, 1 )
@@ -132,8 +133,8 @@ tracks/0/keys = {
 "Players",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
-collision_layer = 5
-collision_mask = 5
+collision_layer = 2
+collision_mask = 15
 script = ExtResource( 1 )
 MaxSpeed = 16.0
 Accel = 8.0
@@ -168,7 +169,7 @@ mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
 [node name="Camera" type="Camera" parent="Neck"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.36 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.25 )
 current = true
 fov = 90.0
 size = 0.1
@@ -357,6 +358,9 @@ tint_progress = Color( 0.729412, 0, 0, 1 )
 radial_initial_angle = 90.0
 radial_fill_degrees = 90.0
 radial_center_offset = Vector2( -256, 256 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AmmoNum" type="Label" parent="HUD/FuelMeter"]
 use_parent_material = true
@@ -390,23 +394,28 @@ texture = ExtResource( 11 )
 
 [node name="boostSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
+volume_db = -5.0
 pitch_scale = 0.8
 bus = "SFX"
 
 [node name="medSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+volume_db = -5.0
 bus = "SFX"
 
 [node name="hurtSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+volume_db = -5.0
 bus = "SFX"
 
 [node name="spawnSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
+volume_db = -5.0
 autoplay = true
 bus = "SFX"
 
 [node name="landSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
+volume_db = -5.0
 autoplay = true
 bus = "SFX"

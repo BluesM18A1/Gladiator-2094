@@ -6,8 +6,6 @@
 [ext_resource path="res://Sounds/guns/enemyShot.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sounds/enemyHit.wav" type="AudioStream" id=5]
 
-
-
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
 albedo_color = Color( 1, 0, 0, 1 )

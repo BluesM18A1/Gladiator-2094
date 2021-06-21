@@ -1,0 +1,199 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/Enemy.cs" type="Script" id=1]
+[ext_resource path="res://Sounds/enemyHit.wav" type="AudioStream" id=5]
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_local_to_scene = true
+flags_transparent = true
+albedo_color = Color( 0.65, 0.65, 0.65, 1 )
+metallic = 0.53
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CylinderMesh" id=2]
+resource_local_to_scene = true
+material = SubResource( 1 )
+flip_faces = true
+top_radius = 0.4
+bottom_radius = 0.75
+height = 1.5
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id=3]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=4]
+resource_local_to_scene = true
+albedo_color = Color( 0, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=5]
+resource_local_to_scene = true
+albedo_color = Color( 0, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 0, 0, 1, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="Animation" id=6]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
+}
+
+[sub_resource type="CylinderMesh" id=7]
+top_radius = 0.8
+bottom_radius = 0.8
+height = 0.2
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( -0.73218, -0.732039, -0.068503, -0.732179, -0.732038, 0.0685029, -0.723501, -0.655523, 0.0223748, -0.681002, -0.726376, -0.295071, -0.681006, -0.72638, 0.295073, -0.652503, -0.562306, -0.269884, -0.652503, -0.562306, 0.269884, -0.544497, -0.726043, -0.499187, -0.5445, -0.726046, 0.49919, -0.513393, -0.647236, -0.513288, -0.513393, -0.647236, 0.513288, -0.449875, 0.517254, -0.0222636, -0.407026, 0.700844, 0.0223796, -0.38396, 0.722758, -0.112772, -0.383963, 0.722763, 0.112773, -0.359958, 0.719759, 0.179941, -0.359964, 0.719771, -0.179944, -0.295115, -0.726325, -0.680962, -0.295114, -0.726321, 0.680959, -0.291797, 0.695652, -0.291732, -0.291797, 0.695652, 0.291732, -0.27, -0.562421, 0.652506, -0.183098, -0.732217, -0.709422, -0.183098, -0.732217, 0.709422, -0.179997, 0.719809, -0.359907, -0.18, 0.719821, 0.359913, -0.112956, 0.722822, -0.383913, -0.112955, 0.722817, 0.38391, -0.0685436, -0.732216, 0.732213, -0.0225365, -0.655649, -0.723498, -0.0225391, 0.70091, -0.406979, -0.0225388, 0.700901, 0.406974, 0.0225134, -0.655655, 0.723504, 0.0225157, 0.700906, -0.406977, 0.022516, 0.700916, 0.406982, 0.0686608, -0.732186, -0.732183, 0.112933, 0.722822, -0.383913, 0.179559, 0.56095, -0.403926, 0.180016, 0.719975, 0.359849, 0.180037, 0.382408, 0.449969, 0.269979, -0.562426, -0.652512, 0.269979, -0.562426, 0.652512, 0.27285, 0.727687, -0.295607, 0.272847, 0.727678, 0.295603, 0.291783, 0.695676, -0.291742, 0.295159, -0.72649, -0.680975, 0.295161, -0.726494, 0.680978, 0.295641, 0.72767, 0.272806, 0.359931, 0.720034, -0.179868, 0.383936, 0.722757, -0.112914, 0.383933, 0.722752, 0.112913, 0.404015, 0.560989, 0.17941, 0.406999, 0.700838, -0.0225211, 0.406994, 0.700829, 0.0225208, 0.513387, -0.647259, -0.513306, 0.513387, -0.647259, 0.513306, 0.538987, -0.75, -0.51556, 0.538987, -0.75, 0.51556, 0.652543, -0.562502, -0.269911, 0.652543, -0.562502, 0.269911, 0.681045, -0.726589, -0.2951, 0.681042, -0.726585, 0.295098, 0.723475, -0.655521, 0.0225164, 0.732228, -0.732254, -0.0685097 )
+
+[sub_resource type="Animation" id=10]
+length = 0.1
+tracks/0/type = "audio"
+tracks/0/path = NodePath("hitsound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+} ],
+"times": PoolRealArray( 0, 0.1 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeshInstance/RedBulb:material/0:emission")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MeshInstance/BlueBulb:material/0:emission")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 1, 1 ) ]
+}
+
+[node name="Dummy" type="KinematicBody" groups=[
+"Enemies",
+]]
+collision_layer = 4
+collision_mask = 6175
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+MaxSpeed = 0.0
+Accel = 0.0
+HP = 2000
+closeRangeMode = 2
+longRangeMode = 2
+pathUpdateRate = 0.5
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -0.0152326, 0, 0.999884, 0, 1, 0, -0.999884, 0, -0.0152326, 0, 0.756574, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="RedBulb" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.2, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="BlueBulb" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.2, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+
+[node name="OmniLight2" type="OmniLight" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0 )
+light_color = Color( 0.054902, 0, 1, 1 )
+light_energy = 16.0
+omni_range = 0.8
+omni_attenuation = 0.732043
+
+[node name="OmniLight4" type="OmniLight" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.5, 0 )
+light_color = Color( 0.054902, 0, 1, 1 )
+light_energy = 16.0
+omni_range = 0.605079
+omni_attenuation = 0.732043
+
+[node name="OmniLight3" type="OmniLight" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.5, 0 )
+light_color = Color( 1, 0, 0, 1 )
+light_energy = 16.0
+omni_range = 0.8
+omni_attenuation = 0.732043
+
+[node name="OmniLight5" type="OmniLight" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.5, 0 )
+light_color = Color( 1, 0, 0, 1 )
+light_energy = 16.0
+omni_range = 0.605079
+omni_attenuation = 0.732043
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance"]
+autoplay = "rotate"
+anims/rotate = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.652822, 0 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.756574, 0 )
+shape = SubResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hurt = SubResource( 10 )
+
+[node name="hitsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "SFX"

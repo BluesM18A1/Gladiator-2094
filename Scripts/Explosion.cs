@@ -10,7 +10,6 @@ public class Explosion : Area
     public float speed = 15;
     [Export]
     public float lifetime = 15;
-    public bool friendly = false;
     [Export]
     public PackedScene sparks = (PackedScene)ResourceLoader.Load("res://Prefabs/Explosion.tscn");
 
@@ -19,7 +18,9 @@ public class Explosion : Area
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+        Spatial newSparks = (Spatial)sparks.Instance();
+        GetTree().Root.AddChild(newSparks);
+        newSparks.Translation = Translation;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,17 +31,17 @@ public class Explosion : Area
     }
 	private void _OnCollisionEnter(Node body)
 	{
-        /*if (friendly && body.IsInGroup("Players")) //this if statement doesnt really have to exist but if I ever want to make a multiplayer mode and prevent friendly fire, this better exist.
-        {
-            return;
-        }*/
         if (body.HasMethod("UpdateHealth"))
         {
+            Spatial target = (Spatial)body;
+            Vector3 diff = target.Translation - Translation;
+		    float f = Mathf.Sqrt((diff.x * diff.x) + (diff.y * diff.y) + (diff.z * diff.z));
+            f = f - 1; //adding 1 unit of tolerance for max damage
+            f = Mathf.Clamp(f,1,5); //making sure the damage reduction doesnt go in negatives or too low
             Connect(nameof(DealExplosiveDamage), body, "UpdateHealth");
-            EmitSignal(nameof(DealExplosiveDamage), damage);
+            EmitSignal(nameof(DealExplosiveDamage), damage / f);
+            GD.Print(damage / f);
         }
-        Spatial newSparks = (Spatial)sparks.Instance();
-            GetTree().Root.AddChild(newSparks);
-            newSparks.Translation = Translation;
+        
 	}
 }

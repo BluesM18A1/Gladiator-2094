@@ -81,12 +81,14 @@ __meta__ = {
 }
 
 [node name="Sensitivity" type="HSlider" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 49.1074
-margin_top = -577.569
-margin_right = 1131.12
-margin_bottom = -449.569
+anchor_left = 0.026
+anchor_top = 0.465
+anchor_right = 0.589
+anchor_bottom = 0.584
+margin_left = -0.812603
+margin_top = 0.230988
+margin_right = 0.239868
+margin_bottom = -0.289001
 custom_icons/grabber_disabled = ExtResource( 1 )
 custom_icons/grabber_highlight = ExtResource( 1 )
 custom_icons/grabber = ExtResource( 1 )
@@ -140,12 +142,12 @@ __meta__ = {
 }
 
 [node name="Quit" type="TextureButton" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
+anchor_left = 0.685
+anchor_top = 0.834
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -605.0
-margin_top = -179.0
+margin_left = -0.200073
+margin_top = 0.279968
 margin_right = -20.0
 margin_bottom = -11.0
 texture_normal = ExtResource( 8 )
@@ -169,13 +171,13 @@ __meta__ = {
 }
 
 [node name="Resume" type="TextureButton" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
+anchor_left = 0.371
+anchor_top = 0.836
+anchor_right = 0.676
 anchor_bottom = 1.0
-margin_left = -1206.94
-margin_top = -177.052
-margin_right = -621.937
+margin_left = 0.73999
+margin_top = 0.0679932
+margin_right = 0.142822
 margin_bottom = -9.052
 texture_normal = ExtResource( 8 )
 texture_pressed = ExtResource( 4 )
@@ -210,15 +212,18 @@ bus = "BGM"
 
 [node name="bloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -5.0
 bus = "SFX"
 
 [node name="ControlsText" type="RichTextLabel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 60.683
-margin_top = 129.792
-margin_right = -708.317
-margin_bottom = -592.208
+anchor_left = 0.032
+anchor_top = 0.12
+anchor_right = 0.631
+anchor_bottom = 0.452
+margin_left = -0.757004
+margin_top = 0.192001
+margin_right = 0.162964
+margin_bottom = -0.368042
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -237,13 +242,14 @@ __meta__ = {
 
 [node name="MasterSlider" type="NinePatchRect" parent="."]
 self_modulate = Color( 0, 1, 0.12549, 1 )
-anchor_left = 0.885
-anchor_right = 1.0
-anchor_bottom = 0.824
-margin_left = -384.697
-margin_top = 21.8653
-margin_right = -405.817
-margin_bottom = -0.814575
+anchor_left = 0.685
+anchor_top = 0.02
+anchor_right = 0.789
+anchor_bottom = 0.823
+margin_left = -0.697144
+margin_top = 0.265297
+margin_right = -0.697144
+margin_bottom = 0.265381
 texture = ExtResource( 6 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -334,12 +340,13 @@ sndPath = NodePath("../../../PauseScreen/bloop")
 
 [node name="BGMslider" type="NinePatchRect" parent="."]
 self_modulate = Color( 0, 1, 0.12549, 1 )
-anchor_left = 0.885
-anchor_right = 1.0
+anchor_left = 0.785
+anchor_top = 0.02
+anchor_right = 0.889
 anchor_bottom = 0.824
-margin_left = -192.176
-margin_top = 22.1213
-margin_right = -213.296
+margin_left = -0.176147
+margin_top = 0.521297
+margin_right = -0.176147
 margin_bottom = -0.558655
 texture = ExtResource( 6 )
 patch_margin_left = 10
@@ -434,11 +441,12 @@ sndPath = NodePath("../../../PauseScreen/elevatorMusicidk")
 [node name="SFXslider" type="NinePatchRect" parent="."]
 self_modulate = Color( 0, 1, 0.12549, 1 )
 anchor_left = 0.885
-anchor_right = 1.0
+anchor_top = 0.021
+anchor_right = 0.989
 anchor_bottom = 0.824
 margin_left = 0.763062
-margin_top = 22.2074
-margin_right = -20.3569
+margin_top = -0.472603
+margin_right = 0.763062
 margin_bottom = -0.472534
 texture = ExtResource( 6 )
 patch_margin_left = 10
@@ -539,6 +547,7 @@ margin_left = 1.0872
 margin_top = -0.507141
 margin_right = -0.672852
 margin_bottom = -0.266968
+
 [connection signal="value_changed" from="Sensitivity" to="Sensitivity" method="OnSensitivityChange"]
 [connection signal="button_down" from="Quit" to="." method="QuitButtonDown"]
 [connection signal="mouse_entered" from="Quit" to="." method="onButtonHover"]

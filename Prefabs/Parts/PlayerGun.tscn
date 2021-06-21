@@ -32,7 +32,7 @@ coolGrenades = 1.5
 coolFlames = 25.0
 
 [node name="Meter" type="Sprite3D" parent="."]
-transform = Transform( 1.26572, 0, 0, 0, -4.37114e-08, 1, 0, -1.27559, -5.57577e-08, 0, 0.103, -0.0675646 )
+transform = Transform( 1.26572, 0, 0, 0, -4.37114e-08, 1, 0, -1.27559, -5.57577e-08, 0, 0.103, -0.000325888 )
 pixel_size = 0.0006
 texture = SubResource( 3 )
 
@@ -51,9 +51,9 @@ tint_over = Color( 0, 1, 0, 1 )
 
 [node name="pickupSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -5.0
 bus = "SFX"
 
 [node name="switchSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = 4.0
 bus = "SFX"

@@ -15,6 +15,8 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 50
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [node name="CredsScreen" type="Control"]
@@ -56,30 +58,38 @@ autoplay = true
 
 [node name="bloop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -5.0
 
 [node name="Label" type="RichTextLabel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 287.0
-margin_top = 18.0
+margin_top = 49.0
 margin_right = -307.0
 margin_bottom = -14.0
 custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0, 1, 0, 1 )
-text = "			<Gladiator 2094 Contributors:>
+text = "			< Gladiator 2094 Contributors: >
 
 -CathodeRayBlues (Bruce H.)
 
-			<Gladiator 2092 original team:>
+			
+			< Gladiator 2092 original team: >
 	
 -Bruce Heiner (Art, Sounds, player code, announcer VA)
 -Jonah Scanzon (Netcode (god bless his poor soul), UI)
--Ethan Sewall (Enemy AI, Gladiator series founder)
+-Ethan Sewall (Enemy AI, Character design, 
+							Gladiator series founder)
 
-					"
+						< Music >
+Ludwig van Beethoven
+		Piano Sonata  No. 8  Movement I
+		Piano Sonata  No. 14 Movement III
+	Arranged by CathodeRayBlues"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="button_down" from="Back" to="." method="BackButtonDown"]
 [connection signal="mouse_entered" from="Back" to="." method="onButtonHover"]

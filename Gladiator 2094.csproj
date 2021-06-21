@@ -1,4 +1,4 @@
-﻿<Project Sdk="Godot.NET.Sdk/3.2.4">
+﻿<Project Sdk="Godot.NET.Sdk/3.3.0">
   <PropertyGroup>
     <ProjectGuid>{0BCC119F-E080-4996-9488-46FB28E9C65B}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -38,6 +38,7 @@
     <Compile Include="Scripts\SensSlider.cs" />
     <Compile Include="Scripts\Title.cs" />
     <Compile Include="Scripts\VolSlider.cs" />
+    <Compile Include="waveChanger.cs" />
   </ItemGroup>
   <ItemGroup />
 </Project>

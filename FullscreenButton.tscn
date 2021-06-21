@@ -5,7 +5,7 @@
 [ext_resource path="res://Textures/UI/button_normal.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/fullscreenCheck.cs" type="Script" id=4]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=1]
 size = 42
 outline_color = Color( 0, 1, 0, 1 )
 font_data = ExtResource( 2 )
@@ -31,12 +31,13 @@ __meta__ = {
 [node name="checkbox" type="CheckBox" parent="."]
 modulate = Color( 0, 1, 0, 1 )
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -0.71698
-margin_right = -0.71698
+anchor_bottom = 1.029
+margin_left = -1.0
+margin_right = -0.999969
+margin_bottom = -0.0450668
 custom_icons/checked = ExtResource( 1 )
 custom_icons/unchecked = ExtResource( 3 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 1 )
 text = "Fullscreen"
 align = 1
 expand_icon = true
@@ -44,4 +45,5 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="toggled" from="checkbox" to="checkbox" method="FullScreenToggle"]

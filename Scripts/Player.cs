@@ -142,7 +142,7 @@ public class Player : Combatant
 			{   
 				if (needToPlayLandSound)
 				{
-					//landSnd.Play(); this doesn't quite work as predictably as I'd like. Oh well.
+					landSnd.Play(); //this doesn't quite work as predictably as I'd like. Oh well.
 					needToPlayLandSound = false;
 				}
 				if (!Input.IsActionPressed("player_sprint") && !flameThrowerOn)

@@ -4,9 +4,7 @@
 [ext_resource path="res://Scripts/ParticleDespawn.cs" type="Script" id=2]
 [ext_resource path="res://Sounds/guns/grenadeExplosion.wav" type="AudioStream" id=3]
 
-
-
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -16,8 +14,8 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="QuadMesh" id=3]
-material = SubResource( 2 )
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
 size = Vector2( 0.1, 0.1 )
 
 [node name="Explosion" type="CPUParticles"]
@@ -26,7 +24,7 @@ lifetime = 1.5
 speed_scale = 1.5
 explosiveness = 1.0
 lifetime_randomness = 0.63
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 direction = Vector3( 0, 1, 0 )
 spread = 180.0
 gravity = Vector3( 0, -1, 0 )
@@ -39,7 +37,7 @@ lifeSpan = 0.75
 
 [node name="boom" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )
-unit_db = 3.0
-unit_size = 6.0
+unit_size = 5.0
+max_db = 0.0
 autoplay = true
 bus = "SFX"

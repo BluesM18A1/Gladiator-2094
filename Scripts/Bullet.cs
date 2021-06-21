@@ -10,7 +10,6 @@ public class Bullet : RigidBody
     public float speed = 15;
     [Export]
     public float lifetime = 15;
-    public bool friendly = false;
     [Signal]
     public delegate void DealDamage(byte damagePoints);
     [Export]
@@ -29,14 +28,7 @@ public class Bullet : RigidBody
     }
 	private void _OnCollisionEnter(Node body)
 	{
-        if (friendly && body.IsInGroup("Players")) //this if statement doesnt really have to exist but if I ever want to make a multiplayer mode and prevent friendly fire, this better exist.
-        {
-            return;
-        }
-        /*if (!friendly && body.IsInGroup("Enemies")) //this if statement doesnt really have to exist but if I ever want to make a multiplayer mode and prevent friendly fire, this better exist.
-        {
-            return;
-        }*/ // un comment this statement to disable monster infighting
+        
         if (body.HasMethod("UpdateHealth"))
         {
             Connect(nameof(DealDamage), body, "UpdateHealth");

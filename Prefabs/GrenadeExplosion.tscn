@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Explosion.cs" type="Script" id=1]
 [ext_resource path="res://Textures/particle.png" type="Texture" id=2]
+[ext_resource path="res://Prefabs/GrenadeExplosionSparks.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SphereShape" id=1]
-radius = 2.0
+resource_local_to_scene = true
+radius = 3.0
 
 [sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
@@ -17,14 +19,18 @@ albedo_color = Color( 1, 0.603922, 0, 0.886275 )
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="QuadMesh" id=3]
+resource_local_to_scene = true
 material = SubResource( 2 )
-size = Vector2( 4, 4 )
+size = Vector2( 8, 8 )
 
 [node name="RigidBody" type="Area"]
+collision_layer = 8
+collision_mask = 15
 script = ExtResource( 1 )
-damage = -20
+damage = -40
 speed = 0.0
-lifetime = 0.1
+lifetime = 0.2
+sparks = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
@@ -32,4 +38,5 @@ shape = SubResource( 1 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 3 )
 material/0 = null
+
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

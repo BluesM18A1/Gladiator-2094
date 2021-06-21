@@ -23,12 +23,13 @@ radius = 0.1
 [node name="Bullet" type="RigidBody" groups=[
 "projectiles",
 ]]
-collision_layer = 2
+collision_layer = 2048
+collision_mask = 5
 gravity_scale = 0.0
 contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 1 )
-damage = -5
+damage = -8
 speed = 100.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -37,4 +38,5 @@ material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 3 )
+
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]
