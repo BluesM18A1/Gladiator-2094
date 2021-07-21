@@ -1,9 +1,0 @@
-ENTRY 1:
-	I try my damnest to make sure my code is future-proof and modular for easily adding newer features, as well as ensuring that mods are easy to create.(This is an open source project for a reason, after all).
-
-	Though when I started work on extra enemy types, I started noticing just how poor the AI scripting was at being adaptable.
-I might have to rewrite almost everything and/or split its functionality into different scripts.
-
-	If I'm being perfectly honest, I had no clue what I was doing when I wrote that first script. I had never written AI before, so there was nothing I could think of but winging it.
-
-This will be a very important learning experience, for sure...
