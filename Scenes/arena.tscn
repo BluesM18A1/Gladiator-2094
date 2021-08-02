@@ -81,7 +81,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="DynamicFont" id=3]
-size = 86
+size = 32
 outline_color = Color( 0, 1, 0, 1 )
 font_data = ExtResource( 5 )
 
@@ -265,7 +265,8 @@ __meta__ = {
 [node name="TopText" type="Label" parent="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -0.440002
+margin_right = -0.400024
+margin_bottom = -2.8
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "Sample Text"

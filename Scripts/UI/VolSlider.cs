@@ -7,14 +7,12 @@ public class VolSlider : VSlider
     [Export]
     public AudioBuses bus;
     [Export]
-    public NodePath lblPath;
-    [Export]
     public NodePath sndPath;
     public AudioStreamPlayer bloop;
     public Label DBlabel;
     public override void _Ready()
     {
-        DBlabel = GetNode<Label>(lblPath);
+        DBlabel = GetNode<Label>("../dbLabel/Label");
         bloop = GetNode<AudioStreamPlayer>(sndPath);
         Value = AudioServer.GetBusVolumeDb((int)bus); 
         UpdateText();

@@ -50,10 +50,10 @@ public class PlayerGun : Gun
 	{
 		coolMeter = GetNode<TextureProgress>("Meter/Viewport/TextureProgress");
 		player = GetNode<Player>(PlayerPath);
-		iconRptr = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconRptr");
-		iconShot = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconShot");
-		iconGren = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconGren");
-		iconFlam = GetNode<TextureRect>(HUDPath + "/WeaponBar/IconFlam");
+		iconRptr = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconRptr");
+		iconShot = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconShot");
+		iconGren = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconGren");
+		iconFlam = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconFlam");
 		ammoNum = GetNode<Label>(HUDPath + "/FuelMeter/AmmoNum");
 		pickupSnd = GetNode<AudioStreamPlayer>("pickupSnd");
 		switchSnd = GetNode<AudioStreamPlayer>("switchSnd");
@@ -64,6 +64,7 @@ public class PlayerGun : Gun
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
+		coolMeter.Value -= 50 * coolSpeed * delta;
 		Translation = new Vector3 (Translation.x, Translation.y, (recoilAnim * (float)coolMeter.Value) + recoilOffset);
 		ProcessInput(delta);
 		if (currentWeapon == Weapons.FLAMETHROWER)
@@ -73,13 +74,13 @@ public class PlayerGun : Gun
 		}
 		
 	}
-    public override void _PhysicsProcess(float delta)
+    /*public override void _PhysicsProcess(float delta)
     {
-		coolMeter.Value -= coolSpeed;
+		
 		//no idea why this needs to happen in _PhysicsProcess, 
 		//but the meter jams if I decrement it by coolSpeed * delta.
 		//and no other timers in the game malfunction when using delta but this one???
-    }
+    }*/
     
 	protected void ProcessInput(float delta)
 	{

@@ -1,29 +1,25 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Textures/UI/icon.png" type="Texture" id=1]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Textures/UI/grabber area.stylebox" type="StyleBox" id=3]
-[ext_resource path="res://Scripts/DiffSlider.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/UI/DiffSlider.cs" type="Script" id=4]
 [ext_resource path="res://Textures/UI/slider.stylebox" type="StyleBox" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 32
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 48
+size = 24
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [node name="DSlider" type="HSlider"]
-margin_left = 646.863
-margin_top = 554.613
-margin_right = 1414.86
-margin_bottom = 682.613
-custom_icons/grabber_disabled = ExtResource( 1 )
-custom_icons/grabber_highlight = ExtResource( 1 )
-custom_icons/grabber = ExtResource( 1 )
+margin_left = 2.0
+margin_top = -3.0
+margin_right = 278.0
+margin_bottom = 35.0
 custom_styles/slider = ExtResource( 5 )
 custom_styles/grabber_area_highlight = ExtResource( 3 )
 custom_styles/grabber_area = ExtResource( 3 )
@@ -39,10 +35,10 @@ __meta__ = {
 [node name="Difficulty" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.199
-margin_left = 42.0
-margin_top = 94.4543
-margin_right = -458.997
-margin_bottom = 4.98235
+margin_left = -2.0
+margin_top = 35.9188
+margin_right = -265.0
+margin_bottom = 23.3568
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -58,9 +54,10 @@ __meta__ = {
 [node name="Setting" type="Label" parent="Difficulty"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 218.0
-margin_top = 11.0
-margin_right = 490.979
+margin_left = 137.0
+margin_top = 5.0
+margin_right = 151.0
+margin_bottom = -3.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )

@@ -1,18 +1,12 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Textures/UI/icon.png" type="Texture" id=1]
-[ext_resource path="res://Textures/UI/grabber area.stylebox" type="StyleBox" id=2]
+[ext_resource path="res://UI/VolumeControls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/VideoSettings.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=3]
-[ext_resource path="res://Textures/UI/button_pressed.png" type="Texture" id=4]
-[ext_resource path="res://Textures/UI/button_hover.png" type="Texture" id=5]
-[ext_resource path="res://Textures/grid.png" type="Texture" id=6]
+[ext_resource path="res://default.bigtext.theme" type="Theme" id=4]
+[ext_resource path="res://UI/Sensitivity.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Textures/UI/button_normal.png" type="Texture" id=8]
-[ext_resource path="res://FullscreenButton.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/VolSlider.cs" type="Script" id=10]
-[ext_resource path="res://Scripts/SensSlider.cs" type="Script" id=11]
 [ext_resource path="res://Scripts/PauseScreen.cs" type="Script" id=12]
-[ext_resource path="res://Textures/UI/slider.stylebox" type="StyleBox" id=13]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
@@ -23,27 +17,14 @@ gradient = SubResource( 1 )
 width = 1920
 
 [sub_resource type="DynamicFont" id=3]
-size = 86
+size = 48
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 100
-font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 48
+size = 24
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 48
-font_data = ExtResource( 7 )
-
-[sub_resource type="StyleBoxLine" id=7]
-color = Color( 0, 1, 0, 1 )
-thickness = 8
-vertical = true
 
 [node name="PauseScreen" type="Control"]
 pause_mode = 2
@@ -64,139 +45,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VideoSettings" parent="." instance=ExtResource( 2 )]
+
+[node name="Quit" type="Button" parent="."]
+anchor_left = 0.872
+anchor_top = 0.847
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.399963
+margin_top = -0.200043
+margin_bottom = -9.0
+theme = ExtResource( 4 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="."]
+anchor_left = 0.667
+anchor_top = 0.845
+anchor_right = 0.857
+anchor_bottom = 1.0
+margin_left = 0.399963
+margin_top = -3.05176e-05
+margin_right = 0.399963
+margin_bottom = -10.0
+theme = ExtResource( 4 )
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Menu Label" type="Label" parent="."]
 anchor_right = 0.683
-margin_right = -0.360107
-margin_bottom = 145.0
+margin_right = -5.40002
+margin_bottom = 49.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 9
 custom_constants/shadow_offset_y = 6
 text = "GAME PAUSED"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sensitivity" type="HSlider" parent="."]
-anchor_left = 0.026
-anchor_top = 0.465
-anchor_right = 0.589
-anchor_bottom = 0.584
-margin_left = -0.812603
-margin_top = 0.230988
-margin_right = 0.239868
-margin_bottom = -0.289001
-custom_icons/grabber_disabled = ExtResource( 1 )
-custom_icons/grabber_highlight = ExtResource( 1 )
-custom_icons/grabber = ExtResource( 1 )
-custom_styles/slider = ExtResource( 13 )
-custom_styles/grabber_area = ExtResource( 2 )
-min_value = 0.005
-max_value = 2.0
-step = 0.005
-value = 0.005
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Difficulty" type="Label" parent="Sensitivity"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 86.0
-margin_right = -722.0
-margin_bottom = 92.0
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 9
-custom_constants/shadow_offset_y = 6
-text = "Look Sensitivity:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Setting" type="Label" parent="Sensitivity/Difficulty"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 709.0
-margin_top = 7.0
-margin_right = 291.0
-margin_bottom = 4.0
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 9
-custom_constants/shadow_offset_y = 6
-text = "0%"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Quit" type="TextureButton" parent="."]
-anchor_left = 0.685
-anchor_top = 0.834
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -0.200073
-margin_top = 0.279968
-margin_right = -20.0
-margin_bottom = -11.0
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Quit"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Quit"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Resume" type="TextureButton" parent="."]
-anchor_left = 0.371
-anchor_top = 0.836
-anchor_right = 0.676
-anchor_bottom = 1.0
-margin_left = 0.73999
-margin_top = 0.0679932
-margin_right = 0.142822
-margin_bottom = -9.052
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Resume"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -1.948
-margin_top = 1.948
-margin_right = -1.948
-margin_bottom = 1.948
-custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "Resume"
 align = 1
 valign = 1
 __meta__ = {
@@ -215,16 +104,19 @@ stream = ExtResource( 3 )
 volume_db = -5.0
 bus = "SFX"
 
+[node name="VolumeControls" parent="." instance=ExtResource( 1 )]
+margin_bottom = -88.0
+
 [node name="ControlsText" type="RichTextLabel" parent="."]
-anchor_left = 0.032
-anchor_top = 0.12
+anchor_left = 0.015
+anchor_top = 0.048
 anchor_right = 0.631
-anchor_bottom = 0.452
-margin_left = -0.757004
-margin_top = 0.192001
-margin_right = 0.162964
-margin_bottom = -0.368042
-custom_fonts/normal_font = SubResource( 5 )
+anchor_bottom = 0.433
+margin_left = 4.0
+margin_top = 8.2
+margin_right = 8.20001
+margin_bottom = 14.2
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -240,319 +132,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MasterSlider" type="NinePatchRect" parent="."]
-self_modulate = Color( 0, 1, 0.12549, 1 )
-anchor_left = 0.685
-anchor_top = 0.02
-anchor_right = 0.789
-anchor_bottom = 0.823
-margin_left = -0.697144
-margin_top = 0.265297
-margin_right = -0.697144
-margin_bottom = 0.265381
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Sensitivity" parent="." instance=ExtResource( 5 )]
+anchor_left = 0.009
+anchor_top = 0.431
+anchor_right = 0.648
+anchor_bottom = 0.508
+margin_left = 4.8
+margin_top = 13.4
+margin_right = 4.59998
+margin_bottom = -0.800018
 
-[node name="dbLabel" type="NinePatchRect" parent="MasterSlider"]
-modulate = Color( 0, 1, 0, 1 )
-anchor_top = 0.897
-anchor_right = 1.002
-anchor_bottom = 1.0
-margin_top = -1.91437
-margin_right = -0.0793152
-margin_bottom = 0.759949
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="MasterSlider/dbLabel"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -85.0
-custom_fonts/font = SubResource( 6 )
-text = "-0 db"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="grpLabel" type="NinePatchRect" parent="MasterSlider"]
-modulate = Color( 0, 1, 0, 1 )
-anchor_right = 1.002
-anchor_bottom = 0.105
-margin_right = -0.0793152
-margin_bottom = -0.0602188
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="MasterSlider/grpLabel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
-text = "Master"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VSlider" type="VSlider" parent="MasterSlider"]
-anchor_top = 0.121
-anchor_right = 1.002
-anchor_bottom = 0.88
-margin_top = 0.063942
-margin_right = -0.0793152
-margin_bottom = -0.171326
-custom_icons/grabber_disabled = ExtResource( 1 )
-custom_icons/grabber_highlight = ExtResource( 1 )
-custom_icons/grabber = ExtResource( 1 )
-custom_styles/slider = SubResource( 7 )
-custom_styles/grabber_area = SubResource( 7 )
-min_value = -80.0
-max_value = 6.0
-tick_count = 32
-ticks_on_borders = true
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-lblPath = NodePath("../../../PauseScreen/MasterSlider/dbLabel/Label")
-sndPath = NodePath("../../../PauseScreen/bloop")
-
-[node name="BGMslider" type="NinePatchRect" parent="."]
-self_modulate = Color( 0, 1, 0.12549, 1 )
-anchor_left = 0.785
-anchor_top = 0.02
-anchor_right = 0.889
-anchor_bottom = 0.824
-margin_left = -0.176147
-margin_top = 0.521297
-margin_right = -0.176147
-margin_bottom = -0.558655
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="dbLabel" type="NinePatchRect" parent="BGMslider"]
-modulate = Color( 0, 1, 0, 1 )
-anchor_top = 0.897
-anchor_right = 1.002
-anchor_bottom = 1.0
-margin_top = -1.91437
-margin_right = -0.0793152
-margin_bottom = 0.759949
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="BGMslider/dbLabel"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -85.0
-custom_fonts/font = SubResource( 6 )
-text = "-0 db"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="grpLabel" type="NinePatchRect" parent="BGMslider"]
-modulate = Color( 0, 1, 0, 1 )
-anchor_right = 1.002
-anchor_bottom = 0.105
-margin_right = -0.0793152
-margin_bottom = -0.0602188
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="BGMslider/grpLabel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
-text = "BGM"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VSlider" type="VSlider" parent="BGMslider"]
-anchor_top = 0.121
-anchor_right = 1.002
-anchor_bottom = 0.88
-margin_top = 0.063942
-margin_right = -0.0793152
-margin_bottom = -0.171326
-custom_icons/grabber_disabled = ExtResource( 1 )
-custom_icons/grabber_highlight = ExtResource( 1 )
-custom_icons/grabber = ExtResource( 1 )
-custom_styles/slider = SubResource( 7 )
-custom_styles/grabber_area = SubResource( 7 )
-min_value = -80.0
-max_value = 6.0
-rounded = true
-tick_count = 32
-ticks_on_borders = true
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-bus = 1
-lblPath = NodePath("../../../PauseScreen/BGMslider/dbLabel/Label")
-sndPath = NodePath("../../../PauseScreen/elevatorMusicidk")
-
-[node name="SFXslider" type="NinePatchRect" parent="."]
-self_modulate = Color( 0, 1, 0.12549, 1 )
-anchor_left = 0.885
-anchor_top = 0.021
-anchor_right = 0.989
-anchor_bottom = 0.824
-margin_left = 0.763062
-margin_top = -0.472603
-margin_right = 0.763062
-margin_bottom = -0.472534
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="dbLabel" type="NinePatchRect" parent="SFXslider"]
-modulate = Color( 0, 1, 0, 1 )
-anchor_top = 0.897
-anchor_right = 1.002
-anchor_bottom = 1.0
-margin_top = -1.91437
-margin_right = -0.0793152
-margin_bottom = 0.759949
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="SFXslider/dbLabel"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -85.0
-custom_fonts/font = SubResource( 6 )
-text = "-0 db"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="grpLabel" type="NinePatchRect" parent="SFXslider"]
-modulate = Color( 0, 1, 0, 1 )
-anchor_right = 1.002
-anchor_bottom = 0.105
-margin_right = -0.0793152
-margin_bottom = -0.0602188
-texture = ExtResource( 6 )
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="SFXslider/grpLabel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 6 )
-text = "SFX"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VSlider" type="VSlider" parent="SFXslider"]
-anchor_top = 0.121
-anchor_right = 1.002
-anchor_bottom = 0.88
-margin_top = 0.063942
-margin_right = -0.0793152
-margin_bottom = -0.171326
-custom_icons/grabber_disabled = ExtResource( 1 )
-custom_icons/grabber_highlight = ExtResource( 1 )
-custom_icons/grabber = ExtResource( 1 )
-custom_styles/slider = SubResource( 7 )
-custom_styles/grabber_area = SubResource( 7 )
-min_value = -80.0
-max_value = 6.0
-rounded = true
-tick_count = 32
-ticks_on_borders = true
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-bus = 2
-lblPath = NodePath("../../../PauseScreen/SFXslider/dbLabel/Label")
-sndPath = NodePath("../../../PauseScreen/bloop")
-
-[node name="FullscreenButton" parent="." instance=ExtResource( 9 )]
-anchor_left = 0.037
-anchor_top = 0.867
-anchor_right = 0.215
-anchor_bottom = 0.964
-margin_left = 1.0872
-margin_top = -0.507141
-margin_right = -0.672852
-margin_bottom = -0.266968
-
-[connection signal="value_changed" from="Sensitivity" to="Sensitivity" method="OnSensitivityChange"]
 [connection signal="button_down" from="Quit" to="." method="QuitButtonDown"]
 [connection signal="mouse_entered" from="Quit" to="." method="onButtonHover"]
 [connection signal="button_down" from="Resume" to="." method="ResumeButtonDown"]
 [connection signal="mouse_entered" from="Resume" to="." method="onButtonHover"]
-[connection signal="value_changed" from="MasterSlider/VSlider" to="MasterSlider/VSlider" method="OnValueChange"]
-[connection signal="value_changed" from="BGMslider/VSlider" to="BGMslider/VSlider" method="OnValueChange"]
-[connection signal="value_changed" from="SFXslider/VSlider" to="SFXslider/VSlider" method="OnValueChange"]

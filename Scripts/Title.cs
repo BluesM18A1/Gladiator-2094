@@ -9,14 +9,17 @@ public class Title : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (OS.WindowSize > OS.GetScreenSize())
-        {
-			OS.WindowSize = OS.GetScreenSize();
-			OS.WindowMaximized = true;
-		}
+			/*if (OS.WindowSize > OS.GetScreenSize())
+			{
+				OS.WindowSize = OS.GetScreenSize();
+				//GD.Print(OS.GetScreenSize());
+				//OS.WindowMaximized = true;
+			}*/
 		config = GetNode<Config>("/root/Config");
 		bloop = GetNode<AudioStreamPlayer>("bloop");
 		Input.SetMouseMode(Input.MouseMode.Visible);
+		//sometimes the window shoots up really high depending on OS and monitor setup. This makes sure you can easily grab and move the window.
+		OS.WindowPosition = new Vector2(OS.WindowPosition.x, 0);
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

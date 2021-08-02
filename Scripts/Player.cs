@@ -217,6 +217,7 @@ public class Player : Combatant
 		}
 		else
 		{
+			fuel = 100;
 			medSnd.Play();
 		}
 		HP += delta;

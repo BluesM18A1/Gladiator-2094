@@ -21,10 +21,7 @@ Config="*res://Scripts/Config.cs"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/size/test_width=1280
-window/size/test_height=960
+window/size/width=800
 window/vsync/use_vsync=false
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
@@ -117,6 +114,10 @@ player_prevWep={
 3d_physics/layer_5="Flames"
 3d_physics/layer_12="Player Bullet"
 3d_physics/layer_13="Enemy Bullet"
+
+[physics]
+
+common/physics_fps=120
 
 [rendering]
 

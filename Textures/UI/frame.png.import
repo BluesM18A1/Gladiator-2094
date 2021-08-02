@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LifeMeter.png-f1b45884f3d2b38dabe91222219087c9.stex"
+path="res://.import/frame.png-728f8bcf51655c93d21b2d4d4d02521a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/UI/LifeMeter.png"
-dest_files=[ "res://.import/LifeMeter.png-f1b45884f3d2b38dabe91222219087c9.stex" ]
+source_file="res://Textures/UI/frame.png"
+dest_files=[ "res://.import/frame.png-728f8bcf51655c93d21b2d4d4d02521a.stex" ]
 
 [params]
 

@@ -23,11 +23,11 @@
     <Compile Include="Scripts\Bullet.cs" />
     <Compile Include="Scripts\Combatant.cs" />
     <Compile Include="Scripts\Config.cs" />
-    <Compile Include="Scripts\DiffSlider.cs" />
+    <Compile Include="Scripts\UI\DiffSlider.cs" />
     <Compile Include="Scripts\Enemy.cs" />
     <Compile Include="Scripts\EnemyGun.cs" />
     <Compile Include="Scripts\Explosion.cs" />
-    <Compile Include="Scripts\fullscreenCheck.cs" />
+    <Compile Include="Scripts\UI\FPScounter.cs" />
     <Compile Include="Scripts\GameOver.cs" />
     <Compile Include="Scripts\Gun.cs" />
     <Compile Include="Scripts\ItemBox.cs" />
@@ -35,10 +35,11 @@
     <Compile Include="Scripts\PauseScreen.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\PlayerGun.cs" />
-    <Compile Include="Scripts\SensSlider.cs" />
+    <Compile Include="Scripts\UI\SensSlider.cs" />
     <Compile Include="Scripts\Title.cs" />
-    <Compile Include="Scripts\VolSlider.cs" />
-    <Compile Include="waveChanger.cs" />
+    <Compile Include="Scripts\UI\VolSlider.cs" />
+    <Compile Include="Scripts\UI\VideoSettings.cs" />
+    <Compile Include="Scripts\UI\waveChanger.cs" />
   </ItemGroup>
   <ItemGroup />
 </Project>
