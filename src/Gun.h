@@ -12,6 +12,7 @@ namespace godot {
         GODOT_CLASS(Gun, Spatial)
     public:
         enum Weapons { REPEATER = 2, BUCKSHOT = 3, GRENADES = 4, FLAMETHROWER = 1 };
+        bool disabled;
         //array of transforms, barrels
         Gun();
         ~Gun();

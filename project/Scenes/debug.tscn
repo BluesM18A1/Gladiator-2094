@@ -1,6 +1,6 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=45 format=2]
 
-[ext_resource path="res://Scripts/Arena.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/Arena.gdns" type="Script" id=1]
 [ext_resource path="res://Sounds/music/levelClear.wav" type="AudioStream" id=3]
 [ext_resource path="res://Textures/grid.png" type="Texture" id=4]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=5]
@@ -12,15 +12,7 @@
 [ext_resource path="res://Textures/bricks/DisplacementMap.png" type="Texture" id=11]
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Prefabs/Enemies/Cat.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Materials/grid.material" type="Material" id=15]
-[ext_resource path="res://Prefabs/Enemies/Siren.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Prefabs/Boxes/Box_Shells.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Prefabs/Enemies/Tortoise.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Prefabs/Boxes/Box_Grenades.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Prefabs/Boxes/Box_Repeater.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Prefabs/Boxes/Box_Health.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Prefabs/Enemies/Dreadnaught.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Sounds/music/pathetique_weapons.wav" type="AudioStream" id=23]
 
 [sub_resource type="Animation" id=1]
@@ -226,11 +218,6 @@ extents = Vector3( 1, 4.02704, 1 )
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
-debugMode = true
-EnemyTier1 = [ ExtResource( 14 ), ExtResource( 16 ) ]
-EnemyTier2 = [ ExtResource( 18 ) ]
-BossTier = [ ExtResource( 22 ) ]
-ItemBoxes = [ ExtResource( 21 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 17 ) ]
 
 [node name="Announcer" type="AudioStreamPlayer" parent="."]
 autoplay = true
@@ -277,8 +264,6 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-Deaccel = 20.0
-JetForce = 3.75
 
 [node name="PauseScreen" parent="." instance=ExtResource( 13 )]
 visible = false

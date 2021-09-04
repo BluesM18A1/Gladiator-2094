@@ -9,12 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Spatial",
-"class": "Arena",
-"language": "NativeScript",
-"path": "res://Scripts/Arena.gdns"
-}, {
-"base": "",
+"base": "KinematicBody",
 "class": "Combatant",
 "language": "NativeScript",
 "path": "res://Scripts/Combatant.gdns"
@@ -29,16 +24,21 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://Scripts/UI/PauseScreen.gdns"
 }, {
-"base": "",
+"base": "KinematicBody",
+"class": "Player",
+"language": "NativeScript",
+"path": "res://Scripts/Player.gdns"
+}, {
+"base": "Control",
 "class": "TitleScreen",
 "language": "NativeScript",
 "path": "res://Scripts/UI/TitleScreen.gdns"
 } ]
 _global_script_class_icons={
-"Arena": "",
 "Combatant": "res://icon.png",
 "Config": "",
 "PauseScreen": "",
+"Player": "",
 "TitleScreen": ""
 }
 

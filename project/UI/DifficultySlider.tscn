@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Textures/UI/grabber area.stylebox" type="StyleBox" id=3]
-[ext_resource path="res://Scripts/UI/DiffSlider.cs" type="Script" id=4]
 [ext_resource path="res://Textures/UI/slider.stylebox" type="StyleBox" id=5]
 
 [sub_resource type="DynamicFont" id=1]
@@ -27,7 +26,6 @@ min_value = -3.0
 max_value = 3.0
 tick_count = 5
 ticks_on_borders = true
-script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

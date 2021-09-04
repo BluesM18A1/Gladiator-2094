@@ -34,9 +34,7 @@ namespace godot {
     protected:
         
     private:
-        godot::OS* _os;
-        godot::AudioServer* _audioServer;
-        godot::Engine* _engine;
+    
     };
 }
 

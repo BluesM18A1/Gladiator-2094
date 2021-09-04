@@ -5,6 +5,7 @@ using namespace godot;
 void Gun::_register_methods() {
     register_method("_process", &Gun::_process);
     register_method("_ready", &Gun::_ready);
+    register_property("Disabled", &Gun::disabled, false);
 }
 
 Gun::Gun() {

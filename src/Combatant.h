@@ -15,10 +15,12 @@ namespace godot {
             Combatant();
             ~Combatant();
             void _init(); // our initializer called by Godot
-            void _process(float delta);
-            void _physics_process(float delta);
+            void _process(const double p_delta);
+            void _physics_process(const double p_delta);
+            void process_movement(const double p_delta);
+            virtual void update_health(const int delta);
             static void _register_methods();
-        
+            
         public:
             //PHYSICS VARIABLES
             float gravity, maxSpeed, accel, deAccel, maxSlopeAngle;
@@ -29,14 +31,14 @@ namespace godot {
 
         protected:
             Spatial* _head;
-
+            
         private:
 
         //GAMEPLAY METHODS
         public:
-            virtual void update_health(int damage);
+            
         protected:
-            void process_movement(float delta);
+            
 
         private:
     };
@@ -48,7 +50,17 @@ namespace godot {
 #define PLAYER_H
 
 #include <Godot.hpp>
+#include <Camera.hpp>
+#include <TextureProgress.hpp>
+#include <Label.hpp>
+#include <AnimationPlayer.hpp>
+#include <AudioStreamPlayer.hpp>
+#include <Input.hpp>
+#include <InputEventMouseMotion.hpp>
+#include <SceneTree.hpp>
 #include "Combatant.h"
+#include "Config.h"
+#include "Gun.h"
 
 namespace godot {
 
@@ -63,15 +75,42 @@ namespace godot {
         void _init(); // our initializer called by Godot
         void _ready();
         void _process(const double p_delta);
+        void _physics_process(const double p_delta);
+        void _input(Variant event);
+        void process_input(const double p_delta);
+        void process_health_meter(const double p_delta);
+        void update_health(int delta) override;
         static void _register_methods();
 
         //CLASS STRUCUTRE
     public:
-
+        
     protected:
 
     private:
-
+        //references]
+        Input* _inputt;
+        Config *_config;
+        Camera *_camera;
+        PlayerGun *_gun;
+        TextureProgress *_healthMeter, *_fuelMeter;
+        Label *_healthNum;
+        AnimationPlayer *_screenAni;
+        AudioStreamPlayer *_boostSnd, *_medSnd, *_hurtSnd, *_landSnd;
+        //physics
+        float rechargeRate, fuelDrainRate;
+        float jetForce;
+        float normalSpeed, sprintSpeed;
+        float mouseSensitivity;
+        //gameplay
+        bool alive;
+        bool flameThrowerOn;
+        bool canPlayBumpSound;
+        int maxHP, maxFuel;
+        int HPcounter;
+        float fuel = 0;
+        float overhealDecrementRate;
+        float overhealTimer;
     };
 }
 

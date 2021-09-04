@@ -394,7 +394,6 @@ margin_left = 1.76476
 margin_top = -0.107996
 margin_right = 0.371902
 margin_bottom = -18.1239
-script = null
 
 [node name="bootup" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource( 10 )

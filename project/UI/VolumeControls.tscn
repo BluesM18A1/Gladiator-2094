@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/UI/VolSlider.cs" type="Script" id=1]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://default.theme" type="Theme" id=3]
 
@@ -78,11 +77,9 @@ min_value = -80.0
 max_value = 6.0
 tick_count = 32
 ticks_on_borders = true
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-sndPath = NodePath("../../../bloop")
 
 [node name="BGMslider" type="Panel" parent="."]
 self_modulate = Color( 0, 1, 0, 1 )
@@ -148,12 +145,9 @@ max_value = 6.0
 rounded = true
 tick_count = 32
 ticks_on_borders = true
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-bus = 1
-sndPath = NodePath("../../../bloop")
 
 [node name="SFXslider" type="Panel" parent="."]
 self_modulate = Color( 0, 1, 0, 1 )
@@ -219,12 +213,9 @@ max_value = 6.0
 rounded = true
 tick_count = 32
 ticks_on_borders = true
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-bus = 2
-sndPath = NodePath("../../../bloop")
 
 [connection signal="value_changed" from="MasterSlider/VSlider" to="MasterSlider/VSlider" method="OnValueChange"]
 [connection signal="value_changed" from="BGMslider/VSlider" to="BGMslider/VSlider" method="OnValueChange"]

@@ -1,9 +1,5 @@
-[gd_resource type="NativeScript" load_steps=2 format=2]
-
-[ext_resource path="res://Gladiator-2094.gdnlib" type="GDNativeLibrary" id=1]
+[gd_resource type="NativeScript" format=2]
 
 [resource]
 resource_name = "Arena"
 class_name = "Arena"
-library = ExtResource( 1 )
-script_class_name = "Arena"

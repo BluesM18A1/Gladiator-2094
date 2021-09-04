@@ -266,8 +266,6 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-Deaccel = 20.0
-JetForce = 3.75
 
 [node name="PauseScreen" parent="." instance=ExtResource( 13 )]
 visible = false

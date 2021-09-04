@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Scripts/UI/VideoSettings.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=2]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://default.theme" type="Theme" id=4]
@@ -46,7 +45,6 @@ anchor_bottom = 0.998
 margin_left = -0.2
 margin_top = -0.200043
 margin_bottom = -4.79999
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

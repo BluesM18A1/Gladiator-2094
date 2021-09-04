@@ -25,6 +25,7 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void* handle) {
 
 	//COMBATANTS
 	register_class<Combatant>();
+	register_class<Player>();
 	
 	//WEAPONS
 	register_class<Gun>();
