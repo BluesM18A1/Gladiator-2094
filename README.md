@@ -11,9 +11,7 @@ This codebase is effectively a playground to test certain features in Godot, and
 I am releasing all the code for free distribution and commercialization, though keep in mind some audio assets are 3rd party and have unknown licensing terms.
 
 TO-DO:
-
--Add different kinds of enemies and bosses,
-
+-Update project for compatibility with Godot 4.0 upon release.
 -Upgrade system?
 
 STRETCH GOALS:
