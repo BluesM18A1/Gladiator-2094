@@ -17,10 +17,8 @@ albedo_texture = ExtResource( 1 )
 material = SubResource( 1 )
 
 [node name="CPUParticles" type="CPUParticles"]
-emitting = false
 amount = 24
 lifetime = 1.5
-one_shot = true
 speed_scale = 2.0
 explosiveness = 0.95
 mesh = SubResource( 2 )
@@ -31,3 +29,4 @@ angular_velocity = 9.27555e-39
 scale_amount = 0.08
 color = Color( 1, 0.866667, 0, 1 )
 script = ExtResource( 2 )
+lifeSpan = 0.75
