@@ -1,28 +1,19 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
+[ext_resource path="res://Materials/bullets/bullet_buckshot.tres" type="Material" id=2]
 
 [sub_resource type="CapsuleMesh" id=1]
+material = ExtResource( 2 )
 radius = 0.1
 mid_height = 0.2
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 1, 0.72549, 0, 1 )
-metallic = 1.0
-metallic_specular = 1.0
-roughness = 0.2
-emission_enabled = true
-emission = Color( 0.239216, 0.160784, 0.0196078, 1 )
-emission_energy = 14.95
-emission_operator = 0
-emission_on_uv2 = false
+radial_segments = 6
+rings = 2
 
 [sub_resource type="SphereShape" id=3]
 radius = 0.1
 
-[node name="Bullet" type="RigidBody" groups=[
-"projectiles",
-]]
+[node name="Bullet" type="RigidBody" groups=["projectiles"]]
 collision_layer = 2048
 collision_mask = 5
 gravity_scale = 0.0
@@ -34,7 +25,6 @@ speed = 100.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 3 )

@@ -1,14 +1,14 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Sounds/enemyHit.wav" type="AudioStream" id=1]
 [ext_resource path="res://Prefabs/Bullets/enemy repeater.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Textures/ANGERY.png" type="Texture" id=3]
+[ext_resource path="res://Materials/enemies/tortoise_body.tres" type="SphereMesh" id=3]
 [ext_resource path="res://Models/singleAxel.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Models/gatlingGun.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://Scripts/AutoAim.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=8]
-[ext_resource path="res://Materials/dreadnaught_face.tres" type="Material" id=10]
+[ext_resource path="res://Materials/enemies/tortoise_face.tres" type="Material" id=10]
 [ext_resource path="res://Sounds/guns/repeater.wav" type="AudioStream" id=11]
 
 [sub_resource type="SphereShape" id=1]
@@ -17,30 +17,8 @@ radius = 0.89
 [sub_resource type="SphereShape" id=2]
 radius = 0.58
 
-[sub_resource type="SpatialMaterial" id=3]
-resource_local_to_scene = true
-albedo_color = Color( 0, 0.306667, 0.4, 1 )
-emission_enabled = true
-emission = Color( 0, 0.627451, 0.819608, 1 )
-emission_energy = 0.14
-emission_operator = 0
-emission_on_uv2 = false
-
-[sub_resource type="SphereMesh" id=4]
-resource_local_to_scene = true
-material = SubResource( 3 )
-radius = 0.678
-height = 1.228
-radial_segments = 16
-rings = 8
-
-[sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0.909804, 0.956863, 0.992157, 1 )
-albedo_texture = ExtResource( 3 )
-uv1_offset = Vector3( 0, -0.042, 0 )
-
 [sub_resource type="SphereMesh" id=6]
-material = SubResource( 5 )
+material = ExtResource( 10 )
 radial_segments = 16
 rings = 8
 
@@ -133,9 +111,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0.321569, 0.423529, 1 ) ]
 }
 
-[node name="Tortoise" type="KinematicBody" groups=[
-"Enemies",
-]]
+[node name="Tortoise" type="KinematicBody" groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 2071
 script = ExtResource( 7 )
@@ -158,14 +134,10 @@ shape = SubResource( 2 )
 [node name="singleAxel" type="MeshInstance" parent="."]
 transform = Transform( 2, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.35, 0.5 )
 mesh = ExtResource( 4 )
-material/0 = null
-material/1 = null
 
 [node name="singleAxel2" type="MeshInstance" parent="."]
 transform = Transform( 2, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.35, -0.5 )
 mesh = ExtResource( 4 )
-material/0 = null
-material/1 = null
 
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.997688, 0 )
@@ -174,20 +146,15 @@ vOffset = 0.5
 
 [node name="Body" type="MeshInstance" parent="Head"]
 transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0.135 )
-mesh = SubResource( 4 )
-material/0 = null
+mesh = ExtResource( 3 )
 
 [node name="Head" type="MeshInstance" parent="Head"]
 transform = Transform( 0.429, 0, 0, 0, 0.45133, -0.112673, 0, 0.134693, 0.377546, 0, 0.84657, -0.202538 )
 mesh = SubResource( 6 )
-material/0 = ExtResource( 10 )
 
 [node name="Gun" type="MeshInstance" parent="Head"]
 transform = Transform( 1.5, -5.24537e-07, 0, 5.24537e-07, 1.5, 0, 0, 0, 1.5, 1, 0.054, 0.75 )
 mesh = ExtResource( 5 )
-material/0 = null
-material/1 = null
-material/2 = null
 script = ExtResource( 8 )
 currentWeapon = 2
 barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1 ) ]
@@ -212,9 +179,6 @@ anims/speen = SubResource( 7 )
 [node name="Gun2" type="MeshInstance" parent="Head"]
 transform = Transform( 1.5, 5.24537e-07, 0, -5.24537e-07, 1.5, 0, 0, 0, 1.5, -1, 0.054, 0.75 )
 mesh = ExtResource( 5 )
-material/0 = null
-material/1 = null
-material/2 = null
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_description_": ""
