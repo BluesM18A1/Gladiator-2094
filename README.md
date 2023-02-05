@@ -7,9 +7,8 @@ and improving it any way I see fit.
 
 Today, it serves the purpose of being an open-source portfolio piece, and maybe one day a fully fleshed out and fun game. 
 
-TODO LIST:	
-
-    Port to Godot 4.0   
-    Airborne enemies    
-    Upgrade mechanics   
-    Networked multiplayer at long last? 
+TODO LIST:
+Port to Godot 4.0   
+Airborne enemies    
+Upgrade mechanics   
+Networked multiplayer at long last? 
