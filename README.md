@@ -1,22 +1,21 @@
 # Gladiator-2094
-Open-Source FPS for Godot Engine only using C#
+Arcade-style Bullet Hell FPS
 
-This is a "director's cut" of a multiplayer bullet hell FPS game I made in high school with 2 friends called "Gladiator 2092".
-2092 was made in Unity Engine v2018.3, and half of the development time went towards figuring out the broken networking API.
-2092 was never "completed" so to speak. Many features we wanted were either broken or never implemented.
+Based off of a school project done many years ago called "Gladiator 2092" (not to be released to the public). 
+2092 was made in Unity during a time where its networking stack was in a transitional period and left completely broken with half-rewritten documentation.  
+Since networked co-op multiplayer was a big part of the game's plans at the time, the project had to be cancelled.  
 
-So all alone, I have decided to recreate parts of this game in the Godot Engine to teach myself how to use the engine.
-This codebase is effectively a playground to test certain features in Godot, and will be updated sporadically as I try new engine features.
+A few years later, I found out about the Godot Engine and decided to learn the ropes by porting the Unity game my friends and I worked on, 
+and improving it any way I see fit. 
 
-I am releasing all the code for free distribution and commercialization, though keep in mind some audio assets are 3rd party and have unknown licensing terms.
+Today, it serves the purpose of being an open-source portfolio piece, and maybe one day a fully fleshed out and fun game. 
 
-TO-DO:  
--Update project for compatibility with Godot 4.0 upon release.  
--Upgrade system?
+Feel free to use any code in here for your own projects, though keep in mind some audio assets are 3rd party with unknown licensing terms.
 
-STRETCH GOALS:
+TODO LIST:  
+-Port to Godot 4.0   
+-Airborne enemies    
+-Upgrade mechanics   
+-Networked multiplayer at long last? 
 
--Restore networked multiplayer functionality.
-
-Download the music here!
-https://cathoderayblues.bandcamp.com/album/gladiator-2094-ost
+Download the music here! https://cathoderayblues.bandcamp.com/album/gladiator-2094-ost
