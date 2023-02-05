@@ -1,30 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/ItemBox.cs" type="Script" id=1]
 [ext_resource path="res://Models/itembox.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://Textures/UI/Icon_Health.png" type="Texture" id=3]
-
-
-
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0, 0, 0, 1 )
-emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 0.88
-emission_operator = 0
-emission_on_uv2 = false
-emission_texture = ExtResource( 3 )
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 1, 0, 0.494118, 1 )
-metallic = 0.19
-metallic_specular = 1.0
-roughness = 0.0
-emission_enabled = true
-emission = Color( 0.207843, 0, 0.141176, 1 )
-emission_energy = 3.82
-emission_operator = 0
-emission_on_uv2 = false
+[ext_resource path="res://Materials/items/icon_health.tres" type="Material" id=3]
+[ext_resource path="res://Materials/items/box_health.tres" type="Material" id=4]
 
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.4, 0.4, 0.4 )
@@ -55,8 +34,8 @@ itemCount = 20
 [node name="itembox" type="MeshInstance" parent="."]
 transform = Transform( -0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0.4, 0 )
 mesh = ExtResource( 2 )
-material/0 = SubResource( 1 )
-material/1 = SubResource( 2 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
@@ -65,4 +44,5 @@ shape = SubResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rotate"
 anims/rotate = SubResource( 4 )
+
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

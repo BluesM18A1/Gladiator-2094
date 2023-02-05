@@ -51,7 +51,7 @@ public class Player : Combatant
 		fuelMeter = GetNode<TextureProgress>("HUD/FuelMeter");
 		healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
 		screenAni = GetNode<AnimationPlayer>("HUD/ScreenFlash/ScreenTransitions");
-		Input.SetMouseMode(Input.MouseMode.Captured);
+		Input.MouseMode = Input.MouseModeEnum.Captured;
 		mouseSensitivity = config.mouseSensitivity;
 		HP = maxHP;
 		healthMeter.MaxValue = maxHP;
@@ -165,7 +165,7 @@ public class Player : Combatant
 	public override void _Input(InputEvent @event)
 	{
 		mouseSensitivity = config.mouseSensitivity;
-		if (@event is InputEventMouseMotion && Input.GetMouseMode() == Input.MouseMode.Captured)
+		if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
 			InputEventMouseMotion mouseEvent = @event as InputEventMouseMotion;
 			head.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -mouseSensitivity));

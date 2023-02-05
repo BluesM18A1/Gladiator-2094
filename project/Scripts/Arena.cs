@@ -59,7 +59,7 @@ public class Arena : Spatial
 		{
 			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Escape)
 			{
-				if (Input.GetMouseMode() == Input.MouseMode.Captured)
+				if (Input.MouseMode == Input.MouseModeEnum.Captured)
 				{
 					
 				}

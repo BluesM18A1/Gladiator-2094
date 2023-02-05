@@ -15,11 +15,23 @@
 [ext_resource path="res://Sounds/pickups/healthPickup.wav" type="AudioStream" id=13]
 [ext_resource path="res://Sounds/hurtsound.wav" type="AudioStream" id=14]
 [ext_resource path="res://Models/singleAxel.obj" type="ArrayMesh" id=15]
+<<<<<<< Updated upstream:project/Prefabs/Player.tscn
 [ext_resource path="res://Textures/smile.png" type="Texture" id=16]
 [ext_resource path="res://Textures/tread.png" type="Texture" id=18]
 [ext_resource path="res://Sounds/playerSpawn.wav" type="AudioStream" id=19]
 [ext_resource path="res://Sounds/land.wav" type="AudioStream" id=20]
 [ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=21]
+=======
+[ext_resource path="res://Materials/player_head.tres" type="Material" id=16]
+[ext_resource path="res://Scripts/AxelAnimation.cs" type="Script" id=17]
+[ext_resource path="res://Materials/player_tire.material" type="Material" id=18]
+[ext_resource path="res://Sounds/playerSpawn.wav" type="AudioStream" id=19]
+[ext_resource path="res://Sounds/land.wav" type="AudioStream" id=20]
+[ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://Scripts/UI/FPScounter.cs" type="Script" id=22]
+[ext_resource path="res://Materials/player_gun.tres" type="Material" id=23]
+[ext_resource path="res://Materials/player_body.tres" type="Material" id=24]
+>>>>>>> Stashed changes:Prefabs/Player.tscn
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.2
@@ -27,20 +39,6 @@ bottom_radius = 0.3
 height = 0.7
 radial_segments = 16
 rings = 1
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0, 0, 1, 1 )
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0, 0, 0, 1 )
-metallic_specular = 0.0
-emission_enabled = true
-emission = Color( 0.555, 0.555, 0.75, 1 )
-emission_energy = 1.0
-emission_operator = 1
-emission_on_uv2 = false
-emission_texture = ExtResource( 18 )
-uv1_scale = Vector3( 2, 2, 1 )
 
 [sub_resource type="Animation" id=4]
 loop = true
@@ -58,33 +56,15 @@ tracks/0/keys = {
 }
 
 [sub_resource type="SphereMesh" id=5]
+material = ExtResource( 16 )
 radius = 0.35
 height = 0.75
 radial_segments = 16
 rings = 8
 
-[sub_resource type="SpatialMaterial" id=6]
-resource_local_to_scene = true
-albedo_color = Color( 0.968627, 1, 0, 1 )
-albedo_texture = ExtResource( 16 )
-metallic = 0.5
-emission_enabled = true
-emission = Color( 1, 0.74902, 0, 1 )
-emission_energy = 0.5
-emission_operator = 1
-emission_on_uv2 = false
-emission_texture = ExtResource( 16 )
-uv1_offset = Vector3( -0.01, 0, 0 )
-
-[sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0, 0, 1, 1 )
-metallic = 0.54
-metallic_specular = 0.8
-roughness = 0.18
-
 [sub_resource type="CylinderShape" id=8]
-radius = 0.3
 height = 1.7
+radius = 0.3
 
 [sub_resource type="CanvasItemMaterial" id=9]
 light_mode = 1
@@ -133,9 +113,7 @@ tracks/0/keys = {
 size = 32
 font_data = ExtResource( 21 )
 
-[node name="Player" type="KinematicBody" groups=[
-"Players",
-]]
+[node name="Player" type="KinematicBody" groups=["Players"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 collision_layer = 2
 collision_mask = 15
@@ -144,13 +122,18 @@ script = ExtResource( 1 )
 [node name="Body" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.0319977, -3.55271e-15 )
 mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+material/0 = ExtResource( 24 )
 
 [node name="Axel" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
 mesh = ExtResource( 15 )
+<<<<<<< Updated upstream:project/Prefabs/Player.tscn
 material/0 = SubResource( 3 )
 material/1 = null
+=======
+material/0 = ExtResource( 18 )
+script = ExtResource( 17 )
+>>>>>>> Stashed changes:Prefabs/Player.tscn
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Axel"]
 autoplay = "Spin"
@@ -162,7 +145,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 [node name="Head" type="MeshInstance" parent="Neck"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393, 0 )
 mesh = SubResource( 5 )
-material/0 = SubResource( 6 )
 
 [node name="Camera" type="Camera" parent="Neck"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.25 )
@@ -173,7 +155,19 @@ near = 0.01
 
 [node name="Gun" parent="Neck" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112467, -0.722072 )
+<<<<<<< Updated upstream:project/Prefabs/Player.tscn
 material/0 = SubResource( 7 )
+=======
+material/0 = ExtResource( 23 )
+coolSpeed = 0.5
+buckshotSpread = 0.06
+coolRepeater = 20.0
+coolBuckshot = 6.0
+coolGrenades = 3.0
+coolFlames = 50.0
+HUDPath = NodePath("../../HUD")
+PlayerPath = NodePath("../..")
+>>>>>>> Stashed changes:Prefabs/Player.tscn
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0 )
@@ -324,8 +318,8 @@ margin_top = 33.7361
 margin_right = 52.5039
 margin_bottom = 161.736
 rect_scale = Vector2( 0.8, 1.5 )
-custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0, 0.501961, 1, 1 )
+custom_fonts/font = ExtResource( 10 )
 text = "ERR"
 align = 1
 valign = 1
@@ -368,8 +362,8 @@ margin_top = 33.7361
 margin_right = 295.495
 margin_bottom = 161.736
 rect_scale = Vector2( -0.8, 1.5 )
-custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 1, 0.501961, 0, 1 )
+custom_fonts/font = ExtResource( 10 )
 text = "ERR"
 align = 1
 valign = 1

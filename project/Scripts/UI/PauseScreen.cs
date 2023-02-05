@@ -24,7 +24,7 @@ public class PauseScreen : Control
             else 
             {
                 GD.Print("pausing....");
-				Input.SetMouseMode(Input.MouseMode.Visible);
+				Input.MouseMode = Input.MouseModeEnum.Visible;
 				Visible = true;
 				GetTree().Paused = true;
             }
@@ -42,7 +42,7 @@ public class PauseScreen : Control
     void resume_button_pressed()
     {
         Visible = false;
-        Input.SetMouseMode(Input.MouseMode.Captured);
+        Input.MouseMode = Input.MouseModeEnum.Captured;
         GetTree().Paused = false;
     }
 }

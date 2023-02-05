@@ -4,12 +4,11 @@
 [ext_resource path="res://Textures/UI/CooldownMeter_fill.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/pickups/repeaterPickup.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sounds/guns/switch.wav" type="AudioStream" id=5]
+[ext_resource path="res://Materials/player_gun.tres" type="Material" id=6]
 
 [sub_resource type="CubeMesh" id=1]
+material = ExtResource( 6 )
 size = Vector3( 0.25, 0.2, 0.6 )
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0, 0, 0.501961, 1 )
 
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport")
@@ -17,7 +16,20 @@ viewport_path = NodePath("Viewport")
 [node name="Gun" type="MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.3 )
 mesh = SubResource( 1 )
+<<<<<<< Updated upstream:project/Prefabs/Parts/PlayerGun.tscn
 material/0 = SubResource( 2 )
+=======
+script = ExtResource( 1 )
+barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 ), Transform( 1, 0, 0.06, 0, 1, 0, -0.06, 0, 1, 0, 0, -0.5 ), Transform( 1, 0, -0.06, 0, 1, 0, 0.06, 0, 1, 0, 0, -0.5 ), Transform( 1, 0, -0.04, 0, 1, -0.04, 0.04, 0.04, 1, 0, 0, -0.5 ), Transform( 1, 0, 0, 0, 1, -0.06, 0, 0.06, 1, 0, 0, -0.5 ), Transform( 1, 0, 0.04, 0, 1, -0.04, -0.04, 0.04, 1, 0, 0, -0.5 ), Transform( 1, 0, 0.04, 0, 1, 0.04, -0.04, -0.04, 1, 0, 0, -0.5 ), Transform( 1, 0, 0, 0, 1, 0.06, 0, -0.06, 1, 0, 0, -0.5 ), Transform( 1, 0, -0.04, 0, 1, 0.04, 0.04, -0.04, 1, 0, 0, -0.5 ) ]
+shells = 40
+bullets = 80
+grenades = 20
+buckshotSpread = 0.08
+coolRepeater = 10.0
+coolBuckshot = 2.5
+coolGrenades = 1.5
+coolFlames = 25.0
+>>>>>>> Stashed changes:Prefabs/Parts/PlayerGun.tscn
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 256, 512 )

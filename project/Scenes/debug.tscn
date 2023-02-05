@@ -12,7 +12,19 @@
 [ext_resource path="res://Textures/bricks/DisplacementMap.png" type="Texture" id=11]
 [ext_resource path="res://Textures/bricks/NormalMap.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=13]
+<<<<<<< Updated upstream:project/Scenes/debug.tscn
 [ext_resource path="res://Materials/grid.material" type="Material" id=15]
+=======
+[ext_resource path="res://Prefabs/Enemies/Cat.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Materials/environment/grid.material" type="Material" id=15]
+[ext_resource path="res://Prefabs/Enemies/Siren.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Prefabs/Boxes/Box_Shells.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Prefabs/Enemies/Tortoise.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Prefabs/Boxes/Box_Grenades.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Prefabs/Boxes/Box_Repeater.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Prefabs/Boxes/Box_Health.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Prefabs/Enemies/Dreadnaught.tscn" type="PackedScene" id=22]
+>>>>>>> Stashed changes:Scenes/debug.tscn
 [ext_resource path="res://Sounds/music/pathetique_weapons.wav" type="AudioStream" id=23]
 
 [sub_resource type="Animation" id=1]

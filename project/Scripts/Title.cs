@@ -17,7 +17,7 @@ public class Title : Control
 			}*/
 		config = GetNode<Config>("/root/Config");
 		bloop = GetNode<AudioStreamPlayer>("bloop");
-		Input.SetMouseMode(Input.MouseMode.Visible);
+		Input.MouseMode = Input.MouseModeEnum.Visible;
 		//sometimes the window shoots up really high depending on OS and monitor setup. This makes sure you can easily grab and move the window.
 		OS.WindowPosition = new Vector2(OS.WindowPosition.x, 0);
 	}
