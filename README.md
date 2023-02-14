@@ -18,4 +18,4 @@ TODO LIST:
 -Upgrade mechanics   
 -Networked multiplayer at long last? 
 
-Download the music here! https://cathoderayblues.bandcamp.com/album/gladiator-2094-ost
+Download the music here! https://bluesm18a1.bandcamp.com/album/gladiator-2094-ost
