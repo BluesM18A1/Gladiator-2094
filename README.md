@@ -12,10 +12,4 @@ Today, it serves the purpose of being an open-source portfolio piece, and maybe 
 
 Feel free to use any code in here for your own projects, though keep in mind some audio assets are 3rd party with unknown licensing terms.
 
-TODO LIST:  
--Port to Godot 4.0   
--Airborne enemies    
--Upgrade mechanics   
--Networked multiplayer at long last? 
-
-Download the music here! https://cathoderayblues.bandcamp.com/album/gladiator-2094-ost
+You are currently looking at the Godot 3.x compatible branch, which is no longer being maintained as Godot 4.0 is on the horizon, but nonetheless kept available.
