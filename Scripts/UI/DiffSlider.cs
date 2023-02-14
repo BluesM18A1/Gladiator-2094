@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DiffSlider : HSlider
+public partial class DiffSlider : HSlider
 {
     Config config;
     Label diffSetting;

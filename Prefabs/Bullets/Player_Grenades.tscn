@@ -11,15 +11,15 @@ height = 0.3
 radial_segments = 6
 rings = 4
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="SphereShape3D" id=3]
 radius = 0.15
 
-[node name="Bullet" type="RigidBody" groups=["projectiles"]]
+[node name="Bullet" type="RigidBody3D" groups=["projectiles"]]
 collision_layer = 2048
 collision_mask = 5
 gravity_scale = 3.0
 continuous_cd = true
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -29,10 +29,10 @@ damage = -30
 speed = 50.0
 sparks = ExtResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

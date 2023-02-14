@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Explosion.cs" type="Script" id=1]
-[ext_resource path="res://Textures/particle.png" type="Texture" id=2]
+[ext_resource path="res://Textures/particle.png" type="Texture2D" id=2]
 [ext_resource path="res://Prefabs/GrenadeExplosionSparks.tscn" type="PackedScene" id=3]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id=1]
 resource_local_to_scene = true
 radius = 3.0
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="StandardMaterial3D" id=2]
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 3
@@ -23,7 +23,7 @@ resource_local_to_scene = true
 material = SubResource( 2 )
 size = Vector2( 8, 8 )
 
-[node name="RigidBody" type="Area"]
+[node name="RigidBody3D" type="Area3D"]
 collision_layer = 8
 collision_mask = 15
 script = ExtResource( 1 )
@@ -32,10 +32,10 @@ speed = 0.0
 lifetime = 0.2
 sparks = ExtResource( 3 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource( 3 )
 material/0 = null
 

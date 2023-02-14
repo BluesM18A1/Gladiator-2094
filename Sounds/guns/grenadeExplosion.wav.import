@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/grenadeExplosion.wav-b44acdb5c4d60fd7ba9b7f5461d46239.sample"
+type="AudioStreamWAV"
+uid="uid://dq1qtmko0ju1b"
+path="res://.godot/imported/grenadeExplosion.wav-b44acdb5c4d60fd7ba9b7f5461d46239.sample"
 
 [deps]
 
 source_file="res://Sounds/guns/grenadeExplosion.wav"
-dest_files=[ "res://.import/grenadeExplosion.wav-b44acdb5c4d60fd7ba9b7f5461d46239.sample" ]
+dest_files=["res://.godot/imported/grenadeExplosion.wav-b44acdb5c4d60fd7ba9b7f5461d46239.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

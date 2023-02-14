@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/10sec.wav-c3c8128fd22fc86d8df1c61e67a0ebf4.sample"
+type="AudioStreamWAV"
+uid="uid://pbxd4ws0675s"
+path="res://.godot/imported/10sec.wav-c3c8128fd22fc86d8df1c61e67a0ebf4.sample"
 
 [deps]
 
 source_file="res://Sounds/announcer/10sec.wav"
-dest_files=[ "res://.import/10sec.wav-c3c8128fd22fc86d8df1c61e67a0ebf4.sample" ]
+dest_files=["res://.godot/imported/10sec.wav-c3c8128fd22fc86d8df1c61e67a0ebf4.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

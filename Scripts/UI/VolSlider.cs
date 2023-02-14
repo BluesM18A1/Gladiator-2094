@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class VolSlider : VSlider
+public partial class VolSlider : VSlider
 {
     public enum AudioBuses {MASTER = 0, BGM = 1, SFX = 2};
     [Export]

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/pathetique_weapons.wav-20d55ba08b72e39d7e4a78587592eb77.sample"
+type="AudioStreamWAV"
+uid="uid://roewqimw712v"
+path="res://.godot/imported/pathetique_weapons.wav-20d55ba08b72e39d7e4a78587592eb77.sample"
 
 [deps]
 
 source_file="res://Sounds/music/pathetique_weapons.wav"
-dest_files=[ "res://.import/pathetique_weapons.wav-20d55ba08b72e39d7e4a78587592eb77.sample" ]
+dest_files=["res://.godot/imported/pathetique_weapons.wav-20d55ba08b72e39d7e4a78587592eb77.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

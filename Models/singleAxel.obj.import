@@ -1,19 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh"
+uid="uid://dih0kmhih14lk"
+path="res://.godot/imported/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh"
 
 [deps]
 
-files=[ "res://.import/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh" ]
+files=["res://.godot/imported/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh"]
 
 source_file="res://Models/singleAxel.obj"
-dest_files=[ "res://.import/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh", "res://.import/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh" ]
+dest_files=["res://.godot/imported/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh", "res://.godot/imported/singleAxel.obj-168d14fe05aa52cf3306d98c8df75a1f.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
 optimize_mesh=true

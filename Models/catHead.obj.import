@@ -1,19 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/catHead.obj-94b7f6079faa8b03e4e79c10a51cff04.mesh"
+uid="uid://cakq5i2rkagtk"
+path="res://.godot/imported/catHead.obj-94b7f6079faa8b03e4e79c10a51cff04.mesh"
 
 [deps]
 
-files=[ "res://.import/catHead.obj-94b7f6079faa8b03e4e79c10a51cff04.mesh" ]
+files=["res://.godot/imported/catHead.obj-94b7f6079faa8b03e4e79c10a51cff04.mesh"]
 
 source_file="res://Models/catHead.obj"
-dest_files=[ "res://.import/catHead.obj-94b7f6079faa8b03e4e79c10a51cff04.mesh", "res://.import/catHead.obj-94b7f6079faa8b03e4e79c10a51cff04.mesh" ]
+dest_files=["res://.godot/imported/catHead.obj-94b7f6079faa8b03e4e79c10a51cff04.mesh", "res://.godot/imported/catHead.obj-94b7f6079faa8b03e4e79c10a51cff04.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
 optimize_mesh=true

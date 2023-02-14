@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/buckshotPickup.wav-8443450dca8153b3b4898b6522edd7e8.sample"
+type="AudioStreamWAV"
+uid="uid://bgh2p0a1krspt"
+path="res://.godot/imported/buckshotPickup.wav-8443450dca8153b3b4898b6522edd7e8.sample"
 
 [deps]
 
 source_file="res://Sounds/pickups/buckshotPickup.wav"
-dest_files=[ "res://.import/buckshotPickup.wav-8443450dca8153b3b4898b6522edd7e8.sample" ]
+dest_files=["res://.godot/imported/buckshotPickup.wav-8443450dca8153b3b4898b6522edd7e8.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

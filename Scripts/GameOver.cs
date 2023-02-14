@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class GameOver : Control
+public partial class GameOver : Control
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -14,11 +14,12 @@ public class GameOver : Control
     }
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.
-  public override void _Process(float delta)
+  //TODO: move this code to the input method, no need to have anything on process.
+  public override void _Process(double delta)
   {
       if (Input.IsActionJustPressed("ui_cancel"))
       {
-          GetTree().ChangeScene("res://Title.tscn");
+          GetTree().ChangeSceneToFile("res://Title.tscn");
       }
   }
 }

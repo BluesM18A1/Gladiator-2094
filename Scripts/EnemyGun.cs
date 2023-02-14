@@ -1,14 +1,14 @@
 using Godot;
 using System;
 
-public class EnemyGun : Gun
+public partial class EnemyGun : Gun
 {
 	[Export]
     public PackedScene bullet = (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Bullet.tscn");
 	public AudioStreamPlayer3D snd;
 	[Export]
-	public float fireRateMin = 0.5f, fireRateMax = 0.8f, fireRange = 32;
-	float time = 0;
+	public double fireRateMin = 0.5f, fireRateMax = 0.8f, fireRange = 32;
+	double time = 0;
 	public float fireRate;
 	[Export]
 	public bool launchSpeedByDistance = false; //this is for adjusting launch speed for Grenades
@@ -19,22 +19,22 @@ public class EnemyGun : Gun
 	[Export]
 	public NodePath parentPath;
 	
-	public Spatial player;
+	public Node3D player;
 	byte serialFireCounter = 0;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		
 		snd = GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D");
-		player = GetNode<Spatial>("/root/Spatial/Player");
+		player = GetNode<Node3D>("/root/Node3D/Player");
 		fireRate = (float)GD.RandRange(fireRateMin, fireRateMax);
 		if (startupDelay) time -= fireRate;
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _PhysicsProcess(float delta)
+	public override void _PhysicsProcess(double delta)
 	{
-		if (ToGlobal(Translation).DistanceTo(player.Translation) < fireRange)
+		if (ToGlobal(Position).DistanceTo(player.Position) < fireRange)
 		{
 			if (time >= fireRate)
 			{
@@ -63,11 +63,11 @@ public class EnemyGun : Gun
 	}
 	protected void Fire(int i)
 	{
-		Bullet newBullet = (Bullet)bullet.Instance();
+		Bullet newBullet = (Bullet)bullet.Instantiate();
 		newBullet.Transform = GlobalTransform * barrels[i];
 		GetTree().Root.AddChild(newBullet);
 		newBullet.ApplyImpulse(new Vector3(0, 0, 0),
-		 -newBullet.GlobalTransform.basis.z * newBullet.speed * (launchSpeedByDistance ? ToGlobal(Translation).DistanceTo(player.Translation) : 1));
+		 -newBullet.GlobalTransform.Basis.Z * newBullet.speed * (launchSpeedByDistance ? ToGlobal(Position).DistanceTo(player.Position) : 1));
 		//parent.GetTarget(); //find a new target
 		//parent.UpdatePath(parent.targetNavPos); //start over pathfinding using new target
 		//snd.PitchScale = fireRate; // should I use different randoms for pitchscale later?

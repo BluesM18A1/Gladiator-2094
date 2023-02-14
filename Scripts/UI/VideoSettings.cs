@@ -1,8 +1,9 @@
 using Godot;
 using System;
 
-public class VideoSettings : Control
+public partial class VideoSettings : Control
 {
+
     Config cfg;
     CheckBox fullScreenCheck, vsyncCheck, borderlessCheck, hdrCheck;
     Button fxaaSwitch;
@@ -34,66 +35,74 @@ public class VideoSettings : Control
 
     void UpdateUI()
     {
-        fullScreenCheck.Pressed = OS.WindowFullscreen;
-        vsyncCheck.Pressed = OS.VsyncEnabled;
-        borderlessCheck.Pressed = OS.WindowBorderless;
-        hdrCheck.Pressed = GetViewport().Hdr;
-        framerateCap.Value = Engine.TargetFps;
-        physicsRate.Value = Engine.IterationsPerSecond;
-        resolutionScale.Value = cfg.resolutionScale;
-        FXAASwitch(GetViewport().Fxaa);
-        antiAliasing.Select((int)GetViewport().Msaa);
-        TargetFPSChange((float)Engine.TargetFps);
-        PhysicsRateChange((float)Engine.IterationsPerSecond);
-        ResolutionScaleChange(cfg.resolutionScale);
-        GetViewport().Size = new Vector2(OS.WindowSize.x * cfg.resolutionScale, OS.WindowSize.y * cfg.resolutionScale);
+
+        //if (GetWindow().Mode == Window.ModeEnum.Fullscreen) fullScreenCheck.ButtonPressed = true;
+        //They also changed vsync settings to an enum, with some possibly useful new settings. How
+        //vsyncCheck.ButtonPressed = OS.VsyncEnabled;
+        borderlessCheck.ButtonPressed = GetWindow().Borderless;
+        //hdrCheck.ButtonPressed = GetViewport().Hdr;
+        framerateCap.Value = Engine.MaxFps;
+        physicsRate.Value = Engine.PhysicsTicksPerSecond;
+        resolutionScale.Value = GetViewport().Scaling3DScale;
+        //FXAASwitch(GetViewport().Fxaa);
+        antiAliasing.Select((int)GetViewport().Msaa3D);
+        TargetFPSChange((float)Engine.MaxFps);
+        PhysicsRateChange((float)Engine.PhysicsTicksPerSecond);
+        //TODO: Toggle switch for AMD FSR //GetViewport().Scaling3DMode = 
     }
     void TargetFPSChange(float value)
     {
-        Engine.TargetFps = (int)value;
+        Engine.MaxFps = (int)value;
         fpsCapLabel.Text = value > 0 ? value.ToString() : "Inf";
         bloop.Play();
     }
     void PhysicsRateChange(float value)
     {
-        Engine.IterationsPerSecond = (int)value;
+        Engine.PhysicsTicksPerSecond = (int)value;
         physicsHzLabel.Text = value.ToString() + "hz";
         bloop.Play();
     }
     void ResolutionScaleChange(float value)
     {
-        cfg.resolutionScale = value;
+        GetViewport().Scaling3DScale = value;
         resolutionScaleLabel.Text = value.ToString("P0");
-        GetViewport().Size = new Vector2(OS.WindowSize.x * cfg.resolutionScale, OS.WindowSize.y * cfg.resolutionScale);
         bloop.Play();
     }
+    //window options are now an enum, so a toggle switch is a bad idea.
+    /*
     private void FullScreenToggle(bool toggled)
     {
         OS.WindowFullscreen = toggled;
     }
+    
     private void VsyncToggle(bool toggled)
 	{
 		OS.VsyncEnabled = toggled;
 	}
+    */
     private void BorderlessToggle(bool toggled)
     {
-        OS.WindowBorderless = toggled;
+        GetWindow().Borderless = toggled;
     }
+    /*
     private void HDRToggle(bool toggled)
     {
         GetViewport().Hdr = toggled;
     }
+    */
     private void AntiAliasingChange(int id)
     {
-        GetViewport().Msaa = (Viewport.MSAA)id;
+        GetViewport().Msaa3D = (Viewport.Msaa)id;
     }
     private void AnisoChange(int id)
     {
            //Welp turns out I can't easily adjust Anisotropic settings until Godot 4.0 releases. Too bad!
     }
+    /*
     private void FXAASwitch(bool toggled)
     {
         GetViewport().Fxaa = toggled;
         fxaaSwitch.Text = toggled ? "FXAA" : "MSAA";
     }
+    */
 }

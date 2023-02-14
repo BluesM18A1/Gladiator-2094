@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Textures/UI/frame.png" type="Texture" id=2]
-[ext_resource path="res://Textures/UI/button_check.png" type="Texture" id=3]
+[ext_resource path="res://Textures/UI/A.ttf" type="FontFile" id=1]
+[ext_resource path="res://Textures/UI/frame.png" type="Texture2D" id=2]
+[ext_resource path="res://Textures/UI/button_check.png" type="Texture2D" id=3]
 [ext_resource path="res://Scripts/UI/vsyncCheck.cs" type="Script" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 42
 outline_color = Color( 0, 1, 0, 1 )
 font_data = ExtResource( 1 )
@@ -15,10 +15,10 @@ anchor_left = 0.034
 anchor_top = 0.745
 anchor_right = 0.211
 anchor_bottom = 0.842
-margin_left = 349.188
-margin_top = -0.608154
-margin_right = 349.348
-margin_bottom = -0.368103
+offset_left = 349.188
+offset_top = -0.608154
+offset_right = 349.348
+offset_bottom = -0.368103
 texture = ExtResource( 2 )
 patch_margin_left = 10
 patch_margin_top = 10
@@ -32,9 +32,9 @@ __meta__ = {
 modulate = Color( 0, 1, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.029
-margin_left = -1.0
-margin_right = -0.999969
-margin_bottom = -0.0450668
+offset_left = -1.0
+offset_right = -0.999969
+offset_bottom = -0.0450668
 custom_icons/checked = ExtResource( 3 )
 custom_icons/unchecked = ExtResource( 2 )
 custom_fonts/font = SubResource( 1 )

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class waveChanger : NinePatchRect
+public partial class waveChanger : NinePatchRect
 {
     Config config;
     Label counter;

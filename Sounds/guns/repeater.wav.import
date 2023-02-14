@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/repeater.wav-bb94e60fe084d1328e8bfaa648d8f6bd.sample"
+type="AudioStreamWAV"
+uid="uid://bn5hkef3r58x6"
+path="res://.godot/imported/repeater.wav-bb94e60fe084d1328e8bfaa648d8f6bd.sample"
 
 [deps]
 
 source_file="res://Sounds/guns/repeater.wav"
-dest_files=[ "res://.import/repeater.wav-bb94e60fe084d1328e8bfaa648d8f6bd.sample" ]
+dest_files=["res://.godot/imported/repeater.wav-bb94e60fe084d1328e8bfaa648d8f6bd.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

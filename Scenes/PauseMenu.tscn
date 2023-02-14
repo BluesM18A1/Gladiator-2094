@@ -5,29 +5,29 @@
 [ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=3]
 [ext_resource path="res://default.bigtext.theme" type="Theme" id=4]
 [ext_resource path="res://UI/Sensitivity.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Textures/UI/A.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Textures/UI/A.ttf" type="FontFile" id=7]
 [ext_resource path="res://Scripts/PauseScreen.cs" type="Script" id=12]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0, 0, 0, 1 )
+offsets = PackedFloat32Array( 0 )
+colors = PackedColorArray( 0, 0, 0, 1 )
 
-[sub_resource type="GradientTexture" id=2]
+[sub_resource type="GradientTexture2D" id=2]
 gradient = SubResource( 1 )
 width = 1920
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 48
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 24
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
 [node name="PauseScreen" type="Control"]
-pause_mode = 2
+process_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 12 )
@@ -52,9 +52,9 @@ anchor_left = 0.872
 anchor_top = 0.847
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.399963
-margin_top = -0.200043
-margin_bottom = -9.0
+offset_left = 0.399963
+offset_top = -0.200043
+offset_bottom = -9.0
 theme = ExtResource( 4 )
 text = "Quit"
 __meta__ = {
@@ -66,10 +66,10 @@ anchor_left = 0.667
 anchor_top = 0.845
 anchor_right = 0.857
 anchor_bottom = 1.0
-margin_left = 0.399963
-margin_top = -3.05176e-05
-margin_right = 0.399963
-margin_bottom = -10.0
+offset_left = 0.399963
+offset_top = -3.05176e-05
+offset_right = 0.399963
+offset_bottom = -10.0
 theme = ExtResource( 4 )
 text = "Resume"
 __meta__ = {
@@ -78,8 +78,8 @@ __meta__ = {
 
 [node name="Menu Label" type="Label" parent="."]
 anchor_right = 0.683
-margin_right = -5.40002
-margin_bottom = 49.0
+offset_right = -5.40002
+offset_bottom = 49.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -105,17 +105,17 @@ volume_db = -5.0
 bus = "SFX"
 
 [node name="VolumeControls" parent="." instance=ExtResource( 1 )]
-margin_bottom = -88.0
+offset_bottom = -88.0
 
 [node name="ControlsText" type="RichTextLabel" parent="."]
 anchor_left = 0.015
 anchor_top = 0.048
 anchor_right = 0.631
 anchor_bottom = 0.433
-margin_left = 4.0
-margin_top = 8.2
-margin_right = 8.20001
-margin_bottom = 14.2
+offset_left = 4.0
+offset_top = 8.2
+offset_right = 8.20001
+offset_bottom = 14.2
 custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -137,10 +137,10 @@ anchor_left = 0.009
 anchor_top = 0.431
 anchor_right = 0.648
 anchor_bottom = 0.508
-margin_left = 4.8
-margin_top = 13.4
-margin_right = 4.59998
-margin_bottom = -0.800018
+offset_left = 4.8
+offset_top = 13.4
+offset_right = 4.59998
+offset_bottom = -0.800018
 
 [connection signal="button_down" from="Quit" to="." method="QuitButtonDown"]
 [connection signal="mouse_entered" from="Quit" to="." method="onButtonHover"]

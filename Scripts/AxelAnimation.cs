@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class AxelAnimation : MeshInstance
+public partial class AxelAnimation : MeshInstance3D
 {
     private Combatant parent;
     private AnimationPlayer ani;
@@ -14,14 +14,14 @@ public class AxelAnimation : MeshInstance
         ani = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
 	{
         if (parent.dir != Vector3.Zero)
         {
-            dirRot = (Mathf.Atan2(parent.vel.x, parent.vel.z)) - (parent.Rotation.y); 
+            dirRot = (Mathf.Atan2(parent.vel.X, parent.vel.Z)) - (parent.Rotation.Y); 
         }
-        Vector3 hvel = new Vector3 (parent.vel.x, 0, parent.vel.z);
-		ani.PlaybackSpeed = -hvel.Length() / 8;
+        Vector3 hvel = new Vector3 (parent.vel.X, 0, parent.vel.Z);
+		ani.SpeedScale = -hvel.Length() / 8;
 		RotateY(dirRot);
 	}
 

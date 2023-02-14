@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Textures/tread.png" type="Texture" id=1]
+[ext_resource path="res://Textures/tread.png" type="Texture2D" id=1]
 [ext_resource path="res://Models/singleAxel.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://Scripts/AxelAnimation.cs" type="Script" id=3]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 resource_name = "Material.001"
 albedo_color = Color( 0, 0, 0, 1 )
 metallic_specular = 0.0
@@ -26,14 +26,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( -360, 0, 0 ) ]
 }
 
-[node name="Axel" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+[node name="Axel" type="MeshInstance3D"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
 mesh = ExtResource( 2 )
 material/0 = SubResource( 1 )
 material/1 = null

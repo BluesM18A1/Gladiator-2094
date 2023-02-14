@@ -1,6 +1,6 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gladiator 2094", "Gladiator 2094.csproj", "{0BCC119F-E080-4996-9488-46FB28E9C65B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gladiator 2094", "Gladiator 2094.csproj", "{3E0ADD34-A6B8-43AF-8E59-27211CCC544A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BCC119F-E080-4996-9488-46FB28E9C65B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BCC119F-E080-4996-9488-46FB28E9C65B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BCC119F-E080-4996-9488-46FB28E9C65B}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{0BCC119F-E080-4996-9488-46FB28E9C65B}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{0BCC119F-E080-4996-9488-46FB28E9C65B}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{0BCC119F-E080-4996-9488-46FB28E9C65B}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{3E0ADD34-A6B8-43AF-8E59-27211CCC544A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E0ADD34-A6B8-43AF-8E59-27211CCC544A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E0ADD34-A6B8-43AF-8E59-27211CCC544A}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{3E0ADD34-A6B8-43AF-8E59-27211CCC544A}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{3E0ADD34-A6B8-43AF-8E59-27211CCC544A}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{3E0ADD34-A6B8-43AF-8E59-27211CCC544A}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,20 +1,20 @@
 using Godot;
 using System;
 
-public class Player : Combatant
+public partial class Player : Combatant
 {
 	Config config;
 	//PHYSICS VARIABLES--------------------------------
 	[Export]
-	public float RechargeRate = 100, FuelDrainRate = 60;
+	public double RechargeRate = 100, FuelDrainRate = 60;
 	[Export]
-	public float JetForce = 3f;
+	public double JetForce = 3f;
 	[Export]
-	public float normalSpeed = 7f;
+	public double normalSpeed = 7f;
 	[Export]
-	public float sprintSpeed = 14f;
+	public double sprintSpeed = 14f;
 	[Export]
-	public float mouseSensitivity = 0.3f;
+	public double mouseSensitivity = 0.3f;
 	
 	//GAMEPLAY VARIABLES-------------------------------------
 	public bool alive = true;
@@ -23,16 +23,16 @@ public class Player : Combatant
 	[Export]
 	public int maxFuel = 100;
 	int HPcounter = 0;
-	public float fuel = 0;
+	public double fuel = 0;
 	public bool flameThrowerOn = false;
-	public float overhealDecrementRate = .25f;
-	float overhealTimer = 0;
+	public double overhealDecrementRate = .25f;
+	double overhealTimer = 0;
 	bool needToPlayLandSound = false;
 
 	//COMPONENT VARIABLES------------------------------------
-	private Camera camera;
+	private Camera3D camera;
 	public PlayerGun gun;
-	private TextureProgress healthMeter, fuelMeter;
+	private TextureProgressBar healthMeter, fuelMeter;
 	private Label healthNum;
 	private AnimationPlayer screenAni;
 	protected AudioStreamPlayer boostSnd, medSnd, hurtSnd, landSnd;
@@ -44,14 +44,14 @@ public class Player : Combatant
 		medSnd = GetNode<AudioStreamPlayer>("medSnd");
 		hurtSnd = GetNode<AudioStreamPlayer>("hurtSnd");
 		landSnd = GetNode<AudioStreamPlayer>("landSnd");
-		head = GetNode<Spatial>("Neck");
-		camera = GetNode<Camera>("Neck/Camera");
+		head = GetNode<Node3D>("Neck");
+		camera = GetNode<Camera3D>("Neck/Camera3D");
 		gun = GetNode<PlayerGun>("Neck/Gun");
-		healthMeter = GetNode<TextureProgress>("HUD/HealthMeter");
-		fuelMeter = GetNode<TextureProgress>("HUD/FuelMeter");
+		healthMeter = GetNode<TextureProgressBar>("HUD/HealthMeter");
+		fuelMeter = GetNode<TextureProgressBar>("HUD/FuelMeter");
 		healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
 		screenAni = GetNode<AnimationPlayer>("HUD/ScreenFlash/ScreenTransitions");
-		Input.SetMouseMode(Input.MouseMode.Captured);
+		Input.MouseMode = Input.MouseModeEnum.Captured;
 		mouseSensitivity = config.mouseSensitivity;
 		HP = maxHP;
 		healthMeter.MaxValue = maxHP;
@@ -59,11 +59,11 @@ public class Player : Combatant
 		healthNum.Text = HPcounter.ToString();
 		healthMeter.Value = HPcounter;
 	}
-    public override void _Process(float delta)
-    {
+	public override void _Process(double delta)
+	{
 		// Analog stick aiming
-		head.RotateX(Mathf.Deg2Rad(Input.GetJoyAxis(0, 3) * -mouseSensitivity));
-		RotateY(Mathf.Deg2Rad(-Input.GetJoyAxis(0, 2)* mouseSensitivity));
+		head.RotateX(Mathf.DegToRad(Input.GetJoyAxis(0, JoyAxis.RightY) * (float)-mouseSensitivity));
+		RotateY(Mathf.DegToRad(-Input.GetJoyAxis(0, JoyAxis.RightX)* (float)mouseSensitivity));
 		//overheal mechanics
 		if (HP > healthMeter.MaxValue)
 		{
@@ -77,32 +77,32 @@ public class Player : Combatant
 			}
 		}
 		//else overheal = false;
-    }
-    
-	public override void _PhysicsProcess(float delta)
+	}
+	
+	public override void _PhysicsProcess(double delta)
 	{
 		ProcessHealthMeter(delta);
 		ProcessMovement(delta); //it is very important that you do MoveAndSlide() before you do
 		ProcessInput(delta); //the IsOnFloor() calls that the input processing will do.
 	}
 
-	private void ProcessInput(float delta)
+	private void ProcessInput(double delta)
 	{
 		//  Walking
-		Transform camXform = camera.GlobalTransform;
+		Transform3D camXform = camera.GlobalTransform;
 
 		Vector2 inputMovementVector = new Vector2();
 		
 		
 			dir = new Vector3();
 			if (Input.IsActionPressed("player_forward"))
-			inputMovementVector.y += 1;
+			inputMovementVector.Y += 1;
 			if (Input.IsActionPressed("player_backward"))
-				inputMovementVector.y -= 1;
+				inputMovementVector.Y -= 1;
 			if (Input.IsActionPressed("player_left"))
-				inputMovementVector.x -= 1;
+				inputMovementVector.X -= 1;
 			if (Input.IsActionPressed("player_right"))
-				inputMovementVector.x += 1;
+				inputMovementVector.X += 1;
 		
 		
 
@@ -111,8 +111,8 @@ public class Player : Combatant
 		if (alive)
 		{
 			//apply movement vector
-			dir += -camXform.basis.z.Normalized() * inputMovementVector.y;
-			dir += camXform.basis.x.Normalized() * inputMovementVector.x;
+			dir += -camXform.Basis.Z.Normalized() * inputMovementVector.Y;
+			dir += camXform.Basis.X.Normalized() * inputMovementVector.X;
 			
 			
 			//  Jumping / Jetpack thrust
@@ -120,7 +120,7 @@ public class Player : Combatant
 			{
 				if (Input.IsActionJustPressed("player_jump")) boostSnd.Play();
 				
-				vel.y = (fuel / 10);
+				vel.Y = ((float)fuel / 10);
 				fuel -= FuelDrainRate * delta;
 			}
 
@@ -157,7 +157,7 @@ public class Player : Combatant
 		}
 		else
 		{
-			GetTree().ChangeScene("res://Scenes/GameOver.tscn");
+			GetTree().ChangeSceneToFile("res://Scenes/GameOver.tscn");
 		}
 		fuel = Mathf.Clamp(fuel, 0, 100);
 		fuelMeter.Value = fuel;
@@ -165,18 +165,18 @@ public class Player : Combatant
 	public override void _Input(InputEvent @event)
 	{
 		mouseSensitivity = config.mouseSensitivity;
-		if (@event is InputEventMouseMotion && Input.GetMouseMode() == Input.MouseMode.Captured)
+		if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
 			InputEventMouseMotion mouseEvent = @event as InputEventMouseMotion;
-			head.RotateX(Mathf.Deg2Rad(mouseEvent.Relative.y * -mouseSensitivity));
-			RotateY(Mathf.Deg2Rad(-mouseEvent.Relative.x * mouseSensitivity));
+			head.RotateX(Mathf.DegToRad(mouseEvent.Relative.Y * (float)-mouseSensitivity));
+			RotateY(Mathf.DegToRad(-mouseEvent.Relative.X * (float)mouseSensitivity));
 			//apply vertical clamping to rotation
 			Vector3 cameraRot = head.RotationDegrees;
-			cameraRot.x = Mathf.Clamp(cameraRot.x, -85, 85);
+			cameraRot.X = Mathf.Clamp(cameraRot.X, -85, 85);
 			head.RotationDegrees = cameraRot;
 		}
 	}
-	private void ProcessHealthMeter(float delta) //this is how I do health counter rolling
+	private void ProcessHealthMeter(double delta) //this is how I do health counter rolling
 	{
 		
 		if (HP != HPcounter)

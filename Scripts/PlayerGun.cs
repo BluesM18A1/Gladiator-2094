@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class PlayerGun : Gun
+public partial class PlayerGun : Gun
 {
 	/*Currently, Godot engine in its vanilla form 
 	does not have an ideal amount of support for custom classes, data types, etc.
@@ -30,25 +30,25 @@ public class PlayerGun : Gun
 	[Export]
 	public NodePath PlayerPath;
 	public Player player;
-	public TextureProgress coolMeter;
+	public TextureProgressBar coolMeter;
 	public TextureRect iconRptr, iconShot, iconGren, iconFlam; 
 	private Label ammoNum;
 	public AudioStreamPlayer pickupSnd, switchSnd;
-	public AudioStreamSample fireGren = 
-	(AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/grenadeLaunch.wav"),
-	fireRep = (AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/repeater.wav"), 
-	fireShot = (AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/buckshot.wav"), 
-	wepSwitch = (AudioStreamSample)ResourceLoader.Load("res://Sounds/guns/switch.wav");
+	public AudioStreamWav fireGren = 
+	(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/grenadeLaunch.wav"),
+	fireRep = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/repeater.wav"), 
+	fireShot = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/buckshot.wav"), 
+	wepSwitch = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/switch.wav");
 
-	public AudioStreamSample pickupGren = 
-	(AudioStreamSample)ResourceLoader.Load("res://Sounds/pickups/grenadePickup.wav"),
-	pickupRep = (AudioStreamSample)ResourceLoader.Load("res://Sounds/pickups/repeaterPickup.wav"), 
-	pickupShot = (AudioStreamSample)ResourceLoader.Load("res://Sounds/pickups/buckshotPickup.wav");
+	public AudioStreamWav pickupGren = 
+	(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/grenadePickup.wav"),
+	pickupRep = (AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/repeaterPickup.wav"), 
+	pickupShot = (AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/buckshotPickup.wav");
 	public bool disabled = false;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		coolMeter = GetNode<TextureProgress>("Meter/Viewport/TextureProgress");
+		coolMeter = GetNode<TextureProgressBar>("Meter/SubViewport/TextureProgressBar");
 		player = GetNode<Player>(PlayerPath);
 		iconRptr = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconRptr");
 		iconShot = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconShot");
@@ -62,10 +62,10 @@ public class PlayerGun : Gun
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		coolMeter.Value -= 50 * coolSpeed * delta;
-		Translation = new Vector3 (Translation.x, Translation.y, (recoilAnim * (float)coolMeter.Value) + recoilOffset);
+		Position = new Vector3 (Position.X, Position.Y, (recoilAnim * (float)coolMeter.Value) + recoilOffset);
 		ProcessInput(delta);
 		if (currentWeapon == Weapons.FLAMETHROWER)
 		{
@@ -74,15 +74,15 @@ public class PlayerGun : Gun
 		}
 		
 	}
-    /*public override void _PhysicsProcess(float delta)
-    {
+	/*public override void _PhysicsProcess(float delta)
+	{
 		
 		//no idea why this needs to happen in _PhysicsProcess, 
 		//but the meter jams if I decrement it by coolSpeed * delta.
 		//and no other timers in the game malfunction when using delta but this one???
-    }*/
-    
-	protected void ProcessInput(float delta)
+	}*/
+	
+	protected void ProcessInput(double delta)
 	{
 		if (coolMeter.Value == 0  && !disabled)
 		{
@@ -125,10 +125,10 @@ public class PlayerGun : Gun
 			bullets--;
 			ammoNum.Text = bullets.ToString();
 			
-			Bullet newBullet = (Bullet)instanceRepeater.Instance();
+			Bullet newBullet = (Bullet)instanceRepeater.Instantiate();
 			newBullet.Transform = GlobalTransform * barrels[0];
 			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
+			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 		
 	}
@@ -142,12 +142,12 @@ public class PlayerGun : Gun
 			shells--;
 			ammoNum.Text = shells.ToString();
 			for (int i = 0; i < barrels.Count; i++)
-            {
-				Bullet newBullet = (Bullet)instanceBuckshot.Instance();
+			{
+				Bullet newBullet = (Bullet)instanceBuckshot.Instantiate();
 				newBullet.Transform = GlobalTransform * barrels[i];
 				GetTree().Root.AddChild(newBullet);
-				newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
-            }
+				newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+			}
 			
 		}
 	}
@@ -161,10 +161,10 @@ public class PlayerGun : Gun
 			grenades--;
 			ammoNum.Text = grenades.ToString();
 			
-			Bullet newBullet = (Bullet)instanceGrenade.Instance();
+			Bullet newBullet = (Bullet)instanceGrenade.Instantiate();
 			newBullet.Transform = GlobalTransform * barrels[0];
 			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
+			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 	}
 	protected void FireFlame()
@@ -176,11 +176,11 @@ public class PlayerGun : Gun
 			player.fuel--;
 			int fuelInt = (int)player.fuel;
 			ammoNum.Text = fuelInt.ToString();
-			Bullet newBullet = (Bullet)instanceFlame.Instance();
+			Bullet newBullet = (Bullet)instanceFlame.Instantiate();
 			newBullet.Transform = GlobalTransform * barrels[0];
 			//newBullet.Translate(barrels[0].origin);
 			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.basis.z * newBullet.speed);
+			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 	}
 	public void AddBullets(int delta)
@@ -284,28 +284,28 @@ public class PlayerGun : Gun
 		}
 		if (@event is InputEventKey eventKey)
 		{
-			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key1)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Launch1)
 			{
 				currentWeapon = Weapons.FLAMETHROWER;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
 				UpdateWeaponData();
 			}
-			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key2)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Launch2)
 			{
 				currentWeapon = Weapons.REPEATER;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
 				UpdateWeaponData();
 			}
-			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key3)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Launch3)
 			{
 				currentWeapon = Weapons.BUCKSHOT;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
 				UpdateWeaponData();
 			}
-			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key4)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Launch4)
 			{
 				currentWeapon = Weapons.GRENADES;
 				switchSnd.Stream = wepSwitch;

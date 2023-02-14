@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SensSlider : HSlider
+public partial class SensSlider : HSlider
 {
     public AudioStreamPlayer bloop;
     Config config;

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Template : Node
+public partial class Template : Node
 {
     //COMPONENT VARIABLES------------------------------------
 
@@ -16,7 +16,7 @@ public class Template : Node
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
+    public override void _Process(Double delta)
     {
         
     }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Title : Control
+public partial class Title : Control
 {
 	Config config;
 	AudioStreamPlayer bloop;
@@ -17,9 +17,9 @@ public class Title : Control
 			}*/
 		config = GetNode<Config>("/root/Config");
 		bloop = GetNode<AudioStreamPlayer>("bloop");
-		Input.SetMouseMode(Input.MouseMode.Visible);
+		Input.MouseMode = Input.MouseModeEnum.Visible;
 		//sometimes the window shoots up really high depending on OS and monitor setup. This makes sure you can easily grab and move the window.
-		OS.WindowPosition = new Vector2(OS.WindowPosition.x, 0);
+		GetWindow().Position = new Vector2I(GetWindow().Position.X, 0);
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,15 +29,15 @@ public class Title : Control
 //  }
 	private void PlayButtonDown()
 	{
-		GetTree().ChangeScene("res://Scenes/arena.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/arena.tscn");
 	}
 	private void OptionsButtonDown()
 	{
-		GetTree().ChangeScene("res://Scenes/Options.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Options.tscn");
 	}
 	private void CredsButtonDown()
 	{
-		GetTree().ChangeScene("res://Scenes/Creds.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Creds.tscn");
 	}
 	private void ExitButtonDown()
 	{
@@ -50,14 +50,14 @@ public class Title : Control
 	}
 	private void BackButtonDown()
 	{
-		GetTree().ChangeScene("res://Title.tscn");
+		GetTree().ChangeSceneToFile("res://Title.tscn");
 	}
 	public override void _Input(InputEvent @event){
 		if (@event is InputEventKey eventKey)
 		{
-			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Key0)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Launch0)
 			{
-				GetTree().ChangeScene("res://Scenes/debug.tscn");
+				GetTree().ChangeSceneToFile("res://Scenes/debug.tscn");
 			}
 		}      
 	}

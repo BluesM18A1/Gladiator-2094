@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/buckshot.wav-09740eb7545ccb8c76390f2915623884.sample"
+type="AudioStreamWAV"
+uid="uid://b6snja6wvhm5t"
+path="res://.godot/imported/buckshot.wav-09740eb7545ccb8c76390f2915623884.sample"
 
 [deps]
 
 source_file="res://Sounds/guns/buckshot.wav"
-dest_files=[ "res://.import/buckshot.wav-09740eb7545ccb8c76390f2915623884.sample" ]
+dest_files=["res://.godot/imported/buckshot.wav-09740eb7545ccb8c76390f2915623884.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/GO-1.wav-284e896cdbaa84b0b8db9f08976d7977.sample"
+type="AudioStreamWAV"
+uid="uid://1vwjj2tdvcja"
+path="res://.godot/imported/GO-1.wav-284e896cdbaa84b0b8db9f08976d7977.sample"
 
 [deps]
 
 source_file="res://Sounds/announcer/GO-1.wav"
-dest_files=[ "res://.import/GO-1.wav-284e896cdbaa84b0b8db9f08976d7977.sample" ]
+dest_files=["res://.godot/imported/GO-1.wav-284e896cdbaa84b0b8db9f08976d7977.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

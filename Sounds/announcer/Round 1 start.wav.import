@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Round 1 start.wav-8dbc797a99b4b31db0f8f777b37730cd.sample"
+type="AudioStreamWAV"
+uid="uid://dwhuh5c7i0itk"
+path="res://.godot/imported/Round 1 start.wav-8dbc797a99b4b31db0f8f777b37730cd.sample"
 
 [deps]
 
 source_file="res://Sounds/announcer/Round 1 start.wav"
-dest_files=[ "res://.import/Round 1 start.wav-8dbc797a99b4b31db0f8f777b37730cd.sample" ]
+dest_files=["res://.godot/imported/Round 1 start.wav-8dbc797a99b4b31db0f8f777b37730cd.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

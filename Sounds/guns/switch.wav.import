@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/switch.wav-2a81b2ac324fd7d96de12d2385b9ae80.sample"
+type="AudioStreamWAV"
+uid="uid://dlhgh5l01gegk"
+path="res://.godot/imported/switch.wav-2a81b2ac324fd7d96de12d2385b9ae80.sample"
 
 [deps]
 
 source_file="res://Sounds/guns/switch.wav"
-dest_files=[ "res://.import/switch.wav-2a81b2ac324fd7d96de12d2385b9ae80.sample" ]
+dest_files=["res://.godot/imported/switch.wav-2a81b2ac324fd7d96de12d2385b9ae80.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

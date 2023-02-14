@@ -1,120 +1,136 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://b7ghcuxba3x8n"]
 
-[ext_resource path="res://Sounds/enemyHit.wav" type="AudioStream" id=1]
-[ext_resource path="res://Prefabs/Bullets/enemy repeater.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Materials/enemies/tortoise_body.tres" type="SphereMesh" id=3]
-[ext_resource path="res://Models/singleAxel.obj" type="ArrayMesh" id=4]
-[ext_resource path="res://Models/gatlingGun.obj" type="ArrayMesh" id=5]
-[ext_resource path="res://Scripts/AutoAim.cs" type="Script" id=6]
-[ext_resource path="res://Scripts/Enemy.cs" type="Script" id=7]
-[ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=8]
-[ext_resource path="res://Materials/enemies/tortoise_face.tres" type="Material" id=10]
-[ext_resource path="res://Sounds/guns/repeater.wav" type="AudioStream" id=11]
+[ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemyHit.wav" id="1"]
+[ext_resource type="PackedScene" path="res://Prefabs/Bullets/enemy repeater.tscn" id="2"]
+[ext_resource type="SphereMesh" uid="uid://d3pou1s4dy78t" path="res://Materials/enemies/tortoise_body.tres" id="3"]
+[ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
+[ext_resource type="ArrayMesh" uid="uid://6mbugpm8uj35" path="res://Models/gatlingGun.obj" id="5"]
+[ext_resource type="Script" path="res://Scripts/AutoAim.cs" id="6"]
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="7"]
+[ext_resource type="Script" path="res://Scripts/EnemyGun.cs" id="8"]
+[ext_resource type="Material" uid="uid://is0mep63lxx0" path="res://Materials/enemies/tortoise_face.tres" id="10"]
+[ext_resource type="AudioStream" uid="uid://bn5hkef3r58x6" path="res://Sounds/guns/repeater.wav" id="11"]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape3D" id="1"]
 radius = 0.89
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="SphereShape3D" id="2"]
 radius = 0.58
 
-[sub_resource type="SphereMesh" id=6]
-material = ExtResource( 10 )
+[sub_resource type="SphereMesh" id="6"]
+material = ExtResource("10")
+radius = 1.284
+height = 2.203
 radial_segments = 16
 rings = 8
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id="7"]
 resource_name = "speen"
-loop = true
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 360 ) ]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 360)]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fibfu"]
+_data = {
+"speen": SubResource("7")
+}
+
+[sub_resource type="Animation" id="8"]
 resource_name = "speen"
-loop = true
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -360 ) ]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -360)]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6qob"]
+_data = {
+"speen": SubResource("8")
+}
+
+[sub_resource type="Animation" id="9"]
 length = 0.1
 tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("hitsound")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"clips": [ {
+"clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 1 )
+"stream": ExtResource("1")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": null
-} ],
-"times": PoolRealArray( 0, 0.1 )
+}],
+"times": PackedFloat32Array(0, 0.1)
 }
+tracks/0/use_blend = true
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Head/Body:mesh:material:emission")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0.627451, 0.819608, 1 ) ]
+"values": [Color(1, 1, 1, 1), Color(0, 0.627451, 0.819608, 1)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Head/Body:mesh:material:emission_energy")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 1.02, 0.14 ]
+"values": [1.02, 0.14]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Head/Head:material/0:emission")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0.321569, 0.423529, 1 ) ]
+"values": [Color(1, 1, 1, 1), Color(0, 0.321569, 0.423529, 1)]
 }
 
-[node name="Tortoise" type="KinematicBody" groups=["Enemies"]]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytnxh"]
+_data = {
+"Hurt": SubResource("9")
+}
+
+[node name="Tortoise" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 2071
-script = ExtResource( 7 )
+script = ExtResource("7")
 MaxSpeed = 4.0
 Accel = 5.0
 bounty = 80
@@ -123,69 +139,71 @@ closeRangeMode = 2
 longRangeMode = 1
 pathUpdateRate = 2.0
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00098, 0.0914047 )
-shape = SubResource( 1 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00098, 0.0914047)
+shape = SubResource("1")
 
-[node name="CollisionShape2" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86684, -0.233918 )
-shape = SubResource( 2 )
+[node name="CollisionShape2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86684, -0.233918)
+shape = SubResource("2")
 
-[node name="singleAxel" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.35, 0.5 )
-mesh = ExtResource( 4 )
+[node name="singleAxel" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.35, 0.5)
+mesh = ExtResource("4")
 
-[node name="singleAxel2" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.35, -0.5 )
-mesh = ExtResource( 4 )
+[node name="singleAxel2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.35, -0.5)
+mesh = ExtResource("4")
 
-[node name="Head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.997688, 0 )
-script = ExtResource( 6 )
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.997688, 0)
+script = ExtResource("6")
 vOffset = 0.5
 
-[node name="Body" type="MeshInstance" parent="Head"]
-transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0.135 )
-mesh = ExtResource( 3 )
+[node name="Body" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0.135)
+mesh = ExtResource("3")
 
-[node name="Head" type="MeshInstance" parent="Head"]
-transform = Transform( 0.429, 0, 0, 0, 0.45133, -0.112673, 0, 0.134693, 0.377546, 0, 0.84657, -0.202538 )
-mesh = SubResource( 6 )
+[node name="Head" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(0.429, 0, 0, 0, 0.45133, -0.112673, 0, 0.134693, 0.377546, 0, 0.84657, -0.202538)
+mesh = SubResource("6")
 
-[node name="Gun" type="MeshInstance" parent="Head"]
-transform = Transform( 1.5, -5.24537e-07, 0, 5.24537e-07, 1.5, 0, 0, 0, 1.5, 1, 0.054, 0.75 )
-mesh = ExtResource( 5 )
-script = ExtResource( 8 )
+[node name="Gun" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(1.5, -5.24537e-07, 0, 5.24537e-07, 1.5, 0, 0, 0, 1.5, 1, 0.054, 0.75)
+mesh = ExtResource("5")
+script = ExtResource("8")
 currentWeapon = 2
-barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1 ) ]
-bullet = ExtResource( 2 )
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1)]
+bullet = ExtResource("2")
 fireRateMin = 0.1
 fireRateMax = 0.1
 serialFiring = true
 parentPath = NodePath("../../../Tortoise")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun"]
-stream = ExtResource( 11 )
-unit_db = 9.0
+stream = ExtResource("11")
+volume_db = 9.0
 unit_size = 3.0
 pitch_scale = 0.86
-bus = "SFX"
+bus = &"SFX"
 doppler_tracking = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Gun"]
 autoplay = "speen"
-anims/speen = SubResource( 7 )
+libraries = {
+"": SubResource("AnimationLibrary_fibfu")
+}
 
-[node name="Gun2" type="MeshInstance" parent="Head"]
-transform = Transform( 1.5, 5.24537e-07, 0, -5.24537e-07, 1.5, 0, 0, 0, 1.5, -1, 0.054, 0.75 )
-mesh = ExtResource( 5 )
-script = ExtResource( 8 )
+[node name="Gun2" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(1.5, 5.24537e-07, 0, -5.24537e-07, 1.5, 0, 0, 0, 1.5, -1, 0.054, 0.75)
+mesh = ExtResource("5")
+script = ExtResource("8")
 __meta__ = {
 "_editor_description_": ""
 }
 currentWeapon = 2
-barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1 ) ]
-bullet = ExtResource( 2 )
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1)]
+bullet = ExtResource("2")
 fireRateMin = 0.1
 fireRateMax = 0.1
 startupDelay = true
@@ -193,21 +211,25 @@ serialFiring = true
 parentPath = NodePath("../../../Tortoise")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun2"]
-transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0 )
-stream = ExtResource( 11 )
-unit_db = 9.0
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0)
+stream = ExtResource("11")
+volume_db = 9.0
 unit_size = 3.0
 pitch_scale = 0.86
-bus = "SFX"
+bus = &"SFX"
 doppler_tracking = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Gun2"]
 autoplay = "speen"
-anims/speen = SubResource( 8 )
+libraries = {
+"": SubResource("AnimationLibrary_r6qob")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hurt = SubResource( 9 )
+libraries = {
+"": SubResource("AnimationLibrary_ytnxh")
+}
 
 [node name="hitsound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-bus = "SFX"
+stream = ExtResource("1")
+bus = &"SFX"

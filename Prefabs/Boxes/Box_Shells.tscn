@@ -1,66 +1,54 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://bxd3rflndbkwu"]
 
-[ext_resource path="res://Scripts/ItemBox.cs" type="Script" id=1]
-[ext_resource path="res://Models/itembox.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://Textures/UI/Icon_Shotgun.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://Scripts/ItemBox.cs" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://bhyw0pu3mfehy" path="res://Models/itembox.obj" id="2"]
+[ext_resource type="Material" path="res://Materials/items/icon_shells.tres" id="3_ovaf7"]
+[ext_resource type="Material" path="res://Materials/items/box_shells.tres" id="4_k2s36"]
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0, 0, 0, 1 )
-emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 0.75
-emission_operator = 0
-emission_on_uv2 = false
-emission_texture = ExtResource( 3 )
+[sub_resource type="BoxShape3D" id="3"]
+size = Vector3(0.8, 0.8, 0.8)
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 1, 0.72549, 0, 1 )
-metallic = 1.0
-metallic_specular = 1.0
-roughness = 0.2
-emission_enabled = true
-emission = Color( 0.239216, 0.160784, 0.0196078, 1 )
-emission_energy = 14.95
-emission_operator = 0
-emission_on_uv2 = false
-
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 0.4, 0.4, 0.4 )
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id="4"]
 length = 2.0
-loop = true
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("itembox:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
+"values": [Vector3(0, 0, 0), Vector3(0, 360, 0)]
 }
 
-[node name="Box_Ammo" type="Area"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m716b"]
+_data = {
+"rotate": SubResource("4")
+}
+
+[node name="Box_Ammo" type="Area3D"]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource( 1 )
+script = ExtResource("1")
 itemType = 2
 itemCount = 10
 
-[node name="itembox" type="MeshInstance" parent="."]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.4, 0 )
-mesh = ExtResource( 2 )
-material/0 = SubResource( 1 )
-material/1 = SubResource( 2 )
+[node name="itembox" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.4, 0)
+mesh = ExtResource("2")
+surface_material_override/0 = ExtResource("3_ovaf7")
+surface_material_override/1 = ExtResource("4_k2s36")
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
-shape = SubResource( 3 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rotate"
-anims/rotate = SubResource( 4 )
+libraries = {
+"": SubResource("AnimationLibrary_m716b")
+}
+
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

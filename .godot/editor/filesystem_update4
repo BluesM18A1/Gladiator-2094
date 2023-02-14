@@ -1,0 +1,13 @@
+res://Scenes/arena.tscn
+res://Materials/environment/bridge_RB.tres
+res://Materials/environment/bridge_YG.tres
+res://Materials/player_tire.material
+res://Materials/enemies/cat_head.tres
+res://Materials/bullets/bullet_repeater.material
+res://Materials/enemies/tortoise_body.tres
+res://Materials/enemies/tortoise_face.tres
+res://Materials/enemies/dreadnaught_face.tres
+res://Prefabs/Enemies/Siren.tscn
+res://Title.tscn
+res://Prefabs/sparks.tscn
+res://Prefabs/Enemies/Cat.tscn

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/bootup.wav-583bf993cc97e658dbbf8c0b2fd409d2.sample"
+type="AudioStreamWAV"
+uid="uid://boe1qh4dd2x6j"
+path="res://.godot/imported/bootup.wav-583bf993cc97e658dbbf8c0b2fd409d2.sample"
 
 [deps]
 
 source_file="res://Sounds/UI/bootup.wav"
-dest_files=[ "res://.import/bootup.wav-583bf993cc97e658dbbf8c0b2fd409d2.sample" ]
+dest_files=["res://.godot/imported/bootup.wav-583bf993cc97e658dbbf8c0b2fd409d2.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

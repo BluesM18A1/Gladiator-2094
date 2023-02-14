@@ -1,18 +1,16 @@
-[gd_resource type="SphereMesh" load_steps=2 format=2]
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://d3pou1s4dy78t"]
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="StandardMaterial3D" id="3"]
 resource_local_to_scene = true
-albedo_color = Color( 0, 0.306667, 0.4, 1 )
+albedo_color = Color(0, 0.306667, 0.4, 1)
 emission_enabled = true
-emission = Color( 0, 0.627451, 0.819608, 1 )
-emission_energy = 0.14
-emission_operator = 0
-emission_on_uv2 = false
+emission = Color(0, 0.627451, 0.819608, 1)
+emission_energy_multiplier = 0.14
 
 [resource]
 resource_local_to_scene = true
-material = SubResource( 3 )
-radius = 0.678
-height = 1.228
-radial_segments = 16
+material = SubResource("3")
+radius = 0.731
+height = 1.293
+radial_segments = 8
 rings = 8

@@ -1,126 +1,136 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=3 uid="uid://dopkmde6b7h3f"]
 
-[ext_resource path="res://Sounds/enemyHit.wav" type="AudioStream" id=1]
-[ext_resource path="res://Sounds/guns/buckshot.wav" type="AudioStream" id=2]
-[ext_resource path="res://Models/basicGun.obj" type="ArrayMesh" id=3]
-[ext_resource path="res://Models/singleAxel.obj" type="ArrayMesh" id=4]
-[ext_resource path="res://Models/catHead.obj" type="ArrayMesh" id=5]
-[ext_resource path="res://Scripts/AutoAim.cs" type="Script" id=6]
-[ext_resource path="res://Scripts/Enemy.cs" type="Script" id=7]
-[ext_resource path="res://Scripts/EnemyGun.cs" type="Script" id=8]
-[ext_resource path="res://Prefabs/Bullets/catShot.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Materials/enemies/gun_buckshot_barrel.tres" type="Material" id=10]
-[ext_resource path="res://Materials/enemies/cat_head.tres" type="Material" id=11]
-[ext_resource path="res://Materials/enemies/gun_buckshot_stock.tres" type="Material" id=12]
+[ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemyHit.wav" id="1"]
+[ext_resource type="AudioStream" uid="uid://b6snja6wvhm5t" path="res://Sounds/guns/buckshot.wav" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="3"]
+[ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
+[ext_resource type="ArrayMesh" uid="uid://cakq5i2rkagtk" path="res://Models/catHead.obj" id="5"]
+[ext_resource type="Script" path="res://Scripts/AutoAim.cs" id="6"]
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="7"]
+[ext_resource type="Script" path="res://Scripts/EnemyGun.cs" id="8"]
+[ext_resource type="Material" path="res://Materials/gun_barrel_void.tres" id="8_3xxrl"]
+[ext_resource type="PackedScene" path="res://Prefabs/Bullets/catShot.tscn" id="9"]
+[ext_resource type="Material" path="res://Materials/enemies/gun_buckshot_barrel.tres" id="10"]
+[ext_resource type="Material" uid="uid://dv6lpl6i4hpsx" path="res://Materials/enemies/cat_head.tres" id="11"]
+[ext_resource type="Material" path="res://Materials/enemies/gun_buckshot_stock.tres" id="12"]
 
-[sub_resource type="SphereShape" id=1]
-radius = 0.5
+[sub_resource type="SphereShape3D" id="1"]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="5"]
 length = 0.1
 tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("hitsound")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"clips": [ {
+"clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 1 )
+"stream": ExtResource("1")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": null
-} ],
-"times": PoolRealArray( 0, 0.1 )
+}],
+"times": PackedFloat32Array(0, 0.1)
 }
+tracks/0/use_blend = true
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Head/catHead:material/0:emission")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.6, 0.282353, 0, 1 ) ]
+"values": [Color(1, 1, 1, 1), Color(0.6, 0.282353, 0, 1)]
 }
 
-[node name="Cat" type="KinematicBody" groups=["Enemies"]]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ik4fi"]
+_data = {
+"Hurt": SubResource("5")
+}
+
+[node name="Cat" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 2071
-script = ExtResource( 7 )
-MaxSpeed = 12.0
-Accel = 5.0
-HP = 15
+script = ExtResource("7")
 rangeThreshold = 16.0
 longRangeMode = 1
 pathUpdateRate = 4.0
+MaxSpeed = 12.0
+Accel = 5.0
+HP = 15
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
-shape = SubResource( 1 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("1")
 
-[node name="singleAxel" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
-mesh = ExtResource( 4 )
+[node name="singleAxel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("4")
 
-[node name="Head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
-script = ExtResource( 6 )
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+script = ExtResource("6")
 vOffset = 0.5
 
-[node name="catHead" type="MeshInstance" parent="Head"]
-transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
-mesh = ExtResource( 5 )
-material/0 = ExtResource( 11 )
+[node name="catHead" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = ExtResource("5")
+surface_material_override/0 = ExtResource("11")
 
-[node name="Gun" type="MeshInstance" parent="Head"]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.6, 0.4, 0.346134, 0.297016 )
-mesh = ExtResource( 3 )
-material/0 = ExtResource( 10 )
-material/2 = ExtResource( 12 )
-script = ExtResource( 8 )
-currentWeapon = 3
-barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65 ), Transform( 1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65 ), Transform( 1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65 ), Transform( 1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.65 ), Transform( 1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.65 ) ]
-bullet = ExtResource( 9 )
+[node name="Gun" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.6, 0.4, 0.346134, 0.297016)
+mesh = ExtResource("3")
+surface_material_override/0 = ExtResource("10")
+surface_material_override/1 = ExtResource("8_3xxrl")
+surface_material_override/2 = ExtResource("12")
+script = ExtResource("8")
+bullet = ExtResource("9")
 fireRateMax = 1.0
 parentPath = NodePath("../..")
+currentWeapon = 3
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.65)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun"]
-stream = ExtResource( 2 )
-unit_db = 9.0
+stream = ExtResource("2")
+volume_db = 9.0
 unit_size = 3.0
 pitch_scale = 1.4
-bus = "SFX"
+bus = &"SFX"
 doppler_tracking = 2
 
-[node name="Gun2" type="MeshInstance" parent="Head"]
-transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.6, -0.4, 0.346, 0.297 )
-mesh = ExtResource( 3 )
-material/0 = ExtResource( 10 )
-material/2 = ExtResource( 12 )
-script = ExtResource( 8 )
-currentWeapon = 3
-barrels = [ Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65 ), Transform( 1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65 ), Transform( 1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65 ), Transform( 1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.65 ), Transform( 1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.65 ) ]
-bullet = ExtResource( 9 )
+[node name="Gun2" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.6, -0.4, 0.346, 0.297)
+mesh = ExtResource("3")
+surface_material_override/0 = ExtResource("10")
+surface_material_override/1 = ExtResource("8_3xxrl")
+surface_material_override/2 = ExtResource("12")
+script = ExtResource("8")
+bullet = ExtResource("9")
 fireRateMax = 1.0
 parentPath = NodePath("../..")
+currentWeapon = 3
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.65)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun2"]
-stream = ExtResource( 2 )
-unit_db = 3.0
+stream = ExtResource("2")
+volume_db = 3.0
 unit_size = 3.0
 pitch_scale = 1.3
-bus = "SFX"
+bus = &"SFX"
 doppler_tracking = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hurt = SubResource( 5 )
+libraries = {
+"": SubResource("AnimationLibrary_ik4fi")
+}
 
 [node name="hitsound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-bus = "SFX"
+stream = ExtResource("1")
+bus = &"SFX"

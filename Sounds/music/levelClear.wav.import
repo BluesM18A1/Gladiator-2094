@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/levelClear.wav-ccd7d8e4ecd34b983972ee081cc563e8.sample"
+type="AudioStreamWAV"
+uid="uid://usspwkka5f2s"
+path="res://.godot/imported/levelClear.wav-ccd7d8e4ecd34b983972ee081cc563e8.sample"
 
 [deps]
 
 source_file="res://Sounds/music/levelClear.wav"
-dest_files=[ "res://.import/levelClear.wav-ccd7d8e4ecd34b983972ee081cc563e8.sample" ]
+dest_files=["res://.godot/imported/levelClear.wav-ccd7d8e4ecd34b983972ee081cc563e8.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Arena : Spatial
+public partial class Arena : Node3D
 {
 	[Export]
 	public bool debugMode;
@@ -11,17 +11,17 @@ public class Arena : Spatial
 	int score = 0;
 	int randomItem;
 	byte wave, subwave;
+	Rid map;
 	public Label topText;
-	public Navigation nav;
 	public Control pauseMenu;
 	AnimationPlayer dj;
 	public AudioStreamPlayer maestro, announcer, crowd;
 	[Export]
-	public AudioStreamSample an_waveComplete = (AudioStreamSample)ResourceLoader.Load("res://Sounds/announcer/countdown20sec.wav")
-	, an_go = (AudioStreamSample)ResourceLoader.Load("res://Sounds/announcer/GO-1.wav");
-	public AudioStreamSample level = (AudioStreamSample)ResourceLoader.Load("res://Sounds/music/pathetique_weapons.wav"), boss  = (AudioStreamSample)ResourceLoader.Load("res://Sounds/music/pestered_archfiend.wav");
+	public AudioStreamWav an_waveComplete = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/countdown20sec.wav")
+	, an_go = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/GO-1.wav");
+	public AudioStreamWav level = (AudioStreamWav)ResourceLoader.Load("res://Sounds/music/pathetique_weapons.wav"), boss  = (AudioStreamWav)ResourceLoader.Load("res://Sounds/music/pestered_archfiend.wav");
 	[Export]
-	public float spawnRate = 20f, time = 0;
+	public double spawnRate = 20f, time = 0;
 	[Export((PropertyHint) 13)]
 	public PackedScene[] EnemyTier1;
 	[Export((PropertyHint) 13)]
@@ -36,6 +36,7 @@ public class Arena : Spatial
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		map = GetWorld3D().NavigationMap;
 		dj = GetNode<AnimationPlayer>("DJ");
 		pauseMenu = GetNode<Control>("PauseScreen");
 		config = GetNode<Config>("/root/Config");
@@ -43,32 +44,32 @@ public class Arena : Spatial
 		crowd = GetNode<AudioStreamPlayer>("Crowd");
 		announcer = GetNode<AudioStreamPlayer>("Announcer");
 		topText = GetNode<Label>("TextureRect/TopText");
-		nav = GetNode<Navigation>("Navigation");
 		wave = config.startWave;
 		UpdateScore(0);
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		if (!debugMode) ProcessGame(delta);
 		
 			
 	}
-
+	/*
 	public override void _Input(InputEvent @event){
 		if (@event is InputEventKey eventKey)
 		{
 			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Escape)
 			{
-				if (Input.GetMouseMode() == Input.MouseMode.Captured)
+				if (Input.MouseMode == Input.MouseModeEnum.Captured)
 				{
 					
 				}
 			}
 		}
 	}
-	void ProcessGame(float delta)
+	*/
+	void ProcessGame(double delta)
 	{
 		if (subwave < MaxSubWaves)//note that the counter will go above 'maxsubwaves' by one before resetting
 		{
@@ -115,7 +116,7 @@ public class Arena : Spatial
 		if (wave % 4 == 0 && wave > 1 && subwave == 0)
 		{
 			randomItem = (Int16)GD.RandRange(0,BossTier.Length);
-			announcer.Stream = (AudioStreamSample)ResourceLoader.Load("res://Sounds/announcer/boss_" + randomItem.ToString() + ".wav");
+			announcer.Stream = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/boss_" + randomItem.ToString() + ".wav");
 			announcer.Play();
 			RandomGroundSpawn(BossTier[randomItem]);
 			ItemSpawn();
@@ -152,7 +153,7 @@ public class Arena : Spatial
 	{
 		for (byte i = 0; i < 8 - (config.difficulty * 2); i++)
 		{
-			//A note about RandRange:
+			//A note about RandfRange:
 			// the minimum value is INCLUSIVE 
 			//and the max value is EXCLUSIVE
 			int randomItem = (Int16)GD.RandRange(0,ItemBoxes.Length); 
@@ -161,11 +162,11 @@ public class Arena : Spatial
 	}
 	void RandomGroundSpawn(PackedScene item) //place object randomly within navmesh bounds
 	{
-		Spatial newItem = (Spatial)item.Instance();
+		Node3D newItem = (Node3D)item.Instantiate();
 		Vector3 randomPos = new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28));
 		AddChild(newItem);
-		newItem.Translation = nav.GetClosestPoint(randomPos);
-		
+		//newItem.Position = nav.GetClosestPoint(randomPos);
+		newItem.Position = NavigationServer3D.MapGetClosestPoint(map, randomPos);
 	}
 	public void UpdateScore(int delta)
 	{

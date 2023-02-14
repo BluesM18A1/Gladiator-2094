@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/gameOver.wav-a78ed94e3f2be4265a94a950d2cadad7.sample"
+type="AudioStreamWAV"
+uid="uid://oeckksf54l7"
+path="res://.godot/imported/gameOver.wav-a78ed94e3f2be4265a94a950d2cadad7.sample"
 
 [deps]
 
 source_file="res://Sounds/announcer/gameOver.wav"
-dest_files=[ "res://.import/gameOver.wav-a78ed94e3f2be4265a94a950d2cadad7.sample" ]
+dest_files=["res://.godot/imported/gameOver.wav-a78ed94e3f2be4265a94a950d2cadad7.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
 edit/normalize=true
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

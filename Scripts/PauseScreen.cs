@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class PauseScreen : Control
+public partial class PauseScreen : Control
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -12,7 +12,7 @@ public class PauseScreen : Control
     {
         bloop = GetNode<AudioStreamPlayer>("bloop");
     }
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Input.IsActionJustPressed("ui_cancel"))
 		{
@@ -24,7 +24,7 @@ public class PauseScreen : Control
             else 
             {
                 GD.Print("pausing....");
-				Input.SetMouseMode(Input.MouseMode.Visible);
+				Input.MouseMode = Input.MouseModeEnum.Visible;
 				Visible = true;
 				GetTree().Paused = true;
             }
@@ -37,12 +37,12 @@ public class PauseScreen : Control
     void QuitButtonDown()
     {
         GetTree().Paused = false;
-        GetTree().ChangeScene("res://Title.tscn");
+        GetTree().ChangeSceneToFile("res://Title.tscn");
     }
     void ResumeButtonDown()
     {
         Visible = false;
-        Input.SetMouseMode(Input.MouseMode.Captured);
+        Input.MouseMode = Input.MouseModeEnum.Captured;
         GetTree().Paused = false;
     }
 }

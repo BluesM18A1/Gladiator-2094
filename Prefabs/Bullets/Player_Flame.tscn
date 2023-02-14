@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
-[ext_resource path="res://Textures/particle.png" type="Texture" id=2]
+[ext_resource path="res://Textures/particle.png" type="Texture2D" id=2]
 [ext_resource path="res://Sounds/guns/flame.wav" type="AudioStream" id=3]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
@@ -20,7 +20,7 @@ resource_local_to_scene = true
 material = SubResource( 1 )
 size = Vector2( 0.5, 0.5 )
 
-[sub_resource type="SphereShape" id=3]
+[sub_resource type="SphereShape3D" id=3]
 resource_local_to_scene = true
 radius = 0.25
 
@@ -29,53 +29,53 @@ resource_name = "Flame"
 length = 0.2
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("MeshInstance:mesh:material:albedo_color")
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 0, 0, 0.12549 ), Color( 1, 0.984314, 0, 0.501961 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("MeshInstance:scale")
+tracks/1/path = NodePath("MeshInstance3D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0.5, 0.55, 0.5 ), Vector3( 5, 5, 5 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape:shape:radius")
+tracks/2/path = NodePath("CollisionShape3D:shape:radius")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.25, 1.0 ]
 }
 
-[node name="Bullet" type="RigidBody" groups=[
+[node name="Bullet" type="RigidBody3D" groups=[
 "projectiles",
 ]]
 collision_layer = 16
 collision_mask = 13
 gravity_scale = 0.0
-contacts_reported = 2
+max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 1 )
 __meta__ = {
-"_editor_description_": "The collision matrix on flames are different from regular bullets.
+"_editor_description_": "The collision matrix checked flames are different from regular bullets.
 
 These guys delete enemy projectiles, making it as much of a shield as it is a close range weapon"
 }
@@ -83,12 +83,12 @@ damage = -3
 speed = 25.0
 lifetime = 0.2
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, 0, 0, 0 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D( 0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
