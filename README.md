@@ -12,8 +12,18 @@ Today, it serves the purpose of being an open-source portfolio piece, and maybe 
 
 Feel free to use any code in here for your own projects, though keep in mind some audio assets are 3rd party with unknown licensing terms.
 
-TODO LIST:  
--Port to Godot 4.0   
+WARNING:
+This upgrade to Godot 4.0 from 3.x is still far from finished. The releases page contains the last build for 3.x, and the souce code for 3.x is available in a separate branch. You best be looking there if you want to see what the game is like right now. 
+
+Here are the  known issues that I have yet to fix:
+- Enemies slow the game to a screeching halt even on the most powerful computers
+- Bullets, be they from enemy or player, does not react to collision with either.
+- UI elements are visually butchered (I was gonna redo and clean up the menus at some point anyways)
+- Some input checks, for example, the one for opening the pause menu, simply don't respond.
+- Lighting and materials on some objects/scenes need to be readjusted
+
+
+TODO LIST (after the 4.0 upgrade is done):  
 -Airborne enemies    
 -Upgrade mechanics   
 -Networked multiplayer at long last? 
