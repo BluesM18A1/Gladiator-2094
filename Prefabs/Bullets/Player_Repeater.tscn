@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cmjgrwt7xax6f"]
 
-[ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
-[ext_resource path="res://Materials/bullets/bullet_repeater.material" type="Material" id=2]
+[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1"]
+[ext_resource type="Material" uid="uid://dpdqnkleupx7d" path="res://Materials/bullets/bullet_repeater.material" id="2"]
 
-[sub_resource type="SphereMesh" id=1]
-material = ExtResource( 2 )
+[sub_resource type="SphereMesh" id="1"]
+material = ExtResource("2")
 radius = 0.15
 height = 0.3
 radial_segments = 6
 rings = 4
 
-[sub_resource type="SphereShape3D" id=2]
+[sub_resource type="SphereShape3D" id="2"]
 radius = 0.15
 
 [node name="Bullet" type="RigidBody3D" groups=["projectiles"]]
@@ -20,14 +20,14 @@ gravity_scale = 0.0
 continuous_cd = true
 max_contacts_reported = 2
 contact_monitor = true
-script = ExtResource( 1 )
+script = ExtResource("1")
 damage = -8
 speed = 100.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource( 1 )
+mesh = SubResource("1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource("2")
 
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

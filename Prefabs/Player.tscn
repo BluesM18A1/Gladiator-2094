@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://euv4j77f8x80"]
+[gd_scene load_steps=36 format=3 uid="uid://euv4j77f8x80"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://djqxwy8va6xi3" path="res://Prefabs/Parts/PlayerGun.tscn" id="2"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://bnuea86jlcang" path="res://Sounds/pickups/healthPickup.wav" id="13"]
 [ext_resource type="AudioStream" uid="uid://dnlfcoeiibt7n" path="res://Sounds/hurtsound.wav" id="14"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="15"]
+[ext_resource type="FontFile" uid="uid://digjbwl3hjo6q" path="res://Textures/UI/A.ttf" id="16_y7ydl"]
 [ext_resource type="Script" path="res://Scripts/AxelAnimation.cs" id="17"]
 [ext_resource type="AudioStream" uid="uid://jyk7mws2mi4w" path="res://Sounds/playerSpawn.wav" id="19"]
 [ext_resource type="AudioStream" uid="uid://bqfo63ajpo7pi" path="res://Sounds/land.wav" id="20"]
@@ -107,6 +108,9 @@ _data = {
 "Enter": SubResource("12"),
 "Hurt": SubResource("13")
 }
+
+[sub_resource type="FontVariation" id="FontVariation_5ctu4"]
+base_font = ExtResource("16_y7ydl")
 
 [node name="Player" type="CharacterBody3D" groups=["Players"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -291,6 +295,8 @@ offset_top = 33.7361
 offset_right = 52.5039
 offset_bottom = 161.736
 scale = Vector2(0.8, 1.5)
+theme_override_fonts/font = SubResource("FontVariation_5ctu4")
+theme_override_font_sizes/font_size = 128
 text = "ERR"
 
 [node name="FuelMeter" type="TextureProgressBar" parent="HUD"]
@@ -327,6 +333,9 @@ offset_top = 33.7361
 offset_right = 295.495
 offset_bottom = 161.736
 scale = Vector2(-0.8, 1.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_5ctu4")
+theme_override_font_sizes/font_size = 128
 text = "ERR"
 
 [node name="FPScounter" type="Label" parent="HUD"]

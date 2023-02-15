@@ -1,53 +1,43 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://cqmijbq200nvv"]
 
-[ext_resource path="res://UI/VolumeControls.tscn" type="PackedScene" id=1]
-[ext_resource path="res://UI/VideoSettings.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=3]
-[ext_resource path="res://default.bigtext.theme" type="Theme" id=4]
-[ext_resource path="res://UI/Sensitivity.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Textures/UI/A.ttf" type="FontFile" id=7]
-[ext_resource path="res://Scripts/PauseScreen.cs" type="Script" id=12]
+[ext_resource type="PackedScene" path="res://UI/VolumeControls.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://UI/VideoSettings.tscn" id="2"]
+[ext_resource type="AudioStream" uid="uid://deqfs7eu3c7q7" path="res://Sounds/UI/menuBlip.wav" id="3"]
+[ext_resource type="Theme" path="res://default.bigtext.theme" id="4"]
+[ext_resource type="PackedScene" path="res://UI/Sensitivity.tscn" id="5"]
+[ext_resource type="Script" path="res://Scripts/PauseScreen.cs" id="12"]
 
-[sub_resource type="Gradient" id=1]
-offsets = PackedFloat32Array( 0 )
-colors = PackedColorArray( 0, 0, 0, 1 )
+[sub_resource type="Gradient" id="1"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
 width = 1920
 
-[sub_resource type="FontFile" id=3]
-size = 48
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
-
-[sub_resource type="FontFile" id=4]
-size = 24
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
-
 [node name="PauseScreen" type="Control"]
-process_mode = 2
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-self_modulate = Color( 1, 1, 1, 0.768627 )
+self_modulate = Color(1, 1, 1, 0.768627)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = SubResource("2")
+expand_mode = 1
 
-[node name="VideoSettings" parent="." instance=ExtResource( 2 )]
+[node name="VideoSettings" parent="." instance=ExtResource("2")]
+anchors_preset = 0
 
 [node name="Quit" type="Button" parent="."]
+layout_mode = 0
 anchor_left = 0.872
 anchor_top = 0.847
 anchor_right = 1.0
@@ -55,13 +45,11 @@ anchor_bottom = 1.0
 offset_left = 0.399963
 offset_top = -0.200043
 offset_bottom = -9.0
-theme = ExtResource( 4 )
+theme = ExtResource("4")
 text = "Quit"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Resume" type="Button" parent="."]
+layout_mode = 0
 anchor_left = 0.667
 anchor_top = 0.845
 anchor_right = 0.857
@@ -70,44 +58,39 @@ offset_left = 0.399963
 offset_top = -3.05176e-05
 offset_right = 0.399963
 offset_bottom = -10.0
-theme = ExtResource( 4 )
+theme = ExtResource("4")
 text = "Resume"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Menu Label" type="Label" parent="."]
+layout_mode = 0
 anchor_right = 0.683
 offset_right = -5.40002
 offset_bottom = 49.0
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 9
-custom_constants/shadow_offset_y = 6
 text = "GAME PAUSED"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="bootup" type="AudioStreamPlayer" parent="."]
-bus = "SFX"
+bus = &"SFX"
 
 [node name="elevatorMusicidk" type="AudioStreamPlayer" parent="."]
 autoplay = true
-bus = "BGM"
+bus = &"BGM"
 
 [node name="bloop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource("3")
 volume_db = -5.0
-bus = "SFX"
+bus = &"SFX"
 
-[node name="VolumeControls" parent="." instance=ExtResource( 1 )]
-offset_bottom = -88.0
+[node name="VolumeControls" parent="." instance=ExtResource("1")]
+layout_mode = 1
+anchors_preset = 11
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_bottom = -100.96
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="ControlsText" type="RichTextLabel" parent="."]
+layout_mode = 0
 anchor_left = 0.015
 anchor_top = 0.048
 anchor_right = 0.631
@@ -116,11 +99,6 @@ offset_left = 4.0
 offset_top = 8.2
 offset_right = 8.20001
 offset_bottom = 14.2
-custom_fonts/normal_font = SubResource( 4 )
-custom_colors/default_color = Color( 0, 1, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 4
-custom_constants/shadow_offset_y = 4
 text = "-WASD		= walking/strafing
 -Spacebar	 = hover
 -L-Shift	   = sprint
@@ -128,11 +106,9 @@ text = "-WASD		= walking/strafing
 -Middle Mouseclick / number keys = switch weapon
 
 And remember, a sitting duck is a dead duck!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Sensitivity" parent="." instance=ExtResource( 5 )]
+[node name="Sensitivity" parent="." instance=ExtResource("5")]
+layout_mode = 0
 anchor_left = 0.009
 anchor_top = 0.431
 anchor_right = 0.648

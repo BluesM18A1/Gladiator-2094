@@ -53,9 +53,9 @@ public partial class Title : Control
 		GetTree().ChangeSceneToFile("res://Title.tscn");
 	}
 	public override void _Input(InputEvent @event){
-		if (@event is InputEventKey eventKey)
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
 		{
-			if (eventKey.Pressed && eventKey.Keycode == Key.Launch0)
+			if (keyEvent.Keycode == Key.Key0)
 			{
 				GetTree().ChangeSceneToFile("res://Scenes/debug.tscn");
 			}

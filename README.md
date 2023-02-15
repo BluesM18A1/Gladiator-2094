@@ -17,15 +17,14 @@ This upgrade to Godot 4.0 from 3.x is still far from finished. The releases page
 
 Here are the  known issues that I have yet to fix:
 - Enemies slow the game to a screeching halt even on the most powerful computers
-- Bullets, be they from enemy or player, does not react to collision with either.
+- Bullets do not affect combatants, and item boxes do not get picked up.
 - UI elements are visually butchered (I was gonna redo and clean up the menus at some point anyways)
-- Some input checks, for example, the one for opening the pause menu, simply don't respond.
 - Lighting and materials on some objects/scenes need to be readjusted
 
 
 TODO LIST (after the 4.0 upgrade is done):  
--Airborne enemies    
--Upgrade mechanics   
--Networked multiplayer at long last? 
+-Airborne enemies
+-Upgrade mechanics
+-Networked multiplayer at long last?
 
 Download the music here! https://bluesm18a1.bandcamp.com/album/gladiator-2094-ost

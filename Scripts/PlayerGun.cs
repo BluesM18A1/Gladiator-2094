@@ -284,28 +284,28 @@ public partial class PlayerGun : Gun
 		}
 		if (@event is InputEventKey eventKey)
 		{
-			if (eventKey.Pressed && eventKey.Keycode == Key.Launch1)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Key1)
 			{
 				currentWeapon = Weapons.FLAMETHROWER;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
 				UpdateWeaponData();
 			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Launch2)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Key2)
 			{
 				currentWeapon = Weapons.REPEATER;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
 				UpdateWeaponData();
 			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Launch3)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Key3)
 			{
 				currentWeapon = Weapons.BUCKSHOT;
 				switchSnd.Stream = wepSwitch;
 				switchSnd.Play();
 				UpdateWeaponData();
 			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Launch4)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Key4)
 			{
 				currentWeapon = Weapons.GRENADES;
 				switchSnd.Stream = wepSwitch;
