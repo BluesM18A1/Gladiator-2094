@@ -45,7 +45,7 @@ public partial class VideoSettings : Control
         physicsRate.Value = Engine.PhysicsTicksPerSecond;
         resolutionScale.Value = GetViewport().Scaling3DScale;
         //FXAASwitch(GetViewport().Fxaa);
-        antiAliasing.Select((int)GetViewport().Msaa3D);
+        //antiAliasing.Select((int)GetViewport().Msaa3D);
         TargetFPSChange((float)Engine.MaxFps);
         PhysicsRateChange((float)Engine.PhysicsTicksPerSecond);
         //TODO: Toggle switch for AMD FSR //GetViewport().Scaling3DMode = 
@@ -92,7 +92,7 @@ public partial class VideoSettings : Control
     */
     private void AntiAliasingChange(int id)
     {
-        GetViewport().Msaa3D = (Viewport.Msaa)id;
+        //GetViewport().Msaa3D = (Viewport.Msaa)id;
     }
     private void AnisoChange(int id)
     {

@@ -66,7 +66,7 @@ public partial class EnemyGun : Gun
 		Bullet newBullet = (Bullet)bullet.Instantiate();
 		newBullet.Transform = GlobalTransform * barrels[i];
 		GetTree().Root.AddChild(newBullet);
-		newBullet.ApplyImpulse(new Vector3(0, 0, 0),
+		newBullet.ApplyImpulse(
 		 -newBullet.GlobalTransform.Basis.Z * newBullet.speed * (launchSpeedByDistance ? ToGlobal(Position).DistanceTo(player.Position) : 1));
 		//parent.GetTarget(); //find a new target
 		//parent.UpdatePath(parent.targetNavPos); //start over pathfinding using new target

@@ -80,7 +80,7 @@ public partial class Enemy : Combatant
 			currentMode = closeRangeMode;
 		}
 		//the following line exists to rotate enemy wheels if it has any. I should find a way to interpolate the rotation to make the animation more natural.
-		if (currentMode != PathMode.DEFENDER) LookAt(new Vector3(pathPos.X, Position.Y, pathPos.Z), Vector3.Up);
+		//if (currentMode != PathMode.DEFENDER) LookAt(new Vector3(pathPos.X, Position.Y, pathPos.Z), Vector3.Up);
 		
 		
 		inputMovementVector = inputMovementVector.Normalized();

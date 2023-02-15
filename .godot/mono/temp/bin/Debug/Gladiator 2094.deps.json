@@ -8,16 +8,16 @@
     ".NETCoreApp,Version=v6.0": {
       "Gladiator 2094/1.0.0": {
         "dependencies": {
-          "Godot.SourceGenerators": "4.0.0-rc.1",
-          "GodotSharp": "4.0.0-rc.1",
-          "GodotSharpEditor": "4.0.0-rc.1"
+          "Godot.SourceGenerators": "4.0.0-rc.2",
+          "GodotSharp": "4.0.0-rc.2",
+          "GodotSharpEditor": "4.0.0-rc.2"
         },
         "runtime": {
           "Gladiator 2094.dll": {}
         }
       },
-      "Godot.SourceGenerators/4.0.0-rc.1": {},
-      "GodotSharp/4.0.0-rc.1": {
+      "Godot.SourceGenerators/4.0.0-rc.2": {},
+      "GodotSharp/4.0.0-rc.2": {
         "runtime": {
           "lib/net6.0/GodotSharp.dll": {
             "assemblyVersion": "4.0.0.0",
@@ -25,9 +25,9 @@
           }
         }
       },
-      "GodotSharpEditor/4.0.0-rc.1": {
+      "GodotSharpEditor/4.0.0-rc.2": {
         "dependencies": {
-          "GodotSharp": "4.0.0-rc.1"
+          "GodotSharp": "4.0.0-rc.2"
         },
         "runtime": {
           "lib/net6.0/GodotSharpEditor.dll": {
@@ -44,26 +44,26 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Godot.SourceGenerators/4.0.0-rc.1": {
+    "Godot.SourceGenerators/4.0.0-rc.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-48Z5xfHlnIGlj5uGP3roWUThtJkkY0SrWJfXiBZTPk6BaysFxSgBop8sBsyIujGlY5x62bmqR+4ZP7PWSHpT5A==",
-      "path": "godot.sourcegenerators/4.0.0-rc.1",
-      "hashPath": "godot.sourcegenerators.4.0.0-rc.1.nupkg.sha512"
+      "sha512": "sha512-qe4gmtKEhio5CPNGm+TuoQz6wLdTuTfjx8Tw6UhDwuns7060oaev8TcctJg4kPOsHaDcnksgV2amUB4X71RwXQ==",
+      "path": "godot.sourcegenerators/4.0.0-rc.2",
+      "hashPath": "godot.sourcegenerators.4.0.0-rc.2.nupkg.sha512"
     },
-    "GodotSharp/4.0.0-rc.1": {
+    "GodotSharp/4.0.0-rc.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Pty10l6LAcCKepCG+LQkfonDMMDxYbn550ZZDg/0QkRq1aKv0bf6SGikYFxGN5JD/HRjljhpplGYyHdsFR7mBQ==",
-      "path": "godotsharp/4.0.0-rc.1",
-      "hashPath": "godotsharp.4.0.0-rc.1.nupkg.sha512"
+      "sha512": "sha512-ITi0eI2Aoy4a3vDrYR5Br0YWawK7foHXMz/BurNVki2LD0eVIJgE9cAC5zDJKl4bnpfkUfQK09WDUTlW/8NlMA==",
+      "path": "godotsharp/4.0.0-rc.2",
+      "hashPath": "godotsharp.4.0.0-rc.2.nupkg.sha512"
     },
-    "GodotSharpEditor/4.0.0-rc.1": {
+    "GodotSharpEditor/4.0.0-rc.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VeK5e6/4DuywqEk8p2fmEWa+REhWSzyXa5kble+9oJG3sln6K7SG2FMrQb8r7wns5+zp7oKRoCZN2IR3I/ty/A==",
-      "path": "godotsharpeditor/4.0.0-rc.1",
-      "hashPath": "godotsharpeditor.4.0.0-rc.1.nupkg.sha512"
+      "sha512": "sha512-70G+snPninLlWitcP7tqsqUsoPjApY24ayF326AwK93A7Mq1CDYeUEJxpManUEmYBrfP9Wi2i63f6r/CZpqZVg==",
+      "path": "godotsharpeditor/4.0.0-rc.2",
+      "hashPath": "godotsharpeditor.4.0.0-rc.2.nupkg.sha512"
     }
   }
 }

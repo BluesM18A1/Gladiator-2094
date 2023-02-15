@@ -19,7 +19,7 @@ public partial class Title : Control
 		bloop = GetNode<AudioStreamPlayer>("bloop");
 		Input.MouseMode = Input.MouseModeEnum.Visible;
 		//sometimes the window shoots up really high depending on OS and monitor setup. This makes sure you can easily grab and move the window.
-		GetWindow().Position = new Vector2I(GetWindow().Position.X, 0);
+		//GetWindow().Position = new Vector2I(GetWindow().Position.X, 0);
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://euv4j77f8x80"]
+[gd_scene load_steps=34 format=3 uid="uid://euv4j77f8x80"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://djqxwy8va6xi3" path="res://Prefabs/Parts/PlayerGun.tscn" id="2"]
@@ -54,12 +54,6 @@ radius = 0.35
 height = 0.75
 radial_segments = 8
 rings = 5
-
-[sub_resource type="StandardMaterial3D" id="7"]
-albedo_color = Color(0, 0, 1, 1)
-metallic = 0.54
-metallic_specular = 0.8
-roughness = 0.18
 
 [sub_resource type="CylinderShape3D" id="8"]
 height = 1.7
@@ -119,15 +113,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 2
 collision_mask = 15
 floor_stop_on_slope = false
+floor_block_on_wall = false
 floor_max_angle = 0.872665
 script = ExtResource("1")
-MaxSpeed = 16.0
-Accel = 8.0
-Deaccel = 24.0
 FuelDrainRate = 50.0
 JetForce = 8.0
 normalSpeed = 12.0
 sprintSpeed = 24.0
+MaxSpeed = 16.0
+Accel = 8.0
+Deaccel = 24.0
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.0319977, -3.55271e-15)
@@ -140,8 +135,6 @@ mesh = ExtResource("15")
 surface_material_override/0 = ExtResource("4_h4j3m")
 surface_material_override/1 = ExtResource("5_g2i2o")
 script = ExtResource("17")
-surface_material_override/0 = ExtResource("4_h4j3m")
-surface_material_override/1 = ExtResource("5_g2i2o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Axel"]
 autoplay = "Spin"
@@ -166,13 +159,12 @@ near = 0.01
 
 [node name="Gun" parent="Neck" instance=ExtResource("2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112467, -0.722072)
+coolSpeed = 0.5
 buckshotSpread = 0.06
 coolRepeater = 20.0
 coolBuckshot = 6.0
 coolGrenades = 3.0
 coolFlames = 50.0
-material/0 = SubResource("7")
-coolSpeed = 0.5
 HUDPath = NodePath("../../HUD")
 PlayerPath = NodePath("../..")
 
@@ -346,9 +338,6 @@ offset_right = 152.239
 offset_bottom = 48.4772
 text = "FPS:"
 script = ExtResource("22")
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Crosshair" type="TextureRect" parent="HUD"]
 self_modulate = Color(0, 1, 0, 1)

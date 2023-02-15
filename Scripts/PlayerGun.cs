@@ -48,7 +48,7 @@ public partial class PlayerGun : Gun
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		coolMeter = GetNode<TextureProgressBar>("Meter/SubViewport/TextureProgressBar");
+		coolMeter = GetNode<TextureProgressBar>("SubViewport/TextureProgressBar");
 		player = GetNode<Player>(PlayerPath);
 		iconRptr = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconRptr");
 		iconShot = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconShot");
@@ -128,7 +128,7 @@ public partial class PlayerGun : Gun
 			Bullet newBullet = (Bullet)instanceRepeater.Instantiate();
 			newBullet.Transform = GlobalTransform * barrels[0];
 			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+			newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 		
 	}
@@ -146,7 +146,7 @@ public partial class PlayerGun : Gun
 				Bullet newBullet = (Bullet)instanceBuckshot.Instantiate();
 				newBullet.Transform = GlobalTransform * barrels[i];
 				GetTree().Root.AddChild(newBullet);
-				newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+				newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 			}
 			
 		}
@@ -164,7 +164,7 @@ public partial class PlayerGun : Gun
 			Bullet newBullet = (Bullet)instanceGrenade.Instantiate();
 			newBullet.Transform = GlobalTransform * barrels[0];
 			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+			newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 	}
 	protected void FireFlame()
@@ -180,7 +180,7 @@ public partial class PlayerGun : Gun
 			newBullet.Transform = GlobalTransform * barrels[0];
 			//newBullet.Translate(barrels[0].origin);
 			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(new Vector3(0, 0, 0), -newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+			newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 	}
 	public void AddBullets(int delta)

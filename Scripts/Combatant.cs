@@ -58,9 +58,19 @@ public partial class Combatant : CharacterBody3D
         hvel = hvel.Lerp(target, accel * (float)delta);
         vel.X = hvel.X;
         vel.Z = hvel.Z;
+        
+        //protip for people adapting their code from 3.x,
+        //what used to be this:
+        //vel = MoveAndSlide(vel, new Vector3(0, 1, 0), false, 4, Mathf.DegToRad(MaxSlopeAngle));
+        //is now the following 3 lines, and the parameters from moveandslide are now editable from the insepctor.
+        //if you don't include the third line, 
+        //gravity will be constantly applied when you are on the floor 
+        //so you drop like a rock falling of ledges and can't climb slopes properly.
         Velocity = vel;
         MoveAndSlide();
-        //vel = MoveAndSlide(vel, new Vector3(0, 1, 0), false, 4, Mathf.DegToRad(MaxSlopeAngle));
+        vel = GetRealVelocity();
+        
+        
     }
     public virtual void UpdateHealth(int damage)
     {

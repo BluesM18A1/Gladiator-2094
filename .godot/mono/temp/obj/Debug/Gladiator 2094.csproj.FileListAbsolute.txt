@@ -1,8 +1,3 @@
-/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.csproj.AssemblyReference.cache
-/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.GeneratedMSBuildEditorConfig.editorconfig
-/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.csproj.CoreCompileInputs.cache
-/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.AssemblyInfoInputs.cache
-/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.AssemblyInfo.cs
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/bin/Debug/Gladiator 2094.deps.json
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/bin/Debug/Gladiator 2094.runtimeconfig.json
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/bin/Debug/Gladiator 2094.dll
@@ -10,6 +5,11 @@
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/bin/Debug/Gladiator 2094.pdb
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/bin/Debug/GodotSharp.dll
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.csproj.AssemblyReference.cache
+/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.AssemblyInfoInputs.cache
+/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.AssemblyInfo.cs
+/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.csproj.CoreCompileInputs.cache
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.csproj.CopyComplete
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/Gladiator 2094.dll
 /mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/.godot/mono/temp/obj/Debug/ref/Gladiator 2094.dll

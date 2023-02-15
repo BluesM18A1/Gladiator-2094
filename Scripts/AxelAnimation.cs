@@ -18,9 +18,9 @@ public partial class AxelAnimation : MeshInstance3D
 	{
         if (parent.dir != Vector3.Zero)
         {
-            dirRot = (Mathf.Atan2(parent.vel.X, parent.vel.Z)) - (parent.Rotation.Y); 
+            dirRot = (Mathf.Atan2(parent.Velocity.X, parent.Velocity.Z)) - (parent.Rotation.Y); 
         }
-        Vector3 hvel = new Vector3 (parent.vel.X, 0, parent.vel.Z);
+        Vector3 hvel = new Vector3 (parent.Velocity.X, 0, parent.Velocity.Z);
 		ani.SpeedScale = -hvel.Length() / 8;
 		RotateY(dirRot);
 	}

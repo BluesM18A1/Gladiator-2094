@@ -128,19 +128,19 @@ public partial class Arena : Node3D
 				case 1:
 					for (byte i = 0; i < 14 + (config.difficulty * 2); i++)
 					{
-						randomItem = (Int16)GD.RandRange(0,EnemyTier1.Length);
+						randomItem = (Int16)GD.RandRange(0,EnemyTier1.Length-1);
 						RandomGroundSpawn(EnemyTier1[randomItem]);
 					}
 				break;
 				default:
 					for (byte i = 0; i < 10 + (config.difficulty * 2); i++)
 					{
-						randomItem = (Int16)GD.RandRange(0,EnemyTier1.Length);
+						randomItem = (Int16)GD.RandRange(0,EnemyTier1.Length-1);
 						RandomGroundSpawn(EnemyTier1[randomItem]);
 					}
 					for (byte i = 0; i < 4 + (config.difficulty); i++)
 					{
-						randomItem = (Int16)GD.RandRange(0,EnemyTier2.Length);
+						randomItem = (Int16)GD.RandRange(0,EnemyTier2.Length-1);
 						RandomGroundSpawn(EnemyTier2[randomItem]);
 					}
 				break;
@@ -156,7 +156,7 @@ public partial class Arena : Node3D
 			//A note about RandfRange:
 			// the minimum value is INCLUSIVE 
 			//and the max value is EXCLUSIVE
-			int randomItem = (Int16)GD.RandRange(0,ItemBoxes.Length); 
+			int randomItem = (Int16)GD.RandRange(0,ItemBoxes.Length-1); 
 			RandomGroundSpawn(ItemBoxes[randomItem]);
 		}
 	}
