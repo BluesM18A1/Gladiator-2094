@@ -1,14 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7ghcuxba3x8n"]
+[gd_scene load_steps=20 format=3 uid="uid://lirnmf7jof2o"]
 
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemyHit.wav" id="1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Bullets/enemy repeater.tscn" id="2"]
-[ext_resource type="SphereMesh" uid="uid://d3pou1s4dy78t" path="res://Materials/enemies/tortoise_body.tres" id="3"]
+[ext_resource type="SphereMesh" uid="uid://d3pou1s4dy78t" path="res://Materials/enemies/tortoise.body.tres" id="3"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
 [ext_resource type="ArrayMesh" uid="uid://6mbugpm8uj35" path="res://Models/gatlingGun.obj" id="5"]
 [ext_resource type="Script" path="res://Scripts/AutoAim.cs" id="6"]
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="7"]
 [ext_resource type="Script" path="res://Scripts/EnemyGun.cs" id="8"]
-[ext_resource type="Material" uid="uid://is0mep63lxx0" path="res://Materials/enemies/tortoise_face.tres" id="10"]
+[ext_resource type="Material" uid="uid://is0mep63lxx0" path="res://Materials/enemies/tortoise.face.tres" id="10"]
 [ext_resource type="AudioStream" uid="uid://bn5hkef3r58x6" path="res://Sounds/guns/repeater.wav" id="11"]
 
 [sub_resource type="SphereShape3D" id="1"]
@@ -131,13 +131,13 @@ _data = {
 collision_layer = 4
 collision_mask = 2071
 script = ExtResource("7")
-MaxSpeed = 4.0
-Accel = 5.0
 bounty = 80
 rangeThreshold = 16.0
 closeRangeMode = 2
 longRangeMode = 1
 pathUpdateRate = 2.0
+MaxSpeed = 4.0
+Accel = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00098, 0.0914047)
@@ -172,13 +172,13 @@ mesh = SubResource("6")
 transform = Transform3D(1.5, -5.24537e-07, 0, 5.24537e-07, 1.5, 0, 0, 0, 1.5, 1, 0.054, 0.75)
 mesh = ExtResource("5")
 script = ExtResource("8")
-currentWeapon = 2
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1)]
 bullet = ExtResource("2")
 fireRateMin = 0.1
 fireRateMax = 0.1
 serialFiring = true
 parentPath = NodePath("../../../Tortoise")
+currentWeapon = 2
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun"]
 stream = ExtResource("11")
@@ -198,17 +198,14 @@ libraries = {
 transform = Transform3D(1.5, 5.24537e-07, 0, -5.24537e-07, 1.5, 0, 0, 0, 1.5, -1, 0.054, 0.75)
 mesh = ExtResource("5")
 script = ExtResource("8")
-__meta__ = {
-"_editor_description_": ""
-}
-currentWeapon = 2
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1)]
 bullet = ExtResource("2")
 fireRateMin = 0.1
 fireRateMax = 0.1
 startupDelay = true
 serialFiring = true
 parentPath = NodePath("../../../Tortoise")
+currentWeapon = 2
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun2"]
 transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0, 0)
@@ -233,3 +230,5 @@ libraries = {
 [node name="hitsound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1")
 bus = &"SFX"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

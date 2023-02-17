@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b517dc53uccy4"]
+[gd_scene load_steps=8 format=3 uid="uid://bh4emk4nit0xn"]
 
 [ext_resource type="Script" path="res://Scripts/ItemBox.cs" id="1"]
 [ext_resource type="ArrayMesh" uid="uid://bhyw0pu3mfehy" path="res://Models/itembox.obj" id="2"]
-[ext_resource type="Material" path="res://Materials/items/box_grenades.tres" id="3"]
-[ext_resource type="Material" path="res://Materials/items/icon_grenades.tres" id="4"]
+[ext_resource type="Material" path="res://Materials/items/box.grenades.tres" id="3"]
+[ext_resource type="Material" path="res://Materials/items/icon.grenades.tres" id="4"]
 
 [sub_resource type="BoxShape3D" id="3"]
 size = Vector3(0.8, 0.8, 0.8)
@@ -29,8 +29,8 @@ _data = {
 }
 
 [node name="Box_Ammo" type="Area3D"]
-collision_layer = 4
-collision_mask = 5
+collision_layer = 32
+collision_mask = 2
 script = ExtResource("1")
 itemType = 3
 itemCount = 10

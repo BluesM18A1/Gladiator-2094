@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgvk1twpcbrhf"]
+[gd_scene load_steps=6 format=3 uid="uid://bfmbasyd3qc8b"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://cm04je6mii1hu" path="res://Sounds/guns/enemyShot.wav" id="2"]
-[ext_resource type="Material" path="res://Materials/bullets/bullet_default.tres" id="3"]
+[ext_resource type="Material" path="res://Materials/bullets/bullet.default.tres" id="2_nw0v5"]
 
 [sub_resource type="SphereMesh" id="1"]
-material = ExtResource("3")
+material = ExtResource("2_nw0v5")
 radius = 0.1
 height = 0.2
 radial_segments = 6
@@ -14,15 +14,12 @@ rings = 2
 [sub_resource type="SphereShape3D" id="3"]
 radius = 0.1
 
-[node name="Bullet" type="RigidBody3D" groups=["projectiles"]]
-collision_layer = 4096
-collision_mask = 19
-gravity_scale = 0.0
-max_contacts_reported = 1
-contact_monitor = true
+[node name="Bullet" type="Area3D" groups=["projectiles"]]
+collision_layer = 8
+collision_mask = 23
 script = ExtResource("1")
-damage = -10
-speed = 50.0
+damage = -2
+speed = 40.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("1")
@@ -32,6 +29,11 @@ shape = SubResource("3")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2")
+volume_db = -2.0
+unit_size = 1.0
+max_db = -5.0
 autoplay = true
+doppler_tracking = 2
 
+[connection signal="area_entered" from="." to="." method="_OnCollisionEnter"]
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

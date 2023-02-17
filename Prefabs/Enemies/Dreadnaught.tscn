@@ -1,22 +1,22 @@
-[gd_scene load_steps=34 format=3 uid="uid://ea1d1f3tahtl"]
+[gd_scene load_steps=34 format=3 uid="uid://yfuhvj4b8mcw"]
 
 [ext_resource type="ArrayMesh" uid="uid://b2fm7hk2jpd3a" path="res://Models/dreadnaughtBody.obj" id="1"]
-[ext_resource type="AudioStream" uid="uid://b6snja6wvhm5t" path="res://Sounds/guns/buckshot.wav" id="2"]
+[ext_resource type="Material" uid="uid://cgg0v8wplxl4" path="res://Materials/enemies/dreadnaught.face.tres" id="2_wn0ex"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="3"]
-[ext_resource type="Material" path="res://Materials/gun_barrel_void.tres" id="4"]
 [ext_resource type="Script" path="res://Scripts/EnemyGun.cs" id="5"]
-[ext_resource type="Material" path="res://Materials/enemies/dreadnaught_brain.tres" id="5_0d7iy"]
+[ext_resource type="Material" path="res://Materials/enemies/dreadnaught.brain.tres" id="5_wlmwc"]
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="6"]
+[ext_resource type="Material" path="res://Materials/enemies/dreadnaugh.antennae.stem.tres" id="6_5ab3r"]
 [ext_resource type="Script" path="res://Scripts/AutoAim.cs" id="7"]
-[ext_resource type="PackedScene" uid="uid://dbd7fu6734bt8" path="res://Prefabs/Bullets/Dreadnaught_Bullet.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://Prefabs/Bullets/Dreadnaught_Grenades.tscn" id="9"]
+[ext_resource type="Material" path="res://Materials/gun.barrel_void.tres" id="7_8ed4w"]
+[ext_resource type="PackedScene" uid="uid://we8qp1u8bfwk" path="res://Prefabs/Bullets/Dreadnaught_Bullet.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://dmy6fs061m404" path="res://Prefabs/Bullets/Dreadnaught_Grenades.tscn" id="9"]
 [ext_resource type="AudioStream" uid="uid://kfm03qb8t3d1" path="res://Sounds/guns/grenadeLaunch.wav" id="10"]
-[ext_resource type="Material" uid="uid://cgg0v8wplxl4" path="res://Materials/enemies/dreadnaught_face.tres" id="11"]
-[ext_resource type="Material" path="res://Materials/enemies/gun_grenade_barrel.tres" id="12"]
-[ext_resource type="Material" path="res://Materials/enemies/gun_grenade_stock.tres" id="13"]
-[ext_resource type="Material" path="res://Materials/enemies/dreadnaught_antennae_stem.tres" id="14"]
-[ext_resource type="Material" path="res://Materials/enemies/dreadnaught_antennae_red.tres" id="16_uvhkw"]
-[ext_resource type="Material" path="res://Materials/enemies/dreadnaught_antennae_green.tres" id="18_iwc80"]
+[ext_resource type="AudioStream" uid="uid://b6snja6wvhm5t" path="res://Sounds/guns/catshot.wav" id="10_1bi2c"]
+[ext_resource type="Material" path="res://Materials/enemies/gun.grenade.barrel.tres" id="12_us4g7"]
+[ext_resource type="Material" path="res://Materials/enemies/gun.grenade.stock.tres" id="13_vuxaw"]
+[ext_resource type="Material" path="res://Materials/enemies/dreadnaught.antennae.green.tres" id="16_cgd2f"]
+[ext_resource type="Material" uid="uid://k58ud2cd51bl" path="res://Materials/enemies/dreadnaught.antennae.red.tres" id="17_qogun"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.432514
@@ -45,7 +45,7 @@ _surfaces = [{
 "format": 4119,
 "index_count": 96,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 5, 0, 7, 0, 8, 0, 9, 0, 10, 0, 10, 0, 9, 0, 11, 0, 12, 0, 13, 0, 14, 0, 14, 0, 13, 0, 15, 0, 16, 0, 17, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 22, 0, 22, 0, 21, 0, 23, 0, 24, 0, 25, 0, 26, 0, 26, 0, 25, 0, 27, 0, 28, 0, 29, 0, 30, 0, 30, 0, 29, 0, 31, 0, 32, 0, 33, 0, 34, 0, 34, 0, 33, 0, 35, 0, 36, 0, 32, 0, 37, 0, 37, 0, 32, 0, 34, 0, 38, 0, 39, 0, 40, 0, 40, 0, 39, 0, 41, 0, 40, 0, 41, 0, 37, 0, 37, 0, 41, 0, 36, 0, 35, 0, 33, 0, 42, 0, 42, 0, 33, 0, 43, 0, 42, 0, 43, 0, 44, 0, 44, 0, 43, 0, 45, 0, 46, 0, 39, 0, 47, 0, 47, 0, 39, 0, 38, 0, 45, 0, 46, 0, 44, 0, 44, 0, 46, 0, 47, 0),
-"material": ExtResource("14"),
+"material": ExtResource("6_5ab3r"),
 "name": "barrel",
 "primitive": 3,
 "vertex_count": 48,
@@ -188,10 +188,10 @@ _data = {
 collision_layer = 4
 collision_mask = 2071
 script = ExtResource("6")
-MaxSpeed = 4.0
-HP = 2500
 bounty = 300
 closeRangeMode = 2
+MaxSpeed = 4.0
+HP = 2500
 
 [node name="MainBody" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, -0.05)
@@ -203,7 +203,7 @@ shape = SubResource("2")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000333786, -0.0133281, -0.00166655)
-material_override = ExtResource("11")
+material_override = ExtResource("2_wn0ex")
 mesh = ExtResource("1")
 script = ExtResource("7")
 trackingLatency = 1.0
@@ -212,7 +212,7 @@ vMax = 0.0
 
 [node name="Brain" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.75, 0.3)
-material_override = ExtResource("5_0d7iy")
+material_override = ExtResource("5_wlmwc")
 mesh = SubResource("5")
 
 [node name="LeftArm" type="Node3D" parent="Body"]
@@ -221,25 +221,24 @@ transform = Transform3D(7.54979e-08, -1, 0, 1, 7.54979e-08, 0, 0, 0, 1, -2.1, 0.
 [node name="FL_left" type="MeshInstance3D" parent="Body/LeftArm"]
 transform = Transform3D(-3.5, 0, 0, 0, -3.5, 0, 0, 0, -2, 0, 0, -0.1)
 mesh = SubResource("10")
-surface_material_override/0 = ExtResource("14")
-surface_material_override/1 = ExtResource("4")
-surface_material_override/2 = ExtResource("14")
+surface_material_override/0 = ExtResource("6_5ab3r")
+surface_material_override/1 = ExtResource("7_8ed4w")
+surface_material_override/2 = ExtResource("6_5ab3r")
 
 [node name="GatlingGun" type="MeshInstance3D" parent="Body/LeftArm"]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3, 0, 0, 1.2)
 mesh = SubResource("14")
-surface_material_override/1 = ExtResource("4")
+surface_material_override/1 = ExtResource("7_8ed4w")
 script = ExtResource("5")
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, -1)]
 bullet = ExtResource("8")
 fireRateMin = 0.01
 fireRateMax = 0.01
 parentPath = NodePath("../../..")
-surface_material_override/1 = ExtResource("4")
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, -1)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Body/LeftArm/GatlingGun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-stream = ExtResource("2")
+stream = ExtResource("10_1bi2c")
 volume_db = 8.0
 
 [node name="RightArm" type="Node3D" parent="Body"]
@@ -248,28 +247,24 @@ transform = Transform3D(7.54979e-08, 1, 0, -1, 7.54979e-08, 0, 0, 0, 1, 2.1, 0.9
 [node name="FL_right" type="MeshInstance3D" parent="Body/RightArm"]
 transform = Transform3D(-3.5, 0, 0, 0, -3.5, 0, 0, 0, -2, 0, 0, -0.1)
 mesh = SubResource("10")
-surface_material_override/0 = ExtResource("14")
-surface_material_override/1 = ExtResource("4")
-surface_material_override/2 = ExtResource("14")
+surface_material_override/0 = ExtResource("6_5ab3r")
+surface_material_override/1 = ExtResource("7_8ed4w")
+surface_material_override/2 = ExtResource("6_5ab3r")
 
 [node name="GatlingGun" type="MeshInstance3D" parent="Body/RightArm"]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3, 0, 0, 1.2)
 mesh = SubResource("14")
-surface_material_override/1 = ExtResource("4")
+surface_material_override/1 = ExtResource("7_8ed4w")
 script = ExtResource("5")
-__meta__ = {
-"_editor_description_": ""
-}
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -1)]
 bullet = ExtResource("8")
 fireRateMin = 0.01
 fireRateMax = 0.01
 parentPath = NodePath("../../..")
-surface_material_override/1 = ExtResource("4")
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, -1), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, -1)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Body/RightArm/GatlingGun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-stream = ExtResource("2")
+stream = ExtResource("10_1bi2c")
 volume_db = 8.0
 
 [node name="Grenade Launchers" type="Node3D" parent="Body"]
@@ -282,20 +277,17 @@ vMax = 90.0
 [node name="GL_left" type="MeshInstance3D" parent="Body/Grenade Launchers"]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2, -1.25, 0, 0)
 mesh = ExtResource("3")
-surface_material_override/0 = ExtResource("12")
-surface_material_override/1 = ExtResource("4")
-surface_material_override/2 = ExtResource("13")
+surface_material_override/0 = ExtResource("12_us4g7")
+surface_material_override/1 = ExtResource("7_8ed4w")
+surface_material_override/2 = ExtResource("13_vuxaw")
 script = ExtResource("5")
-currentWeapon = 4
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)]
 bullet = ExtResource("9")
 fireRateMin = 1.0
 fireRateMax = 1.0
 launchSpeedByDistance = true
 parentPath = NodePath("../../..")
-surface_material_override/0 = ExtResource("12")
-surface_material_override/2 = ExtResource("13")
-surface_material_override/1 = ExtResource("4")
+currentWeapon = 4
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Body/Grenade Launchers/GL_left"]
 stream = ExtResource("10")
@@ -305,20 +297,17 @@ unit_size = 8.0
 [node name="GL_right" type="MeshInstance3D" parent="Body/Grenade Launchers"]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2, 1.25, 0, 0)
 mesh = ExtResource("3")
-surface_material_override/0 = ExtResource("12")
-surface_material_override/1 = ExtResource("4")
-surface_material_override/2 = ExtResource("13")
+surface_material_override/0 = ExtResource("12_us4g7")
+surface_material_override/1 = ExtResource("7_8ed4w")
+surface_material_override/2 = ExtResource("13_vuxaw")
 script = ExtResource("5")
-currentWeapon = 4
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)]
 bullet = ExtResource("9")
 fireRateMin = 1.0
 fireRateMax = 1.0
 launchSpeedByDistance = true
 parentPath = NodePath("../../..")
-surface_material_override/0 = ExtResource("12")
-surface_material_override/2 = ExtResource("13")
-surface_material_override/1 = ExtResource("4")
+currentWeapon = 4
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Body/Grenade Launchers/GL_right"]
 stream = ExtResource("10")
@@ -332,12 +321,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.86553, 1.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Antennae/Red"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("14")
+material_override = ExtResource("6_5ab3r")
 mesh = SubResource("20")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Antennae/Red/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("18_iwc80")
+material_override = ExtResource("16_cgd2f")
 mesh = SubResource("21")
 
 [node name="Blue" type="Node3D" parent="Body/Antennae"]
@@ -345,12 +334,12 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Antennae/Blue"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("14")
+material_override = ExtResource("6_5ab3r")
 mesh = SubResource("20")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Antennae/Blue/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("16_uvhkw")
+material_override = ExtResource("17_qogun")
 mesh = SubResource("21")
 
 [node name="Green" type="Node3D" parent="Body/Antennae"]
@@ -358,12 +347,12 @@ transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Antennae/Green"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("14")
+material_override = ExtResource("6_5ab3r")
 mesh = SubResource("20")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Antennae/Green/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("16_uvhkw")
+material_override = ExtResource("17_qogun")
 mesh = SubResource("21")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
@@ -378,3 +367,5 @@ libraries = {
 }
 
 [node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

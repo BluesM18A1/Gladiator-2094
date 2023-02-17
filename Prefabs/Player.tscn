@@ -1,25 +1,25 @@
-[gd_scene load_steps=36 format=3 uid="uid://euv4j77f8x80"]
+[gd_scene load_steps=36 format=3 uid="uid://ckta8q72l8myh"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1"]
-[ext_resource type="PackedScene" uid="uid://djqxwy8va6xi3" path="res://Prefabs/Parts/PlayerGun.tscn" id="2"]
-[ext_resource type="Material" path="res://Materials/player_body.tres" id="2_rksid"]
+[ext_resource type="PackedScene" path="res://Prefabs/Parts/PlayerGun.tscn" id="2"]
+[ext_resource type="Material" path="res://Materials/player.body.tres" id="2_lev32"]
 [ext_resource type="Theme" path="res://default.theme" id="3"]
 [ext_resource type="Texture2D" uid="uid://c550pddtc5rc3" path="res://Textures/UI/Icon_Grenade.png" id="4"]
-[ext_resource type="Material" uid="uid://derjvemuiaetx" path="res://Materials/player_tire.material" id="4_h4j3m"]
 [ext_resource type="Texture2D" uid="uid://c8sodcrovwjd" path="res://Textures/UI/Icon_Flamethrower.png" id="5"]
-[ext_resource type="Material" path="res://Materials/player_head.tres" id="5_2qrj1"]
 [ext_resource type="Material" path="res://Materials/hubcap.material" id="5_g2i2o"]
+[ext_resource type="Material" uid="uid://derjvemuiaetx" path="res://Materials/player.tire.material" id="5_tjiqy"]
 [ext_resource type="Texture2D" uid="uid://bjbt0g3s63jlo" path="res://Textures/UI/Icon_Minigun.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bpmtpavybb75t" path="res://Textures/UI/Icon_Shotgun.png" id="7"]
+[ext_resource type="Material" path="res://Materials/player.head.tres" id="7_xlwta"]
 [ext_resource type="Texture2D" uid="uid://i47hjgfahm13" path="res://Textures/UI/LifeMeter_background.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://b5u4dfts4unac" path="res://Textures/UI/LifeMeter.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://84ytppwgoysm" path="res://Textures/UI/placeholder_crosshair.png" id="11"]
 [ext_resource type="AudioStream" uid="uid://mjp8t2j0e5ug" path="res://Sounds/boost.wav" id="12"]
 [ext_resource type="AudioStream" uid="uid://bnuea86jlcang" path="res://Sounds/pickups/healthPickup.wav" id="13"]
 [ext_resource type="AudioStream" uid="uid://dnlfcoeiibt7n" path="res://Sounds/hurtsound.wav" id="14"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="15"]
 [ext_resource type="FontFile" uid="uid://digjbwl3hjo6q" path="res://Textures/UI/A.ttf" id="16_y7ydl"]
 [ext_resource type="Script" path="res://Scripts/AxelAnimation.cs" id="17"]
+[ext_resource type="Texture2D" uid="uid://84ytppwgoysm" path="res://Textures/UI/crosshair.png" id="18_eyhey"]
 [ext_resource type="AudioStream" uid="uid://jyk7mws2mi4w" path="res://Sounds/playerSpawn.wav" id="19"]
 [ext_resource type="AudioStream" uid="uid://bqfo63ajpo7pi" path="res://Sounds/land.wav" id="20"]
 [ext_resource type="Script" path="res://Scripts/UI/FPScounter.cs" id="22"]
@@ -32,6 +32,7 @@ radial_segments = 6
 rings = 1
 
 [sub_resource type="Animation" id="4"]
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,9 +57,9 @@ height = 0.75
 radial_segments = 8
 rings = 5
 
-[sub_resource type="CylinderShape3D" id="8"]
-height = 1.7
-radius = 0.3
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y48r7"]
+radius = 0.348329
+height = 1.75266
 
 [sub_resource type="CanvasItemMaterial" id="9"]
 light_mode = 1
@@ -113,9 +114,8 @@ _data = {
 base_font = ExtResource("16_y7ydl")
 
 [node name="Player" type="CharacterBody3D" groups=["Players"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 2
-collision_mask = 15
+collision_mask = 47
 floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 0.872665
@@ -128,31 +128,46 @@ MaxSpeed = 16.0
 Accel = 8.0
 Deaccel = 24.0
 
+[node name="floorchecker" type="RayCast3D" parent="."]
+editor_description = "IsOnFloor() is much less reliable in 4.0 as of writing. That means manual raycasts are back in style unfortunately."
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430899, 0)
+target_position = Vector3(0, -0.55, 0)
+
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.0319977, -3.55271e-15)
-material_override = ExtResource("2_rksid")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.54668, -3.55271e-15)
+material_override = ExtResource("2_lev32")
 mesh = SubResource("1")
 
-[node name="Axel" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-mesh = ExtResource("15")
-surface_material_override/0 = ExtResource("4_h4j3m")
-surface_material_override/1 = ExtResource("5_g2i2o")
+[node name="Axel" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 script = ExtResource("17")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Axel"]
+root_node = NodePath("../Wheels")
 autoplay = "Spin"
 libraries = {
 "": SubResource("AnimationLibrary_2d6o6")
 }
 
+[node name="Wheels" type="MeshInstance3D" parent="Axel"]
+mesh = ExtResource("15")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_tjiqy")
+surface_material_override/1 = ExtResource("5_g2i2o")
+
 [node name="Neck" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01468, 0)
 
 [node name="Head" type="MeshInstance3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393, 0)
-material_override = ExtResource("5_2qrj1")
+material_override = ExtResource("7_xlwta")
 mesh = SubResource("5")
+
+[node name="Camera3D2" type="Camera3D" parent="Neck"]
+transform = Transform3D(0.813568, -0.021845, 0.58106, -1.2673e-09, 0.999294, 0.0375687, -0.58147, -0.0305646, 0.812994, 2.60872, 1.01651, 2.54951)
+fov = 90.0
+size = 0.1
+near = 0.01
 
 [node name="Camera3D" type="Camera3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.25)
@@ -173,8 +188,8 @@ HUDPath = NodePath("../../HUD")
 PlayerPath = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
-shape = SubResource("8")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89, 0)
+shape = SubResource("CapsuleShape3D_y48r7")
 
 [node name="HUD" type="Control" parent="."]
 light_mask = 2
@@ -360,7 +375,7 @@ offset_left = -12.0
 offset_top = -12.0
 offset_right = 12.0
 offset_bottom = 12.0
-texture = ExtResource("11")
+texture = ExtResource("18_eyhey")
 expand_mode = 1
 
 [node name="boostSnd" type="AudioStreamPlayer" parent="."]

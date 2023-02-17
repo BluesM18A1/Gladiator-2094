@@ -29,7 +29,7 @@ public partial class Arena : Node3D
 	[Export((PropertyHint) 13)]
 	public PackedScene[] BossTier;
 
-	//I would just put all enemy tiers into an array of its own, but Godot does not support exporting custom data types to the editor yet.
+	//TODO: put all enemy tiers into an array of its own
 	[Export((PropertyHint) 13)]
 	public PackedScene[] ItemBoxes;
 	

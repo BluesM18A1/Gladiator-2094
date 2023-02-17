@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbd7fu6734bt8"]
+[gd_scene load_steps=5 format=3 uid="uid://we8qp1u8bfwk"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1"]
-[ext_resource type="Material" path="res://Materials/bullets/bullet_repeater.material" id="2"]
+[ext_resource type="Material" uid="uid://dpdqnkleupx7d" path="res://Materials/bullets/bullet.repeater.material" id="2"]
 
 [sub_resource type="SphereMesh" id="1"]
 material = ExtResource("2")
@@ -13,12 +13,9 @@ rings = 2
 [sub_resource type="SphereShape3D" id="2"]
 radius = 0.05
 
-[node name="Bullet" type="RigidBody3D" groups=["projectiles"]]
-collision_layer = 4096
+[node name="Bullet" type="Area3D" groups=["projectiles"]]
+collision_layer = 8
 collision_mask = 23
-gravity_scale = 0.0
-max_contacts_reported = 2
-contact_monitor = true
 script = ExtResource("1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

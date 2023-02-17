@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://djsfbxkc25qkr"]
 
-[ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="1"]
-[ext_resource type="Script" path="res://Scripts/ParticleDespawn.cs" id="2"]
+[ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="1_5wqwt"]
+[ext_resource type="Script" path="res://Scripts/ParticleDespawn.cs" id="2_ngbp5"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
 transparency = 1
+no_depth_test = true
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1")
+albedo_texture = ExtResource("1_5wqwt")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -24,6 +25,10 @@ explosiveness = 0.95
 mesh = SubResource("2")
 spread = 180.0
 gravity = Vector3(0, -1, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.5
+scale_amount_min = 0.01
+scale_amount_max = 0.15
 color = Color(1, 0.866667, 0, 1)
-script = ExtResource("2")
+script = ExtResource("2_ngbp5")
 lifeSpan = 0.75

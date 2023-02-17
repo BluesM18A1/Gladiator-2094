@@ -1,104 +1,112 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://0fo6nnl487ve"]
 
-[ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
-[ext_resource path="res://Textures/particle.png" type="Texture2D" id=2]
-[ext_resource path="res://Sounds/guns/flame.wav" type="AudioStream" id=3]
+[ext_resource type="Script" path="res://Scripts/Flame.cs" id="1_rqcgg"]
+[ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://bqd3h300p0yah" path="res://Sounds/guns/flame.wav" id="3"]
 
-[sub_resource type="StandardMaterial3D" id=1]
-resource_local_to_scene = true
-flags_transparent = true
-flags_unshaded = true
-params_billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-albedo_color = Color( 1, 0, 0, 0.12549 )
-albedo_texture = ExtResource( 2 )
-
-[sub_resource type="QuadMesh" id=2]
-resource_local_to_scene = true
-material = SubResource( 1 )
-size = Vector2( 0.5, 0.5 )
-
-[sub_resource type="SphereShape3D" id=3]
+[sub_resource type="SphereShape3D" id="SphereShape3D_mgaul"]
 resource_local_to_scene = true
 radius = 0.25
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="StandardMaterial3D" id="1"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.12549)
+albedo_texture = ExtResource("2")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="2"]
+resource_local_to_scene = true
+material = SubResource("1")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="SphereShape3D" id="3"]
+resource_local_to_scene = true
+radius = 0.25
+
+[sub_resource type="Animation" id="4"]
 resource_name = "Flame"
-length = 0.2
+length = 0.3
 step = 0.0166667
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.2 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.2505),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 0, 0, 0.12549 ), Color( 1, 0.984314, 0, 0.501961 ) ]
+"values": [Color(1, 0, 0, 0.12549), Color(1, 0.984314, 0, 0.501961)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("MeshInstance3D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.2 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.2505),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector3( 0.5, 0.55, 0.5 ), Vector3( 5, 5, 5 ) ]
+"values": [Vector3(0.5, 0.55, 0.5), Vector3(5, 5, 5)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("CollisionShape3D:shape:radius")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.2 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.2505),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 0.25, 1.0 ]
+"values": [0.25, 1.0]
 }
 
-[node name="Bullet" type="RigidBody3D" groups=[
-"projectiles",
-]]
-collision_layer = 16
-collision_mask = 13
-gravity_scale = 0.0
-max_contacts_reported = 2
-contact_monitor = true
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": "The collision matrix checked flames are different from regular bullets.
-
-These guys delete enemy projectiles, making it as much of a shield as it is a close range weapon"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fo47y"]
+_data = {
+"Flame": SubResource("4")
 }
-damage = -3
-speed = 25.0
-lifetime = 0.2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D( 0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, 0, 0, 0 )
-mesh = SubResource( 2 )
-material/0 = null
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 0
+motion_mode = 1
+wall_min_slide_angle = 0.349066
+script = ExtResource("1_rqcgg")
+damage = -4
+speed = 100.0
+lifetime = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource("SphereShape3D_mgaul")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Bullet" type="Area3D" parent="." groups=["projectiles"]]
+collision_layer = 16
+collision_mask = 12
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bullet"]
+transform = Transform3D(0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bullet"]
+shape = SubResource("3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bullet"]
 autoplay = "Flame"
-anims/Flame = SubResource( 4 )
+libraries = {
+"": SubResource("AnimationLibrary_fo47y")
+}
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="Bullet"]
+stream = ExtResource("3")
 volume_db = -5.0
 autoplay = true
-bus = "SFX"
+bus = &"SFX"
 
-[connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]
+[connection signal="body_entered" from="Bullet" to="." method="_OnCollisionEnter"]

@@ -19,8 +19,8 @@ public partial class Explosion : Area3D
 	public override void _Ready()
 	{
 		Node3D newSparks = (Node3D)sparks.Instantiate();
-		GetTree().Root.AddChild(newSparks);
 		newSparks.Position = Position;
+		GetTree().CurrentScene.AddChild(newSparks);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,8 +38,8 @@ public partial class Explosion : Area3D
 			float f = Mathf.Sqrt((diff.X * diff.X) + (diff.Y * diff.Y) + (diff.Z * diff.Z));
 			f = f - 1; //adding 1 unit of tolerance for max damage
 			f = Mathf.Clamp(f,1,5); //making sure the damage reduction doesnt go in negatives or too low
-			Connect(nameof(DealExplosiveDamageEventHandler),new Callable(body,"UpdateHealth"));
-			EmitSignal(nameof(DealExplosiveDamageEventHandler), damage / f);
+			Connect(SignalName.DealExplosiveDamage,new Callable(body,"UpdateHealth"), (uint)ConnectFlags.ReferenceCounted);
+			EmitSignal(SignalName.DealExplosiveDamage, damage / f);
 			GD.Print(damage / f);
 		}
 		

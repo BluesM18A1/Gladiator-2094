@@ -23,6 +23,8 @@ Config="*res://Scripts/Config.cs"
 [display]
 
 window/size/viewport_width=800
+window/size/viewport_height=600
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/use_vsync=false
@@ -104,12 +106,14 @@ player_prevWep={
 3d_physics/layer_3="Enemies"
 3d_physics/layer_4="Bullets"
 3d_physics/layer_5="Flames"
+3d_physics/layer_6="items"
 3d_physics/layer_12="Player Bullet"
 3d_physics/layer_13="Enemy Bullet"
 
 [physics]
 
 common/physics_ticks_per_second=144
+common/max_physics_steps_per_frame=1
 common/physics_fps=120
 
 [rendering]

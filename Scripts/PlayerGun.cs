@@ -3,12 +3,8 @@ using System;
 
 public partial class PlayerGun : Gun
 {
-	/*Currently, Godot engine in its vanilla form 
-	does not have an ideal amount of support for custom classes, data types, etc.
-	Ideally, weapons would be a struct or something to contain their 
-	firing sound, cooldown time, etc, but that isnt possible.
-	The engine developers have a solution in the works, 
-	but for now, we have this utterly riddiculous spaghetti code mess*/
+	/*Godot 4.0 at long last allows for custom types to be [Export]ed
+	this giant spaghetti code mess is not for long!*/
 	//GAMEPLAY VARIABLES-----------------------------------------------------------
 	[Export]
 	public int shells, bullets, grenades;
@@ -125,10 +121,10 @@ public partial class PlayerGun : Gun
 			bullets--;
 			ammoNum.Text = bullets.ToString();
 			
-			Bullet newBullet = (Bullet)instanceRepeater.Instantiate();
+			Node3D newBullet = (Node3D)instanceRepeater.Instantiate();
 			newBullet.Transform = GlobalTransform * barrels[0];
-			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+			GetTree().CurrentScene.AddChild(newBullet);
+			//newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 		
 	}
@@ -143,10 +139,10 @@ public partial class PlayerGun : Gun
 			ammoNum.Text = shells.ToString();
 			for (int i = 0; i < barrels.Count; i++)
 			{
-				Bullet newBullet = (Bullet)instanceBuckshot.Instantiate();
+				Node3D newBullet = (Node3D)instanceBuckshot.Instantiate();
 				newBullet.Transform = GlobalTransform * barrels[i];
-				GetTree().Root.AddChild(newBullet);
-				newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+				GetTree().CurrentScene.AddChild(newBullet);
+				//newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 			}
 			
 		}
@@ -161,10 +157,10 @@ public partial class PlayerGun : Gun
 			grenades--;
 			ammoNum.Text = grenades.ToString();
 			
-			Bullet newBullet = (Bullet)instanceGrenade.Instantiate();
+			Node3D newBullet = (Node3D)instanceGrenade.Instantiate();
 			newBullet.Transform = GlobalTransform * barrels[0];
-			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+			GetTree().CurrentScene.AddChild(newBullet);
+			//newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 	}
 	protected void FireFlame()
@@ -176,11 +172,11 @@ public partial class PlayerGun : Gun
 			player.fuel--;
 			int fuelInt = (int)player.fuel;
 			ammoNum.Text = fuelInt.ToString();
-			Bullet newBullet = (Bullet)instanceFlame.Instantiate();
+			Node3D newBullet = (Node3D)instanceFlame.Instantiate();
 			newBullet.Transform = GlobalTransform * barrels[0];
 			//newBullet.Translate(barrels[0].origin);
-			GetTree().Root.AddChild(newBullet);
-			newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+			GetTree().CurrentScene.AddChild(newBullet);
+			//newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 	}
 	public void AddBullets(int delta)

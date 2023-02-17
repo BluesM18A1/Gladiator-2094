@@ -1,20 +1,28 @@
-[gd_scene load_steps=17 format=3 uid="uid://dopkmde6b7h3f"]
+[gd_scene load_steps=18 format=3 uid="uid://bspurmlrsji83"]
 
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemyHit.wav" id="1"]
-[ext_resource type="AudioStream" uid="uid://b6snja6wvhm5t" path="res://Sounds/guns/buckshot.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://b6snja6wvhm5t" path="res://Sounds/guns/catshot.wav" id="2"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="3"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
 [ext_resource type="ArrayMesh" uid="uid://cakq5i2rkagtk" path="res://Models/catHead.obj" id="5"]
 [ext_resource type="Script" path="res://Scripts/AutoAim.cs" id="6"]
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="7"]
 [ext_resource type="Script" path="res://Scripts/EnemyGun.cs" id="8"]
-[ext_resource type="Material" path="res://Materials/gun_barrel_void.tres" id="8_3xxrl"]
-[ext_resource type="PackedScene" path="res://Prefabs/Bullets/catShot.tscn" id="9"]
-[ext_resource type="Material" path="res://Materials/enemies/gun_buckshot_barrel.tres" id="10"]
-[ext_resource type="Material" uid="uid://dv6lpl6i4hpsx" path="res://Materials/enemies/cat_head.tres" id="11"]
-[ext_resource type="Material" path="res://Materials/enemies/gun_buckshot_stock.tres" id="12"]
+[ext_resource type="Material" path="res://Materials/gun.barrel_void.tres" id="8_3xxrl"]
+[ext_resource type="PackedScene" uid="uid://x4kblwpxnpes" path="res://Prefabs/Bullets/catShot.tscn" id="9"]
+[ext_resource type="Material" uid="uid://d2b32wxjsejr1" path="res://Materials/enemies/gun.buckshot.barrel.tres" id="10"]
+[ext_resource type="Material" path="res://Materials/enemies/gun.buckshot.stock.tres" id="12"]
 
-[sub_resource type="SphereShape3D" id="1"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_v04cq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qac3p"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0.494118, 0.168627, 1)
+metallic = 0.5
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.6, 0.282353, 0, 1)
+emission_operator = 1
 
 [sub_resource type="Animation" id="5"]
 length = 0.1
@@ -40,7 +48,7 @@ tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Head/catHead:material/0:emission")
+tracks/1/path = NodePath("Head/catHead:surface_material_override/0:emission")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -50,9 +58,37 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.6, 0.282353, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_0j8ig"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/catHead:surface_material_override/0:emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.6, 0.282353, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/catHead:surface_material_override/0:emission_energy_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ik4fi"]
 _data = {
-"Hurt": SubResource("5")
+"Hurt": SubResource("5"),
+"RESET": SubResource("Animation_0j8ig")
 }
 
 [node name="Cat" type="CharacterBody3D" groups=["Enemies"]]
@@ -61,14 +97,14 @@ collision_mask = 2071
 script = ExtResource("7")
 rangeThreshold = 16.0
 longRangeMode = 1
-pathUpdateRate = 4.0
+pathUpdateRate = 0.5
 MaxSpeed = 12.0
 Accel = 5.0
 HP = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("1")
+shape = SubResource("SphereShape3D_v04cq")
 
 [node name="singleAxel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -82,7 +118,7 @@ vOffset = 0.5
 [node name="catHead" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = ExtResource("5")
-surface_material_override/0 = ExtResource("11")
+surface_material_override/0 = SubResource("StandardMaterial3D_qac3p")
 
 [node name="Gun" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.6, 0.4, 0.346134, 0.297016)
@@ -132,5 +168,6 @@ libraries = {
 }
 
 [node name="hitsound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1")
 bus = &"SFX"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

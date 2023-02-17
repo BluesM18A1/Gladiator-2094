@@ -63,11 +63,9 @@ public partial class EnemyGun : Gun
 	}
 	protected void Fire(int i)
 	{
-		Bullet newBullet = (Bullet)bullet.Instantiate();
+		Node3D newBullet = (Node3D)bullet.Instantiate();
 		newBullet.Transform = GlobalTransform * barrels[i];
-		GetTree().Root.AddChild(newBullet);
-		newBullet.ApplyImpulse(
-		 -newBullet.GlobalTransform.Basis.Z * newBullet.speed * (launchSpeedByDistance ? ToGlobal(Position).DistanceTo(player.Position) : 1));
+		GetTree().CurrentScene.AddChild(newBullet);
 		//parent.GetTarget(); //find a new target
 		//parent.UpdatePath(parent.targetNavPos); //start over pathfinding using new target
 		//snd.PitchScale = fireRate; // should I use different randoms for pitchscale later?

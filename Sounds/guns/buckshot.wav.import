@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b6snja6wvhm5t"
+uid="uid://j7yjgna5x5tg"
 path="res://.godot/imported/buckshot.wav-09740eb7545ccb8c76390f2915623884.sample"
 
 [deps]
@@ -13,11 +13,11 @@ dest_files=["res://.godot/imported/buckshot.wav-09740eb7545ccb8c76390f2915623884
 [params]
 
 force/8_bit=false
-force/mono=true
+force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
-edit/trim=true
-edit/normalize=true
+edit/trim=false
+edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1

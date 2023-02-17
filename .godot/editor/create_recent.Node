@@ -1,2 +1,10 @@
-StaticBody3D
+MeshInstance3D
 NavigationAgent3D
+RayCast3D
+Node3D
+CollisionShape3D
+CharacterBody3D
+AnimationPlayer
+GPUParticles3D
+Area3D
+StaticBody3D

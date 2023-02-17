@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bds0tsadhua67"]
+[gd_scene load_steps=8 format=3 uid="uid://ci44hgbswroui"]
 
 [ext_resource type="Script" path="res://Scripts/ItemBox.cs" id="1"]
 [ext_resource type="ArrayMesh" uid="uid://bhyw0pu3mfehy" path="res://Models/itembox.obj" id="2"]
-[ext_resource type="Material" path="res://Materials/items/icon_health.tres" id="3"]
-[ext_resource type="Material" path="res://Materials/items/box_health.tres" id="4"]
+[ext_resource type="Material" path="res://Materials/items/icon.health.tres" id="3"]
+[ext_resource type="Material" path="res://Materials/items/box.health.tres" id="4"]
 
 [sub_resource type="BoxShape3D" id="3"]
 size = Vector3(0.8, 0.8, 0.8)
@@ -11,6 +11,7 @@ size = Vector3(0.8, 0.8, 0.8)
 [sub_resource type="Animation" id="4"]
 resource_name = "rotate"
 length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -30,13 +31,13 @@ _data = {
 }
 
 [node name="Box_Health" type="Area3D"]
-collision_layer = 4
-collision_mask = 5
+collision_layer = 32
+collision_mask = 2
 script = ExtResource("1")
 itemCount = 20
 
 [node name="itembox" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0.4, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.4, 0)
 mesh = ExtResource("2")
 surface_material_override/0 = ExtResource("3")
 surface_material_override/1 = ExtResource("4")

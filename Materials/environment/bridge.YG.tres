@@ -30,4 +30,3 @@ uv1_offset = Vector3(0.5, 0, 0)
 uv1_triplanar = true
 uv2_scale = Vector3(0.025, 1, 1)
 uv2_offset = Vector3(0.5, 0, 0)
-uv2_triplanar = true

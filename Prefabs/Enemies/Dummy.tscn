@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmw0ei3pr2c1g"]
+[gd_scene load_steps=15 format=3 uid="uid://bx2lb3i03d6d5"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1"]
-[ext_resource type="Material" path="res://Materials/enemies/dreadnaught_antennae_red.tres" id="2_rhu1u"]
-[ext_resource type="Material" path="res://Materials/enemies/dreadnaught_antennae_blue.tres" id="3_ufdwq"]
-[ext_resource type="Material" path="res://Materials/enemies/siren_base.tres" id="4_kt0u1"]
+[ext_resource type="Material" uid="uid://k58ud2cd51bl" path="res://Materials/enemies/dreadnaught.antennae.red.tres" id="2_rhu1u"]
+[ext_resource type="Material" uid="uid://uduu1jvehoay" path="res://Materials/enemies/dreadnaught.antennae.blue.tres" id="3_ufdwq"]
+[ext_resource type="Material" path="res://Materials/enemies/siren.base.tres" id="4_kt0u1"]
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemyHit.wav" id="5"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
@@ -112,15 +112,12 @@ _data = {
 collision_layer = 4
 collision_mask = 6175
 script = ExtResource("1")
-__meta__ = {
-"_editor_description_": ""
-}
-MaxSpeed = 0.0
-Accel = 0.0
-HP = 2000
 closeRangeMode = 2
 longRangeMode = 2
 pathUpdateRate = 0.5
+MaxSpeed = 0.0
+Accel = 0.0
+HP = 2000
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.0152326, 0, 0.999884, 0, 1, 0, -0.999884, 0, -0.0152326, 0, 0.756574, 0)
@@ -186,3 +183,5 @@ libraries = {
 [node name="hitsound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5")
 bus = &"SFX"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

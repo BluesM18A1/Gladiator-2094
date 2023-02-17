@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cxo7eotnrn1ov"]
+
+[resource]
+resource_local_to_scene = true
+albedo_color = Color(1, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1

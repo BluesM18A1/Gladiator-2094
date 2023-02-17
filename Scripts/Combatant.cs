@@ -69,6 +69,7 @@ public partial class Combatant : CharacterBody3D
         Velocity = vel;
         MoveAndSlide();
         vel = GetRealVelocity();
+        //if (IsOnFloor()) vel.Y += (float)delta;
         
         
     }

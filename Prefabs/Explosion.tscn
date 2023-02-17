@@ -1,22 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://cyf2ewdnhmcwg"]
 
-[ext_resource path="res://Textures/particle.png" type="Texture2D" id=1]
-[ext_resource path="res://Scripts/ParticleDespawn.cs" type="Script" id=2]
-[ext_resource path="res://Sounds/guns/grenadeExplosion.wav" type="AudioStream" id=3]
+[ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="1"]
+[ext_resource type="Script" path="res://Scripts/ParticleDespawn.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://dq1qtmko0ju1b" path="res://Sounds/guns/grenadeExplosion.wav" id="3"]
 
-[sub_resource type="StandardMaterial3D" id=1]
-flags_transparent = true
-flags_unshaded = true
+[sub_resource type="StandardMaterial3D" id="1"]
+transparency = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-params_billboard_mode = 3
+albedo_texture = ExtResource("1")
+billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_texture = ExtResource( 1 )
 
-[sub_resource type="QuadMesh" id=2]
-material = SubResource( 1 )
-size = Vector2( 0.1, 0.1 )
+[sub_resource type="QuadMesh" id="2"]
+material = SubResource("1")
+size = Vector2(0.1, 0.1)
 
 [node name="Explosion" type="CPUParticles3D"]
 amount = 48
@@ -24,20 +24,17 @@ lifetime = 1.5
 speed_scale = 1.5
 explosiveness = 1.0
 lifetime_randomness = 0.63
-mesh = SubResource( 2 )
-direction = Vector3( 0, 1, 0 )
+mesh = SubResource("2")
+direction = Vector3(0, 1, 0)
 spread = 180.0
-gravity = Vector3( 0, -1, 0 )
-initial_velocity = 2.0
-color = Color( 0.0784314, 0, 1, 1 )
-hue_variation = 1.0
-hue_variation_random = 1.0
-script = ExtResource( 2 )
+gravity = Vector3(0, -1, 0)
+color = Color(0.0784314, 0, 1, 1)
+script = ExtResource("2")
 lifeSpan = 0.75
 
 [node name="boom" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource("3")
 unit_size = 5.0
 max_db = 0.0
 autoplay = true
-bus = "SFX"
+bus = &"SFX"

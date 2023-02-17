@@ -16,10 +16,10 @@ WARNING:
 This upgrade to Godot 4.0 from 3.x is still far from finished. The releases page contains the last build for 3.x, and the souce code for 3.x is available in a separate branch. You best be looking there if you want to see what the game is like right now. 
 
 Here are the  known issues that I have yet to fix:
-- Enemies slow the game to a screeching halt even on the most powerful computers
-- Bullets do not affect combatants, and item boxes do not get picked up.
 - UI elements are visually butchered (I was gonna redo and clean up the menus at some point anyways)
 - Lighting and materials on some objects/scenes need to be readjusted
+- Some particle effects are still broken
+- Some sounds are too loud even if they come from distant sources.
 
 
 TODO LIST (after the 4.0 upgrade is done):  

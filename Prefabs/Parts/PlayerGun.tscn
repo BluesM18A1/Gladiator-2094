@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://djqxwy8va6xi3"]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://Scripts/PlayerGun.cs" id="1"]
-[ext_resource type="Material" path="res://Materials/player_gun.tres" id="1_jtnhv"]
+[ext_resource type="Material" path="res://Materials/player.gun.tres" id="1_jtnhv"]
 [ext_resource type="Texture2D" uid="uid://bg8r737otl4qw" path="res://Textures/UI/CooldownMeter_overlay.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b1utopdqkb8om" path="res://Textures/UI/CooldownMeter_fill.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://cv01ejxrp6j4r" path="res://Sounds/pickups/repeaterPickup.wav" id="4"]
@@ -53,4 +53,5 @@ bus = &"SFX"
 
 [node name="switchSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5")
+max_polyphony = 2
 bus = &"SFX"

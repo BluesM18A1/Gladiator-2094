@@ -1,17 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://dmy6fs061m404"]
 
-[ext_resource path="res://Scripts/Bullet.cs" type="Script" id=1]
-[ext_resource path="res://Prefabs/EnemyGrenadeExplosion.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Materials/bullets/bullet_grenade.tres" type="Material" id=3]
+[ext_resource type="Script" path="res://Scripts/RigidBodyBullet.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://cvsftju7n8kbr" path="res://Prefabs/EnemyGrenadeExplosion.tscn" id="2"]
+[ext_resource type="Material" path="res://Materials/bullets/bullet.grenade.tres" id="3"]
 
-[sub_resource type="SphereMesh" id=1]
-material = ExtResource( 3 )
+[sub_resource type="SphereMesh" id="1"]
+material = ExtResource("3")
 radius = 0.15
 height = 0.3
 radial_segments = 8
 rings = 8
 
-[sub_resource type="SphereShape3D" id=3]
+[sub_resource type="SphereShape3D" id="3"]
 radius = 0.1
 
 [node name="Bullet" type="RigidBody3D" groups=["projectiles"]]
@@ -20,15 +20,15 @@ collision_mask = 7
 gravity_scale = 3.0
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource( 1 )
+script = ExtResource("1")
 damage = -10
 speed = 1.0
-sparks = ExtResource( 2 )
+sparks = ExtResource("2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource( 1 )
+mesh = SubResource("1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource("3")
 
 [connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

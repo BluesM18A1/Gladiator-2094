@@ -32,6 +32,7 @@ public partial class Player : Combatant
 	//COMPONENT VARIABLES------------------------------------
 	private Camera3D camera;
 	public PlayerGun gun;
+	private RayCast3D floorChecker;
 	private TextureProgressBar healthMeter, fuelMeter;
 	private Label healthNum;
 	private AnimationPlayer screenAni;
@@ -51,6 +52,7 @@ public partial class Player : Combatant
 		fuelMeter = GetNode<TextureProgressBar>("HUD/FuelMeter");
 		healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
 		screenAni = GetNode<AnimationPlayer>("HUD/ScreenFlash/ScreenTransitions");
+		floorChecker = GetNode<RayCast3D>("floorchecker");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		mouseSensitivity = config.mouseSensitivity;
 		HP = maxHP;
@@ -88,6 +90,23 @@ public partial class Player : Combatant
 
 	private void ProcessInput(double delta)
 	{
+		//recharging
+			if (floorChecker.IsColliding())
+			{   
+				if (needToPlayLandSound)
+				{
+					landSnd.Play(); //this doesn't quite work as predictably as I'd like. Oh well.
+					needToPlayLandSound = false;
+				}
+				if (!Input.IsActionPressed("player_sprint") && !flameThrowerOn)
+				{
+					if (fuel < 100)
+					{
+						fuel += RechargeRate * delta;
+					}
+				}
+			}
+			else needToPlayLandSound = true;
 		//  Walking
 		Transform3D camXform = camera.GlobalTransform;
 
@@ -137,23 +156,7 @@ public partial class Player : Combatant
 			//stop jetpack sounds
 			if ((!Input.IsActionPressed("player_sprint") && !Input.IsActionPressed("player_jump")) || fuelMeter.Value == 0) boostSnd.Stop();
 			
-			//recharging
-			if (IsOnFloor())
-			{   
-				if (needToPlayLandSound)
-				{
-					landSnd.Play(); //this doesn't quite work as predictably as I'd like. Oh well.
-					needToPlayLandSound = false;
-				}
-				if (!Input.IsActionPressed("player_sprint") && !flameThrowerOn)
-				{
-					if (fuel < 100)
-					{
-						fuel += RechargeRate * delta;
-					}
-				}
-			}
-			else needToPlayLandSound = true;
+			
 		}
 		else
 		{

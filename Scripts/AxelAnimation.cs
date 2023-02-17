@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class AxelAnimation : MeshInstance3D
+public partial class AxelAnimation : Node3D
 {
     private Combatant parent;
     private AnimationPlayer ani;
@@ -22,7 +22,7 @@ public partial class AxelAnimation : MeshInstance3D
         }
         Vector3 hvel = new Vector3 (parent.Velocity.X, 0, parent.Velocity.Z);
 		ani.SpeedScale = -hvel.Length() / 8;
-		RotateY(dirRot);
+		Rotation = new Vector3(0,dirRot,0);
 	}
 
 }

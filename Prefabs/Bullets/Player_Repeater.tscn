@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmjgrwt7xax6f"]
+[gd_scene load_steps=6 format=3 uid="uid://c66fd2w63a2lx"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1"]
-[ext_resource type="Material" uid="uid://dpdqnkleupx7d" path="res://Materials/bullets/bullet_repeater.material" id="2"]
+[ext_resource type="Material" uid="uid://dpdqnkleupx7d" path="res://Materials/bullets/bullet.repeater.material" id="2"]
+[ext_resource type="PackedScene" uid="uid://bpipig7024f2g" path="res://Prefabs/Sparks_Blue.tscn" id="2_5goh4"]
 
 [sub_resource type="SphereMesh" id="1"]
 material = ExtResource("2")
@@ -13,16 +14,13 @@ rings = 4
 [sub_resource type="SphereShape3D" id="2"]
 radius = 0.15
 
-[node name="Bullet" type="RigidBody3D" groups=["projectiles"]]
+[node name="Bullet" type="Area3D" groups=["projectiles"]]
 collision_layer = 2048
 collision_mask = 5
-gravity_scale = 0.0
-continuous_cd = true
-max_contacts_reported = 2
-contact_monitor = true
 script = ExtResource("1")
 damage = -8
 speed = 100.0
+sparks = ExtResource("2_5goh4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("1")

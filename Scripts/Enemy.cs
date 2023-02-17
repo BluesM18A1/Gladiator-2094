@@ -6,6 +6,7 @@ public partial class Enemy : Combatant
 	//GAMEPLAY VARIABLES----------------------------------------------------------
 	[Export]
 	public int bounty = 10; //how much score do I add when killed
+	//TODO: combine pathmode and range threshold into a struct and export an array of said struct
 	public enum PathMode {STALKER, WANDERER, DEFENDER}; //which way I find my next position to move towards
 	[Export]
 	public float rangeThreshold = 6;
@@ -15,18 +16,16 @@ public partial class Enemy : Combatant
 	public Arena arena;
 	Rid map;
 	public Node3D player;
-	public Vector3 targetNavPos;
 	Vector3 pathPos;
-	Vector3[] path;
 	AnimationPlayer ani;
-	//NavigationAgent3D nav;
+	NavigationAgent3D nav;
 	[Export]
 	public float pathUpdateRate = 1;
 	double updateTimer = 0;
 	int pathPoint = 0;
 	//COMPONENT VARIABLES---------------------------------------------------------
 	[Export]
-	public PackedScene deathExplosion = (PackedScene)ResourceLoader.Load("res://Prefabs/EnemyExplosion.tscn");
+	public PackedScene deathExplosion;
 	
 	Vector2 inputMovementVector = Vector2.Zero;
 	// Called when the node enters the scene tree for the first time.
@@ -36,10 +35,9 @@ public partial class Enemy : Combatant
 		arena = GetTree().Root.GetNode<Arena>("Node3D");
 		ani = GetNode<AnimationPlayer>("AnimationPlayer");
 		map = GetWorld3D().NavigationMap;
+		nav = GetNode<NavigationAgent3D>("NavigationAgent3D");
 		player = GetNode<Node3D>("../Player");
-		targetNavPos = player.Position;
-		path = NavigationServer3D.MapGetPath(map, Position, targetNavPos, true);
-		pathPos = Position;
+		GetTarget();
 		currentMode = longRangeMode;
 	}
 
@@ -47,27 +45,13 @@ public partial class Enemy : Combatant
 	public override void _Process(double delta)
 	{
 		PathUpdateTimer(delta);
-		GetTarget();
-		SetPathPos(targetNavPos);
+		ProcessMovement(delta);
 		ProcessInput(delta);
-		if (HP <= 0)
-		{
-			CpuParticles3D boom = (CpuParticles3D)deathExplosion.Instantiate();
-			GetTree().Root.AddChild(boom);
-			boom.Emitting = true;
-			boom.Position = Position;
-			
-			arena.UpdateScore(bounty);
-			QueueFree();
-		}
+		
 	}
 	protected void ProcessInput(double delta) //this is where all the AI happens
 	{
-		Transform3D camXform = GlobalTransform;
-		dir = new Vector3();
-		
-		float distanceToPoint = Position.DistanceTo(pathPos);
-		float distanceToPlayer = Position.DistanceTo(NavigationServer3D.MapGetClosestPoint(map, player.Position));
+		float distanceToPlayer = Position.DistanceTo(player.Position);
 		
 		if (distanceToPlayer > rangeThreshold)
 		{
@@ -79,14 +63,16 @@ public partial class Enemy : Combatant
 			//GD.Print("within range");
 			currentMode = closeRangeMode;
 		}
-		//the following line exists to rotate enemy wheels if it has any. I should find a way to interpolate the rotation to make the animation more natural.
-		//if (currentMode != PathMode.DEFENDER) LookAt(new Vector3(pathPos.X, Position.Y, pathPos.Z), Vector3.Up);
 		
+		//if (currentMode != PathMode.DEFENDER) LookAt(new Vector3(nav.GetNextPathPosition().X, Position.Y, nav.GetNextPathPosition().Z), Vector3.Up);
 		
-		inputMovementVector = inputMovementVector.Normalized();
-		dir += -camXform.Basis.Z.Normalized() * inputMovementVector.Y;
-		dir += camXform.Basis.X.Normalized() * inputMovementVector.X;
+		inputMovementVector = new Vector2(
+			Position.DirectionTo(nav.GetNextPathPosition()).X,
+			Position.DirectionTo(nav.GetNextPathPosition()).Z
+		);
 		
+		//inputMovementVector = inputMovementVector.Normalized();
+		dir = new Vector3(inputMovementVector.X, 0, inputMovementVector.Y);
 		
 	}
 	public override void UpdateHealth(int delta)
@@ -98,58 +84,38 @@ public partial class Enemy : Combatant
 		}
 		else 
 		{
-			ani.Play("Hurt");//Add hit sound to this animation!
+			if (HP <= 0)
+			{
+				ani.Stop();
+				if (deathExplosion != null)
+				{
+					CpuParticles3D boom = (CpuParticles3D)deathExplosion.Instantiate();
+					GetTree().Root.AddChild(boom);
+					boom.Emitting = true;
+					boom.Position = Position;
+				}
+				arena.UpdateScore(bounty);
+				QueueFree();
+			}
+			else ani.Play("Hurt");//Add hit sound to this animation!
 		}
 		
-	}
-	void SetPathPos(Vector3 newPos) //This makes the movement vector follow the right point in the path array
-	{
-		
-		pathPos = path[pathPoint];
-		float distanceToPoint = Position.DistanceTo(pathPos);
-		if (distanceToPoint < 0.5f)
-		{
-			if (path.Length == 0)
-			{
-				GD.Print("Cannot find Path3D!");
-				return;
-			}
-			//GD.Print("Target Reached");
-			if (pathPoint < path.Length -1) //if it isn't on the final path point
-			{
-				pathPoint++; //increment point counter
-				pathPos = path[pathPoint]; //set the movement target to the next point
-			}
-			else 
-			{
-				UpdatePath(newPos); //get a new array of path points
-			}
-		}
-	}
-	public void UpdatePath(Vector3 newPos)
-	{
-		pathPoint = 0; //reset counter
-		path = NavigationServer3D.MapGetPath(map, Position, newPos, true); //generate new array of points
 	}
 	public void GetTarget()
 	{
 		switch (currentMode)
 		{
 			case PathMode.STALKER:
-			targetNavPos = NavigationServer3D.MapGetClosestPoint(map, player.Position);
-			inputMovementVector = new Vector2 (0,1);
+			nav.TargetPosition = NavigationServer3D.MapGetClosestPoint(map, player.Position);
 			break;
 			case PathMode.WANDERER:
-			targetNavPos = NavigationServer3D.MapGetClosestPoint(map,new Vector3((float)GD.RandRange(-30, 30), 2,(float)GD.RandRange(-30, 30)));
-			inputMovementVector = new Vector2 (0,1);
+			nav.TargetPosition = NavigationServer3D.MapGetClosestPoint(map,new Vector3((float)GD.RandRange(-30, 30), 2,(float)GD.RandRange(-30, 30)));
 			break;
 			case PathMode.DEFENDER:
-			targetNavPos = NavigationServer3D.MapGetClosestPoint(map,Position);
-			inputMovementVector = new Vector2 (0,0);
+			nav.TargetPosition = NavigationServer3D.MapGetClosestPoint(map,Position);
 			break;
 			default:
-			targetNavPos = NavigationServer3D.MapGetClosestPoint(map,new Vector3((float)GD.RandRange(-30, 30), 2,(float)GD.RandRange(-30, 30)));
-			inputMovementVector = new Vector2 (0,1);
+			nav.TargetPosition = NavigationServer3D.MapGetClosestPoint(map,new Vector3((float)GD.RandRange(-30, 30), 2,(float)GD.RandRange(-30, 30)));
 			break;
 		}
 	}
@@ -158,10 +124,10 @@ public partial class Enemy : Combatant
 		updateTimer += delta;
 		if (updateTimer >= pathUpdateRate) 
 		{
-			UpdatePath(targetNavPos);
+			GetTarget();
 			updateTimer = 0;
 		}
+		//GD.Print(Position.DirectionTo(nav.GetNextPathPosition()));
 			
 	}
-	//
 }
