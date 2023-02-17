@@ -10,6 +10,7 @@ size = Vector3(0.8, 0.8, 0.8)
 
 [sub_resource type="Animation" id="4"]
 length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,7 +37,7 @@ itemType = 2
 itemCount = 10
 
 [node name="itembox" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.4, 0)
+transform = Transform3D(0.176336, 0, 0.242705, 0, 0.3, 0, -0.242705, 0, 0.176336, 0, 0.4, 0)
 mesh = ExtResource("2")
 surface_material_override/0 = ExtResource("3_ovaf7")
 surface_material_override/1 = ExtResource("4_k2s36")

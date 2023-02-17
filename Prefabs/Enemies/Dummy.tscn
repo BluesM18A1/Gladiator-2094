@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bx2lb3i03d6d5"]
+[gd_scene load_steps=15 format=3]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1"]
+[ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1"]
 [ext_resource type="Material" uid="uid://k58ud2cd51bl" path="res://Materials/enemies/dreadnaught.antennae.red.tres" id="2_rhu1u"]
 [ext_resource type="Material" uid="uid://uduu1jvehoay" path="res://Materials/enemies/dreadnaught.antennae.blue.tres" id="3_ufdwq"]
 [ext_resource type="Material" path="res://Materials/enemies/siren.base.tres" id="4_kt0u1"]

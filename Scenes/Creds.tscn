@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3]
 
-[ext_resource path="res://Scripts/Title.cs" type="Script" id=1]
-[ext_resource path="res://Wallpaper.tscn" type="PackedScene" id=2]
-[ext_resource path="res://default.bigtext.theme" type="Theme" id=3]
-[ext_resource path="res://default.theme" type="Theme" id=4]
-[ext_resource path="res://Textures/UI/A.ttf" type="FontFile" id=6]
-[ext_resource path="res://Sounds/UI/menuBlip2.wav" type="AudioStream" id=7]
-[ext_resource path="res://Sounds/UI/menuBlip.wav" type="AudioStream" id=8]
+[ext_resource type="Script" path="res://Scripts/UI/Title.cs" id="1"]
+[ext_resource type="PackedScene" path="res://Wallpaper.tscn" id="2"]
+[ext_resource type="Theme" path="res://default.bigtext.theme" id="3"]
+[ext_resource type="Theme" path="res://default.theme" id="4"]
+[ext_resource type="FontFile" uid="uid://digjbwl3hjo6q" path="res://Textures/UI/A.ttf" id="6"]
+[ext_resource type="AudioStream" uid="uid://ck7vg71qfteyu" path="res://Sounds/UI/menuBlip2.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://deqfs7eu3c7q7" path="res://Sounds/UI/menuBlip.wav" id="8"]
 
 [sub_resource type="FontFile" id=1]
 size = 24

@@ -13,16 +13,12 @@ Today, it serves the purpose of being an open-source portfolio piece, and maybe 
 Feel free to use any code in here for your own projects, though keep in mind some audio assets are 3rd party with unknown licensing terms.
 
 WARNING:
-This upgrade to Godot 4.0 from 3.x is still far from finished. The releases page contains the last build for 3.x, and the souce code for 3.x is available in a separate branch. You best be looking there if you want to see what the game is like right now. 
-
-Here are the  known issues that I have yet to fix:
-- UI elements are visually butchered (I was gonna redo and clean up the menus at some point anyways)
-- Lighting and materials on some objects/scenes need to be readjusted
-- Some particle effects are still broken
-- Some sounds are too loud even if they come from distant sources.
+Godot 4.0 is still in beta and although I have "finished" the upgrade process from 3.x, the engine is still highly unstable and the game will crash unpredictably with mysterious error messages.
 
 
-TODO LIST (after the 4.0 upgrade is done):  
+TODO LIST:
+-Restructure and optimize code in ways that weren't possible on 3.x  
+-Revamp the settings menu
 -Airborne enemies
 -Upgrade mechanics
 -Networked multiplayer at long last?

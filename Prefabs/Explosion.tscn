@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyf2ewdnhmcwg"]
+[gd_scene load_steps=7 format=3 uid="uid://cyf2ewdnhmcwg"]
 
 [ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/ParticleDespawn.cs" id="2"]
@@ -18,6 +18,11 @@ particles_anim_loop = false
 material = SubResource("1")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="Curve" id="Curve_j32yc"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Explosion" type="CPUParticles3D"]
 amount = 48
 lifetime = 1.5
@@ -28,7 +33,11 @@ mesh = SubResource("2")
 direction = Vector3(0, 1, 0)
 spread = 180.0
 gravity = Vector3(0, -1, 0)
+initial_velocity_max = 1.0
 color = Color(0.0784314, 0, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_j32yc")
 script = ExtResource("2")
 lifeSpan = 0.75
 

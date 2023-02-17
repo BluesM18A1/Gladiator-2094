@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3]
 
-[ext_resource type="Script" path="res://Scripts/PlayerGun.cs" id="1"]
+[ext_resource type="Script" path="res://Scripts/Weapons/PlayerGun.cs" id="1"]
 [ext_resource type="Material" path="res://Materials/player.gun.tres" id="1_jtnhv"]
 [ext_resource type="Texture2D" uid="uid://bg8r737otl4qw" path="res://Textures/UI/CooldownMeter_overlay.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://b1utopdqkb8om" path="res://Textures/UI/CooldownMeter_fill.png" id="3"]

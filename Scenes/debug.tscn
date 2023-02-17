@@ -1,29 +1,29 @@
-[gd_scene load_steps=48 format=3 uid="uid://b4aw42q4uohov"]
+[gd_scene load_steps=48 format=3 uid="uid://crwobtekt4uh4"]
 
 [ext_resource type="Script" path="res://Scripts/Arena.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://usspwkka5f2s" path="res://Sounds/music/levelClear.wav" id="3"]
 [ext_resource type="Texture2D" uid="uid://cyafwp85fwl50" path="res://Textures/grid.png" id="4"]
-[ext_resource type="PackedScene" uid="uid://ckta8q72l8myh" path="res://Prefabs/Player.tscn" id="7"]
-[ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://Arena_env.tres" id="8"]
+[ext_resource type="PackedScene" uid="uid://boo10ann76wpr" path="res://Prefabs/Player.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://Textures/UI/icon.png" id="9"]
-[ext_resource type="PackedScene" uid="uid://cqmijbq200nvv" path="res://Scenes/PauseMenu.tscn" id="13"]
-[ext_resource type="PackedScene" uid="uid://bspurmlrsji83" path="res://Prefabs/Enemies/Cat.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://Scenes/PauseMenu.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://cfc042k6c0n6v" path="res://Prefabs/Enemies/Cat.tscn" id="14"]
 [ext_resource type="Material" uid="uid://bjghtco8legbw" path="res://Materials/grid.material" id="15"]
 [ext_resource type="Material" path="res://Materials/environment/outer_walls.tres" id="15_tpfsc"]
-[ext_resource type="PackedScene" uid="uid://dn83t7tjnuu2l" path="res://Prefabs/Enemies/Siren.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://c7w5dd6lcqfsc" path="res://Prefabs/Enemies/Siren.tscn" id="16"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.blue.tres" id="16_800y8"]
 [ext_resource type="PackedScene" uid="uid://5w1hx1wysvc2" path="res://Prefabs/Boxes/Box_Shells.tscn" id="17"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.yellow.tres" id="17_8h564"]
-[ext_resource type="PackedScene" uid="uid://lirnmf7jof2o" path="res://Prefabs/Enemies/Tortoise.tscn" id="18"]
+[ext_resource type="PackedScene" uid="uid://b32n4m6dyjaxp" path="res://Prefabs/Enemies/Tortoise.tscn" id="18"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.red.tres" id="18_qusto"]
 [ext_resource type="PackedScene" uid="uid://bh4emk4nit0xn" path="res://Prefabs/Boxes/Box_Grenades.tscn" id="19"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.green.tres" id="19_stijb"]
 [ext_resource type="PackedScene" uid="uid://bjt5f1m4r4dxn" path="res://Prefabs/Boxes/Box_Repeater.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://ci44hgbswroui" path="res://Prefabs/Boxes/Box_Health.tscn" id="21"]
 [ext_resource type="Material" uid="uid://llrqkmc51vuk" path="res://Materials/environment/bridge.RB.tres" id="21_57117"]
-[ext_resource type="PackedScene" uid="uid://yfuhvj4b8mcw" path="res://Prefabs/Enemies/Dreadnaught.tscn" id="22"]
+[ext_resource type="PackedScene" uid="uid://bm1jkbl24qihd" path="res://Prefabs/Enemies/Dreadnaught.tscn" id="22"]
 [ext_resource type="Material" uid="uid://bt5jpr4ac4btf" path="res://Materials/environment/bridge.YG.tres" id="22_e1t8u"]
 [ext_resource type="AudioStream" uid="uid://roewqimw712v" path="res://Sounds/music/pathetique_weapons.wav" id="23"]
+[ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://default_env.tres" id="24_ogjqo"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "SongStart"
@@ -567,25 +567,10 @@ light_energy = 4.0
 omni_range = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("8")
+environment = ExtResource("24_ogjqo")
 
 [node name="Box_Health" parent="." instance=ExtResource("21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.449, 0.0320282, -0.291502)
 
-[node name="Siren" parent="." instance=ExtResource("16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.08083, 0.0320282, -13.6995)
-
-[node name="Siren2" parent="." instance=ExtResource("16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30693, 0.0320282, -15.1491)
-
-[node name="Siren3" parent="." instance=ExtResource("16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.58135, 0.0320282, -14.7558)
-
-[node name="Siren4" parent="." instance=ExtResource("16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1872, 0.0320282, -27.2559)
-
-[node name="Siren5" parent="." instance=ExtResource("16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.16859, 0.0320282, -26.6021)
-
-[node name="Siren6" parent="." instance=ExtResource("16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1502, 0.0320282, -26.4855)
+[node name="Dreadnaught" parent="." instance=ExtResource("22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7431, 0.0320282, -10.7024)

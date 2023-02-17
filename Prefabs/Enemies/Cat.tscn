@@ -1,16 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://bspurmlrsji83"]
+[gd_scene load_steps=19 format=3 uid="uid://cfc042k6c0n6v"]
 
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemyHit.wav" id="1"]
-[ext_resource type="AudioStream" uid="uid://b6snja6wvhm5t" path="res://Sounds/guns/catshot.wav" id="2"]
+[ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_w5ak5"]
+[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/EnemyExplosion.tscn" id="2_a4l0b"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="3"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
+[ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="4_2gnvt"]
 [ext_resource type="ArrayMesh" uid="uid://cakq5i2rkagtk" path="res://Models/catHead.obj" id="5"]
-[ext_resource type="Script" path="res://Scripts/AutoAim.cs" id="6"]
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="7"]
-[ext_resource type="Script" path="res://Scripts/EnemyGun.cs" id="8"]
 [ext_resource type="Material" path="res://Materials/gun.barrel_void.tres" id="8_3xxrl"]
-[ext_resource type="PackedScene" uid="uid://x4kblwpxnpes" path="res://Prefabs/Bullets/catShot.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://Prefabs/Bullets/catShot.tscn" id="9"]
 [ext_resource type="Material" uid="uid://d2b32wxjsejr1" path="res://Materials/enemies/gun.buckshot.barrel.tres" id="10"]
+[ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="10_4h351"]
+[ext_resource type="AudioStream" uid="uid://j7yjgna5x5tg" path="res://Sounds/guns/buckshot.wav" id="11_l7gqs"]
 [ext_resource type="Material" path="res://Materials/enemies/gun.buckshot.stock.tres" id="12"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v04cq"]
@@ -94,10 +95,11 @@ _data = {
 [node name="Cat" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 2071
-script = ExtResource("7")
+script = ExtResource("1_w5ak5")
 rangeThreshold = 16.0
 longRangeMode = 1
 pathUpdateRate = 0.5
+deathExplosion = ExtResource("2_a4l0b")
 MaxSpeed = 12.0
 Accel = 5.0
 HP = 15
@@ -112,7 +114,7 @@ mesh = ExtResource("4")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-script = ExtResource("6")
+script = ExtResource("4_2gnvt")
 vOffset = 0.5
 
 [node name="catHead" type="MeshInstance3D" parent="Head"]
@@ -126,7 +128,7 @@ mesh = ExtResource("3")
 surface_material_override/0 = ExtResource("10")
 surface_material_override/1 = ExtResource("8_3xxrl")
 surface_material_override/2 = ExtResource("12")
-script = ExtResource("8")
+script = ExtResource("10_4h351")
 bullet = ExtResource("9")
 fireRateMax = 1.0
 parentPath = NodePath("../..")
@@ -134,7 +136,7 @@ currentWeapon = 3
 barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.65)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun"]
-stream = ExtResource("2")
+stream = ExtResource("11_l7gqs")
 volume_db = 9.0
 unit_size = 3.0
 pitch_scale = 1.4
@@ -147,7 +149,7 @@ mesh = ExtResource("3")
 surface_material_override/0 = ExtResource("10")
 surface_material_override/1 = ExtResource("8_3xxrl")
 surface_material_override/2 = ExtResource("12")
-script = ExtResource("8")
+script = ExtResource("10_4h351")
 bullet = ExtResource("9")
 fireRateMax = 1.0
 parentPath = NodePath("../..")
@@ -155,7 +157,7 @@ currentWeapon = 3
 barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.65)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun2"]
-stream = ExtResource("2")
+stream = ExtResource("11_l7gqs")
 volume_db = 3.0
 unit_size = 3.0
 pitch_scale = 1.3

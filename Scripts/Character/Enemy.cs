@@ -97,7 +97,7 @@ public partial class Enemy : Combatant
 				arena.UpdateScore(bounty);
 				QueueFree();
 			}
-			else ani.Play("Hurt");//Add hit sound to this animation!
+			else ani.Play("Hurt");
 		}
 		
 	}

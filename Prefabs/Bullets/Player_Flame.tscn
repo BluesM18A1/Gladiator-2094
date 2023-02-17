@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://0fo6nnl487ve"]
+[gd_scene load_steps=10 format=3]
 
-[ext_resource type="Script" path="res://Scripts/Flame.cs" id="1_rqcgg"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/Flame.cs" id="1_rqcgg"]
 [ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://bqd3h300p0yah" path="res://Sounds/guns/flame.wav" id="3"]
 

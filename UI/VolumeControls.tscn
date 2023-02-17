@@ -1,31 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cx2xay22hayrj"]
 
-[ext_resource path="res://Scripts/UI/VolSlider.cs" type="Script" id=1]
-[ext_resource path="res://Textures/UI/A.ttf" type="FontFile" id=2]
-[ext_resource path="res://default.theme" type="Theme" id=3]
-
-[sub_resource type="FontFile" id=1]
-size = 18
-font_data = ExtResource( 2 )
+[ext_resource type="Script" path="res://Scripts/UI/VolSlider.cs" id="1"]
+[ext_resource type="Theme" uid="uid://gha5bjty4636" path="res://default.theme" id="3"]
 
 [node name="VolumeControls" type="HBoxContainer"]
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 0.98
 offset_left = -266.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MasterSlider" type="Panel" parent="."]
-self_modulate = Color( 0, 1, 0, 1 )
-offset_right = 86.0
-offset_bottom = 588.0
-custom_minimum_size = Vector2( 86, 0 )
-theme = ExtResource( 3 )
+self_modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(86, 0)
+layout_mode = 2
+theme = ExtResource("3")
 
 [node name="dbLabel" type="Panel" parent="MasterSlider"]
-modulate = Color( 0, 1, 0, 1 )
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
 anchor_top = 0.893
 anchor_right = 1.0
 anchor_bottom = 1.003
@@ -33,41 +26,39 @@ offset_top = -0.0560303
 offset_bottom = -0.175995
 
 [node name="Label" type="Label" parent="MasterSlider/dbLabel"]
-anchor_top = 1.0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -43.0503
-offset_right = -0.0486832
-offset_bottom = -1.05032
-custom_fonts/font = SubResource( 1 )
+offset_bottom = -0.560059
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 text = "-0 db"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="grpLabel" type="Panel" parent="MasterSlider"]
-modulate = Color( 0, 1, 0, 1 )
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
 anchor_right = 1.002
 anchor_bottom = 0.105
 offset_right = -0.0793152
 offset_bottom = -0.0602188
 
 [node name="Label" type="Label" parent="MasterSlider/grpLabel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -0.0486832
 offset_bottom = -3.44278
-custom_fonts/font = SubResource( 1 )
+theme_override_font_sizes/font_size = 20
 text = "Master"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VSlider" type="VSlider" parent="MasterSlider"]
+layout_mode = 0
 anchor_top = 0.121
 anchor_right = 1.002
 anchor_bottom = 0.88
@@ -78,22 +69,18 @@ min_value = -80.0
 max_value = 6.0
 tick_count = 32
 ticks_on_borders = true
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
 sndPath = NodePath("../../../bloop")
 
 [node name="BGMslider" type="Panel" parent="."]
-self_modulate = Color( 0, 1, 0, 1 )
-offset_left = 90.0
-offset_right = 176.0
-offset_bottom = 588.0
-custom_minimum_size = Vector2( 86, 0 )
-theme = ExtResource( 3 )
+self_modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(86, 0)
+layout_mode = 2
+theme = ExtResource("3")
 
 [node name="dbLabel" type="Panel" parent="BGMslider"]
-modulate = Color( 0, 1, 0, 1 )
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
 anchor_top = 0.897
 anchor_right = 1.002
 anchor_bottom = 1.0
@@ -102,41 +89,41 @@ offset_right = -0.0793152
 offset_bottom = 0.759949
 
 [node name="Label" type="Label" parent="BGMslider/dbLabel"]
-anchor_top = 1.0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -43.0503
-offset_right = -0.0486832
-offset_bottom = -0.0503235
-custom_fonts/font = SubResource( 1 )
+offset_top = -1.90735e-05
+offset_right = -0.0486908
+offset_bottom = 1.07571
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 text = "-0 db"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="grpLabel" type="Panel" parent="BGMslider"]
-modulate = Color( 0, 1, 0, 1 )
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
 anchor_right = 1.002
 anchor_bottom = 0.105
 offset_right = -0.0793152
 offset_bottom = -0.0602188
 
 [node name="Label" type="Label" parent="BGMslider/grpLabel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -0.0486832
 offset_bottom = -3.44278
-custom_fonts/font = SubResource( 1 )
+theme_override_font_sizes/font_size = 20
 text = "BGM"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VSlider" type="VSlider" parent="BGMslider"]
+layout_mode = 0
 anchor_top = 0.121
 anchor_right = 1.002
 anchor_bottom = 0.88
@@ -148,23 +135,19 @@ max_value = 6.0
 rounded = true
 tick_count = 32
 ticks_on_borders = true
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
 bus = 1
 sndPath = NodePath("../../../bloop")
 
 [node name="SFXslider" type="Panel" parent="."]
-self_modulate = Color( 0, 1, 0, 1 )
-offset_left = 180.0
-offset_right = 266.0
-offset_bottom = 588.0
-custom_minimum_size = Vector2( 86, 0 )
-theme = ExtResource( 3 )
+self_modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(86, 0)
+layout_mode = 2
+theme = ExtResource("3")
 
 [node name="dbLabel" type="Panel" parent="SFXslider"]
-modulate = Color( 0, 1, 0, 1 )
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
 anchor_top = 0.897
 anchor_right = 1.002
 anchor_bottom = 1.0
@@ -173,41 +156,41 @@ offset_right = -0.0793152
 offset_bottom = 0.759949
 
 [node name="Label" type="Label" parent="SFXslider/dbLabel"]
-anchor_top = 1.0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -43.0503
-offset_right = -0.0486832
-offset_bottom = -1.05032
-custom_fonts/font = SubResource( 1 )
+offset_top = -1.90735e-05
+offset_right = -0.0486908
+offset_bottom = 1.07571
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 text = "-0 db"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="grpLabel" type="Panel" parent="SFXslider"]
-modulate = Color( 0, 1, 0, 1 )
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
 anchor_right = 1.002
 anchor_bottom = 0.105
 offset_right = -0.0793152
 offset_bottom = -0.0602188
 
 [node name="Label" type="Label" parent="SFXslider/grpLabel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -0.0486832
 offset_bottom = -3.44278
-custom_fonts/font = SubResource( 1 )
+theme_override_font_sizes/font_size = 20
 text = "SFX"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VSlider" type="VSlider" parent="SFXslider"]
+layout_mode = 0
 anchor_top = 0.121
 anchor_right = 1.002
 anchor_bottom = 0.88
@@ -219,10 +202,7 @@ max_value = 6.0
 rounded = true
 tick_count = 32
 ticks_on_borders = true
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
 bus = 2
 sndPath = NodePath("../../../bloop")
 

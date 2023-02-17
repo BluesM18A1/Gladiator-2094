@@ -28,6 +28,6 @@ emission_texture = SubResource("GradientTexture1D_8v5w2")
 uv1_scale = Vector3(0.025, 1, 1)
 uv1_offset = Vector3(0.5, 0, 0)
 uv1_triplanar = true
-uv2_scale = Vector3(0.025, 1, 1)
+uv2_scale = Vector3(0.023, 0.92, 0.92)
 uv2_offset = Vector3(0.5, 0, 0)
 uv2_triplanar = true

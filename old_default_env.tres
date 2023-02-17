@@ -1,0 +1,17 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[sub_resource type="Sky" id=1]
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+auto_exposure_scale = 0.01
+ss_reflections_fade_in = 0.439225
+ss_reflections_fade_out = 0.517632
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 1.34
+glow_bicubic_upscale = true
+adjustment_enabled = true
+adjustment_contrast = 1.26
+adjustment_saturation = 1.46

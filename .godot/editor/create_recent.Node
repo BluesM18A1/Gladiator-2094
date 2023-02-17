@@ -1,3 +1,6 @@
+HBoxContainer
+AudioStreamPlayer3D
+WorldEnvironment
 MeshInstance3D
 NavigationAgent3D
 RayCast3D

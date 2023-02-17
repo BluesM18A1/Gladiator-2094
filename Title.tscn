@@ -1,16 +1,17 @@
-[gd_scene load_steps=42 format=3]
+[gd_scene load_steps=43 format=3 uid="uid://clprb6tode087"]
 
-[ext_resource type="Script" path="res://Scripts/Title.cs" id="1"]
+[ext_resource type="Script" path="res://Scripts/UI/Title.cs" id="1"]
 [ext_resource type="Material" uid="uid://bjghtco8legbw" path="res://Materials/grid.material" id="2"]
 [ext_resource type="Texture2D" uid="uid://k0llv3y5brlq" path="res://Textures/UI/logo.png" id="3"]
 [ext_resource type="PackedScene" path="res://UI/DifficultySlider.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://Textures/UI/icon.png" id="5"]
+[ext_resource type="Theme" uid="uid://gha5bjty4636" path="res://default.theme" id="6_5aiwv"]
 [ext_resource type="Texture2D" uid="uid://d3kl0etqitdrt" path="res://Textures/UI/frame.png" id="7"]
-[ext_resource type="Theme" path="res://default.bigtext.theme" id="8"]
+[ext_resource type="Theme" uid="uid://bbaw31614mir3" path="res://default.bigtext.theme" id="8"]
 [ext_resource type="AudioStream" uid="uid://boe1qh4dd2x6j" path="res://Sounds/UI/bootup.wav" id="10"]
 [ext_resource type="AudioStream" uid="uid://deqfs7eu3c7q7" path="res://Sounds/UI/menuBlip.wav" id="11"]
 [ext_resource type="Texture2D" uid="uid://cyafwp85fwl50" path="res://Textures/grid.png" id="12"]
-[ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://Arena_env.tres" id="13"]
+[ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://default_env.tres" id="13"]
 [ext_resource type="Material" path="res://Materials/environment/outer_walls.tres" id="15_50q2k"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.yellow.tres" id="16_5awdy"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.green.tres" id="17_tby0m"]
@@ -146,61 +147,50 @@ offset_top = -0.200012
 offset_right = -0.23999
 offset_bottom = 0.559998
 theme = ExtResource("8")
-text = "Play"
+text = "SinglePlayer"
 
-[node name="Training" type="Button" parent="UI"]
-layout_mode = 0
-anchor_top = 0.776
-anchor_right = 0.347
-anchor_bottom = 1.0
-offset_left = 10.8553
-offset_top = -0.0650024
-offset_right = 0.0169678
-offset_bottom = -54.465
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.783
+anchor_right = 1.0
+anchor_bottom = 0.903
+offset_left = 5.0
+offset_top = 0.199982
+offset_right = -5.0
+offset_bottom = 0.199951
+
+[node name="Multiplayer" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("8")
-text = "Training"
+disabled = true
+text = "MultiPlayer"
 
-[node name="Options" type="Button" parent="UI"]
-layout_mode = 0
-anchor_left = 0.354
-anchor_top = 0.776
-anchor_right = 0.562
-anchor_bottom = 1.0
-offset_left = -3.67999
-offset_top = -0.0800171
-offset_right = -0.039917
-offset_bottom = -54.48
+[node name="Options" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.69
 theme = ExtResource("8")
 text = "Options"
 
-[node name="Credits" type="Button" parent="UI"]
-layout_mode = 0
-anchor_left = 0.569
-anchor_top = 0.776
-anchor_right = 0.781
-anchor_bottom = 1.0
-offset_left = -3.47998
-offset_top = -0.0800171
-offset_right = -0.52002
-offset_bottom = -54.48
+[node name="Credits" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 theme = ExtResource("8")
 text = "Credits"
 
-[node name="Quit" type="Button" parent="UI"]
-layout_mode = 0
-anchor_left = 0.785
-anchor_top = 0.776
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.799927
-offset_top = -0.0800171
-offset_right = -11.0
-offset_bottom = -54.48
+[node name="Quit" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.53
 theme = ExtResource("8")
 text = "Quit"
 
 [node name="Wave" type="NinePatchRect" parent="UI"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.352
 anchor_top = 0.615
 anchor_right = 0.602
@@ -217,47 +207,56 @@ patch_margin_bottom = 10
 script = ExtResource("23")
 
 [node name="Label" type="Label" parent="UI/Wave"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.015
 anchor_top = 0.587
 anchor_right = 0.981
 anchor_bottom = 0.944
-offset_left = -0.0150008
-offset_top = -0.0509186
-offset_right = -8.18106
-offset_bottom = -6.92345
-text = "Start checked Wave:"
+offset_left = 42.985
+offset_top = 9.94908
+offset_right = 10.8189
+offset_bottom = 3.07655
+theme = ExtResource("6_5aiwv")
+text = "Start on wave:"
 
 [node name="Counter" type="Label" parent="UI/Wave"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.538
-offset_bottom = 0.0659943
+offset_left = 64.7473
+offset_top = 17.2
+offset_right = -71.2527
+offset_bottom = 6.66101
+theme = ExtResource("8")
 text = "???"
 
 [node name="Left" type="TextureButton" parent="UI/Wave"]
-layout_mode = 0
-anchor_left = 0.015
-anchor_top = 0.059
-anchor_right = 0.158
-anchor_bottom = 0.609
-offset_left = -0.172884
-offset_top = 0.0431633
-offset_right = 0.136108
-offset_bottom = 0.00215149
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.214
+anchor_bottom = 1.0
+offset_left = 7.74734
+offset_top = 16.2
+offset_right = 44.7333
+offset_bottom = 4.12009
+scale = Vector2(0.5, 0.6)
 texture_normal = ExtResource("20")
 texture_hover = ExtResource("19")
+stretch_mode = 0
 
 [node name="Right" type="TextureButton" parent="UI/Wave"]
-layout_mode = 0
-anchor_left = 0.839
-anchor_top = 0.055
-anchor_right = 0.983
-anchor_bottom = 0.605
-offset_left = 0.138
-offset_top = -0.0158663
-offset_right = -0.209991
-offset_bottom = -0.0608215
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.72
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.027298
+offset_top = 17.2
+offset_right = 23.7473
+offset_bottom = 5.12009
+scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("22")
 texture_hover = ExtResource("21")
 
@@ -278,15 +277,15 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 
 [node name="DSlider" parent="UI/Sliderframe" instance=ExtResource("4")]
-layout_mode = 0
-anchor_left = 0.009
-anchor_top = 0.042
-anchor_right = 0.989
-anchor_bottom = 0.826
-offset_left = 1.76476
-offset_top = -0.107996
-offset_right = 0.371902
-offset_bottom = -18.1239
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 0.0
+offset_right = -18.44
+offset_bottom = -27.5999
+theme = ExtResource("8")
 
 [node name="bootup" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("10")
@@ -322,7 +321,8 @@ anchor_bottom = 1.0
 offset_right = -2.84003
 grow_horizontal = 2
 grow_vertical = 2
-text = "Beta Version 0.3.0    Game by BluesM18A1"
+theme = ExtResource("8")
+text = "Beta Version 0.3.0                         Game by BluesM18A1"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.999991, -0.00202097, 0.00382536, 0, 0.884191, 0.467126, -0.0043264, -0.467122, 0.884183, 0.357025, 20.6127, 33.032)
@@ -679,14 +679,14 @@ libraries = {
 [connection signal="button_down" from="UI/Play" to="UI" method="PlayButtonDown"]
 [connection signal="focus_entered" from="UI/Play" to="UI" method="onButtonHover"]
 [connection signal="mouse_entered" from="UI/Play" to="UI" method="onButtonHover"]
-[connection signal="button_down" from="UI/Training" to="UI" method="PlayButtonDown"]
-[connection signal="focus_entered" from="UI/Training" to="UI" method="onButtonHover"]
-[connection signal="mouse_entered" from="UI/Training" to="UI" method="onButtonHover"]
-[connection signal="button_down" from="UI/Options" to="UI" method="OptionsButtonDown"]
-[connection signal="mouse_entered" from="UI/Options" to="UI" method="onButtonHover"]
-[connection signal="button_down" from="UI/Credits" to="UI" method="CredsButtonDown"]
-[connection signal="mouse_entered" from="UI/Credits" to="UI" method="onButtonHover"]
-[connection signal="button_down" from="UI/Quit" to="UI" method="ExitButtonDown"]
-[connection signal="mouse_entered" from="UI/Quit" to="UI" method="onButtonHover"]
+[connection signal="button_down" from="UI/HBoxContainer/Multiplayer" to="UI" method="PlayButtonDown"]
+[connection signal="focus_entered" from="UI/HBoxContainer/Multiplayer" to="UI" method="onButtonHover"]
+[connection signal="mouse_entered" from="UI/HBoxContainer/Multiplayer" to="UI" method="onButtonHover"]
+[connection signal="button_down" from="UI/HBoxContainer/Options" to="UI" method="OptionsButtonDown"]
+[connection signal="mouse_entered" from="UI/HBoxContainer/Options" to="UI" method="onButtonHover"]
+[connection signal="button_down" from="UI/HBoxContainer/Credits" to="UI" method="CredsButtonDown"]
+[connection signal="mouse_entered" from="UI/HBoxContainer/Credits" to="UI" method="onButtonHover"]
+[connection signal="button_down" from="UI/HBoxContainer/Quit" to="UI" method="ExitButtonDown"]
+[connection signal="mouse_entered" from="UI/HBoxContainer/Quit" to="UI" method="onButtonHover"]
 [connection signal="button_down" from="UI/Wave/Left" to="UI/Wave" method="leftButtonDown"]
 [connection signal="button_down" from="UI/Wave/Right" to="UI/Wave" method="rightButtonDown"]

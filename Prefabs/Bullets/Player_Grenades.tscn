@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://Scripts/RigidBodyBullet.cs" id="1"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://uqqmqpr102yc" path="res://Prefabs/GrenadeExplosion.tscn" id="2"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.grenade.tres" id="3"]
 

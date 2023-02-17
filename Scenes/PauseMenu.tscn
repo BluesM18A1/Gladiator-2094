@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqmijbq200nvv"]
+[gd_scene load_steps=9 format=3 uid="uid://c6it3solwtqtn"]
 
-[ext_resource type="PackedScene" path="res://UI/VolumeControls.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://UI/VideoSettings.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cx2xay22hayrj" path="res://UI/VolumeControls.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://co4ywpewiiydm" path="res://UI/VideoSettings.tscn" id="2"]
 [ext_resource type="AudioStream" uid="uid://deqfs7eu3c7q7" path="res://Sounds/UI/menuBlip.wav" id="3"]
-[ext_resource type="Theme" path="res://default.bigtext.theme" id="4"]
+[ext_resource type="Theme" uid="uid://bbaw31614mir3" path="res://default.bigtext.theme" id="4"]
 [ext_resource type="PackedScene" path="res://UI/Sensitivity.tscn" id="5"]
-[ext_resource type="Script" path="res://Scripts/PauseScreen.cs" id="12"]
+[ext_resource type="Script" path="res://Scripts/UI/PauseScreen.cs" id="12"]
 
 [sub_resource type="Gradient" id="1"]
 offsets = PackedFloat32Array(0)
@@ -34,7 +34,15 @@ texture = SubResource("2")
 expand_mode = 1
 
 [node name="VideoSettings" parent="." instance=ExtResource("2")]
-anchors_preset = 0
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.655
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -247.0
+offset_bottom = -9.0
+grow_vertical = 2
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 0
@@ -62,7 +70,8 @@ theme = ExtResource("4")
 text = "Resume"
 
 [node name="Menu Label" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.683
 offset_right = -5.40002
 offset_bottom = 49.0

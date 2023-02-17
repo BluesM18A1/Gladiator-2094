@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfmbasyd3qc8b"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://cm04je6mii1hu" path="res://Sounds/guns/enemyShot.wav" id="2"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.default.tres" id="2_nw0v5"]
 

@@ -29,17 +29,27 @@ amount = 48
 lifetime = 1.5
 one_shot = true
 speed_scale = 2.0
-explosiveness = 0.95
+explosiveness = 0.77
+randomness = 0.07
+lifetime_randomness = 0.41
 mesh = SubResource("2")
-spread = 40.0
-gravity = Vector3(0, 0, 8)
+direction = Vector3(0, 0, 1)
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 1.5
+initial_velocity_max = 3.0
+scale_amount_min = 0.05
+scale_amount_max = 0.15
 color = Color(0.0784314, 0, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
 hue_variation_curve = SubResource("3")
 script = ExtResource("2")
 lifeSpan = 3.0
 
-[node name="killGong" type="AudioStreamPlayer" parent="."]
+[node name="killGong" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3")
 volume_db = -4.0
+unit_size = 8.0
+max_db = 0.0
 autoplay = true
 bus = &"SFX"

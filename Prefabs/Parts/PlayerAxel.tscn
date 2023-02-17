@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource path="res://Textures/tread.png" type="Texture2D" id=1]
-[ext_resource path="res://Models/singleAxel.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://Scripts/AxelAnimation.cs" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://hnv16aepn1lj" path="res://Textures/tread.png" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="2"]
+[ext_resource type="Script" path="res://Scripts/Character/AxelAnimation.cs" id="3"]
 
 [sub_resource type="StandardMaterial3D" id=1]
 resource_name = "Material.001"

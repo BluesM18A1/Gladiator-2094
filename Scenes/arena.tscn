@@ -1,15 +1,15 @@
-[gd_scene load_steps=49 format=3 uid="uid://dt2co8n0klus4"]
+[gd_scene load_steps=50 format=3 uid="uid://bia8mptap36m8"]
 
 [ext_resource type="Script" path="res://Scripts/Arena.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://dwhuh5c7i0itk" path="res://Sounds/announcer/Round 1 start.wav" id="2"]
 [ext_resource type="AudioStream" uid="uid://usspwkka5f2s" path="res://Sounds/music/levelClear.wav" id="3"]
 [ext_resource type="Texture2D" uid="uid://cyafwp85fwl50" path="res://Textures/grid.png" id="4"]
-[ext_resource type="PackedScene" uid="uid://ckta8q72l8myh" path="res://Prefabs/Player.tscn" id="7"]
-[ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://Arena_env.tres" id="8"]
+[ext_resource type="PackedScene" uid="uid://boo10ann76wpr" path="res://Prefabs/Player.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://Textures/UI/icon.png" id="9"]
-[ext_resource type="PackedScene" uid="uid://cqmijbq200nvv" path="res://Scenes/PauseMenu.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://Scenes/PauseMenu.tscn" id="13"]
 [ext_resource type="AudioStream" uid="uid://roewqimw712v" path="res://Sounds/music/pathetique_weapons.wav" id="14"]
-[ext_resource type="PackedScene" uid="uid://dn83t7tjnuu2l" path="res://Prefabs/Enemies/Siren.tscn" id="16"]
+[ext_resource type="Theme" uid="uid://bbaw31614mir3" path="res://default.bigtext.theme" id="14_r4o87"]
+[ext_resource type="PackedScene" uid="uid://c7w5dd6lcqfsc" path="res://Prefabs/Enemies/Siren.tscn" id="16"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.yellow.tres" id="16_8m8gd"]
 [ext_resource type="Material" path="res://Materials/environment/outer_walls.tres" id="16_sjmmi"]
 [ext_resource type="PackedScene" uid="uid://bjt5f1m4r4dxn" path="res://Prefabs/Boxes/Box_Repeater.tscn" id="17"]
@@ -19,12 +19,13 @@
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.green.tres" id="19_se042"]
 [ext_resource type="PackedScene" uid="uid://ci44hgbswroui" path="res://Prefabs/Boxes/Box_Health.tscn" id="20"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.blue.tres" id="20_wm7jo"]
-[ext_resource type="PackedScene" uid="uid://bspurmlrsji83" path="res://Prefabs/Enemies/Cat.tscn" id="21"]
+[ext_resource type="PackedScene" uid="uid://cfc042k6c0n6v" path="res://Prefabs/Enemies/Cat.tscn" id="21"]
 [ext_resource type="Material" uid="uid://llrqkmc51vuk" path="res://Materials/environment/bridge.RB.tres" id="21_2q05s"]
-[ext_resource type="PackedScene" uid="uid://lirnmf7jof2o" path="res://Prefabs/Enemies/Tortoise.tscn" id="22"]
+[ext_resource type="PackedScene" uid="uid://b32n4m6dyjaxp" path="res://Prefabs/Enemies/Tortoise.tscn" id="22"]
 [ext_resource type="Material" uid="uid://bt5jpr4ac4btf" path="res://Materials/environment/bridge.YG.tres" id="22_cet8f"]
 [ext_resource type="Material" uid="uid://bjghtco8legbw" path="res://Materials/grid.material" id="22_rqnik"]
-[ext_resource type="PackedScene" uid="uid://yfuhvj4b8mcw" path="res://Prefabs/Enemies/Dreadnaught.tscn" id="23"]
+[ext_resource type="PackedScene" uid="uid://bm1jkbl24qihd" path="res://Prefabs/Enemies/Dreadnaught.tscn" id="23"]
+[ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://default_env.tres" id="25_680sj"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "SongStart"
@@ -198,10 +199,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -0.400024
 offset_bottom = -2.8
+theme = ExtResource("14_r4o87")
 text = "Sample Text"
+horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9608, 0)
 JetForce = 3.75
 Deaccel = 20.0
 
@@ -567,4 +570,4 @@ light_energy = 4.0
 omni_range = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("8")
+environment = ExtResource("25_680sj")

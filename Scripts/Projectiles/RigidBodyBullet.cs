@@ -31,8 +31,8 @@ public partial class RigidBodyBullet : RigidBody3D
 		
 		if (body.HasMethod("UpdateHealth"))
 		{
-			Connect(nameof(DealDamageEventHandler),new Callable(body,"UpdateHealth"));
-			EmitSignal(nameof(DealDamageEventHandler), damage);
+			Connect(SignalName.DealDamage,new Callable(body,"UpdateHealth"), (uint)ConnectFlags.ReferenceCounted);
+			EmitSignal(SignalName.DealDamage, damage);
 		}
 		if (sparks != null)
 		{

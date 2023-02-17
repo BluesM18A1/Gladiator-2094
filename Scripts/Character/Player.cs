@@ -91,7 +91,7 @@ public partial class Player : Combatant
 	private void ProcessInput(double delta)
 	{
 		//recharging
-			if (floorChecker.IsColliding())
+			if (IsOnFloor() || floorChecker.IsColliding())
 			{   
 				if (needToPlayLandSound)
 				{
@@ -106,7 +106,7 @@ public partial class Player : Combatant
 					}
 				}
 			}
-			else needToPlayLandSound = true;
+			else if (!floorChecker.IsColliding()) needToPlayLandSound = true;
 		//  Walking
 		Transform3D camXform = camera.GlobalTransform;
 

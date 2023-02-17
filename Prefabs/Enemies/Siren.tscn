@@ -1,16 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://dn83t7tjnuu2l"]
+[gd_scene load_steps=22 format=3 uid="uid://c7w5dd6lcqfsc"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1"]
+[ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_hpjkc"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="2"]
-[ext_resource type="Script" path="res://Scripts/EnemyGun.cs" id="3"]
+[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/EnemyExplosion.tscn" id="2_lps55"]
 [ext_resource type="Material" uid="uid://cxo7eotnrn1ov" path="res://Materials/enemies/siren.bulb.red.tres" id="3_wfcvo"]
 [ext_resource type="AudioStream" uid="uid://cm04je6mii1hu" path="res://Sounds/guns/enemyShot.wav" id="4"]
 [ext_resource type="Material" uid="uid://5qw86yab78yt" path="res://Materials/enemies/siren.bulb.blue.tres" id="4_r4vvi"]
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemyHit.wav" id="5"]
-[ext_resource type="Script" path="res://Scripts/AutoAim.cs" id="6"]
 [ext_resource type="Material" uid="uid://ucphe50m6lsk" path="res://Materials/enemies/siren.bulb.tres" id="7"]
+[ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="7_2rfor"]
 [ext_resource type="Material" path="res://Materials/enemies/siren.base.tres" id="8"]
 [ext_resource type="Material" path="res://Materials/gun.barrel_void.tres" id="8_rlkg2"]
+[ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="10_hvpop"]
 
 [sub_resource type="CylinderMesh" id="2"]
 resource_local_to_scene = true
@@ -142,15 +143,16 @@ collision_mask = 23
 floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 0.872665
-script = ExtResource("1")
+script = ExtResource("1_hpjkc")
 rangeThreshold = 10.0
 closeRangeMode = 2
 pathUpdateRate = 0.5
+deathExplosion = ExtResource("2_lps55")
 Accel = 5.0
 HP = 40
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000652671, 0.754356, -0.000413895)
+transform = Transform3D(0.82721, 0, 0.561893, 0, 1, 0, -0.561893, 0, 0.82721, -0.000652671, 0.754356, -0.000413895)
 mesh = SubResource("2")
 
 [node name="RedBulb" type="MeshInstance3D" parent="MeshInstance3D"]
@@ -212,14 +214,14 @@ shape = SubResource("CylinderShape3D_hymxx")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00657, 0)
-script = ExtResource("6")
+script = ExtResource("7_2rfor")
 vOffset = 0.75
 
 [node name="Gun" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.26, -0.222002)
 mesh = ExtResource("2")
 surface_material_override/1 = ExtResource("8_rlkg2")
-script = ExtResource("3")
+script = ExtResource("10_hvpop")
 parentPath = NodePath("../..")
 barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12)]
 

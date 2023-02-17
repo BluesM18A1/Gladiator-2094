@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmy6fs061m404"]
+[gd_scene load_steps=6 format=3 uid="uid://ba23kmv6fq032"]
 
-[ext_resource type="Script" path="res://Scripts/RigidBodyBullet.cs" id="1"]
-[ext_resource type="PackedScene" uid="uid://cvsftju7n8kbr" path="res://Prefabs/EnemyGrenadeExplosion.tscn" id="2"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1_il6xd"]
+[ext_resource type="PackedScene" path="res://Prefabs/EnemyGrenadeExplosion.tscn" id="2"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.grenade.tres" id="3"]
 
 [sub_resource type="SphereMesh" id="1"]
@@ -20,7 +20,7 @@ collision_mask = 7
 gravity_scale = 3.0
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1")
+script = ExtResource("1_il6xd")
 damage = -10
 speed = 1.0
 sparks = ExtResource("2")

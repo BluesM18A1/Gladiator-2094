@@ -1,9 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://ckta8q72l8myh"]
+[gd_scene load_steps=36 format=3 uid="uid://boo10ann76wpr"]
 
-[ext_resource type="Script" path="res://Scripts/Player.cs" id="1"]
+[ext_resource type="Script" path="res://Scripts/Character/Player.cs" id="1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Parts/PlayerGun.tscn" id="2"]
 [ext_resource type="Material" path="res://Materials/player.body.tres" id="2_lev32"]
-[ext_resource type="Theme" path="res://default.theme" id="3"]
+[ext_resource type="Theme" uid="uid://gha5bjty4636" path="res://default.theme" id="3"]
 [ext_resource type="Texture2D" uid="uid://c550pddtc5rc3" path="res://Textures/UI/Icon_Grenade.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c8sodcrovwjd" path="res://Textures/UI/Icon_Flamethrower.png" id="5"]
 [ext_resource type="Material" path="res://Materials/hubcap.material" id="5_g2i2o"]
@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://dnlfcoeiibt7n" path="res://Sounds/hurtsound.wav" id="14"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="15"]
 [ext_resource type="FontFile" uid="uid://digjbwl3hjo6q" path="res://Textures/UI/A.ttf" id="16_y7ydl"]
-[ext_resource type="Script" path="res://Scripts/AxelAnimation.cs" id="17"]
+[ext_resource type="Script" path="res://Scripts/Character/AxelAnimation.cs" id="17"]
 [ext_resource type="Texture2D" uid="uid://84ytppwgoysm" path="res://Textures/UI/crosshair.png" id="18_eyhey"]
 [ext_resource type="AudioStream" uid="uid://jyk7mws2mi4w" path="res://Sounds/playerSpawn.wav" id="19"]
 [ext_resource type="AudioStream" uid="uid://bqfo63ajpo7pi" path="res://Sounds/land.wav" id="20"]
@@ -355,11 +355,14 @@ text = "ERR"
 
 [node name="FPScounter" type="Label" parent="HUD"]
 self_modulate = Color(0, 1, 0, 1)
-layout_mode = 0
-offset_left = 20.2394
-offset_top = 15.4772
-offset_right = 152.239
-offset_bottom = 48.4772
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 212.0
+offset_top = -33.0
+offset_right = 344.0
+grow_vertical = 0
 text = "FPS:"
 script = ExtResource("22")
 

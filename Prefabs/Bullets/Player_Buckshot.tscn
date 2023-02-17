@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://djgy4g2sp5b8t"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_4fij1"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1_4fij1"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.buckshot.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://djsfbxkc25qkr" path="res://Prefabs/Sparks_Yellow.tscn" id="2_x3tb3"]
 
