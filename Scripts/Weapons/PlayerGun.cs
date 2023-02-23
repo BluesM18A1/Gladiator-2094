@@ -4,14 +4,25 @@ using System;
 public partial class PlayerGun : Gun
 {
 	/*Godot 4.0 at long last allows for custom types to be [Export]ed
-	this giant spaghetti code mess is not for long!*/
+	this giant spaghetti code mess is not for long!
+	
+	EDIT: Not possible in C# just yet! https://github.com/godotengine/godot/pull/72619
+	*/
 	//GAMEPLAY VARIABLES-----------------------------------------------------------
+	/*
+	public struct Weapon{
+		int ammo;
+		float coolSpeed;
+		PackedScene instance;
+		AudioStreamWav fireSnd;
+	}*/
 	[Export]
 	public int shells, bullets, grenades;
 	[Export]
-	public float coolSpeed = 3f, buckshotSpread = 0.06f, recoilAnim = 0.002f, recoilOffset = -0.722f;
+	public float recoilAnim = 0.002f, recoilOffset = -0.722f;
 	[Export]
 	public float coolRepeater, coolBuckshot, coolGrenades, coolFlames;
+	float coolSpeed = 3f;
 	//COMPONENT VARIABLES------------------------------------------------------------
 	PackedScene instanceRepeater = 
 	(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Repeater.tscn");
@@ -24,19 +35,18 @@ public partial class PlayerGun : Gun
 	[Export]
 	public NodePath HUDPath;
 	[Export]
-	public NodePath PlayerPath;
-	public Player player;
-	public TextureProgressBar coolMeter;
-	public TextureRect iconRptr, iconShot, iconGren, iconFlam; 
-	private Label ammoNum;
-	public AudioStreamPlayer pickupSnd, switchSnd;
-	public AudioStreamWav fireGren = 
+	Player player {get; set; }
+	[Export]
+	AnimationPlayer ani{get; set; }
+	TextureProgressBar coolMeter;
+	TextureRect iconRptr, iconShot, iconGren, iconFlam; 
+	Label ammoNum;
+	AudioStreamPlayer pickupSnd, fireSnd;
+	AudioStreamWav fireGren = 
 	(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/grenadeLaunch.wav"),
 	fireRep = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/repeater.wav"), 
-	fireShot = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/buckshot.wav"), 
-	wepSwitch = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/switch.wav");
-
-	public AudioStreamWav pickupGren = 
+	fireShot = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/buckshot.wav");
+	AudioStreamWav pickupGren = 
 	(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/grenadePickup.wav"),
 	pickupRep = (AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/repeaterPickup.wav"), 
 	pickupShot = (AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/buckshotPickup.wav");
@@ -45,22 +55,22 @@ public partial class PlayerGun : Gun
 	public override void _Ready()
 	{
 		coolMeter = GetNode<TextureProgressBar>("SubViewport/TextureProgressBar");
-		player = GetNode<Player>(PlayerPath);
 		iconRptr = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconRptr");
 		iconShot = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconShot");
 		iconGren = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconGren");
 		iconFlam = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconFlam");
 		ammoNum = GetNode<Label>(HUDPath + "/FuelMeter/AmmoNum");
 		pickupSnd = GetNode<AudioStreamPlayer>("pickupSnd");
-		switchSnd = GetNode<AudioStreamPlayer>("switchSnd");
+		fireSnd = GetNode<AudioStreamPlayer>("fireSnd");
 		currentWeapon = Weapons.FLAMETHROWER;
 		UpdateWeaponData();
+		UpdateMeterColor();
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		coolMeter.Value -= 50 * coolSpeed * delta;
+		coolMeter.Value -= (50 * coolSpeed) * delta;
 		Position = new Vector3 (Position.X, Position.Y, (recoilAnim * (float)coolMeter.Value) + recoilOffset);
 		ProcessInput(delta);
 		if (currentWeapon == Weapons.FLAMETHROWER)
@@ -83,7 +93,7 @@ public partial class PlayerGun : Gun
 		if (coolMeter.Value == 0  && !disabled)
 		{
 			//Which weapon do I fire?
-			if (Input.IsActionPressed("player_fire1"))
+			if (Input.IsActionPressed("player_fire"))
 			{
 				switch (currentWeapon)
 				{
@@ -103,7 +113,7 @@ public partial class PlayerGun : Gun
 			}
 		}
 		//FLAMETHROWER RECHARGE MANAGEMENT
-		if ((Input.IsActionPressed("player_fire1") && currentWeapon == Weapons.FLAMETHROWER))
+		if ((Input.IsActionPressed("player_fire") && currentWeapon == Weapons.FLAMETHROWER))
 		{
 			player.flameThrowerOn = true;
 		}
@@ -115,8 +125,8 @@ public partial class PlayerGun : Gun
 	{
 		if (bullets > 0)
 		{
-			switchSnd.Stream = fireRep;
-			switchSnd.Play();
+			fireSnd.Stream = fireRep;
+			fireSnd.Play();
 			coolMeter.Value = 100;
 			bullets--;
 			ammoNum.Text = bullets.ToString();
@@ -132,8 +142,8 @@ public partial class PlayerGun : Gun
 	{   
 		if (shells > 0)
 		{
-			switchSnd.Stream = fireShot;
-			switchSnd.Play();
+			fireSnd.Stream = fireShot;
+			fireSnd.Play();
 			coolMeter.Value = 100;
 			shells--;
 			ammoNum.Text = shells.ToString();
@@ -151,8 +161,8 @@ public partial class PlayerGun : Gun
 	{
 		if (grenades > 0)
 		{
-			switchSnd.Stream = fireGren;
-			switchSnd.Play();
+			fireSnd.Stream = fireGren;
+			fireSnd.Play();
 			coolMeter.Value = 100;
 			grenades--;
 			ammoNum.Text = grenades.ToString();
@@ -210,9 +220,9 @@ public partial class PlayerGun : Gun
 			currentWeapon = Weapons.FLAMETHROWER;
 		}
 		else currentWeapon++;
-		switchSnd.Stream = wepSwitch;
-		switchSnd.Play();
 		UpdateWeaponData();
+		ani.Play("RESET");
+		ani.Play("rotate_backwards");
 	}
 	public void PrevWeapon()
 	{
@@ -221,11 +231,12 @@ public partial class PlayerGun : Gun
 			currentWeapon = Weapons.GRENADES;
 		}
 		else currentWeapon--;
-		switchSnd.Stream = wepSwitch;
-		switchSnd.Play();
 		UpdateWeaponData();
+		ani.Play("RESET");
+		ani.Play("rotate");
+		
 	}
-	void UpdateWeaponData()
+	public void UpdateWeaponData()
 	{
 		switch (currentWeapon)
 		{
@@ -236,7 +247,6 @@ public partial class PlayerGun : Gun
 			iconFlam.Modulate = new Color(1,1,1,0.5f);
 			coolSpeed = coolRepeater;
 			ammoNum.Text = bullets.ToString();
-			
 			break;
 			case (Weapons.BUCKSHOT):
 			iconRptr.Modulate = new Color(1,1,1,0.5f);
@@ -266,48 +276,67 @@ public partial class PlayerGun : Gun
 				
 		}
 	}
+	public void UpdateMeterColor() //called by animation
+	{
+		switch (currentWeapon)
+		{
+			case (Weapons.REPEATER):
+			coolMeter.TintOver = new Color (0,0,1,1);
+			break;
+			case (Weapons.BUCKSHOT):
+			coolMeter.TintOver = new Color (1,1,0,1);
+			break;
+			case (Weapons.GRENADES):
+			coolMeter.TintOver = new Color (0,1,0,1);
+			break;
+			case (Weapons.FLAMETHROWER):
+			coolMeter.TintOver = new Color (1,0,0,1);
+			break;
+				
+		}
+	}
+
 	public override void _Input(InputEvent @event){
 		if (coolMeter.Value == 0  && !disabled)
 		{
-			if  (@event.IsActionReleased("player_nextWep"))
+			if  (@event.IsActionReleased("player_next_weapon"))
 			{
 				NextWeapon();
 			}
-			else if  (@event.IsActionReleased("player_prevWep"))
+			else if  (@event.IsActionReleased("player_prev_weapon"))
 			{
 				PrevWeapon();
 			}
 		}
-		if (@event is InputEventKey eventKey)
+		
+		if (@event.IsActionPressed("player_flamethrower"))
 		{
-			if (eventKey.Pressed && eventKey.Keycode == Key.Key1)
-			{
-				currentWeapon = Weapons.FLAMETHROWER;
-				switchSnd.Stream = wepSwitch;
-				switchSnd.Play();
-				UpdateWeaponData();
-			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Key2)
-			{
-				currentWeapon = Weapons.REPEATER;
-				switchSnd.Stream = wepSwitch;
-				switchSnd.Play();
-				UpdateWeaponData();
-			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Key3)
-			{
-				currentWeapon = Weapons.BUCKSHOT;
-				switchSnd.Stream = wepSwitch;
-				switchSnd.Play();
-				UpdateWeaponData();
-			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Key4)
-			{
-				currentWeapon = Weapons.GRENADES;
-				switchSnd.Stream = wepSwitch;
-				switchSnd.Play();
-				UpdateWeaponData();
-			}
-		}      
+			currentWeapon = Weapons.FLAMETHROWER;
+			UpdateWeaponData();
+			ani.Play("RESET");
+			ani.Play("rotate");
+		}
+		if (@event.IsActionPressed("player_repeater"))
+		{
+			currentWeapon = Weapons.REPEATER;
+			UpdateWeaponData();
+			ani.Play("RESET");
+			ani.Play("rotate");
+		}
+		if (@event.IsActionPressed("player_buckshot"))
+		{
+			currentWeapon = Weapons.BUCKSHOT;
+			UpdateWeaponData();
+			ani.Play("RESET");
+			ani.Play("rotate");
+		}
+		if (@event.IsActionPressed("player_grenades"))
+		{
+			currentWeapon = Weapons.GRENADES;
+			UpdateWeaponData();
+			ani.Play("RESET");
+			ani.Play("rotate");
+		}
+		 
 	}
 }

@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7w5dd6lcqfsc"]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_hpjkc"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="2"]
-[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/EnemyExplosion.tscn" id="2_lps55"]
+[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/Effects/EnemyExplosion.tscn" id="2_lps55"]
 [ext_resource type="Material" uid="uid://cxo7eotnrn1ov" path="res://Materials/enemies/siren.bulb.red.tres" id="3_wfcvo"]
 [ext_resource type="AudioStream" uid="uid://cm04je6mii1hu" path="res://Sounds/guns/enemyShot.wav" id="4"]
 [ext_resource type="Material" uid="uid://5qw86yab78yt" path="res://Materials/enemies/siren.bulb.blue.tres" id="4_r4vvi"]

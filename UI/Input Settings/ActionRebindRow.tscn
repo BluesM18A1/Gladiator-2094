@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/Config/InputMenu/BindList.cs" id="1_l0yyf"]
+[ext_resource type="PackedScene" uid="uid://m5oxs1d365pd" path="res://UI/Input Settings/BindEntry.tscn" id="2_1qf51"]
+[ext_resource type="StyleBox" uid="uid://7dwf4b41mx3j" path="res://UI/theme components/stylebox.normal.tres" id="2_ms87b"]
+[ext_resource type="PackedScene" uid="uid://da7rgo61hlkjd" path="res://UI/Input Settings/NewBindPlaceholder.tscn" id="3_0ljq6"]
+[ext_resource type="Texture2D" uid="uid://cq77cinkttvlq" path="res://UI/icons/plus.webp" id="3_sd7lc"]
+
+[node name="ActionRebindRow" type="HBoxContainer" node_paths=PackedStringArray("label", "focusEater", "addButton", "list")]
+custom_minimum_size = Vector2(0, 48)
+script = ExtResource("1_l0yyf")
+inputAction = "Action Name"
+label = NodePath("Label")
+focusEater = NodePath("../../../../Panel")
+addButton = NodePath("AddBind")
+list = NodePath("ScrollContainer/HBoxContainer")
+bindEntry = ExtResource("2_1qf51")
+bindPlaceholder = ExtResource("3_0ljq6")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 2
+size_flags_vertical = 5
+theme_override_styles/normal = ExtResource("2_ms87b")
+text = "ACTION NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(200, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+follow_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddBind" type="Button" parent="."]
+custom_minimum_size = Vector2(48, 16)
+layout_mode = 2
+icon = ExtResource("3_sd7lc")
+clip_text = true
+expand_icon = true
+
+[connection signal="pressed" from="AddBind" to="." method="NewBind"]

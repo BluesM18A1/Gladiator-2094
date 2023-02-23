@@ -44,7 +44,7 @@ public partial class Bullet : Area3D
 		if (sparks != null)
 		{
 			Node3D newSparks = (Node3D)sparks.Instantiate();
-			newSparks.Position = Position;
+			newSparks.Position = Position + GlobalTransform.Basis.Z * 0.4f; //the offset is so we can see the full spark fx rather than having it sandwiched inside the wall the bullet collided with.
 			GetTree().CurrentScene.AddChild(newSparks);
 		}
 		QueueFree();

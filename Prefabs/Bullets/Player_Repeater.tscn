@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://c1grwmrflejqg"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1"]
 [ext_resource type="Material" uid="uid://dpdqnkleupx7d" path="res://Materials/bullets/bullet.repeater.material" id="2"]
-[ext_resource type="PackedScene" uid="uid://bpipig7024f2g" path="res://Prefabs/Sparks_Blue.tscn" id="2_5goh4"]
+[ext_resource type="PackedScene" uid="uid://bpipig7024f2g" path="res://Prefabs/Effects/Sparks_Blue.tscn" id="2_5goh4"]
 
 [sub_resource type="SphereMesh" id="1"]
 material = ExtResource("2")
@@ -18,7 +18,7 @@ radius = 0.15
 collision_layer = 2048
 collision_mask = 5
 script = ExtResource("1")
-damage = -8
+damage = -12
 speed = 100.0
 sparks = ExtResource("2_5goh4")
 

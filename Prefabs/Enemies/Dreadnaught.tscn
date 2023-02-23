@@ -1,15 +1,15 @@
-[gd_scene load_steps=36 format=3 uid="uid://bm1jkbl24qihd"]
+[gd_scene load_steps=36 format=3 uid="uid://cyixocoxe86vg"]
 
 [ext_resource type="ArrayMesh" uid="uid://b2fm7hk2jpd3a" path="res://Models/dreadnaughtBody.obj" id="1"]
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_vnjq6"]
-[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/EnemyExplosion.tscn" id="2_gys8g"]
+[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/Effects/EnemyExplosion.tscn" id="2_gys8g"]
 [ext_resource type="Material" uid="uid://cgg0v8wplxl4" path="res://Materials/enemies/dreadnaught.face.tres" id="2_wn0ex"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="3"]
 [ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="4_gagr8"]
 [ext_resource type="Material" uid="uid://b6u0id5wniu8r" path="res://Materials/enemies/dreadnaught.brain.tres" id="5_wlmwc"]
 [ext_resource type="Material" path="res://Materials/enemies/dreadnaugh.antennae.stem.tres" id="6_5ab3r"]
 [ext_resource type="Material" path="res://Materials/gun.barrel_void.tres" id="7_8ed4w"]
-[ext_resource type="PackedScene" uid="uid://d10l567vwjjdr" path="res://Prefabs/Bullets/Dreadnaught_Bullet.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://Prefabs/Bullets/Dreadnaught_Bullet.tscn" id="8"]
 [ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="8_6utcv"]
 [ext_resource type="PackedScene" uid="uid://ba23kmv6fq032" path="res://Prefabs/Bullets/Dreadnaught_Grenades.tscn" id="9"]
 [ext_resource type="AudioStream" uid="uid://kfm03qb8t3d1" path="res://Sounds/guns/grenadeLaunch.wav" id="10"]
@@ -225,8 +225,8 @@ bounty = 300
 rangeThreshold = 10.0
 closeRangeMode = 2
 deathExplosion = ExtResource("2_gys8g")
-MaxSpeed = 4.0
 HP = 2500
+MaxSpeed = 4.0
 
 [node name="MainBody" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, -0.05)

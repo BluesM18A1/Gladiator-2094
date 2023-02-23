@@ -3,8 +3,10 @@ using System;
 
 public partial class Combatant : CharacterBody3D
 {
-
-    //PHYSICS VARIABLES--------------------------------
+    //GAMEPLAY VARIABLES-------------------------------------
+    [Export]
+    public int HP = 100;
+    [ExportGroup("Movement Physics")]
     [Export]
     public float Gravity = -20f;
     [Export]
@@ -15,9 +17,7 @@ public partial class Combatant : CharacterBody3D
     public float Deaccel = 16.0f;
     [Export]
     public double MaxSlopeAngle = 50.0f;
-    //GAMEPLAY VARIABLES-------------------------------------
-    [Export]
-    public int HP = 100;
+    
 
     //COMPONENT VARIABLES------------------------------------
     protected Node3D head;

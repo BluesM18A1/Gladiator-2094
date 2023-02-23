@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://m5oxs1d365pd"]
+
+[ext_resource type="Texture2D" uid="uid://dpreb7jvcj8kv" path="res://UI/icons/minus.webp" id="5"]
+[ext_resource type="Script" path="res://Scripts/UI/Config/InputMenu/BindEntry.cs" id="7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3t4k"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0.67451, 1)
+shadow_size = 2
+
+[node name="RemoveBind" type="Button"]
+custom_minimum_size = Vector2(128, 16)
+offset_right = 753.0
+offset_bottom = 73.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_k3t4k")
+toggle_mode = true
+text = "None"
+icon = ExtResource("5")
+expand_icon = true
+script = ExtResource("7")

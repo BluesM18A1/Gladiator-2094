@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "cej6Qf7H3A/h9Ddp+FdKbZ+kJWo0RbmaP9Gzhgk0U3CIiLWM61d0GeYMPiqhpyr1+hPk3Mfd2Swp0g+Ro1gAmA==",
+  "dgSpecHash": "8cm8SIGGtoBfBJD0+PAZpxdNW8vFatODiYH/vrPyl3EsgtQppsVA5FUu8nTxL116OX5x8vAVfwLfT7CgL+ZL3w==",
   "success": true,
   "projectFilePath": "/mnt/Secondary/Documents/source-code/Godot/Gladiator-2094/Gladiator 2094.csproj",
   "expectedPackageFiles": [
-    "/home/blues/.local/share/godot/mono/GodotNuGetFallbackFolder/godot.sourcegenerators/4.0.0-rc.2/godot.sourcegenerators.4.0.0-rc.2.nupkg.sha512",
-    "/home/blues/.local/share/godot/mono/GodotNuGetFallbackFolder/godotsharp/4.0.0-rc.2/godotsharp.4.0.0-rc.2.nupkg.sha512",
-    "/home/blues/.local/share/godot/mono/GodotNuGetFallbackFolder/godotsharpeditor/4.0.0-rc.2/godotsharpeditor.4.0.0-rc.2.nupkg.sha512",
-    "/home/blues/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.13/microsoft.aspnetcore.app.ref.6.0.13.nupkg.sha512"
+    "/home/blues/.local/share/godot/mono/GodotNuGetFallbackFolder/godot.sourcegenerators/4.0.0-rc.3/godot.sourcegenerators.4.0.0-rc.3.nupkg.sha512",
+    "/home/blues/.local/share/godot/mono/GodotNuGetFallbackFolder/godotsharp/4.0.0-rc.3/godotsharp.4.0.0-rc.3.nupkg.sha512",
+    "/home/blues/.local/share/godot/mono/GodotNuGetFallbackFolder/godotsharpeditor/4.0.0-rc.3/godotsharpeditor.4.0.0-rc.3.nupkg.sha512",
+    "/home/blues/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.14/microsoft.aspnetcore.app.ref.6.0.14.nupkg.sha512"
   ],
   "logs": []
 }

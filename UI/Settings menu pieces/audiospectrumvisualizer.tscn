@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/Sound/AudioSpectrumVisualizer.cs" id="1_tjsgv"]
+[ext_resource type="Texture2D" uid="uid://fm8kbqoiycoi" path="res://UI/spectrumVisualizer.webp" id="2_wxxya"]
+
+[sub_resource type="CanvasItemMaterial" id="33"]
+blend_mode = 3
+
+[node name="AudioSpectrumVisualizer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tjsgv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("33")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wxxya")
+expand_mode = 1

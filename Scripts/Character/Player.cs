@@ -4,30 +4,29 @@ using System;
 public partial class Player : Combatant
 {
 	Config config;
-	//PHYSICS VARIABLES--------------------------------
-	[Export]
-	public double RechargeRate = 100, FuelDrainRate = 60;
-	[Export]
-	public double JetForce = 3f;
-	[Export]
-	public double normalSpeed = 7f;
-	[Export]
-	public double sprintSpeed = 14f;
-	[Export]
-	public double mouseSensitivity = 0.3f;
-	
-	//GAMEPLAY VARIABLES-------------------------------------
+	[ExportGroup("Player Stats")]
 	public bool alive = true;
 	[Export]
 	public int maxHP = 100; //in case I want to make max HP/max fuel upgrades a thing later.
 	[Export]
 	public int maxFuel = 100;
+	[Export]
+	public double RechargeRate = 100, FuelDrainRate = 50;
+	[ExportGroup("Movement Speeds")]
+	float hoverPower = 100;
+	[Export]
+	public double normalSpeed = 12f;
+	[Export]
+	public double sprintSpeed = 24f;
+	
+	
 	int HPcounter = 0;
 	public double fuel = 0;
 	public bool flameThrowerOn = false;
 	public double overhealDecrementRate = .25f;
 	double overhealTimer = 0;
 	bool needToPlayLandSound = false;
+	
 
 	//COMPONENT VARIABLES------------------------------------
 	private Camera3D camera;
@@ -54,7 +53,6 @@ public partial class Player : Combatant
 		screenAni = GetNode<AnimationPlayer>("HUD/ScreenFlash/ScreenTransitions");
 		floorChecker = GetNode<RayCast3D>("floorchecker");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
-		mouseSensitivity = config.mouseSensitivity;
 		HP = maxHP;
 		healthMeter.MaxValue = maxHP;
 		fuelMeter.MaxValue = maxFuel;
@@ -64,8 +62,23 @@ public partial class Player : Combatant
 	public override void _Process(double delta)
 	{
 		// Analog stick aiming
-		head.RotateX(Mathf.DegToRad(Input.GetJoyAxis(0, JoyAxis.RightY) * (float)-mouseSensitivity));
-		RotateY(Mathf.DegToRad(-Input.GetJoyAxis(0, JoyAxis.RightX)* (float)mouseSensitivity));
+		float xAxis = config.invertX ? 
+			Input.GetJoyAxis(config.aimAxisX.X, (JoyAxis)config.aimAxisX.Y) 
+			: -Input.GetJoyAxis(config.aimAxisX.X, (JoyAxis)config.aimAxisX.Y);
+        float yAxis = config.invertY ? 
+			Input.GetJoyAxis(config.aimAxisY.X, (JoyAxis)config.aimAxisY.Y) 
+			: -Input.GetJoyAxis(config.aimAxisY.X, (JoyAxis)config.aimAxisY.Y);
+		if (Mathf.Abs(xAxis) > config.deadzoneX)
+		{
+			RotateY(Mathf.DegToRad(xAxis)* config.mouseSensitivity * 1000 * (float)delta);
+		}
+		if (Mathf.Abs(yAxis) > config.deadzoneY) 
+		{
+			head.RotateX(Mathf.DegToRad(yAxis) * config.mouseSensitivity * 1000 *(float)delta);
+		}
+		Vector3 cameraRot = head.RotationDegrees;
+			cameraRot.X = Mathf.Clamp(cameraRot.X, -85, 85);
+			head.RotationDegrees = cameraRot;
 		//overheal mechanics
 		if (HP > healthMeter.MaxValue)
 		{
@@ -114,13 +127,13 @@ public partial class Player : Combatant
 		
 		
 			dir = new Vector3();
-			if (Input.IsActionPressed("player_forward"))
+			if (Input.IsActionPressed("player_move_forward"))
 			inputMovementVector.Y += 1;
-			if (Input.IsActionPressed("player_backward"))
+			if (Input.IsActionPressed("player_move_backward"))
 				inputMovementVector.Y -= 1;
-			if (Input.IsActionPressed("player_left"))
+			if (Input.IsActionPressed("player_strafe_left"))
 				inputMovementVector.X -= 1;
-			if (Input.IsActionPressed("player_right"))
+			if (Input.IsActionPressed("player_strafe_right"))
 				inputMovementVector.X += 1;
 		
 		
@@ -137,9 +150,13 @@ public partial class Player : Combatant
 			//  Jumping / Jetpack thrust
 			if (Input.IsActionPressed("player_jump") && fuelMeter.Value > 0)
 			{
-				if (Input.IsActionJustPressed("player_jump")) boostSnd.Play();
-				
-				vel.Y = ((float)fuel / 10);
+				if (Input.IsActionJustPressed("player_jump"))
+				{
+					boostSnd.Play();
+					hoverPower = (float)fuel;
+				}
+				vel.Y = (((float)fuel * 10) / hoverPower);
+				//vel.Y = (((float)fuel / 10));
 				fuel -= FuelDrainRate * delta;
 			}
 
@@ -167,17 +184,17 @@ public partial class Player : Combatant
 	}
 	public override void _Input(InputEvent @event)
 	{
-		mouseSensitivity = config.mouseSensitivity;
 		if (@event is InputEventMouseMotion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
 			InputEventMouseMotion mouseEvent = @event as InputEventMouseMotion;
-			head.RotateX(Mathf.DegToRad(mouseEvent.Relative.Y * (float)-mouseSensitivity));
-			RotateY(Mathf.DegToRad(-mouseEvent.Relative.X * (float)mouseSensitivity));
+			head.RotateX(Mathf.DegToRad(mouseEvent.Relative.Y * -config.mouseSensitivity / 2));
+			RotateY(Mathf.DegToRad(-mouseEvent.Relative.X * config.mouseSensitivity / 2));
 			//apply vertical clamping to rotation
 			Vector3 cameraRot = head.RotationDegrees;
 			cameraRot.X = Mathf.Clamp(cameraRot.X, -85, 85);
 			head.RotationDegrees = cameraRot;
 		}
+		
 	}
 	private void ProcessHealthMeter(double delta) //this is how I do health counter rolling
 	{

@@ -1,15 +1,33 @@
-[gd_resource type="AudioBusLayout" format=2]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://df4yuvuynues2"]
+
+[sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_qdte1"]
+resource_name = "SpectrumAnalyzer"
+buffer_length = 0.1
+
+[sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_vw64k"]
+resource_name = "SpectrumAnalyzer"
+buffer_length = 0.1
+
+[sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_3vi5t"]
+resource_name = "SpectrumAnalyzer"
+buffer_length = 0.1
 
 [resource]
-bus/1/name = "BGM"
+bus/0/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_qdte1")
+bus/0/effect/0/enabled = true
+bus/1/name = &"BGM"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
-bus/1/send = "Master"
-bus/2/name = "SFX"
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_vw64k")
+bus/1/effect/0/enabled = true
+bus/2/name = &"SFX"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
-bus/2/send = "Master"
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_3vi5t")
+bus/2/effect/0/enabled = true

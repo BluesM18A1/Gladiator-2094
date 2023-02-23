@@ -11,16 +11,19 @@ public partial class Explosion : Area3D
 	[Export]
 	public float lifetime = 15;
 	[Export]
-	public PackedScene sparks = (PackedScene)ResourceLoader.Load("res://Prefabs/Explosion.tscn");
+	public PackedScene sparks;
 
 	[Signal]
 	public delegate void DealExplosiveDamageEventHandler(byte damagePoints);
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Node3D newSparks = (Node3D)sparks.Instantiate();
-		newSparks.Position = Position;
-		GetTree().CurrentScene.AddChild(newSparks);
+		if (sparks != null)
+		{
+			Node3D newSparks = (Node3D)sparks.Instantiate();
+			newSparks.Position = Position;
+			GetTree().CurrentScene.AddChild(newSparks);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

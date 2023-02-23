@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvya6pg516xow"]
+[gd_scene load_steps=11 format=3 uid="uid://bl3p24jaqtmcf"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles/Explosion.cs" id="1_25gbn"]
-[ext_resource type="PackedScene" uid="uid://dbw7rar2hv818" path="res://Prefabs/GrenadeExplosionSparks.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dbw7rar2hv818" path="res://Prefabs/Effects/GrenadeExplosionSparks.tscn" id="2_tbte7"]
 
 [sub_resource type="SphereShape3D" id="1"]
 resource_local_to_scene = true
@@ -124,7 +124,7 @@ script = ExtResource("1_25gbn")
 damage = -60
 speed = 0.0
 lifetime = 0.7
-sparks = ExtResource("3")
+sparks = ExtResource("2_tbte7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("1")

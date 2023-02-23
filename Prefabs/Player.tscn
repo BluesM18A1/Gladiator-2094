@@ -1,25 +1,25 @@
-[gd_scene load_steps=36 format=3 uid="uid://boo10ann76wpr"]
+[gd_scene load_steps=36 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Character/Player.cs" id="1"]
-[ext_resource type="PackedScene" path="res://Prefabs/Parts/PlayerGun.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://saeon30fd5s" path="res://Prefabs/Parts/PlayerGun.tscn" id="2"]
 [ext_resource type="Material" path="res://Materials/player.body.tres" id="2_lev32"]
-[ext_resource type="Theme" uid="uid://gha5bjty4636" path="res://default.theme" id="3"]
-[ext_resource type="Texture2D" uid="uid://c550pddtc5rc3" path="res://Textures/UI/Icon_Grenade.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://c8sodcrovwjd" path="res://Textures/UI/Icon_Flamethrower.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c550pddtc5rc3" path="res://UI/icons/Icon_Grenade.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c8sodcrovwjd" path="res://UI/icons/Icon_Flamethrower.png" id="5"]
 [ext_resource type="Material" path="res://Materials/hubcap.material" id="5_g2i2o"]
 [ext_resource type="Material" uid="uid://derjvemuiaetx" path="res://Materials/player.tire.material" id="5_tjiqy"]
-[ext_resource type="Texture2D" uid="uid://bjbt0g3s63jlo" path="res://Textures/UI/Icon_Minigun.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://bpmtpavybb75t" path="res://Textures/UI/Icon_Shotgun.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bjbt0g3s63jlo" path="res://UI/icons/Icon_Minigun.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bpmtpavybb75t" path="res://UI/icons/Icon_Shotgun.png" id="7"]
 [ext_resource type="Material" path="res://Materials/player.head.tres" id="7_xlwta"]
-[ext_resource type="Texture2D" uid="uid://i47hjgfahm13" path="res://Textures/UI/LifeMeter_background.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://b5u4dfts4unac" path="res://Textures/UI/LifeMeter.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://i47hjgfahm13" path="res://UI/LifeMeter_background.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://b5u4dfts4unac" path="res://UI/LifeMeter.png" id="9"]
+[ext_resource type="Theme" path="res://default_theme.tres" id="9_qxm76"]
 [ext_resource type="AudioStream" uid="uid://mjp8t2j0e5ug" path="res://Sounds/boost.wav" id="12"]
 [ext_resource type="AudioStream" uid="uid://bnuea86jlcang" path="res://Sounds/pickups/healthPickup.wav" id="13"]
 [ext_resource type="AudioStream" uid="uid://dnlfcoeiibt7n" path="res://Sounds/hurtsound.wav" id="14"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="15"]
-[ext_resource type="FontFile" uid="uid://digjbwl3hjo6q" path="res://Textures/UI/A.ttf" id="16_y7ydl"]
+[ext_resource type="FontFile" uid="uid://jknatkcprhb2" path="res://UI/fonts/bitwise.ttf" id="16_htvrl"]
 [ext_resource type="Script" path="res://Scripts/Character/AxelAnimation.cs" id="17"]
-[ext_resource type="Texture2D" uid="uid://84ytppwgoysm" path="res://Textures/UI/crosshair.png" id="18_eyhey"]
+[ext_resource type="Texture2D" uid="uid://84ytppwgoysm" path="res://UI/crosshair.png" id="18_eyhey"]
 [ext_resource type="AudioStream" uid="uid://jyk7mws2mi4w" path="res://Sounds/playerSpawn.wav" id="19"]
 [ext_resource type="AudioStream" uid="uid://bqfo63ajpo7pi" path="res://Sounds/land.wav" id="20"]
 [ext_resource type="Script" path="res://Scripts/UI/FPScounter.cs" id="22"]
@@ -111,7 +111,7 @@ _data = {
 }
 
 [sub_resource type="FontVariation" id="FontVariation_5ctu4"]
-base_font = ExtResource("16_y7ydl")
+base_font = ExtResource("16_htvrl")
 
 [node name="Player" type="CharacterBody3D" groups=["Players"]]
 collision_layer = 2
@@ -120,10 +120,6 @@ floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 0.872665
 script = ExtResource("1")
-FuelDrainRate = 50.0
-JetForce = 8.0
-normalSpeed = 12.0
-sprintSpeed = 24.0
 MaxSpeed = 16.0
 Accel = 8.0
 Deaccel = 24.0
@@ -176,16 +172,10 @@ fov = 90.0
 size = 0.1
 near = 0.01
 
-[node name="Gun" parent="Neck" instance=ExtResource("2")]
+[node name="Gun" parent="Neck" node_paths=PackedStringArray("player") instance=ExtResource("2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112467, -0.722072)
-coolSpeed = 0.5
-buckshotSpread = 0.06
-coolRepeater = 20.0
-coolBuckshot = 6.0
-coolGrenades = 3.0
-coolFlames = 50.0
 HUDPath = NodePath("../../HUD")
-PlayerPath = NodePath("../..")
+player = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89, 0)
@@ -219,22 +209,25 @@ libraries = {
 self_modulate = Color(0, 1, 0, 1)
 light_mask = 2
 use_parent_material = true
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -64.0
-theme = ExtResource("3")
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("9_qxm76")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/WeaponBar"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.32
 anchor_top = 1.0
 anchor_right = 0.677
 anchor_bottom = 1.0
-offset_left = 0.199982
-offset_top = -51.0
-offset_right = 0.719971
+offset_top = -64.0
+offset_right = 0.400024
 alignment = 1
 
 [node name="IconFlam" type="TextureRect" parent="HUD/WeaponBar/HBoxContainer"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cfc042k6c0n6v"]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemyHit.wav" id="1"]
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_w5ak5"]
-[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/EnemyExplosion.tscn" id="2_a4l0b"]
+[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/Effects/EnemyExplosion.tscn" id="2_a4l0b"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="3"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
 [ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="4_2gnvt"]

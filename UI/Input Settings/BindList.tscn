@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb0t3n8y04xlh"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Config/InputMenu/BindList.cs" id="1"]
+
+[node name="BindList" type="ScrollContainer"]
+custom_minimum_size = Vector2(728, 16)
+offset_left = 275.0
+offset_right = 1028.0
+offset_bottom = 73.0
+size_flags_horizontal = 3
+follow_focus = true
+script = ExtResource("1")
+inputAction = "player_left"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

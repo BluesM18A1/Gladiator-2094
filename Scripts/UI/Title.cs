@@ -3,23 +3,14 @@ using System;
 
 public partial class Title : Control
 {
-	Config config;
 	AudioStreamPlayer bloop;
-
+	[Export]
+	Control controlPanel;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-			/*if (OS.WindowSize > OS.GetScreenSize())
-			{
-				OS.WindowSize = OS.GetScreenSize();
-				//GD.Print(OS.GetScreenSize());
-				//OS.WindowMaximized = true;
-			}*/
-		config = GetNode<Config>("/root/Config");
 		bloop = GetNode<AudioStreamPlayer>("bloop");
 		Input.MouseMode = Input.MouseModeEnum.Visible;
-		//sometimes the window shoots up really high depending on OS and monitor setup. This makes sure you can easily grab and move the window.
-		//GetWindow().Position = new Vector2I(GetWindow().Position.X, 0);
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,17 +22,12 @@ public partial class Title : Control
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/arena.tscn");
 	}
-	private void OptionsButtonDown()
-	{
-		GetTree().ChangeSceneToFile("res://Scenes/Options.tscn");
-	}
 	private void CredsButtonDown()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/Creds.tscn");
 	}
 	private void ExitButtonDown()
 	{
-		config.SaveConf();
 		GetTree().Quit();
 	}
 	private void onButtonHover()

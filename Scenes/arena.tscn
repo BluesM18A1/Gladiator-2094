@@ -1,15 +1,14 @@
-[gd_scene load_steps=50 format=3 uid="uid://bia8mptap36m8"]
+[gd_scene load_steps=49 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Arena.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://dwhuh5c7i0itk" path="res://Sounds/announcer/Round 1 start.wav" id="2"]
 [ext_resource type="AudioStream" uid="uid://usspwkka5f2s" path="res://Sounds/music/levelClear.wav" id="3"]
 [ext_resource type="Texture2D" uid="uid://cyafwp85fwl50" path="res://Textures/grid.png" id="4"]
-[ext_resource type="PackedScene" uid="uid://boo10ann76wpr" path="res://Prefabs/Player.tscn" id="7"]
-[ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://Textures/UI/icon.png" id="9"]
-[ext_resource type="PackedScene" path="res://Scenes/PauseMenu.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://cir28orjn0hxp" path="res://Prefabs/Player.tscn" id="7"]
+[ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://UI/icons/icon.png" id="9"]
+[ext_resource type="PackedScene" uid="uid://c6it3solwtqtn" path="res://Scenes/PauseMenu.tscn" id="13"]
 [ext_resource type="AudioStream" uid="uid://roewqimw712v" path="res://Sounds/music/pathetique_weapons.wav" id="14"]
-[ext_resource type="Theme" uid="uid://bbaw31614mir3" path="res://default.bigtext.theme" id="14_r4o87"]
-[ext_resource type="PackedScene" uid="uid://c7w5dd6lcqfsc" path="res://Prefabs/Enemies/Siren.tscn" id="16"]
+[ext_resource type="PackedScene" path="res://Prefabs/Enemies/Siren.tscn" id="16"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.yellow.tres" id="16_8m8gd"]
 [ext_resource type="Material" path="res://Materials/environment/outer_walls.tres" id="16_sjmmi"]
 [ext_resource type="PackedScene" uid="uid://bjt5f1m4r4dxn" path="res://Prefabs/Boxes/Box_Repeater.tscn" id="17"]
@@ -19,12 +18,12 @@
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.green.tres" id="19_se042"]
 [ext_resource type="PackedScene" uid="uid://ci44hgbswroui" path="res://Prefabs/Boxes/Box_Health.tscn" id="20"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.blue.tres" id="20_wm7jo"]
-[ext_resource type="PackedScene" uid="uid://cfc042k6c0n6v" path="res://Prefabs/Enemies/Cat.tscn" id="21"]
+[ext_resource type="PackedScene" path="res://Prefabs/Enemies/Cat.tscn" id="21"]
 [ext_resource type="Material" uid="uid://llrqkmc51vuk" path="res://Materials/environment/bridge.RB.tres" id="21_2q05s"]
-[ext_resource type="PackedScene" uid="uid://b32n4m6dyjaxp" path="res://Prefabs/Enemies/Tortoise.tscn" id="22"]
+[ext_resource type="PackedScene" uid="uid://dyq6sadn22tqd" path="res://Prefabs/Enemies/Tortoise.tscn" id="22"]
 [ext_resource type="Material" uid="uid://bt5jpr4ac4btf" path="res://Materials/environment/bridge.YG.tres" id="22_cet8f"]
 [ext_resource type="Material" uid="uid://bjghtco8legbw" path="res://Materials/grid.material" id="22_rqnik"]
-[ext_resource type="PackedScene" uid="uid://bm1jkbl24qihd" path="res://Prefabs/Enemies/Dreadnaught.tscn" id="23"]
+[ext_resource type="PackedScene" uid="uid://cyixocoxe86vg" path="res://Prefabs/Enemies/Dreadnaught.tscn" id="23"]
 [ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://default_env.tres" id="25_680sj"]
 
 [sub_resource type="Animation" id="1"]
@@ -93,7 +92,7 @@ _data = {
 size = Vector3(64, 16, 2)
 
 [sub_resource type="BoxShape3D" id="6"]
-size = Vector3(80, 100, 2)
+size = Vector3(80, 17.748, 2)
 
 [sub_resource type="PrismMesh" id="7"]
 size = Vector3(8, 4, 4)
@@ -199,13 +198,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -0.400024
 offset_bottom = -2.8
-theme = ExtResource("14_r4o87")
 text = "Sample Text"
 horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9608, 0)
-JetForce = 3.75
 Deaccel = 20.0
 
 [node name="PauseScreen" parent="." instance=ExtResource("13")]
@@ -222,6 +219,16 @@ mesh = SubResource("4")
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls_Outer/Wall1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_Outer/Wall1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924379, 0)
+shape = SubResource("6")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Walls_Outer/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.1522, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_Outer/Wall1/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924379, 0)
 shape = SubResource("6")
 
 [node name="Wall3" type="MeshInstance3D" parent="Walls_Outer"]
@@ -232,6 +239,16 @@ mesh = SubResource("4")
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls_Outer/Wall3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_Outer/Wall3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924379, 0)
+shape = SubResource("6")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Walls_Outer/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.1522, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_Outer/Wall3/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924379, 0)
 shape = SubResource("6")
 
 [node name="Wall2" type="MeshInstance3D" parent="Walls_Outer"]
@@ -242,6 +259,16 @@ mesh = SubResource("4")
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls_Outer/Wall2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_Outer/Wall2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924379, 0)
+shape = SubResource("6")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Walls_Outer/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.1522, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_Outer/Wall2/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924379, 0)
 shape = SubResource("6")
 
 [node name="Wall4" type="MeshInstance3D" parent="Walls_Outer"]
@@ -252,6 +279,16 @@ mesh = SubResource("4")
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls_Outer/Wall4"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_Outer/Wall4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924379, 0)
+shape = SubResource("6")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Walls_Outer/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.1522, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls_Outer/Wall4/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.924379, 0)
 shape = SubResource("6")
 
 [node name="Ramps3" type="Node3D" parent="."]

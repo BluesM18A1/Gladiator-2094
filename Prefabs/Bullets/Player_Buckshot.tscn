@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://ba4f0og1hqdoa"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1_4fij1"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.buckshot.tres" id="2"]
-[ext_resource type="PackedScene" uid="uid://djsfbxkc25qkr" path="res://Prefabs/Sparks_Yellow.tscn" id="2_x3tb3"]
+[ext_resource type="PackedScene" uid="uid://djsfbxkc25qkr" path="res://Prefabs/Effects/Sparks_Yellow.tscn" id="2_x3tb3"]
 
 [sub_resource type="CapsuleMesh" id="1"]
 material = ExtResource("2")
