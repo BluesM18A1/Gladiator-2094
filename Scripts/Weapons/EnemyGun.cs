@@ -4,6 +4,8 @@ using System;
 public partial class EnemyGun : Gun
 {
 	[Export]
+	bool enabled = false; //spawn and death animations control this.
+	[Export]
     public PackedScene bullet = (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Bullet.tscn");
 	public AudioStreamPlayer3D snd;
 	[Export]
@@ -24,7 +26,6 @@ public partial class EnemyGun : Gun
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
 		snd = GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D");
 		player = GetNode<Node3D>("/root/Node3D/Player");
 		fireRate = (float)GD.RandRange(fireRateMin, fireRateMax);
@@ -34,6 +35,7 @@ public partial class EnemyGun : Gun
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
+		if (!enabled) return;
 		if (ToGlobal(Position).DistanceTo(player.Position) < fireRange)
 		{
 			if (time >= fireRate)

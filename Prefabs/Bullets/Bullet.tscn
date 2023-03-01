@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://b7w34e0dtsxnj"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://cm04je6mii1hu" path="res://Sounds/guns/enemyShot.wav" id="2"]
-[ext_resource type="Material" path="res://Materials/bullets/bullet.default.tres" id="2_nw0v5"]
+[ext_resource type="Material" uid="uid://cu8547tsspw3l" path="res://Materials/bullets/bullet.default.tres" id="2_nw0v5"]
 
 [sub_resource type="SphereMesh" id="1"]
 material = ExtResource("2_nw0v5")
-radius = 0.1
-height = 0.2
+radius = 0.15
+height = 0.3
 radial_segments = 6
 rings = 2
 
@@ -18,8 +18,8 @@ radius = 0.1
 collision_layer = 8
 collision_mask = 23
 script = ExtResource("1")
-damage = -2
-speed = 40.0
+damage = -4
+speed = 60.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("1")

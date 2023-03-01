@@ -17,16 +17,18 @@ public partial class Enemy : Combatant
 	Rid map;
 	public Node3D player;
 	Vector3 pathPos;
-	AnimationPlayer ani;
+	public AnimationPlayer ani;
 	NavigationAgent3D nav;
 	[Export]
 	public float pathUpdateRate = 1;
 	double updateTimer = 0;
 	int pathPoint = 0;
+	[Export]
+	bool activated = false; //to be turned true by spawning/startup animation
 	//COMPONENT VARIABLES---------------------------------------------------------
 	[Export]
 	public PackedScene deathExplosion;
-	
+	PackedScene pointsTally = (PackedScene)ResourceLoader.Load("res://Prefabs/Effects/pointsTally.tscn");
 	Vector2 inputMovementVector = Vector2.Zero;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -42,8 +44,9 @@ public partial class Enemy : Combatant
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
+		if (!activated) return;
 		PathUpdateTimer(delta);
 		ProcessMovement(delta);
 		ProcessInput(delta);
@@ -75,7 +78,7 @@ public partial class Enemy : Combatant
 		dir = new Vector3(inputMovementVector.X, 0, inputMovementVector.Y);
 		
 	}
-	public override void UpdateHealth(int delta)
+	public override void UpdateHealth(int delta, string tag)
 	{
 		HP += delta;
 		if (delta > 0)
@@ -86,18 +89,28 @@ public partial class Enemy : Combatant
 		{
 			if (HP <= 0)
 			{
-				ani.Stop();
+				//ani.Stop();
 				if (deathExplosion != null)
 				{
 					CpuParticles3D boom = (CpuParticles3D)deathExplosion.Instantiate();
-					GetTree().Root.AddChild(boom);
-					boom.Emitting = true;
 					boom.Position = Position;
+					GetTree().CurrentScene.AddChild(boom);
+					boom.Emitting = true;
 				}
-				arena.UpdateScore(bounty);
+				if (tag == "Player1") //this check will need to be made more sophisticated when multiplayer comes back
+				{
+					arena.UpdateScore(bounty);
+					Label3D points = (Label3D)pointsTally.Instantiate();
+					GetTree().CurrentScene.AddChild(points);
+					points.Text = "+"+bounty.ToString();
+					points.GlobalPosition = GlobalPosition;
+				}
 				QueueFree();
 			}
-			else ani.Play("Hurt");
+			else 
+			{
+				ani.Play("Hurt");	
+			}
 		}
 		
 	}

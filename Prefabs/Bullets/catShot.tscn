@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://2tt7rbeqhl0s"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.buckshot.tres" id="2"]
@@ -15,7 +15,7 @@ radius = 0.1
 
 [node name="Bullet" type="Area3D" groups=["projectiles"]]
 collision_layer = 4096
-collision_mask = 23
+collision_mask = 19
 script = ExtResource("1")
 damage = -2
 speed = 50.0

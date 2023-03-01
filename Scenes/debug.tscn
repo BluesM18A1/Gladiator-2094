@@ -1,15 +1,13 @@
-[gd_scene load_steps=48 format=3]
+[gd_scene load_steps=46 format=3 uid="uid://dq34v57otdmhw"]
 
 [ext_resource type="Script" path="res://Scripts/Arena.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://usspwkka5f2s" path="res://Sounds/music/levelClear.wav" id="3"]
-[ext_resource type="Texture2D" uid="uid://cyafwp85fwl50" path="res://Textures/grid.png" id="4"]
-[ext_resource type="PackedScene" uid="uid://cir28orjn0hxp" path="res://Prefabs/Player.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://UI/icons/icon.png" id="9"]
-[ext_resource type="PackedScene" uid="uid://c6it3solwtqtn" path="res://Scenes/PauseMenu.tscn" id="13"]
-[ext_resource type="PackedScene" path="res://Prefabs/Enemies/Cat.tscn" id="14"]
+[ext_resource type="Theme" uid="uid://dhun1kq4ag7ia" path="res://default_theme.tres" id="12_smfnv"]
+[ext_resource type="PackedScene" uid="uid://c8ueh6ee54keu" path="res://Prefabs/Enemies/Cat.tscn" id="14"]
 [ext_resource type="Material" uid="uid://bjghtco8legbw" path="res://Materials/grid.material" id="15"]
 [ext_resource type="Material" path="res://Materials/environment/outer_walls.tres" id="15_tpfsc"]
-[ext_resource type="PackedScene" path="res://Prefabs/Enemies/Siren.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://cmbqt1rymar5k" path="res://Prefabs/Enemies/Siren.tscn" id="16"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.blue.tres" id="16_800y8"]
 [ext_resource type="PackedScene" uid="uid://5w1hx1wysvc2" path="res://Prefabs/Boxes/Box_Shells.tscn" id="17"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.yellow.tres" id="17_8h564"]
@@ -183,29 +181,54 @@ libraries = {
 "": SubResource("AnimationLibrary_w84cl")
 }
 
-[node name="TextureRect" type="NinePatchRect" parent="."]
-modulate = Color(0, 1, 0, 1)
+[node name="TextureRect" type="Panel" parent="."]
 anchors_preset = -1
-anchor_right = 0.998
+anchor_left = 0.499
+anchor_right = 0.499
 anchor_bottom = 0.093
-texture = ExtResource("4")
-patch_margin_left = 10
-patch_margin_right = 10
+offset_left = -638.72
+offset_right = 638.72
+theme = ExtResource("12_smfnv")
 
-[node name="TopText" type="Label" parent="TextureRect"]
+[node name="Timer" type="Label" parent="TextureRect"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -0.400024
-offset_bottom = -3.8
-text = "Sample Text"
+offset_bottom = -2.8
+theme_override_font_sizes/font_size = 40
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Player" parent="." instance=ExtResource("7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.71078, 0)
-Deaccel = 20.0
+[node name="WaveCounter" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -933.44
+offset_bottom = -3.28
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "WAVE:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PauseScreen" parent="." instance=ExtResource("13")]
-visible = false
+[node name="ScoreCounter" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 867.0
+offset_right = -0.440063
+offset_bottom = -3.28
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Walls_Outer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)

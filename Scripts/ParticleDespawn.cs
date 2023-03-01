@@ -9,10 +9,10 @@ public partial class ParticleDespawn : CpuParticles3D
   public float lifeSpan = 2;
   double timer = 0;
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        Emitting = true;
-    }
+  public override void _Ready()
+  {
+    Emitting = true;
+  }
 
  // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(double delta)

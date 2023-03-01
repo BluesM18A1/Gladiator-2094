@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://bsbt66mihjx4s"]
 
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1"]
 [ext_resource type="Material" uid="uid://k58ud2cd51bl" path="res://Materials/enemies/dreadnaught.antennae.red.tres" id="2_rhu1u"]
@@ -115,9 +115,9 @@ script = ExtResource("1")
 closeRangeMode = 2
 longRangeMode = 2
 pathUpdateRate = 0.5
+HP = 2000
 MaxSpeed = 0.0
 Accel = 0.0
-HP = 2000
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.0152326, 0, 0.999884, 0, 1, 0, -0.999884, 0, -0.0152326, 0, 0.756574, 0)

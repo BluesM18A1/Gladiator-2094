@@ -1,20 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpipig7024f2g"]
+[gd_scene load_steps=4 format=3 uid="uid://bpipig7024f2g"]
 
-[ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="1_ntbtg"]
+[ext_resource type="Material" uid="uid://drh5hq48ksbdt" path="res://Materials/pfx_sparks.tres" id="1_kgpel"]
 [ext_resource type="Script" path="res://Scripts/ParticleDespawn.cs" id="2_05yv6"]
 
-[sub_resource type="StandardMaterial3D" id="1"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_ntbtg")
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
 [sub_resource type="QuadMesh" id="2"]
-material = SubResource("1")
+material = ExtResource("1_kgpel")
 
 [node name="CPUParticles3D" type="CPUParticles3D"]
 amount = 24

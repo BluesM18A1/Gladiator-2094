@@ -34,7 +34,7 @@ collision_layer = 32
 collision_mask = 2
 script = ExtResource("1")
 itemType = 2
-itemCount = 10
+itemCount = 5
 
 [node name="itembox" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.176336, 0, 0.242705, 0, 0.3, 0, -0.242705, 0, 0.176336, 0, 0.4, 0)

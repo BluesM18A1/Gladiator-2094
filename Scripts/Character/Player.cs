@@ -27,8 +27,10 @@ public partial class Player : Combatant
 	double overhealTimer = 0;
 	bool needToPlayLandSound = false;
 	
-
+	[Signal]
+	public delegate void PlayerDeathEventHandler();
 	//COMPONENT VARIABLES------------------------------------
+	Arena arena;
 	private Camera3D camera;
 	public PlayerGun gun;
 	private RayCast3D floorChecker;
@@ -97,10 +99,16 @@ public partial class Player : Combatant
 	public override void _PhysicsProcess(double delta)
 	{
 		ProcessHealthMeter(delta);
-		ProcessMovement(delta); //it is very important that you do MoveAndSlide() before you do
+		if (alive)ProcessMovement(delta); //it is very important that you do MoveAndSlide() before you do
 		ProcessInput(delta); //the IsOnFloor() calls that the input processing will do.
 	}
+	public void SendToSpectatorZone()
+	{
+		Position = new Vector3(32,16,32);
+		Rotation = new Vector3(0,230,0);
+		head.Rotation = Vector3.Zero;
 
+	}
 	private void ProcessInput(double delta)
 	{
 		//recharging
@@ -177,7 +185,7 @@ public partial class Player : Combatant
 		}
 		else
 		{
-			GetTree().ChangeSceneToFile("res://Scenes/GameOver.tscn");
+			//
 		}
 		fuel = Mathf.Clamp(fuel, 0, 100);
 		fuelMeter.Value = fuel;
@@ -225,8 +233,9 @@ public partial class Player : Combatant
 		healthNum.Text = HPcounter.ToString();
 		healthMeter.Value = HPcounter;
 	}
-	public override void UpdateHealth(int delta)
+	public override void UpdateHealth(int delta, string tag)
 	{
+		if (HP <= 0) return; //so the death check doesn't happen twice
 		if (delta < 0)
 		{
 			if (alive)
@@ -246,6 +255,9 @@ public partial class Player : Combatant
 		if (HP <= 0)
 		{
 			alive = false;
+			EmitSignal(SignalName.PlayerDeath);
+			screenAni.Play("Death");
+			Input.MouseMode = Input.MouseModeEnum.Visible;
 			gun.disabled = true;
 		}
 	}

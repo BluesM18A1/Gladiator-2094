@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://0n4at8o5aae5"]
 
 [ext_resource type="Script" path="res://Scripts/Weapons/PlayerGun.cs" id="1"]
 [ext_resource type="Material" uid="uid://dswq5b72j1v4u" path="res://Materials/player.gun.tres" id="1_jtnhv"]
@@ -10,10 +10,7 @@
 [sub_resource type="BoxMesh" id="1"]
 size = Vector3(0.25, 0.2, 0.6)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1ftqq"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_gxj6s"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mqk16"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Animation" id="Animation_ml5nk"]
@@ -59,7 +56,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("5")
 }],
-"times": PackedFloat32Array(0.0672)
+"times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
 tracks/2/type = "method"
@@ -135,16 +132,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.3)
 material_override = ExtResource("1_jtnhv")
 mesh = SubResource("1")
 script = ExtResource("1")
-shells = 40
-bullets = 80
-grenades = 20
-coolRepeater = 25.0
-coolBuckshot = 6.0
-coolGrenades = 3.0
-coolFlames = 50.0
 ani = NodePath("AnimationPlayer")
-currentWeapon = 1
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5), Transform3D(1, 0, 0.06, 0, 1, 0, -0.06, 0, 1, 0, 0, -0.5), Transform3D(1, 0, -0.06, 0, 1, 0, 0.06, 0, 1, 0, 0, -0.5), Transform3D(1, 0, -0.04, 0, 1, -0.04, 0.04, 0.04, 1, 0, 0, -0.5), Transform3D(1, 0, 0, 0, 1, -0.06, 0, 0.06, 1, 0, 0, -0.5), Transform3D(1, 0, 0.04, 0, 1, -0.04, -0.04, 0.04, 1, 0, 0, -0.5), Transform3D(1, 0, 0.04, 0, 1, 0.04, -0.04, -0.04, 1, 0, 0, -0.5), Transform3D(1, 0, 0, 0, 1, 0.06, 0, -0.06, 1, 0, 0, -0.5), Transform3D(1, 0, -0.04, 0, 1, 0.04, 0.04, -0.04, 1, 0, 0, -0.5)]
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
@@ -163,17 +151,17 @@ tint_over = Color(1, 1, 0, 1)
 [node name="Meter" type="Sprite3D" parent="."]
 transform = Transform3D(-1.26572, 1.11516e-07, 4.87449e-15, 0, -4.37114e-08, 1, 1.10653e-07, 1.27559, 5.57577e-08, 0, 0.103, -0.000325888)
 pixel_size = 0.0006
-texture = SubResource("ViewportTexture_1ftqq")
+texture = SubResource("ViewportTexture_mqk16")
 
 [node name="Meter2" type="Sprite3D" parent="."]
 transform = Transform3D(1.97947e-15, 5.57757e-08, 1, 1.036, -5.57757e-08, 0, 4.5285e-08, 1.276, -4.37114e-08, -0.126392, 0.00277436, -0.000325888)
 pixel_size = 0.0006
-texture = SubResource("ViewportTexture_gxj6s")
+texture = SubResource("ViewportTexture_mqk16")
 
 [node name="Meter3" type="Sprite3D" parent="."]
 transform = Transform3D(1.97947e-15, 5.57757e-08, 1, 1.036, -5.57757e-08, 0, 4.5285e-08, 1.276, -4.37114e-08, 0.125618, 0.00277436, -0.000325888)
 pixel_size = 0.0006
-texture = SubResource("ViewportTexture_gxj6s")
+texture = SubResource("ViewportTexture_mqk16")
 
 [node name="pickupSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4")
@@ -185,7 +173,6 @@ max_polyphony = 2
 bus = &"SFX"
 
 [node name="switchSnd" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5")
 max_polyphony = 2
 bus = &"SFX"
 

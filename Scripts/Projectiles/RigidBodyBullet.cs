@@ -32,12 +32,13 @@ public partial class RigidBodyBullet : RigidBody3D
 		if (body.HasMethod("UpdateHealth"))
 		{
 			Connect(SignalName.DealDamage,new Callable(body,"UpdateHealth"), (uint)ConnectFlags.ReferenceCounted);
-			EmitSignal(SignalName.DealDamage, damage);
+			EmitSignal(SignalName.DealDamage, damage, GetGroups()[0].ToString());
 		}
 		if (sparks != null)
 		{
 			Node3D newSparks = (Node3D)sparks.Instantiate();
 			newSparks.Position = Position;
+			newSparks.AddToGroup(GetGroups()[0]);
 			GetTree().CurrentScene.AddChild(newSparks);
 		}
 		QueueFree();

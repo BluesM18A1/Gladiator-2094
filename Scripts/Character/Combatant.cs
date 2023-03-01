@@ -73,7 +73,7 @@ public partial class Combatant : CharacterBody3D
         
         
     }
-    public virtual void UpdateHealth(int damage)
+    public virtual void UpdateHealth(int damage, string tag)
     {
         GD.Print("owie" + damage.ToString());
         //TODO: hit sound

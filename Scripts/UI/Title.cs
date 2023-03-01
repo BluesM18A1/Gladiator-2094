@@ -22,10 +22,6 @@ public partial class Title : Control
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/arena.tscn");
 	}
-	private void CredsButtonDown()
-	{
-		GetTree().ChangeSceneToFile("res://Scenes/Creds.tscn");
-	}
 	private void ExitButtonDown()
 	{
 		GetTree().Quit();

@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm02qlpsy2o1u"]
+
+[ext_resource type="Script" path="res://Scripts/UI/VisibilityToggle.cs" id="1_od4w2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1001"]
+bg_color = Color(0, 0, 0, 0.733333)
+
+[node name="CreditsWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="darkenbgr" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q1001")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.495
+anchor_right = 0.495
+anchor_bottom = 1.0
+offset_left = -419.6
+offset_top = 150.0
+offset_right = 420.4
+offset_bottom = -218.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "			< Gladiator 2094 Contributors: >
+
+-BluesM18A1 (Bruce H.)
+
+			
+			< Gladiator 2092 original team: >
+	
+-Ethan Sewall (Enemy AI, Character design, 
+							Gladiator series founder)
+-Bruce Heiner (Art, Sounds, player code, announcer VA)
+-Jonah Scanzon (Netcode (god bless his poor soul), UI)
+
+						< Music >
+Ludwig van Beethoven
+		Piano Sonata  No. 8  Movement I
+		Piano Sonata  No. 14 Movement III
+	Arranged by BluesM18A1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="Panel" node_paths=PackedStringArray("control")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.0
+offset_bottom = 74.0
+grow_horizontal = 0
+text = "Back"
+script = ExtResource("1_od4w2")
+control = NodePath("../..")

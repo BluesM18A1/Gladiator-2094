@@ -4,7 +4,7 @@ using System;
 public partial class Arena : Node3D
 {
 	[Export]
-	public bool debugMode;
+	public bool debugMode, gameOver;
 	Config config;
 	[Export]
 	public byte MaxSubWaves = 3;
@@ -12,16 +12,16 @@ public partial class Arena : Node3D
 	int randomItem;
 	byte wave, subwave;
 	Rid map;
-	public Label topText;
-	public Control pauseMenu;
+	public Label topTimer, waveCounter, scoreCounter;
 	AnimationPlayer dj;
 	public AudioStreamPlayer maestro, announcer, crowd;
 	[Export]
 	public AudioStreamWav an_waveComplete = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/countdown20sec.wav")
-	, an_go = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/GO-1.wav");
+	, an_go = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/GO-1.wav"),
+	an_gameover = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/gameOver.wav");
 	public AudioStreamWav level = (AudioStreamWav)ResourceLoader.Load("res://Sounds/music/pathetique_weapons.wav"), boss  = (AudioStreamWav)ResourceLoader.Load("res://Sounds/music/pestered_archfiend.wav");
 	[Export]
-	public double spawnRate = 20f, time = 0;
+	public double spawnRate = 20f, time = 20;
 	[Export((PropertyHint) 13)]
 	public PackedScene[] EnemyTier1;
 	[Export((PropertyHint) 13)]
@@ -32,48 +32,73 @@ public partial class Arena : Node3D
 	//TODO: put all enemy tiers into an array of its own
 	[Export((PropertyHint) 13)]
 	public PackedScene[] ItemBoxes;
-	
+	PackedScene player = (PackedScene)ResourceLoader.Load("res://Prefabs/Player.tscn");
+	Godot.Collections.Array<Player> players = new Godot.Collections.Array<Player>();
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		map = GetWorld3D().NavigationMap;
 		dj = GetNode<AnimationPlayer>("DJ");
-		pauseMenu = GetNode<Control>("PauseScreen");
 		config = GetNode<Config>("/root/Config");
 		maestro = GetNode<AudioStreamPlayer>("Maestro");
 		crowd = GetNode<AudioStreamPlayer>("Crowd");
 		announcer = GetNode<AudioStreamPlayer>("Announcer");
-		topText = GetNode<Label>("TextureRect/TopText");
+		topTimer = GetNode<Label>("TextureRect/Timer");
+		waveCounter = GetNode<Label>("TextureRect/WaveCounter");
+		scoreCounter = GetNode<Label>("TextureRect/ScoreCounter");
+		AddPlayer();
 		wave = config.startWave;
 		UpdateScore(0);
 	}
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	void OnPlayerDeath()
 	{
-		if (!debugMode) ProcessGame(delta);
-		
-			
-	}
-	/*
-	public override void _Input(InputEvent @event){
-		if (@event is InputEventKey eventKey)
+		GD.Print("player down");
+		int i = 0;
+		foreach (Player player in players)
 		{
-			if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.Escape)
+			if (!player.alive) i++;
+		}
+		if (i >= players.Count)
+		{
+			gameOver = true;
+			announcer.Stream = an_gameover;
+			announcer.Play();
+			dj.Play("SongStop");
+			foreach (Node enemy in GetTree().GetNodesInGroup("Enemies"))
 			{
-				if (Input.MouseMode == Input.MouseModeEnum.Captured)
-				{
-					
-				}
+				enemy.QueueFree();
 			}
 		}
 	}
-	*/
+	void AddPlayer()
+	{
+		//we are adding players to the scene by script so that they can be easily referenced by a list. Will be important for multiplayer when we start working on that.
+		Player newPlayer = (Player)player.Instantiate();
+		Vector3 randomPos = new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28));
+		AddChild(newPlayer);
+		players.Add(newPlayer);
+		newPlayer.PlayerDeath += () => OnPlayerDeath();
+		newPlayer.Position = NavigationServer3D.MapGetClosestPoint(map, randomPos);
+	}
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		if (!debugMode && !gameOver) ProcessGame(delta);
+		waveCounter.Text = "WAVE: " + wave.ToString()+"." + subwave.ToString();
+		DrawTimer();
+	}
+	void DrawTimer()
+	{
+		float minutes = (float) time / 60;
+		float ms = (float)time * 100;
+
+		topTimer.Text = minutes.ToString("00") + ":" + ms.ToString("00:00");
+	}
 	void ProcessGame(double delta)
 	{
 		if (subwave < MaxSubWaves)//note that the counter will go above 'maxsubwaves' by one before resetting
 		{
-			if (time >= spawnRate)
+			if (time <= 0)
 			{
 				if (wave % 4 == 0 && wave > 1 && subwave == 0)
 				{
@@ -93,9 +118,9 @@ public partial class Arena : Node3D
 				ItemSpawn();
 				subwave++;
 				UpdateScore(0);
-				time = 0;
+				time = spawnRate;
 			}
-			else time += delta;
+			else time -= delta;
 		}
 		else if(!GetTree().HasGroup("Enemies"))
 		{
@@ -106,7 +131,7 @@ public partial class Arena : Node3D
 			score += wave * 100;
 			wave++;
 			subwave = 0;
-			time = 0;
+			time = spawnRate;
 			UpdateScore(0);
 			ItemSpawn();
 		}
@@ -146,8 +171,6 @@ public partial class Arena : Node3D
 				break;
 			}
 		}
-		
-		
 	}
 	void ItemSpawn()
 	{
@@ -172,12 +195,14 @@ public partial class Arena : Node3D
 	{
 		if (debugMode)
 		{
-			topText.Text = "DEBUG MODE";
+			topTimer.Text = "";
+			scoreCounter.Text = "";
+			waveCounter.Text = "";
 		}
 		else
 		{
 			score += delta;
-			topText.Text = "WAVE: " + wave.ToString()+"." + subwave.ToString() +"        " + "SCORE: " + score.ToString("000,000");
+			scoreCounter.Text = "SCORE: " + score.ToString("000,000");
 		}
 	}
 }

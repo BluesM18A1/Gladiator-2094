@@ -14,7 +14,7 @@ rings = 4
 [sub_resource type="SphereShape3D" id="2"]
 radius = 0.15
 
-[node name="Bullet" type="Area3D" groups=["projectiles"]]
+[node name="Bullet" type="Area3D"]
 collision_layer = 2048
 collision_mask = 5
 script = ExtResource("1")

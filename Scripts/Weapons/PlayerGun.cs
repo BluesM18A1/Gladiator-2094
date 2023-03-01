@@ -1,37 +1,39 @@
 using Godot;
 using System;
 
-public partial class PlayerGun : Gun
+public partial class PlayerGun : Node3D
 {
 	/*Godot 4.0 at long last allows for custom types to be [Export]ed
-	this giant spaghetti code mess is not for long!
-	
+	so this script is no longer a fustercluck!
 	EDIT: Not possible in C# just yet! https://github.com/godotengine/godot/pull/72619
+	Which means I have to construct this array right in the CS file
+	I probably should have done something like this from the start... better late than never!
 	*/
 	//GAMEPLAY VARIABLES-----------------------------------------------------------
-	/*
-	public struct Weapon{
-		int ammo;
-		float coolSpeed;
-		PackedScene instance;
-		AudioStreamWav fireSnd;
-	}*/
-	[Export]
-	public int shells, bullets, grenades;
+	public class Weapon{
+		public string name {get;}
+		public int ammo {get; set;}
+		public float coolSpeed  {get;}
+		public Color color {get;}
+		public PackedScene instance {get;}
+		public AudioStreamWav pickupSnd, fireSnd;
+		public TextureRect uiIcon {get; set;}
+		public Weapon(string newName, int newAmmo, float newSpeed, Color newColor, PackedScene newInstance, AudioStreamWav newPickupSnd, AudioStreamWav newFireSnd, TextureRect newIcon)
+		{
+			name = newName;
+			ammo = newAmmo;
+			coolSpeed = newSpeed;
+			color = newColor;
+			instance = newInstance;
+			pickupSnd = newPickupSnd;
+			fireSnd = newFireSnd;
+			uiIcon = newIcon;
+		}
+	}
+	Weapon[] weaponList;
 	[Export]
 	public float recoilAnim = 0.002f, recoilOffset = -0.722f;
-	[Export]
-	public float coolRepeater, coolBuckshot, coolGrenades, coolFlames;
-	float coolSpeed = 3f;
-	//COMPONENT VARIABLES------------------------------------------------------------
-	PackedScene instanceRepeater = 
-	(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Repeater.tscn");
-	PackedScene instanceBuckshot = 
-	(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Buckshot.tscn");
-	PackedScene instanceGrenade = 
-	(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Grenades.tscn");
-	PackedScene instanceFlame = 
-	(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Flame.tscn");
+	int currentWeapon = 0;
 	[Export]
 	public NodePath HUDPath;
 	[Export]
@@ -39,304 +41,237 @@ public partial class PlayerGun : Gun
 	[Export]
 	AnimationPlayer ani{get; set; }
 	TextureProgressBar coolMeter;
-	TextureRect iconRptr, iconShot, iconGren, iconFlam; 
 	Label ammoNum;
 	AudioStreamPlayer pickupSnd, fireSnd;
-	AudioStreamWav fireGren = 
-	(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/grenadeLaunch.wav"),
-	fireRep = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/repeater.wav"), 
-	fireShot = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/buckshot.wav");
-	AudioStreamWav pickupGren = 
-	(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/grenadePickup.wav"),
-	pickupRep = (AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/repeaterPickup.wav"), 
-	pickupShot = (AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/buckshotPickup.wav");
 	public bool disabled = false;
+	sbyte weaponSpinning = 0;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		GenerateWeaponList();
 		coolMeter = GetNode<TextureProgressBar>("SubViewport/TextureProgressBar");
-		iconRptr = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconRptr");
-		iconShot = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconShot");
-		iconGren = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconGren");
-		iconFlam = GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconFlam");
 		ammoNum = GetNode<Label>(HUDPath + "/FuelMeter/AmmoNum");
 		pickupSnd = GetNode<AudioStreamPlayer>("pickupSnd");
 		fireSnd = GetNode<AudioStreamPlayer>("fireSnd");
-		currentWeapon = Weapons.FLAMETHROWER;
 		UpdateWeaponData();
 		UpdateMeterColor();
 	}
-
+	void GenerateWeaponList()
+	{
+		weaponList = new Weapon[4];
+		weaponList[0] = new Weapon(
+			"Flamethrower",
+			-1, 75, new Color (1,0,0,1), 
+			(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Flame.tscn"),
+			null,
+			null,
+			GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconFlam")
+			);
+		weaponList[1] = new Weapon(
+			"Repeater",
+			80, 25, new Color (0,0,1,1), 
+			(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Repeater.tscn"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/repeaterPickup.wav"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/repeater.wav"),
+			GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconRptr")
+			);
+		weaponList[2] = new Weapon(
+			"Buckshot",
+			40, 6, new Color (1,1,0,1), 
+			(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Buckshot_Package.tscn"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/buckshotPickup.wav"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/buckshot.wav"),
+			GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconShot")
+			);
+		weaponList[3] = new Weapon(
+			"Grenade Launcher",
+			20, 3, new Color (0,1,0,1), 
+			(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Grenades.tscn"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/grenadePickup.wav"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/grenadeLaunch.wav"),
+			GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconGren")
+			);
+	}
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
+	double timer = 0;
 	public override void _Process(double delta)
 	{
-		coolMeter.Value -= (50 * coolSpeed) * delta;
+		coolMeter.Value -= (50 * weaponList[currentWeapon].coolSpeed) * delta;
 		Position = new Vector3 (Position.X, Position.Y, (recoilAnim * (float)coolMeter.Value) + recoilOffset);
 		ProcessInput(delta);
-		if (currentWeapon == Weapons.FLAMETHROWER)
+		if (currentWeapon == 0)
 		{
 			int fuelInt = (int)player.fuel;
 			ammoNum.Text = fuelInt.ToString();
 		}
-		
+		//this last block of code is just here to make rapid switching of weapons
+		//result in a smooth spinning animation for the gun
+		timer += delta;
+		if (timer > 0.1 && coolMeter.TintOver != weaponList[currentWeapon].color)
+		{
+			UpdateMeterColor();
+			timer = 0;
+		}
 	}
-	/*public override void _PhysicsProcess(float delta)
-	{
-		
-		//no idea why this needs to happen in _PhysicsProcess, 
-		//but the meter jams if I decrement it by coolSpeed * delta.
-		//and no other timers in the game malfunction when using delta but this one???
-	}*/
 	
 	protected void ProcessInput(double delta)
 	{
-		if (coolMeter.Value == 0  && !disabled)
+		if (coolMeter.Value <= 0  && !disabled)
 		{
 			//Which weapon do I fire?
 			if (Input.IsActionPressed("player_fire"))
 			{
-				switch (currentWeapon)
-				{
-					case (Weapons.REPEATER):
-						FireRepeater();
-					break;
-					case (Weapons.BUCKSHOT):
-						FireBuckshot();
-					break;
-					case (Weapons.GRENADES):
-						FireGrenades();
-					break;
-					case (Weapons.FLAMETHROWER):
-						FireFlame();
-					break;
-				}
+				FireWeapon(weaponList[currentWeapon]);
 			}
 		}
 		//FLAMETHROWER RECHARGE MANAGEMENT
-		if ((Input.IsActionPressed("player_fire") && currentWeapon == Weapons.FLAMETHROWER))
+		if ((Input.IsActionPressed("player_fire") && currentWeapon == 0))
 		{
 			player.flameThrowerOn = true;
 		}
 		else player.flameThrowerOn = false;
 		
 	}
-	
-	protected void FireRepeater()//this one is gonna need extra parameters when we add multiple weapons
+	void FireWeapon(Weapon weapon)
 	{
-		if (bullets > 0)
+		if (weapon.ammo == 0)
 		{
-			fireSnd.Stream = fireRep;
-			fireSnd.Play();
-			coolMeter.Value = 100;
-			bullets--;
-			ammoNum.Text = bullets.ToString();
-			
-			Node3D newBullet = (Node3D)instanceRepeater.Instantiate();
-			newBullet.Transform = GlobalTransform * barrels[0];
-			GetTree().CurrentScene.AddChild(newBullet);
-			//newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+			//TODO: empty weapon clicking sound
 		}
-		
-	}
-	protected void FireBuckshot()//this one is why I gave the player 9 barrel transforms
-	{   
-		if (shells > 0)
+		else 
 		{
-			fireSnd.Stream = fireShot;
-			fireSnd.Play();
-			coolMeter.Value = 100;
-			shells--;
-			ammoNum.Text = shells.ToString();
-			for (int i = 0; i < barrels.Count; i++)
+			if (weapon.fireSnd != null)
 			{
-				Node3D newBullet = (Node3D)instanceBuckshot.Instantiate();
-				newBullet.Transform = GlobalTransform * barrels[i];
-				GetTree().CurrentScene.AddChild(newBullet);
-				//newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
+				fireSnd.Stream = weapon.fireSnd;
+				fireSnd.Play();
 			}
-			
-		}
-	}
-	protected void FireGrenades()
-	{
-		if (grenades > 0)
-		{
-			fireSnd.Stream = fireGren;
-			fireSnd.Play();
+			if (weapon.ammo > 0)
+			{
+				weapon.ammo--;
+				ammoNum.Text = weapon.ammo.ToString();
+			}
+			else if (player.fuel > 0)
+			{
+				player.fuel += weapon.ammo; //does not simply subtract fuel in case someone wants to come up with a weapon that uses a lot of fuel in 1 go.
+			}
+			else return;
 			coolMeter.Value = 100;
-			grenades--;
-			ammoNum.Text = grenades.ToString();
-			
-			Node3D newBullet = (Node3D)instanceGrenade.Instantiate();
-			newBullet.Transform = GlobalTransform * barrels[0];
+			Node3D newBullet = (Node3D)weapon.instance.Instantiate();
+			newBullet.AddToGroup("Player1"); //the string inside will have to be changed when multiplayer comes back. This is for enemies to track who fired the shot that killed them when adding score.
+			//this also means that we need to make sure each buckshot pellet in a package also ends up in this group, which is what this foreach loop does in a rather inelegant brute-force manner.
+			foreach (Node child in newBullet.GetChildren())
+			{
+				child.AddToGroup("Player1");
+			}
+			newBullet.Transform = GlobalTransform;
+			newBullet.Position = GlobalPosition - GlobalTransform.Basis.Z * 0.4f;
 			GetTree().CurrentScene.AddChild(newBullet);
-			//newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
 		}
 	}
-	protected void FireFlame()
-	{ /*Flames aren't done using the particle system because Godot does not support per-particle collission
-		so what we have instead is an extremely rapid fire bullet with short lifespan, effectively limiting its range */
-		if (player.fuel > 0)
-		{
-			coolMeter.Value = 100;
-			player.fuel--;
-			int fuelInt = (int)player.fuel;
-			ammoNum.Text = fuelInt.ToString();
-			Node3D newBullet = (Node3D)instanceFlame.Instantiate();
-			newBullet.Transform = GlobalTransform * barrels[0];
-			//newBullet.Translate(barrels[0].origin);
-			GetTree().CurrentScene.AddChild(newBullet);
-			//newBullet.ApplyImpulse(-newBullet.GlobalTransform.Basis.Z * newBullet.speed);
-		}
-	}
-	public void AddBullets(int delta)
+	public void AddAmmo(int weaponIdx, int delta)
 	{
-		pickupSnd.Stream = pickupRep;
+		pickupSnd.Stream = weaponList[weaponIdx].pickupSnd;
 		pickupSnd.Play();
-		bullets += delta;
-		bullets = Mathf.Clamp(bullets, 0, 999);
-		UpdateWeaponData();
-	}
-	public void AddShells(int delta)
-	{
-		pickupSnd.Stream = pickupShot;
-		pickupSnd.Play();
-		shells += delta;
-		shells = Mathf.Clamp(shells, 0, 999);
-		UpdateWeaponData();
-	}
-	public void AddGrenades(int delta)
-	{
-		pickupSnd.Stream = pickupGren;
-		pickupSnd.Play();
-		grenades += delta;
-		grenades = Mathf.Clamp(grenades, 0, 999);
+		weaponList[weaponIdx].ammo += delta;
+		weaponList[weaponIdx].ammo = Mathf.Clamp(weaponList[weaponIdx].ammo, 0, 999);
 		UpdateWeaponData();
 	}
 	public void NextWeapon()
 	{
-		if ((byte)currentWeapon >= 4)
+		if ((byte)currentWeapon >= weaponList.Length - 1)
 		{
-			currentWeapon = Weapons.FLAMETHROWER;
+			currentWeapon = 0;
 		}
 		else currentWeapon++;
 		UpdateWeaponData();
-		ani.Play("RESET");
-		ani.Play("rotate_backwards");
+		if (ani.IsPlaying() && ani.CurrentAnimation == "rotate_backwards")
+		{
+			weaponSpinning = -1;
+		}
+		else ani.Play("rotate_backwards");
 	}
 	public void PrevWeapon()
 	{
-		if ((byte)currentWeapon <= 1)
+		if ((byte)currentWeapon == 0)
 		{
-			currentWeapon = Weapons.GRENADES;
+			currentWeapon = weaponList.Length - 1;
 		}
 		else currentWeapon--;
 		UpdateWeaponData();
-		ani.Play("RESET");
-		ani.Play("rotate");
-		
+		if (ani.IsPlaying() && ani.CurrentAnimation == "rotate")
+		{
+			weaponSpinning = 1;
+		}
+		else ani.Play("rotate");
 	}
 	public void UpdateWeaponData()
 	{
-		switch (currentWeapon)
+		for (int i = 0; i < weaponList.Length; i++)
 		{
-			case (Weapons.REPEATER):
-			iconRptr.Modulate = new Color(1,1,1,1);
-			iconGren.Modulate = new Color(1,1,1,0.5f);
-			iconShot.Modulate = new Color(1,1,1,0.5f);
-			iconFlam.Modulate = new Color(1,1,1,0.5f);
-			coolSpeed = coolRepeater;
-			ammoNum.Text = bullets.ToString();
-			break;
-			case (Weapons.BUCKSHOT):
-			iconRptr.Modulate = new Color(1,1,1,0.5f);
-			iconGren.Modulate = new Color(1,1,1,0.5f);
-			iconShot.Modulate = new Color(1,1,1,1);
-			iconFlam.Modulate = new Color(1,1,1,0.5f);
-			coolSpeed = coolBuckshot;
-			ammoNum.Text = shells.ToString();
-			break;
-			case (Weapons.GRENADES):
-			iconRptr.Modulate = new Color(1,1,1,0.5f);
-			iconGren.Modulate = new Color(1,1,1,1);
-			iconShot.Modulate = new Color(1,1,1,0.5f);
-			iconFlam.Modulate = new Color(1,1,1,0.5f);
-			coolSpeed = coolGrenades;
-			ammoNum.Text = grenades.ToString();
-			break;
-			case (Weapons.FLAMETHROWER):
-			iconRptr.Modulate = new Color(1,1,1,0.5f);
-			iconGren.Modulate = new Color(1,1,1,0.5f);
-			iconShot.Modulate = new Color(1,1,1,0.5f);
-			iconFlam.Modulate = new Color(1,1,1,1);
-			coolSpeed = coolFlames;
-			int fuelInt = (int)player.fuel;
-			ammoNum.Text = fuelInt.ToString();
-			break;
-				
+			if (i == currentWeapon)
+			{
+				weaponList[i].uiIcon.Modulate = new Color(1,1,1,1);
+			}
+			else weaponList[i].uiIcon.Modulate = new Color(1,1,1,0.5f);
 		}
+		ammoNum.Text = weaponList[currentWeapon].ammo.ToString();
 	}
 	public void UpdateMeterColor() //called by animation
-	{
-		switch (currentWeapon)
+	{	
+		if (weaponSpinning > 0)
 		{
-			case (Weapons.REPEATER):
-			coolMeter.TintOver = new Color (0,0,1,1);
-			break;
-			case (Weapons.BUCKSHOT):
-			coolMeter.TintOver = new Color (1,1,0,1);
-			break;
-			case (Weapons.GRENADES):
-			coolMeter.TintOver = new Color (0,1,0,1);
-			break;
-			case (Weapons.FLAMETHROWER):
-			coolMeter.TintOver = new Color (1,0,0,1);
-			break;
-				
+			ani.Play("RESET");
+			ani.Play("rotate");
+			weaponSpinning = 0;
 		}
+		if (weaponSpinning < 0)
+		{
+			ani.Play("RESET");
+			ani.Play("rotate_backwards");
+			weaponSpinning = 0;
+		}
+		coolMeter.TintOver = weaponList[currentWeapon].color;
 	}
 
 	public override void _Input(InputEvent @event){
 		if (coolMeter.Value == 0  && !disabled)
 		{
-			if  (@event.IsActionReleased("player_next_weapon"))
+			if  (@event.IsActionPressed("player_next_weapon"))
 			{
 				NextWeapon();
 			}
-			else if  (@event.IsActionReleased("player_prev_weapon"))
+			else if  (@event.IsActionPressed("player_prev_weapon"))
 			{
 				PrevWeapon();
 			}
+			if (@event.IsActionPressed("player_flamethrower"))
+			{
+				currentWeapon = 0;
+				UpdateWeaponData();
+				ani.Play("RESET");
+				ani.Play("rotate");
+			}
+			if (@event.IsActionPressed("player_repeater"))
+			{
+				currentWeapon = 1;
+				UpdateWeaponData();
+				ani.Play("RESET");
+				ani.Play("rotate");
+			}
+			if (@event.IsActionPressed("player_buckshot"))
+			{
+				currentWeapon = 2;
+				UpdateWeaponData();
+				ani.Play("RESET");
+				ani.Play("rotate");
+			}
+			if (@event.IsActionPressed("player_grenades"))
+			{
+				currentWeapon = 3;
+				UpdateWeaponData();
+				ani.Play("RESET");
+				ani.Play("rotate");
+			}
 		}
-		
-		if (@event.IsActionPressed("player_flamethrower"))
-		{
-			currentWeapon = Weapons.FLAMETHROWER;
-			UpdateWeaponData();
-			ani.Play("RESET");
-			ani.Play("rotate");
-		}
-		if (@event.IsActionPressed("player_repeater"))
-		{
-			currentWeapon = Weapons.REPEATER;
-			UpdateWeaponData();
-			ani.Play("RESET");
-			ani.Play("rotate");
-		}
-		if (@event.IsActionPressed("player_buckshot"))
-		{
-			currentWeapon = Weapons.BUCKSHOT;
-			UpdateWeaponData();
-			ani.Play("RESET");
-			ani.Play("rotate");
-		}
-		if (@event.IsActionPressed("player_grenades"))
-		{
-			currentWeapon = Weapons.GRENADES;
-			UpdateWeaponData();
-			ani.Play("RESET");
-			ani.Play("rotate");
-		}
-		 
 	}
 }

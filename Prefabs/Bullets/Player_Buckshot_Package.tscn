@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://225jy6vc4hlh"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleDespawn.cs" id="1_mf4dw"]
+[ext_resource type="PackedScene" uid="uid://ba4f0og1hqdoa" path="res://Prefabs/Bullets/Player_Buckshot.tscn" id="2_afcv3"]
+
+[node name="ShotgunShell" type="CPUParticles3D"]
+script = ExtResource("1_mf4dw")
+lifeSpan = 10.0
+
+[node name="Bullet4" parent="." instance=ExtResource("2_afcv3")]
+transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, 0, 0, 0)
+
+[node name="Bullet5" parent="." instance=ExtResource("2_afcv3")]
+transform = Transform3D(0.997564, 0, -0.0697565, 0, 1, 0, 0.0697565, 0, 0.997564, 0, 0, 0)
+
+[node name="Bullet2" parent="." instance=ExtResource("2_afcv3")]
+transform = Transform3D(1, 0, 0, 0, 0.997564, -0.0697565, 0, 0.0697565, 0.997564, 0, 0, 0)
+
+[node name="Bullet3" parent="." instance=ExtResource("2_afcv3")]
+transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 0, 0)
+
+[node name="Bullet" parent="." instance=ExtResource("2_afcv3")]
+
+[node name="Bullet6" parent="." instance=ExtResource("2_afcv3")]
+transform = Transform3D(0.999048, 0.00190265, 0.0435779, 0, 0.999048, -0.0436194, -0.0436194, 0.0435779, 0.998097, 0, 0, 0)
+
+[node name="Bullet7" parent="." instance=ExtResource("2_afcv3")]
+transform = Transform3D(0.999048, 0.00190265, -0.0435779, 0, 0.999048, 0.0436194, 0.0436194, -0.0435779, 0.998097, 0, 0, 0)
+
+[node name="Bullet8" parent="." instance=ExtResource("2_afcv3")]
+transform = Transform3D(0.999048, -0.00190265, -0.0435779, 0, 0.999048, -0.0436194, 0.0436194, 0.0435779, 0.998097, 0, 0, 0)
+
+[node name="Bullet9" parent="." instance=ExtResource("2_afcv3")]
+transform = Transform3D(0.999048, -0.00190265, 0.0435779, 0, 0.999048, 0.0436194, -0.0436194, -0.0435779, 0.998097, 0, 0, 0)

@@ -22,16 +22,10 @@ public partial class ItemBox : Area3D
 			switch (itemType)
 			{
 				case ITEM.MEDKIT: //IF HEALTH
-				body.UpdateHealth(itemCount);
+				body.UpdateHealth(itemCount, "Medkit");
 				break;
-				case ITEM.BULLETS:
-				body.gun.AddBullets(itemCount);
-				break;
-				case ITEM.SHELLS:
-				body.gun.AddShells(itemCount);
-				break;
-				case ITEM.GRENADES:
-				body.gun.AddGrenades(itemCount);
+				default:
+				body.gun.AddAmmo((int)itemType, itemCount);
 				break;
 			}
 			QueueFree();

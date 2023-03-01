@@ -14,22 +14,16 @@ public partial class Bullet : Area3D
 	public delegate void DealDamageEventHandler(int damagePoints);
 	[Export]
 	public PackedScene sparks;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-
-	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
 		timer+= delta;
 		if (timer > lifetime) QueueFree();
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-		Position -= GlobalTransform.Basis.Z * (float)(speed * delta);
+		Position -= Transform.Basis.Z * (float)(speed * delta);
 	}
 	private void _OnCollisionEnter(Node body)
 	{
@@ -38,13 +32,13 @@ public partial class Bullet : Area3D
 		{
 			//body.Call("UpdateHealth", damage);
 			Connect(SignalName.DealDamage,new Callable(body,"UpdateHealth"), (uint)ConnectFlags.ReferenceCounted);
-			EmitSignal(SignalName.DealDamage, damage);
+			EmitSignal(SignalName.DealDamage, damage, GetGroups()[0].ToString());
 		}
 
 		if (sparks != null)
 		{
 			Node3D newSparks = (Node3D)sparks.Instantiate();
-			newSparks.Position = Position + GlobalTransform.Basis.Z * 0.4f; //the offset is so we can see the full spark fx rather than having it sandwiched inside the wall the bullet collided with.
+			newSparks.Position = GlobalPosition + Transform.Basis.Z * 0.4f; //the offset is so we can see the full spark fx rather than having it sandwiched inside the wall the bullet collided with.
 			GetTree().CurrentScene.AddChild(newSparks);
 		}
 		QueueFree();

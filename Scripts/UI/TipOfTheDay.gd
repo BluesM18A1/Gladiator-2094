@@ -8,8 +8,3 @@ extends Label
 func _ready():
 	text = tips[randf_range(0, tips.size())]
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

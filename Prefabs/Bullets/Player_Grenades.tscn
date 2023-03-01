@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://b18q48sehilyw"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1"]
-[ext_resource type="PackedScene" uid="uid://uqqmqpr102yc" path="res://Prefabs/GrenadeExplosion.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bl3p24jaqtmcf" path="res://Prefabs/GrenadeExplosion.tscn" id="2"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.grenade.tres" id="3"]
 
 [sub_resource type="SphereMesh" id="1"]
@@ -14,7 +14,7 @@ rings = 4
 [sub_resource type="SphereShape3D" id="3"]
 radius = 0.15
 
-[node name="Bullet" type="RigidBody3D" groups=["projectiles"]]
+[node name="Bullet" type="RigidBody3D"]
 collision_layer = 2048
 collision_mask = 5
 axis_lock_angular_x = true

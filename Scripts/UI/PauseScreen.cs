@@ -3,9 +3,8 @@ using System;
 
 public partial class PauseScreen : Control
 {
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
+	[Export]
+	Player player;
 	AudioStreamPlayer bloop;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -42,7 +41,7 @@ public partial class PauseScreen : Control
 	void ResumeButtonDown()
 	{
 		Visible = false;
-		Input.MouseMode = Input.MouseModeEnum.Captured;
+		if (player.alive) Input.MouseMode = Input.MouseModeEnum.Captured;
 		GetTree().Paused = false;
 	}
 }

@@ -1,7 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://cwidw1o4gwujr"]
+[gd_scene load_steps=43 format=3]
 
 [ext_resource type="Script" path="res://Scripts/UI/Title.cs" id="1"]
-[ext_resource type="Theme" path="res://default_theme.tres" id="1_oi46c"]
+[ext_resource type="Theme" uid="uid://dhun1kq4ag7ia" path="res://default_theme.tres" id="1_oi46c"]
 [ext_resource type="Material" uid="uid://bjghtco8legbw" path="res://Materials/grid.material" id="2"]
 [ext_resource type="Texture2D" uid="uid://k0llv3y5brlq" path="res://UI/logo.png" id="3_o12s8"]
 [ext_resource type="Texture2D" uid="uid://bt1cbecu2gvak" path="res://UI/icons/arrow_l.svg" id="5_er38s"]
@@ -13,7 +13,8 @@
 [ext_resource type="Script" path="res://Scripts/UI/VisibilityToggle.cs" id="10_yp60q"]
 [ext_resource type="AudioStream" uid="uid://deqfs7eu3c7q7" path="res://Sounds/UI/menuBlip.wav" id="11"]
 [ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://default_env.tres" id="13"]
-[ext_resource type="PackedScene" path="res://UI/Settings menu pieces/SettingsMenu.tscn" id="13_hnley"]
+[ext_resource type="PackedScene" uid="uid://dm02qlpsy2o1u" path="res://UI/credits_window.tscn" id="13_f5m5e"]
+[ext_resource type="PackedScene" uid="uid://dtf0bha5u7weu" path="res://UI/Settings menu pieces/SettingsMenu.tscn" id="13_hnley"]
 [ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://UI/icons/icon.png" id="14_c8dyp"]
 [ext_resource type="Material" path="res://Materials/environment/outer_walls.tres" id="15_50q2k"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.yellow.tres" id="16_5awdy"]
@@ -22,7 +23,7 @@
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.blue.tres" id="19_81q68"]
 [ext_resource type="Material" uid="uid://llrqkmc51vuk" path="res://Materials/environment/bridge.RB.tres" id="21_xl4tb"]
 [ext_resource type="Material" uid="uid://bt5jpr4ac4btf" path="res://Materials/environment/bridge.YG.tres" id="22_mgmu3"]
-[ext_resource type="Script" path="res://Scripts/UI/waveChanger.cs" id="23"]
+[ext_resource type="Script" path="res://Scripts/UI/WaveChanger.cs" id="23"]
 
 [sub_resource type="Gradient" id="1"]
 offsets = PackedFloat32Array(1)
@@ -111,8 +112,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.50732
-offset_right = -1.50732
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_oi46c")
@@ -140,12 +139,13 @@ expand_mode = 1
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.723
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -0.0800171
-offset_right = -5.0
+offset_left = -635.0
+offset_top = -266.0
+offset_right = 635.0
 offset_bottom = -166.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -191,11 +191,11 @@ vertical_alignment = 1
 [node name="Left" type="TextureButton" parent="UI/HBoxContainer2/Wave"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.214
+anchor_right = 0.17
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 16.0
-offset_right = 45.05
+offset_right = 63.574
 offset_bottom = 30.0
 scale = Vector2(0.5, 0.6)
 texture_normal = ExtResource("5_er38s")
@@ -205,12 +205,12 @@ stretch_mode = 0
 [node name="Right" type="TextureButton" parent="UI/HBoxContainer2/Wave"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.72
+anchor_left = 0.829
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 42.0
+offset_left = -0.0090332
 offset_top = 16.0
-offset_right = 51.0
+offset_right = 48.0
 offset_bottom = 30.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("7_54vi1")
@@ -267,12 +267,13 @@ vertical_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.834
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 0.359985
-offset_right = -5.0
+offset_left = -635.0
+offset_top = -159.0
+offset_right = 635.0
 offset_bottom = -58.0
 
 [node name="Multiplayer" type="Button" parent="UI/HBoxContainer"]
@@ -292,12 +293,14 @@ text = "Options"
 script = ExtResource("10_yp60q")
 control = NodePath("../../../SettingsMenu")
 
-[node name="Credits" type="Button" parent="UI/HBoxContainer"]
+[node name="Credits" type="Button" parent="UI/HBoxContainer" node_paths=PackedStringArray("control")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 theme_override_font_sizes/font_size = 36
 text = "Credits"
+script = ExtResource("10_yp60q")
+control = NodePath("../../CreditsWindow")
 
 [node name="Quit" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
@@ -319,13 +322,15 @@ bus = &"SFX"
 
 [node name="Version Num" type="Panel" parent="UI"]
 self_modulate = Color(0, 1, 0, 1)
-layout_mode = 0
-anchor_left = 0.001
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.332
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.687
 anchor_bottom = 1.0
-offset_left = 0.36
+offset_left = -422.96
 offset_top = -51.0
+offset_right = 398.64
 
 [node name="Label" type="Label" parent="UI/Version Num"]
 layout_mode = 1
@@ -339,6 +344,10 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "Beta Version 0.3.0                                                                  Game by BluesM18A1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CreditsWindow" parent="UI" instance=ExtResource("13_f5m5e")]
+visible = false
+layout_mode = 1
 
 [node name="SettingsMenu" parent="." instance=ExtResource("13_hnley")]
 visible = false
@@ -705,7 +714,6 @@ libraries = {
 [connection signal="focus_entered" from="UI/HBoxContainer/Multiplayer" to="UI" method="onButtonHover"]
 [connection signal="mouse_entered" from="UI/HBoxContainer/Multiplayer" to="UI" method="onButtonHover"]
 [connection signal="mouse_entered" from="UI/HBoxContainer/Options" to="UI" method="onButtonHover"]
-[connection signal="button_down" from="UI/HBoxContainer/Credits" to="UI" method="CredsButtonDown"]
 [connection signal="mouse_entered" from="UI/HBoxContainer/Credits" to="UI" method="onButtonHover"]
 [connection signal="button_down" from="UI/HBoxContainer/Quit" to="UI" method="ExitButtonDown"]
 [connection signal="mouse_entered" from="UI/HBoxContainer/Quit" to="UI" method="onButtonHover"]

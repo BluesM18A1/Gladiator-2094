@@ -42,8 +42,8 @@ public partial class Explosion : Area3D
 			f = f - 1; //adding 1 unit of tolerance for max damage
 			f = Mathf.Clamp(f,1,5); //making sure the damage reduction doesnt go in negatives or too low
 			Connect(SignalName.DealExplosiveDamage,new Callable(body,"UpdateHealth"), (uint)ConnectFlags.ReferenceCounted);
-			EmitSignal(SignalName.DealExplosiveDamage, damage / f);
-			GD.Print(damage / f);
+			EmitSignal(SignalName.DealExplosiveDamage, damage / f, GetGroups()[0].ToString());
+			//GD.Print(damage / f);
 		}
 		
 	}
