@@ -25,7 +25,7 @@ public partial class PauseScreen : Control
 				GD.Print("pausing....");
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 				Visible = true;
-				GetTree().Paused = true;
+				if (player.alive) GetTree().Paused = true;
 			}
 		}
 	}

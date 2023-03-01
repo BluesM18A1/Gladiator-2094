@@ -127,7 +127,10 @@ public partial class Player : Combatant
 					}
 				}
 			}
-			else if (!floorChecker.IsColliding()) needToPlayLandSound = true;
+			else
+			{
+				if (!floorChecker.IsColliding()) needToPlayLandSound = true;
+			}
 		//  Walking
 		Transform3D camXform = camera.GlobalTransform;
 
@@ -160,10 +163,11 @@ public partial class Player : Combatant
 			{
 				if (Input.IsActionJustPressed("player_jump"))
 				{
+					if (IsOnFloor() || floorChecker.IsColliding())
+						vel.Y = (10);
 					boostSnd.Play();
-					hoverPower = (float)fuel;
 				}
-				vel.Y = (((float)fuel * 10) / hoverPower);
+				else vel.Y += ((float)fuel / 3 * (float)delta);
 				//vel.Y = (((float)fuel / 10));
 				fuel -= FuelDrainRate * delta;
 			}
@@ -180,8 +184,6 @@ public partial class Player : Combatant
 
 			//stop jetpack sounds
 			if ((!Input.IsActionPressed("player_sprint") && !Input.IsActionPressed("player_jump")) || fuelMeter.Value == 0) boostSnd.Stop();
-			
-			
 		}
 		else
 		{

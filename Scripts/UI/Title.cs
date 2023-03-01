@@ -4,8 +4,7 @@ using System;
 public partial class Title : Control
 {
 	AudioStreamPlayer bloop;
-	[Export]
-	Control controlPanel;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -20,7 +19,7 @@ public partial class Title : Control
 //  }
 	private void PlayButtonDown()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/arena.tscn");
+		GetTree().ChangeSceneToFile("res://arena.tscn");
 	}
 	private void ExitButtonDown()
 	{
@@ -39,7 +38,7 @@ public partial class Title : Control
 		{
 			if (keyEvent.Keycode == Key.Key0)
 			{
-				GetTree().ChangeSceneToFile("res://Scenes/debug.tscn");
+				GetTree().ChangeSceneToFile("res://debug.tscn");
 			}
 		}      
 	}

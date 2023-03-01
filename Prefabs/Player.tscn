@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b7f00covkraln"]
+[gd_scene load_steps=48 format=3 uid="uid://b7f00covkraln"]
 
 [ext_resource type="Script" path="res://Scripts/Character/Player.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://0n4at8o5aae5" path="res://Prefabs/Parts/PlayerGun.tscn" id="2"]
@@ -62,6 +62,10 @@ radius = 0.35
 height = 0.75
 radial_segments = 8
 rings = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_04x60"]
+resource_local_to_scene = true
+size = Vector3(0.25, 0.2, 0.6)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y48r7"]
 radius = 0.348329
@@ -181,6 +185,18 @@ tracks/7/keys = {
 "args": [],
 "method": &"SendToSpectatorZone"
 }]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../TVstatic:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="12"]
@@ -317,6 +333,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../TVstatic:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tn3jt"]
 _data = {
@@ -402,12 +430,13 @@ mesh = SubResource("5")
 [node name="Camera3D" type="Camera3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.25)
 current = true
-fov = 90.0
+fov = 100.0
 size = 0.1
 near = 0.01
 
 [node name="Gun" parent="Neck" node_paths=PackedStringArray("player") instance=ExtResource("2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112467, -0.722072)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.7)
+mesh = SubResource("BoxMesh_04x60")
 HUDPath = NodePath("../../HUD")
 player = NodePath("../..")
 
@@ -516,9 +545,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -790.0
+offset_left = -732.0
 offset_top = -128.0
-offset_right = -305.0
+offset_right = -247.0
 value = 100.0
 fill_mode = 5
 nine_patch_stretch = true
@@ -563,9 +592,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 790.0
+offset_left = 735.0
 offset_top = -128.0
-offset_right = 1275.0
+offset_right = 1220.0
 scale = Vector2(-1, 1)
 value = 100.0
 fill_mode = 5
@@ -673,7 +702,7 @@ offset_bottom = 25.8
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = ExtResource("23_nd5ns")
-text = "Open the pause menu to restart the game"
+text = "Press the pause button to return to title screen"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -726,11 +755,13 @@ volume_db = 5.0
 bus = &"SFX"
 
 [node name="TVstatic" type="TextureRect" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 0.000183105
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_bb8vi")
@@ -763,5 +794,4 @@ bus = &"SFX"
 [node name="landSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20")
 volume_db = -5.0
-autoplay = true
 bus = &"SFX"

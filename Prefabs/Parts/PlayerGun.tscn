@@ -7,10 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://cv01ejxrp6j4r" path="res://Sounds/pickups/repeaterPickup.wav" id="4"]
 [ext_resource type="AudioStream" uid="uid://dlhgh5l01gegk" path="res://Sounds/guns/switch.wav" id="5"]
 
-[sub_resource type="BoxMesh" id="1"]
+[sub_resource type="BoxMesh" id="BoxMesh_rsdkb"]
+resource_local_to_scene = true
 size = Vector3(0.25, 0.2, 0.6)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mqk16"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ov5ns"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Animation" id="Animation_ml5nk"]
@@ -128,14 +129,13 @@ _data = {
 }
 
 [node name="Gun" type="MeshInstance3D" node_paths=PackedStringArray("ani")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, -0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112467, -0.722072)
 material_override = ExtResource("1_jtnhv")
-mesh = SubResource("1")
+mesh = SubResource("BoxMesh_rsdkb")
 script = ExtResource("1")
 ani = NodePath("AnimationPlayer")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
 size = Vector2i(256, 512)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="SubViewport"]
@@ -149,19 +149,19 @@ texture_progress = ExtResource("3")
 tint_over = Color(1, 1, 0, 1)
 
 [node name="Meter" type="Sprite3D" parent="."]
-transform = Transform3D(-1.26572, 1.11516e-07, 4.87449e-15, 0, -4.37114e-08, 1, 1.10653e-07, 1.27559, 5.57577e-08, 0, 0.103, -0.000325888)
+transform = Transform3D(-1.26572, 1.11516e-07, 4.87449e-15, 0, -4.37114e-08, 1, 1.10653e-07, 1.27559, 5.57577e-08, 0, 0.103, -0.000325918)
 pixel_size = 0.0006
-texture = SubResource("ViewportTexture_mqk16")
+texture = SubResource("ViewportTexture_ov5ns")
 
 [node name="Meter2" type="Sprite3D" parent="."]
-transform = Transform3D(1.97947e-15, 5.57757e-08, 1, 1.036, -5.57757e-08, 0, 4.5285e-08, 1.276, -4.37114e-08, -0.126392, 0.00277436, -0.000325888)
+transform = Transform3D(1.97947e-15, 5.57757e-08, 1, 1.036, -5.57757e-08, 0, 4.5285e-08, 1.276, -4.37114e-08, -0.126392, 0.00277436, -0.000325859)
 pixel_size = 0.0006
-texture = SubResource("ViewportTexture_mqk16")
+texture = SubResource("ViewportTexture_ov5ns")
 
 [node name="Meter3" type="Sprite3D" parent="."]
-transform = Transform3D(1.97947e-15, 5.57757e-08, 1, 1.036, -5.57757e-08, 0, 4.5285e-08, 1.276, -4.37114e-08, 0.125618, 0.00277436, -0.000325888)
+transform = Transform3D(1.97947e-15, 5.57757e-08, 1, 1.036, -5.57757e-08, 0, 4.5285e-08, 1.276, -4.37114e-08, 0.125618, 0.00277436, -0.000325859)
 pixel_size = 0.0006
-texture = SubResource("ViewportTexture_mqk16")
+texture = SubResource("ViewportTexture_ov5ns")
 
 [node name="pickupSnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4")

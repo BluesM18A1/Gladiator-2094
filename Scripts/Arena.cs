@@ -75,10 +75,11 @@ public partial class Arena : Node3D
 		//we are adding players to the scene by script so that they can be easily referenced by a list. Will be important for multiplayer when we start working on that.
 		Player newPlayer = (Player)player.Instantiate();
 		Vector3 randomPos = new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28));
+		newPlayer.Position = NavigationServer3D.MapGetClosestPoint(map, randomPos);
 		AddChild(newPlayer);
 		players.Add(newPlayer);
 		newPlayer.PlayerDeath += () => OnPlayerDeath();
-		newPlayer.Position = NavigationServer3D.MapGetClosestPoint(map, randomPos);
+		
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -86,6 +87,7 @@ public partial class Arena : Node3D
 		if (!debugMode && !gameOver) ProcessGame(delta);
 		waveCounter.Text = "WAVE: " + wave.ToString()+"." + subwave.ToString();
 		DrawTimer();
+		if (gameOver && Input.IsActionJustPressed("ui_cancel")) GetTree().ChangeSceneToFile("res://Title.tscn");
 	}
 	void DrawTimer()
 	{
