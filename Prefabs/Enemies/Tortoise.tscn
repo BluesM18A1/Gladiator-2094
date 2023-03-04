@@ -9,7 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
 [ext_resource type="ArrayMesh" uid="uid://6mbugpm8uj35" path="res://Models/gatlingGun.obj" id="5"]
 [ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="7_rjaq5"]
-[ext_resource type="AudioStream" uid="uid://c3mjqgqbcqmbo" path="res://Sounds/guns/tortoiseGun.wav" id="9_pjxdh"]
+[ext_resource type="AudioStream" uid="uid://cnvsvx36maue" path="res://Sounds/guns/repeater2.wav" id="9_e55cu"]
 [ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle_vortex.png" id="10_c33ux"]
 [ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemySpawn.wav" id="12_4ip4l"]
 
@@ -739,7 +739,7 @@ barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun"]
 transform = Transform3D(0.666667, -5.96046e-08, 0, 5.96046e-08, 0.666667, 0, 0, 0, 0.666667, 0, 0, -0.492581)
-stream = ExtResource("9_pjxdh")
+stream = ExtResource("9_e55cu")
 unit_size = 3.0
 max_db = 0.0
 bus = &"SFX"
@@ -767,9 +767,9 @@ barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -1), Transform3D(1, 0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun2"]
 transform = Transform3D(0.666667, -1.42109e-14, 0, 1.42109e-14, 0.666667, 0, 0, 0, 0.666667, 0, 0, -0.49258)
-stream = ExtResource("9_pjxdh")
-volume_db = 9.0
+stream = ExtResource("9_e55cu")
 unit_size = 3.0
+max_db = 0.0
 bus = &"SFX"
 emission_angle_enabled = true
 doppler_tracking = 2
