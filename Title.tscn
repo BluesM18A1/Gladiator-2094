@@ -284,21 +284,23 @@ theme_override_font_sizes/font_size = 36
 disabled = true
 text = "MultiPlayer"
 
-[node name="Options" type="Button" parent="UI/HBoxContainer"]
+[node name="Options" type="Button" parent="UI/HBoxContainer" node_paths=PackedStringArray("control")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.69
 theme_override_font_sizes/font_size = 36
 text = "Options"
 script = ExtResource("10_yp60q")
+control = NodePath("../../../SettingsMenu")
 
-[node name="Credits" type="Button" parent="UI/HBoxContainer"]
+[node name="Credits" type="Button" parent="UI/HBoxContainer" node_paths=PackedStringArray("control")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 theme_override_font_sizes/font_size = 36
 text = "Credits"
 script = ExtResource("10_yp60q")
+control = NodePath("../../CreditsWindow")
 
 [node name="Quit" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2

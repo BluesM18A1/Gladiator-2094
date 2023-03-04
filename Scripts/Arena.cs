@@ -74,7 +74,7 @@ public partial class Arena : Node3D
 	{
 		//we are adding players to the scene by script so that they can be easily referenced by a list. Will be important for multiplayer when we start working on that.
 		Player newPlayer = (Player)player.Instantiate();
-		Vector3 randomPos = new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28));
+		Vector3 randomPos = new Vector3((float)GD.RandRange(-28, 28), 10,(float)GD.RandRange(-28, 28));
 		newPlayer.Position = NavigationServer3D.MapGetClosestPoint(map, randomPos);
 		AddChild(newPlayer);
 		players.Add(newPlayer);

@@ -42,6 +42,7 @@ public partial class PlayerGun : Node3D
 	AnimationPlayer ani{get; set; }
 	TextureProgressBar coolMeter;
 	Label ammoNum;
+	AudioStreamWav emptySnd = (AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/empty.wav");
 	AudioStreamPlayer pickupSnd, fireSnd;
 	public bool disabled = false;
 	sbyte weaponSpinning = 0;
@@ -136,7 +137,11 @@ public partial class PlayerGun : Node3D
 	{
 		if (weapon.ammo == 0)
 		{
-			//TODO: empty weapon clicking sound
+			if (!fireSnd.Playing)
+			{
+				fireSnd.Stream = emptySnd;
+				fireSnd.Play();
+			}
 		}
 		else 
 		{

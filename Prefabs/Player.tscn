@@ -63,7 +63,7 @@ height = 0.75
 radial_segments = 8
 rings = 5
 
-[sub_resource type="BoxMesh" id="BoxMesh_04x60"]
+[sub_resource type="BoxMesh" id="BoxMesh_qgk58"]
 resource_local_to_scene = true
 size = Vector3(0.25, 0.2, 0.6)
 
@@ -436,7 +436,7 @@ near = 0.01
 
 [node name="Gun" parent="Neck" node_paths=PackedStringArray("player") instance=ExtResource("2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.7)
-mesh = SubResource("BoxMesh_04x60")
+mesh = SubResource("BoxMesh_qgk58")
 HUDPath = NodePath("../../HUD")
 player = NodePath("../..")
 
@@ -761,7 +761,6 @@ clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 0.000183105
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_bb8vi")
