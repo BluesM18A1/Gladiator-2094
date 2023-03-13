@@ -3,10 +3,13 @@ using System;
 
 public partial class AutoAim : Node3D
 {
+
+	[Export]
+	bool enabled = true;
 	Transform3D lookat;
 	public Node3D target;
 	[Export]//in case we need to offset aim (for grenades or headshots, for example) this might also be useful for interpolation / imperfect tracking
-	public float hOffset, vOffset, trackingLatency;
+	public float hOffset, vOffset, trackingLatency = 0;
 	
 	[Export] //clamp values for horizontal and vertical rotation (IN DEGREES)
 	public float hMin = -Mathf.Inf, hMax = Mathf.Inf, vMin = -Mathf.Inf, vMax = Mathf.Inf;
@@ -21,6 +24,7 @@ public partial class AutoAim : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (!enabled) return;
 		Vector3 targetPos = new Vector3(target.Position.X + hOffset, target.Position.Y + vOffset, target.Position.Z); //setting the position for the targetAim to look at
 		/* lookat.origin = Transform3D.origin;
 		lookat = lookat.LookingAt(targetPos, Vector3.Up);

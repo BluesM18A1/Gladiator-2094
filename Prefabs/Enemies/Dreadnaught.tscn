@@ -1,14 +1,15 @@
-[gd_scene load_steps=43 format=3 uid="uid://cyixocoxe86vg"]
+[gd_scene load_steps=48 format=3 uid="uid://cyixocoxe86vg"]
 
 [ext_resource type="ArrayMesh" uid="uid://b2fm7hk2jpd3a" path="res://Models/dreadnaughtBody.obj" id="1"]
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_vnjq6"]
-[ext_resource type="PackedScene" uid="uid://qcux76pbedtj" path="res://Prefabs/Effects/EnemyExplosion.tscn" id="2_gys8g"]
+[ext_resource type="PackedScene" uid="uid://kuyi5wxql7f0" path="res://Prefabs/Effects/BossExplosion.tscn" id="2_epdgl"]
 [ext_resource type="Material" uid="uid://cgg0v8wplxl4" path="res://Materials/enemies/dreadnaught.face.tres" id="2_wn0ex"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="3"]
 [ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="4_gagr8"]
 [ext_resource type="Material" uid="uid://b6u0id5wniu8r" path="res://Materials/enemies/dreadnaught.brain.tres" id="5_wlmwc"]
 [ext_resource type="Material" path="res://Materials/enemies/dreadnaugh.antennae.stem.tres" id="6_5ab3r"]
 [ext_resource type="Material" path="res://Materials/gun.barrel_void.tres" id="7_8ed4w"]
+[ext_resource type="Script" path="res://Scripts/DamageSurface.cs" id="7_vt5c6"]
 [ext_resource type="PackedScene" uid="uid://upsn6fd6kbkg" path="res://Prefabs/Bullets/Dreadnaught_Bullet.tscn" id="8"]
 [ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="8_6utcv"]
 [ext_resource type="PackedScene" uid="uid://ba23kmv6fq032" path="res://Prefabs/Bullets/Dreadnaught_Grenades.tscn" id="9"]
@@ -18,8 +19,10 @@
 [ext_resource type="Material" path="res://Materials/enemies/gun.grenade.stock.tres" id="13_vuxaw"]
 [ext_resource type="Material" path="res://Materials/enemies/dreadnaught.antennae.green.tres" id="16_cgd2f"]
 [ext_resource type="Material" uid="uid://k58ud2cd51bl" path="res://Materials/enemies/dreadnaught.antennae.red.tres" id="17_qogun"]
+[ext_resource type="AudioStream" uid="uid://dlr4wh3vn7nmw" path="res://Sounds/boss_shutdown.wav" id="19_ewmf5"]
 [ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle_vortex.png" id="19_x2f5w"]
 [ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemySpawn.wav" id="20_bgb7h"]
+[ext_resource type="AudioStream" uid="uid://d4c23muvmqdel" path="res://Sounds/bossRoar.wav" id="23_c2x61"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 1.9236
@@ -34,6 +37,10 @@ bottom_radius = 1.048
 height = 2.112
 radial_segments = 16
 rings = 1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8tyqx"]
+height = 2.1513
+radius = 1.06963
 
 [sub_resource type="StandardMaterial3D" id="8"]
 albedo_color = Color(0, 0, 0, 1)
@@ -319,6 +326,133 @@ tracks/11/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_icf0x"]
+resource_name = "Death"
+length = 3.4629
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roar")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("19_ewmf5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:activated")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/LeftArm/GatlingGun:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/RightArm/GatlingGun:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Grenade Launchers/GL_right:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body:rotation_degrees:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(1, 1.7411),
+"update": 0,
+"values": [0.0, -35.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body:material_override:emission")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.00417, 1.50467, 1.50833, 2, 2.00417, 2.25467, 2.25833, 2.5, 2.50417, 2.75467, 2.75833, 3.00467, 3.00833, 3.125, 3.12917, 3.25, 3.25417, 3.375, 3.37917, 3.475),
+"transitions": PackedFloat32Array(1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1),
+"update": 0,
+"values": [Color(1, 0.984314, 0, 1), Color(1, 0.984314, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1), Color(1, 1, 0, 1), Color(2, 2, 2, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Grenade Launchers/GL_left:enabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/Grenade Launchers:enabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="26"]
 length = 0.2
 tracks/0/type = "value"
@@ -504,6 +638,54 @@ tracks/12/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Body:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Body:enabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Body/Grenade Launchers:enabled")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("SpawnVortex:emitting")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_g8r47"]
 resource_name = "Spawn"
@@ -675,10 +857,23 @@ tracks/13/keys = {
 "update": 0,
 "values": [Vector3(0, 1, 0), Vector3(0, 0, 0)]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("SpawnVortex:emitting")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bcl3c"]
 _data = {
 "DeSpawn": SubResource("Animation_dx8ka"),
+"Death": SubResource("Animation_icf0x"),
 "Hurt": SubResource("26"),
 "RESET": SubResource("Animation_bqk61"),
 "Spawn": SubResource("Animation_g8r47")
@@ -710,7 +905,7 @@ script = ExtResource("1_vnjq6")
 bounty = 300
 rangeThreshold = 10.0
 closeRangeMode = 2
-deathExplosion = ExtResource("2_gys8g")
+deathExplosion = ExtResource("2_epdgl")
 HP = 3000
 MaxSpeed = 4.0
 
@@ -734,6 +929,14 @@ vMax = 0.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.75, 0.3)
 material_override = ExtResource("5_wlmwc")
 mesh = SubResource("5")
+
+[node name="DamageSurface" type="Area3D" parent="Body/Brain"]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("7_vt5c6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Brain/DamageSurface"]
+shape = SubResource("CylinderShape3D_8tyqx")
 
 [node name="LeftArm" type="Node3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.9, 0)
@@ -903,6 +1106,7 @@ libraries = {
 
 [node name="SpawnVortex" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.89761, 0)
+emitting = false
 speed_scale = 2.0
 mesh = SubResource("QuadMesh_rf7is")
 gravity = Vector3(0, 0, 0)
@@ -918,3 +1122,12 @@ unit_size = 12.0
 max_db = 0.0
 pitch_scale = 0.81
 autoplay = true
+
+[node name="Roar" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("23_c2x61")
+unit_size = 22.0
+max_db = 0.0
+autoplay = true
+
+[connection signal="body_entered" from="Body/Brain/DamageSurface" to="Body/Brain/DamageSurface" method="_on_body_entered"]
+[connection signal="body_exited" from="Body/Brain/DamageSurface" to="Body/Brain/DamageSurface" method="_on_body_exited"]

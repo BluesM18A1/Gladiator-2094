@@ -46,11 +46,12 @@ public partial class Enemy : Combatant
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if (!activated) return;
-		PathUpdateTimer(delta);
-		ProcessMovement(delta);
-		ProcessInput(delta);
-		
+		if (activated)
+		{
+			PathUpdateTimer(delta);
+			ProcessMovement(delta);
+			ProcessInput(delta);
+		}
 	}
 	protected void ProcessInput(double delta) //this is where all the AI happens
 	{
@@ -78,7 +79,7 @@ public partial class Enemy : Combatant
 		dir = new Vector3(inputMovementVector.X, 0, inputMovementVector.Y);
 		
 	}
-	public override void UpdateHealth(int delta, string tag)
+	public override async void UpdateHealth(int delta, string tag)
 	{
 		HP += delta;
 		if (delta > 0)
@@ -90,12 +91,17 @@ public partial class Enemy : Combatant
 			if (HP <= 0)
 			{
 				//ani.Stop();
+				if (ani.HasAnimation("Death"))
+				{
+					if (ani.CurrentAnimation == "Death") return;
+					ani.Play("Death");
+					await ToSignal(ani, "animation_finished");
+				}
 				if (deathExplosion != null)
 				{
-					CpuParticles3D boom = (CpuParticles3D)deathExplosion.Instantiate();
+					Node3D boom = (Node3D)deathExplosion.Instantiate();
 					boom.Position = Position;
 					GetTree().CurrentScene.AddChild(boom);
-					boom.Emitting = true;
 				}
 				if (tag == "Player1") //this check will need to be made more sophisticated when multiplayer comes back
 				{

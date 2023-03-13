@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyf2ewdnhmcwg"]
+[gd_scene load_steps=8 format=3 uid="uid://cyf2ewdnhmcwg"]
 
 [ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="1"]
-[ext_resource type="Script" path="res://Scripts/ParticleDespawn.cs" id="2"]
 [ext_resource type="AudioStream" uid="uid://dq1qtmko0ju1b" path="res://Sounds/guns/grenadeExplosion.wav" id="3"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
@@ -23,6 +22,29 @@ min_value = -1.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_dkrtv"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2rpe"]
+_data = {
+"new_animation": SubResource("Animation_dkrtv")
+}
+
 [node name="Explosion" type="CPUParticles3D"]
 amount = 48
 lifetime = 1.5
@@ -38,8 +60,6 @@ color = Color(0.0784314, 0, 1, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_j32yc")
-script = ExtResource("2")
-lifeSpan = 0.75
 
 [node name="boom" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3")
@@ -47,3 +67,9 @@ unit_size = 5.0
 max_db = 0.0
 autoplay = true
 bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "new_animation"
+libraries = {
+"": SubResource("AnimationLibrary_p2rpe")
+}

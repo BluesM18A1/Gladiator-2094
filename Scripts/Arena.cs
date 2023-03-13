@@ -142,7 +142,7 @@ public partial class Arena : Node3D
 	{
 		if (wave % 4 == 0 && wave > 1 && subwave == 0)
 		{
-			randomItem = (Int16)GD.RandRange(0,BossTier.Length);
+			randomItem = (Int16)GD.RandRange(0,BossTier.Length -1);
 			announcer.Stream = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/boss_" + randomItem.ToString() + ".wav");
 			announcer.Play();
 			RandomGroundSpawn(BossTier[randomItem]);
@@ -188,10 +188,11 @@ public partial class Arena : Node3D
 	void RandomGroundSpawn(PackedScene item) //place object randomly within navmesh bounds
 	{
 		Node3D newItem = (Node3D)item.Instantiate();
-		Vector3 randomPos = new Vector3((float)GD.RandRange(-28, 28), 2,(float)GD.RandRange(-28, 28));
+		Vector3 randomPos = new Vector3((float)GD.RandRange(-28, 28), 10,(float)GD.RandRange(-28, 28));
+		newItem.Position = NavigationServer3D.MapGetClosestPoint(map, randomPos);
 		AddChild(newItem);
 		//newItem.Position = nav.GetClosestPoint(randomPos);
-		newItem.Position = NavigationServer3D.MapGetClosestPoint(map, randomPos);
+		
 	}
 	public void UpdateScore(int delta)
 	{

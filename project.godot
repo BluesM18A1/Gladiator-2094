@@ -121,6 +121,7 @@ player_grenades={
 3d_physics/layer_4="Bullets"
 3d_physics/layer_5="Flames"
 3d_physics/layer_6="items"
+3d_physics/layer_7="damaging surfaces"
 3d_physics/layer_12="Player Bullet"
 3d_physics/layer_13="Enemy Bullet"
 

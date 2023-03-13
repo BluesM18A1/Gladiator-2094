@@ -19,6 +19,6 @@ force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
 edit/loop_mode=2
-edit/loop_begin=974021
+edit/loop_begin=949000
 edit/loop_end=4180736
 compress/mode=0
