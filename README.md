@@ -17,8 +17,6 @@ Godot 4.0 is still in beta and although I have "finished" the upgrade process fr
 
 
 TODO LIST:
--Restructure and optimize code in ways that weren't possible on 3.x  
--Revamp the settings menu    
 -Airborne enemies  
 -Upgrade mechanics     
 -Networked multiplayer at long last?   
