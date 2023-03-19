@@ -1,0 +1,222 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="AudioStream" uid="uid://b1lvmkd0g6b2h" path="res://Sounds/boss.explosion.wav" id="3_5jaq3"]
+[ext_resource type="Texture2D" uid="uid://bn60b1vldyvg5" path="res://Textures/particle2.png" id="3_b1w71"]
+[ext_resource type="Texture2D" uid="uid://bxqbftiohyds8" path="res://Textures/particle.shockwave.png" id="3_sw1ou"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vejgv"]
+load_path = "res://.godot/imported/particle.png-6cde8bf8361fccad2ad7de601b2903a9.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mfly"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("CompressedTexture2D_vejgv")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="2"]
+material = SubResource("StandardMaterial3D_3mfly")
+
+[sub_resource type="Gradient" id="Gradient_ynxdw"]
+offsets = PackedFloat32Array(0, 0.53012, 0.863454, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.899598, 1, 1, 1, 0.676621, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="3"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tcns"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_b1w71")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xmagn"]
+material = SubResource("StandardMaterial3D_6tcns")
+
+[sub_resource type="Gradient" id="Gradient_ndawm"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_qn0gs"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.67451, 0, 1)
+
+[sub_resource type="Animation" id="Animation_w8wlm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_orqg7"]
+resource_name = "new_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6, 6, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("killGong")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_5jaq3")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CPUParticles3D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ma1g7"]
+_data = {
+"RESET": SubResource("Animation_w8wlm"),
+"new_animation": SubResource("Animation_orqg7")
+}
+
+[node name="CPUParticles3D" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.77
+randomness = 0.07
+lifetime_randomness = 0.41
+mesh = SubResource("2")
+direction = Vector3(0, 0, 1)
+spread = 180.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+scale_amount_min = 0.05
+scale_amount_max = 0.2
+color = Color(0.0784314, 0, 1, 1)
+color_ramp = SubResource("Gradient_ynxdw")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("3")
+
+[node name="killGong" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_5jaq3")
+unit_size = 32.0
+bus = &"SFX"
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 256
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("QuadMesh_xmagn")
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+linear_accel_max = 3.0
+scale_amount_min = 0.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_ndawm")
+color_initial_ramp = SubResource("Gradient_qn0gs")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("3_sw1ou")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "new_animation"
+libraries = {
+"": SubResource("AnimationLibrary_ma1g7")
+}

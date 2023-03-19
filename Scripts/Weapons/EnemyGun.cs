@@ -6,7 +6,7 @@ public partial class EnemyGun : Gun
 	[Export]
 	bool enabled = false; //spawn and death animations control this.
 	[Export]
-    public PackedScene bullet = (PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Bullet.tscn");
+    public PackedScene bullet = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/Bullet.tscn");
 	public AudioStreamPlayer3D snd;
 	[Export]
 	public double fireRateMin = 0.5f, fireRateMax = 0.8f, fireRange = 32;

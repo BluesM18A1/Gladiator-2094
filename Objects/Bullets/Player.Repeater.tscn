@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwbhjxlkt11uo"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1"]
+[ext_resource type="Material" uid="uid://dpdqnkleupx7d" path="res://Materials/bullets/bullet.repeater.material" id="2"]
+[ext_resource type="PackedScene" path="res://Objects/Effects/Sparks.Blue.GPU.tscn" id="2_74xwo"]
+
+[sub_resource type="SphereMesh" id="1"]
+material = ExtResource("2")
+radius = 0.15
+height = 0.3
+radial_segments = 6
+rings = 4
+
+[sub_resource type="SphereShape3D" id="2"]
+radius = 0.15
+
+[node name="Bullet" type="Area3D"]
+collision_layer = 2048
+collision_mask = 5
+script = ExtResource("1")
+damage = -12
+speed = 100.0
+sparks = ExtResource("2_74xwo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("2")
+
+[connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

@@ -63,7 +63,7 @@ public partial class PlayerGun : Node3D
 		weaponList[0] = new Weapon(
 			"Flamethrower",
 			-1, 75, new Color (1,0,0,1), 
-			(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Flame.tscn"),
+			(PackedScene)ResourceLoader.Load("res://Objects/Bullets/Player.Flame.tscn"),
 			null,
 			null,
 			GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconFlam")
@@ -71,25 +71,25 @@ public partial class PlayerGun : Node3D
 		weaponList[1] = new Weapon(
 			"Repeater",
 			80, 25, new Color (0,0,1,1), 
-			(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Repeater.tscn"),
-			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/repeaterPickup.wav"),
+			(PackedScene)ResourceLoader.Load("res://Objects/Bullets/Player.Repeater.tscn"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/pickup.repeater.wav"),
 			(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/repeater.wav"),
 			GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconRptr")
 			);
 		weaponList[2] = new Weapon(
 			"Buckshot",
 			40, 6, new Color (1,1,0,1), 
-			(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Buckshot_Package.tscn"),
-			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/buckshotPickup.wav"),
+			(PackedScene)ResourceLoader.Load("res://Objects/Bullets/Player.Buckshot.Package.tscn"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/pickup.buckshot.wav"),
 			(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/buckshot.wav"),
 			GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconShot")
 			);
 		weaponList[3] = new Weapon(
 			"Grenade Launcher",
 			20, 3, new Color (0,1,0,1), 
-			(PackedScene)ResourceLoader.Load("res://Prefabs/Bullets/Player_Grenades.tscn"),
-			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/grenadePickup.wav"),
-			(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/grenadeLaunch.wav"),
+			(PackedScene)ResourceLoader.Load("res://Objects/Bullets/Player.Grenades.tscn"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/pickups/pickup.grenade.wav"),
+			(AudioStreamWav)ResourceLoader.Load("res://Sounds/guns/grenade.launch.wav"),
 			GetNode<TextureRect>(HUDPath + "/WeaponBar/HBoxContainer/IconGren")
 			);
 	}

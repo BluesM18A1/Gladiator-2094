@@ -28,7 +28,7 @@ public partial class Enemy : Combatant
 	//COMPONENT VARIABLES---------------------------------------------------------
 	[Export]
 	public PackedScene deathExplosion;
-	PackedScene pointsTally = (PackedScene)ResourceLoader.Load("res://Prefabs/Effects/pointsTally.tscn");
+	PackedScene pointsTally = (PackedScene)ResourceLoader.Load("res://Objects/Effects/PointsTally.tscn");
 	Vector2 inputMovementVector = Vector2.Zero;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -52,6 +52,8 @@ public partial class Enemy : Combatant
 			ProcessMovement(delta);
 			ProcessInput(delta);
 		}
+		//failsafe in case an enemy finds its way out of bounds
+		if (GlobalPosition.Length() > 1000) UpdateHealth(-9999, "error");
 	}
 	protected void ProcessInput(double delta) //this is where all the AI happens
 	{

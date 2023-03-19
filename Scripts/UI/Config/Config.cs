@@ -40,6 +40,7 @@ public partial class Config : Node
         //INPUTS
         foreach (StringName action in InputMap.GetActions())
         {
+            if (action.ToString().StartsWith("ui_")) continue;
             saveConf.SetValue("Action Binds", action, InputMap.ActionGetEvents(action));
         }
         saveConf.SetValue("Controls", "InvertX", invertX);
@@ -72,6 +73,7 @@ public partial class Config : Node
         //INPUTS
         foreach (StringName action in InputMap.GetActions())
         {
+            if (action.ToString().StartsWith("ui_")) continue;
             RebindInputs(action, saveConf);
         }
         invertX = (bool)saveConf.GetValue("Controls","InvertX", false);

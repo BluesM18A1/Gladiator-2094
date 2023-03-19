@@ -136,20 +136,13 @@ public partial class Player : Combatant
 
 		Vector2 inputMovementVector = new Vector2();
 		
-		
-			dir = new Vector3();
-			if (Input.IsActionPressed("player_move_forward"))
-			inputMovementVector.Y += 1;
-			if (Input.IsActionPressed("player_move_backward"))
-				inputMovementVector.Y -= 1;
-			if (Input.IsActionPressed("player_strafe_left"))
-				inputMovementVector.X -= 1;
-			if (Input.IsActionPressed("player_strafe_right"))
-				inputMovementVector.X += 1;
-		
-		
+		dir = new Vector3();
+		inputMovementVector = new Vector2(
+			Input.GetAxis("player_strafe_left", "player_strafe_right"), 
+			Input.GetAxis("player_move_backward","player_move_forward"));
 
-		inputMovementVector = inputMovementVector.Normalized();
+		if (inputMovementVector.Length() > 1)
+			inputMovementVector = inputMovementVector.Normalized();
 
 		if (alive)
 		{

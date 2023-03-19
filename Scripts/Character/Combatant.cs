@@ -38,7 +38,7 @@ public partial class Combatant : CharacterBody3D
     protected virtual void ProcessMovement(double delta)
     {
         dir.Y = 0;
-        dir = dir.Normalized();
+        //dir = dir.Normalized();
 
         vel.Y += (float)delta * Gravity;
         

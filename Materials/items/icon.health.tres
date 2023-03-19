@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3]
 
-[ext_resource type="Texture2D" uid="uid://b3124sgdxbrp0" path="res://UI/icons/Icon_Health.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b3124sgdxbrp0" path="res://UI/icons/icon.health.png" id="1"]
 
 [resource]
 albedo_color = Color( 0, 0, 0, 1 )

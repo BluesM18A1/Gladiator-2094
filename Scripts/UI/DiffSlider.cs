@@ -18,9 +18,9 @@ public partial class DiffSlider : HSlider
 //  {
 //      
 //  }
-    private void OnDifficultyChange(int delta)
+    private void OnDifficultyChange(float delta)
     {
-        switch (delta)
+        switch ((int)delta)
         {
             case (-3):
             diffSetting.Text = "Game Journalist";
@@ -44,6 +44,6 @@ public partial class DiffSlider : HSlider
             diffSetting.Text = "Masochist";
             break;
         }
-        config.difficulty = delta;
+        config.difficulty = (int)delta;
     }
 }

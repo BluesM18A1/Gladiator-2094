@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://blnvfbsf3bul"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1_il6xd"]
+[ext_resource type="PackedScene" path="res://Objects/Blast.Grenade.Enemy.tscn" id="2_va6hu"]
+[ext_resource type="Material" path="res://Materials/bullets/bullet.grenade.tres" id="3"]
+
+[sub_resource type="SphereMesh" id="1"]
+material = ExtResource("3")
+radius = 0.15
+height = 0.3
+radial_segments = 8
+rings = 8
+
+[sub_resource type="SphereShape3D" id="3"]
+radius = 0.1
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 4096
+collision_mask = 7
+gravity_scale = 3.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_il6xd")
+damage = -10
+speed = 1.0
+sparks = ExtResource("2_va6hu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("3")
+
+[connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]

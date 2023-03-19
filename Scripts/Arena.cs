@@ -18,8 +18,8 @@ public partial class Arena : Node3D
 	[Export]
 	public AudioStreamWav an_waveComplete = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/countdown20sec.wav")
 	, an_go = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/GO-1.wav"),
-	an_gameover = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/gameOver.wav");
-	public AudioStreamWav level = (AudioStreamWav)ResourceLoader.Load("res://Sounds/music/pathetique_weapons.wav"), boss  = (AudioStreamWav)ResourceLoader.Load("res://Sounds/music/pestered_archfiend.wav");
+	an_gameover = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/gameover.wav");
+	public AudioStreamWav level = (AudioStreamWav)ResourceLoader.Load("res://Sounds/music/level1.wav"), boss  = (AudioStreamWav)ResourceLoader.Load("res://Sounds/music/boss1.wav");
 	[Export]
 	public double spawnRate = 20f, time = 20;
 	[Export((PropertyHint) 13)]
@@ -32,7 +32,7 @@ public partial class Arena : Node3D
 	//TODO: put all enemy tiers into an array of its own
 	[Export((PropertyHint) 13)]
 	public PackedScene[] ItemBoxes;
-	PackedScene player = (PackedScene)ResourceLoader.Load("res://Prefabs/Player.tscn");
+	PackedScene player = (PackedScene)ResourceLoader.Load("res://Objects/Player.tscn");
 	Godot.Collections.Array<Player> players = new Godot.Collections.Array<Player>();
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -143,7 +143,7 @@ public partial class Arena : Node3D
 		if (wave % 4 == 0 && wave > 1 && subwave == 0)
 		{
 			randomItem = (Int16)GD.RandRange(0,BossTier.Length -1);
-			announcer.Stream = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/boss_" + randomItem.ToString() + ".wav");
+			announcer.Stream = (AudioStreamWav)ResourceLoader.Load("res://Sounds/announcer/boss." + randomItem.ToString() + ".wav");
 			announcer.Play();
 			RandomGroundSpawn(BossTier[randomItem]);
 			ItemSpawn();

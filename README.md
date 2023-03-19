@@ -10,13 +10,10 @@ and improving it any way I see fit.
 
 Today, it serves the purpose of being an open-source portfolio piece, and maybe one day a fully fleshed out and fun game. 
 
-Feel free to use any code in here for your own projects, though keep in mind some audio assets are 3rd party with unknown licensing terms.
+Feel free to use anything in here for your own projects, as long as I, or a link to this repository, is credited in-application.   
+Though keep in mind that some audio assets are 3rd party with unknown licensing terms (I am slowly working to replace them with in-house or CC0 assets).
 
-WARNING:
-Godot 4.0 is still in beta and although I have "finished" the upgrade process from 3.x, the engine is still highly unstable and the game will crash unpredictably with mysterious error messages.
-
-
-TODO LIST:
+TODO LIST:  
 -Airborne enemies  
 -Upgrade mechanics     
 -Networked multiplayer at long last?   

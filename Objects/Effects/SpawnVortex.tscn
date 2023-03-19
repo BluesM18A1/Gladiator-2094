@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle.vortex.png" id="1_7d8k8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjest"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_7d8k8")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_3uvoe"]
+material = SubResource("StandardMaterial3D_fjest")
+
+[sub_resource type="Gradient" id="Gradient_dw65b"]
+offsets = PackedFloat32Array(0, 0.35124, 0.673554, 1)
+colors = PackedColorArray(0, 1.18, 2, 0.43, 0, 0, 3, 1, 1.02, 0, 1.48, 0.43, 2, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_4ptil"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale_amount_max")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale_amount_min")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.0]
+}
+
+[sub_resource type="Animation" id="Animation_li2pl"]
+resource_name = "start"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale_amount_max")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 10.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale_amount_min")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 4.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x635x"]
+_data = {
+"RESET": SubResource("Animation_4ptil"),
+"start": SubResource("Animation_li2pl")
+}
+
+[node name="Node3D" type="CPUParticles3D"]
+speed_scale = 2.0
+mesh = SubResource("QuadMesh_3uvoe")
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = 90.0
+angular_velocity_max = 360.0
+scale_amount_min = 6.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_dw65b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "start"
+libraries = {
+"": SubResource("AnimationLibrary_x635x")
+}

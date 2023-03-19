@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3]
 
-[ext_resource type="Texture2D" uid="uid://bjbt0g3s63jlo" path="res://UI/icons/Icon_Minigun.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bjbt0g3s63jlo" path="res://UI/icons/icon.minigun.png" id="1"]
 
 [resource]
 albedo_color = Color( 0, 0, 0, 1 )

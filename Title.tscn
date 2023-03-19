@@ -1,24 +1,28 @@
-[gd_scene load_steps=43 format=3 uid="uid://4ustf73wucuh"]
+[gd_scene load_steps=48 format=3 uid="uid://7lgl0xbdveud"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Title.cs" id="1"]
 [ext_resource type="Theme" uid="uid://dhun1kq4ag7ia" path="res://default_theme.tres" id="1_oi46c"]
 [ext_resource type="Material" uid="uid://bjghtco8legbw" path="res://Materials/grid.material" id="2"]
 [ext_resource type="Texture2D" uid="uid://k0llv3y5brlq" path="res://UI/logo.png" id="3_o12s8"]
-[ext_resource type="Texture2D" uid="uid://bt1cbecu2gvak" path="res://UI/icons/arrow_l.svg" id="5_er38s"]
-[ext_resource type="Texture2D" uid="uid://cqdyof8tyaayc" path="res://UI/icons/arrow_l_h.svg" id="6_yofpf"]
-[ext_resource type="Texture2D" uid="uid://dbk8gd2h38l7m" path="res://UI/icons/arrow_r.svg" id="7_54vi1"]
-[ext_resource type="Texture2D" uid="uid://d1w584fltn1lo" path="res://UI/icons/arrow_r_h.svg" id="8_d06i6"]
+[ext_resource type="Texture2D" uid="uid://bt1cbecu2gvak" path="res://UI/icons/arrow.left.svg" id="5_er38s"]
+[ext_resource type="Texture2D" uid="uid://cqdyof8tyaayc" path="res://UI/icons/arrow.left.hover.svg" id="6_yofpf"]
+[ext_resource type="Texture2D" uid="uid://dbk8gd2h38l7m" path="res://UI/icons/arrow.right.svg" id="7_54vi1"]
+[ext_resource type="Texture2D" uid="uid://d1w584fltn1lo" path="res://UI/icons/arrow.right.hover.svg" id="8_d06i6"]
 [ext_resource type="Script" path="res://Scripts/UI/DiffSlider.cs" id="9_px41v"]
 [ext_resource type="AudioStream" uid="uid://boe1qh4dd2x6j" path="res://Sounds/UI/bootup.wav" id="10"]
 [ext_resource type="Script" path="res://Scripts/UI/VisibilityToggle.cs" id="10_yp60q"]
-[ext_resource type="AudioStream" uid="uid://deqfs7eu3c7q7" path="res://Sounds/UI/menuBlip.wav" id="11"]
+[ext_resource type="AudioStream" uid="uid://ck7vg71qfteyu" path="res://Sounds/UI/button.click.wav" id="11_lipw4"]
+[ext_resource type="PackedScene" uid="uid://bjnlqdwq6m7af" path="res://UI/Settings menu pieces/ControlPanel.tscn" id="12_gahd1"]
 [ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://default_env.tres" id="13"]
-[ext_resource type="PackedScene" uid="uid://dm02qlpsy2o1u" path="res://UI/credits_window.tscn" id="13_f5m5e"]
-[ext_resource type="PackedScene" uid="uid://dtf0bha5u7weu" path="res://UI/Settings menu pieces/SettingsMenu.tscn" id="13_hnley"]
+[ext_resource type="Texture2D" uid="uid://w121xv8ts4m1" path="res://UI/icons/settings.webp" id="13_m4pqr"]
 [ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://UI/icons/icon.png" id="14_c8dyp"]
-[ext_resource type="Material" path="res://Materials/environment/outer_walls.tres" id="15_50q2k"]
+[ext_resource type="Script" path="res://Scripts/UI/Config/ConfigFileControlButton.cs" id="14_q7khv"]
+[ext_resource type="Material" uid="uid://bei3u6edkrih3" path="res://Materials/environment/outerWalls.tres" id="15_50q2k"]
+[ext_resource type="Texture2D" uid="uid://u4lguqejyio" path="res://UI/icons/reset.webp" id="15_ft3vb"]
+[ext_resource type="Texture2D" uid="uid://b21mjtjjvcj3u" path="res://UI/icons/save.webp" id="16_0rhbt"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.yellow.tres" id="16_5awdy"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.green.tres" id="17_tby0m"]
+[ext_resource type="Texture2D" uid="uid://q1q84ny4jcua" path="res://UI/icons/exit.webp" id="17_yn3lf"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.red.tres" id="18_xsixr"]
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.blue.tres" id="19_81q68"]
 [ext_resource type="Material" uid="uid://llrqkmc51vuk" path="res://Materials/environment/bridge.RB.tres" id="21_xl4tb"]
@@ -32,6 +36,9 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="2"]
 gradient = SubResource("1")
 width = 512
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1001"]
+bg_color = Color(0, 0, 0, 0.733333)
 
 [sub_resource type="BoxMesh" id="5"]
 size = Vector3(64, 16, 2)
@@ -108,7 +115,7 @@ _data = {
 
 [node name="Node3D" type="Node3D"]
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("firstFocus", "hoverSnd", "clickSnd")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,6 +124,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_oi46c")
 script = ExtResource("1")
+firstFocus = NodePath("HBoxContainer2/Play")
+hoverSnd = NodePath("HoverSnd")
+clickSnd = NodePath("ClickSnd")
 
 [node name="TextureRect" type="TextureRect" parent="UI"]
 modulate = Color(1, 1, 1, 0.501961)
@@ -200,6 +210,7 @@ offset_bottom = 30.0
 scale = Vector2(0.5, 0.6)
 texture_normal = ExtResource("5_er38s")
 texture_hover = ExtResource("6_yofpf")
+texture_focused = ExtResource("6_yofpf")
 stretch_mode = 0
 
 [node name="Right" type="TextureButton" parent="UI/HBoxContainer2/Wave"]
@@ -215,6 +226,7 @@ offset_bottom = 30.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("7_54vi1")
 texture_hover = ExtResource("8_d06i6")
+texture_focused = ExtResource("8_d06i6")
 stretch_mode = 0
 
 [node name="Sliderframe" type="Panel" parent="UI/HBoxContainer2"]
@@ -284,7 +296,7 @@ theme_override_font_sizes/font_size = 36
 disabled = true
 text = "MultiPlayer"
 
-[node name="Options" type="Button" parent="UI/HBoxContainer" node_paths=PackedStringArray("control")]
+[node name="Options" type="Button" parent="UI/HBoxContainer" node_paths=PackedStringArray("control", "focus")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.69
@@ -292,8 +304,9 @@ theme_override_font_sizes/font_size = 36
 text = "Options"
 script = ExtResource("10_yp60q")
 control = NodePath("../../../SettingsMenu")
+focus = NodePath("../../../SettingsMenu/VBoxContainer2/Button4")
 
-[node name="Credits" type="Button" parent="UI/HBoxContainer" node_paths=PackedStringArray("control")]
+[node name="Credits" type="Button" parent="UI/HBoxContainer" node_paths=PackedStringArray("control", "focus")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
@@ -301,6 +314,7 @@ theme_override_font_sizes/font_size = 36
 text = "Credits"
 script = ExtResource("10_yp60q")
 control = NodePath("../../CreditsWindow")
+focus = NodePath("../../CreditsWindow/Panel/Back")
 
 [node name="Quit" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
@@ -309,15 +323,19 @@ size_flags_stretch_ratio = 0.5
 theme_override_font_sizes/font_size = 36
 text = "Quit"
 
-[node name="bootup" type="AudioStreamPlayer" parent="UI"]
+[node name="HoverSnd" type="AudioStreamPlayer" parent="UI"]
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="ClickSnd" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("11_lipw4")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Bootup" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("10")
 volume_db = -5.0
 autoplay = true
-bus = &"SFX"
-
-[node name="bloop" type="AudioStreamPlayer" parent="UI"]
-stream = ExtResource("11")
-volume_db = -5.0
 bus = &"SFX"
 
 [node name="Version Num" type="Panel" parent="UI"]
@@ -345,12 +363,159 @@ text = "Beta Version 0.3.0                                                      
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsWindow" parent="UI" instance=ExtResource("13_f5m5e")]
+[node name="CreditsWindow" type="Control" parent="UI"]
 visible = false
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SettingsMenu" parent="." instance=ExtResource("13_hnley")]
+[node name="darkenbgr" type="Panel" parent="UI/CreditsWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q1001")
+
+[node name="Panel" type="Panel" parent="UI/CreditsWindow"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.495
+anchor_right = 0.495
+anchor_bottom = 1.0
+offset_left = -419.6
+offset_top = 150.0
+offset_right = 420.4
+offset_bottom = -218.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/CreditsWindow/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "			< Gladiator 2094 Contributors: >
+
+-BluesM18A1 (Bruce H.)
+
+			
+			< Gladiator 2092 original team: >
+	
+-Ethan Sewall (Enemy AI, Character design, 
+							Gladiator series founder)
+-Bruce Heiner (Art, Sounds, player code, announcer VA)
+-Jonah Scanzon (Netcode (god bless his poor soul), UI)
+
+						< Music >
+Ludwig van Beethoven
+		Piano Sonata  No. 8  Movement I
+		Piano Sonata  No. 14 Movement III
+	Arranged by BluesM18A1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="UI/CreditsWindow/Panel" node_paths=PackedStringArray("control", "focus")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.0
+offset_bottom = 74.0
+grow_horizontal = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Back"
+script = ExtResource("10_yp60q")
+control = NodePath("../..")
+focus = NodePath("../../../HBoxContainer/Credits")
+
+[node name="SettingsMenu" type="Control" parent="."]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oi46c")
+
+[node name="Panel" type="Panel" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlPanel" parent="SettingsMenu" instance=ExtResource("12_gahd1")]
+layout_mode = 1
+offset_bottom = -74.0
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -74.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="SettingsMenu/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.71
+text = "Load Defaults"
+icon = ExtResource("13_m4pqr")
+expand_icon = true
+script = ExtResource("14_q7khv")
+
+[node name="Button2" type="Button" parent="SettingsMenu/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Revert Unsaved Changes"
+icon = ExtResource("15_ft3vb")
+expand_icon = true
+script = ExtResource("14_q7khv")
+mode = 1
+
+[node name="Button3" type="Button" parent="SettingsMenu/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.79
+text = "Save Settings"
+icon = ExtResource("16_0rhbt")
+expand_icon = true
+script = ExtResource("14_q7khv")
+mode = 2
+
+[node name="Button4" type="Button" parent="SettingsMenu/VBoxContainer2" node_paths=PackedStringArray("control", "focus")]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.68
+text = "Close Menu"
+icon = ExtResource("17_yn3lf")
+expand_icon = true
+script = ExtResource("10_yp60q")
+control = NodePath("../..")
+focus = NodePath("../../../UI/HBoxContainer/Options")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.999991, -0.00202097, 0.00382536, 0, 0.884191, 0.467126, -0.0043264, -0.467122, 0.884183, 0.357025, 20.6127, 33.032)
@@ -661,34 +826,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Arena/Lights"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 9.41173, -21.2132)
+light_bake_mode = 1
 omni_range = 22.6
 
 [node name="OmniLight2" type="OmniLight3D" parent="Arena/Lights"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 21.2132, 9.41173, 0)
+light_bake_mode = 1
 omni_range = 22.6
 
 [node name="OmniLight3" type="OmniLight3D" parent="Arena/Lights"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 9.41173, 21.2132)
+light_bake_mode = 1
 omni_range = 22.6
 
 [node name="OmniLight4" type="OmniLight3D" parent="Arena/Lights"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -21.2132, 9.41173, 0)
+light_bake_mode = 1
 omni_range = 22.6
 
 [node name="OmniLight6" type="OmniLight3D" parent="Arena/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 9.41173, 25)
+light_bake_mode = 1
 omni_range = 22.6
 
 [node name="OmniLight7" type="OmniLight3D" parent="Arena/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 9.41173, -25)
+light_bake_mode = 1
 omni_range = 22.6
 
 [node name="OmniLight8" type="OmniLight3D" parent="Arena/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 9.41173, 25)
+light_bake_mode = 1
 omni_range = 22.6
 
 [node name="OmniLight9" type="OmniLight3D" parent="Arena/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 9.41173, -25)
+light_bake_mode = 1
 omni_range = 22.6
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Arena"]
@@ -700,16 +873,26 @@ libraries = {
 "": SubResource("AnimationLibrary_nuwtp")
 }
 
-[connection signal="button_down" from="UI/HBoxContainer2/Play" to="UI" method="PlayButtonDown"]
-[connection signal="focus_entered" from="UI/HBoxContainer2/Play" to="UI" method="onButtonHover"]
-[connection signal="mouse_entered" from="UI/HBoxContainer2/Play" to="UI" method="onButtonHover"]
+[connection signal="button_down" from="UI/HBoxContainer2/Play" to="UI" method="ClickSnd"]
+[connection signal="focus_entered" from="UI/HBoxContainer2/Play" to="UI" method="HoverSnd"]
+[connection signal="mouse_entered" from="UI/HBoxContainer2/Play" to="UI" method="HoverSnd"]
+[connection signal="pressed" from="UI/HBoxContainer2/Play" to="UI" method="PlayButtonDown"]
 [connection signal="button_down" from="UI/HBoxContainer2/Wave/Left" to="UI/HBoxContainer2/Wave" method="leftButtonDown"]
+[connection signal="focus_entered" from="UI/HBoxContainer2/Wave/Left" to="UI" method="HoverSnd"]
+[connection signal="mouse_entered" from="UI/HBoxContainer2/Wave/Left" to="UI" method="HoverSnd"]
 [connection signal="button_down" from="UI/HBoxContainer2/Wave/Right" to="UI/HBoxContainer2/Wave" method="rightButtonDown"]
-[connection signal="value_changed" from="UI/HBoxContainer2/Sliderframe/DSlider" to="UI/HBoxContainer2/Sliderframe/DSlider" method="OnDifficultyChange" flags=18]
+[connection signal="focus_entered" from="UI/HBoxContainer2/Wave/Right" to="UI" method="HoverSnd"]
+[connection signal="mouse_entered" from="UI/HBoxContainer2/Wave/Right" to="UI" method="HoverSnd"]
+[connection signal="focus_entered" from="UI/HBoxContainer2/Sliderframe/DSlider" to="UI" method="HoverSnd"]
+[connection signal="value_changed" from="UI/HBoxContainer2/Sliderframe/DSlider" to="UI/HBoxContainer2/Sliderframe/DSlider" method="OnDifficultyChange"]
 [connection signal="button_down" from="UI/HBoxContainer/Multiplayer" to="UI" method="PlayButtonDown"]
-[connection signal="focus_entered" from="UI/HBoxContainer/Multiplayer" to="UI" method="onButtonHover"]
-[connection signal="mouse_entered" from="UI/HBoxContainer/Multiplayer" to="UI" method="onButtonHover"]
-[connection signal="mouse_entered" from="UI/HBoxContainer/Options" to="UI" method="onButtonHover"]
-[connection signal="mouse_entered" from="UI/HBoxContainer/Credits" to="UI" method="onButtonHover"]
-[connection signal="button_down" from="UI/HBoxContainer/Quit" to="UI" method="ExitButtonDown"]
-[connection signal="mouse_entered" from="UI/HBoxContainer/Quit" to="UI" method="onButtonHover"]
+[connection signal="focus_entered" from="UI/HBoxContainer/Options" to="UI" method="HoverSnd"]
+[connection signal="mouse_entered" from="UI/HBoxContainer/Options" to="UI" method="HoverSnd"]
+[connection signal="pressed" from="UI/HBoxContainer/Options" to="UI" method="ClickSnd"]
+[connection signal="focus_entered" from="UI/HBoxContainer/Credits" to="UI" method="HoverSnd"]
+[connection signal="mouse_entered" from="UI/HBoxContainer/Credits" to="UI" method="HoverSnd"]
+[connection signal="pressed" from="UI/HBoxContainer/Credits" to="UI" method="ClickSnd"]
+[connection signal="button_down" from="UI/HBoxContainer/Quit" to="UI" method="ClickSnd"]
+[connection signal="focus_entered" from="UI/HBoxContainer/Quit" to="UI" method="HoverSnd"]
+[connection signal="mouse_entered" from="UI/HBoxContainer/Quit" to="UI" method="HoverSnd"]
+[connection signal="pressed" from="UI/HBoxContainer/Quit" to="UI" method="ExitButtonDown"]

@@ -5,6 +5,8 @@ public partial class PauseScreen : Control
 {
 	[Export]
 	Player player;
+	[Export]
+	Control firstFocus;
 	AudioStreamPlayer bloop;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -25,6 +27,7 @@ public partial class PauseScreen : Control
 				GD.Print("pausing....");
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 				Visible = true;
+				firstFocus.GrabFocus();
 				if (player.alive) GetTree().Paused = true;
 			}
 		}
