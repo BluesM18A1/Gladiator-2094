@@ -4,7 +4,8 @@
 resource_local_to_scene = true
 transparency = 1
 albedo_color = Color(0.65, 0.65, 0.65, 1)
-metallic = 0.53
+metallic = 0.55
 metallic_specular = 1.0
+roughness = 0.64
 emission_enabled = true
 emission_operator = 1

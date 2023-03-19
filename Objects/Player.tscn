@@ -1,11 +1,11 @@
-[gd_scene load_steps=48 format=3 uid="uid://c1o5va1415pml"]
+[gd_scene load_steps=48 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Character/Player.cs" id="1"]
 [ext_resource type="PackedScene" path="res://Objects/Parts/PlayerGun.tscn" id="2"]
 [ext_resource type="Material" path="res://Materials/player.body.tres" id="2_lev32"]
 [ext_resource type="Texture2D" uid="uid://c550pddtc5rc3" path="res://UI/icons/icon.grenade.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c8sodcrovwjd" path="res://UI/icons/icon.flamethrower.png" id="5"]
-[ext_resource type="Material" path="res://Materials/hubcap.material" id="5_g2i2o"]
+[ext_resource type="Material" uid="uid://bfqcr6pb7rad3" path="res://Materials/metal.grey.material" id="5_g2i2o"]
 [ext_resource type="Material" uid="uid://derjvemuiaetx" path="res://Materials/player.tire.material" id="5_tjiqy"]
 [ext_resource type="Texture2D" uid="uid://bjbt0g3s63jlo" path="res://UI/icons/icon.minigun.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bpmtpavybb75t" path="res://UI/icons/icon.shotgun.png" id="7"]
@@ -28,7 +28,7 @@
 [ext_resource type="StyleBox" uid="uid://7dwf4b41mx3j" path="res://UI/theme components/stylebox.normal.tres" id="23_nd5ns"]
 [ext_resource type="Script" path="res://Scripts/UI/TipOfTheDay.gd" id="24_u7th3"]
 [ext_resource type="AudioStream" uid="uid://oeckksf54l7" path="res://Sounds/announcer/gameover.wav" id="25_1yxbc"]
-[ext_resource type="PackedScene" path="res://UI/PauseMenu.tscn" id="25_7v7wn"]
+[ext_resource type="PackedScene" uid="uid://enpv42tn5ph5" path="res://UI/PauseMenu.tscn" id="25_7v7wn"]
 
 [sub_resource type="CylinderMesh" id="1"]
 top_radius = 0.2

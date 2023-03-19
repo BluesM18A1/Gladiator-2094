@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://v6014imh8b5h"]
+[gd_scene load_steps=34 format=3 uid="uid://4qc5ir0e2f0g"]
 
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemy.hit.wav" id="1"]
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_c36ak"]
@@ -9,6 +9,8 @@
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
 [ext_resource type="ArrayMesh" uid="uid://6mbugpm8uj35" path="res://Models/gatlingGun.obj" id="5"]
 [ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="7_rjaq5"]
+[ext_resource type="Material" uid="uid://bfqcr6pb7rad3" path="res://Materials/metal.grey.material" id="7_xm7pb"]
+[ext_resource type="Material" path="res://Materials/gun.barrel.inside.tres" id="8_h4jxu"]
 [ext_resource type="AudioStream" uid="uid://cnvsvx36maue" path="res://Sounds/guns/repeater2.wav" id="9_e55cu"]
 [ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle.vortex.png" id="10_c33ux"]
 [ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemy.spawn.wav" id="12_4ip4l"]
@@ -19,39 +21,39 @@ radius = 1.02618
 [sub_resource type="SphereShape3D" id="2"]
 radius = 0.58
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ey5vs"]
-load_path = "res://.godot/imported/ANGERY.png-2dad5d114074f5dbc316d6d31ce60638.s3tc.ctex"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iiy0e"]
+load_path = "res://.godot/imported/angry.png-b1fe6f58794e8a6d3da23919e59ca5a1.s3tc.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mqcsj"]
-load_path = "res://.godot/imported/ANGERY.png-2dad5d114074f5dbc316d6d31ce60638.s3tc.ctex"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_03iqu"]
+load_path = "res://.godot/imported/angry.png-b1fe6f58794e8a6d3da23919e59ca5a1.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mb2j"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6sp7"]
 resource_local_to_scene = true
 transparency = 1
-albedo_texture = SubResource("CompressedTexture2D_ey5vs")
-metallic_specular = 0.0
-emission_enabled = true
-emission_energy_multiplier = 0.39
-emission_texture = SubResource("CompressedTexture2D_mqcsj")
-uv1_scale = Vector3(1.325, 1, 1)
-uv1_offset = Vector3(-1.157, -0.082, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxt7f"]
-resource_local_to_scene = true
-resource_name = "Material.001"
-next_pass = SubResource("StandardMaterial3D_6mb2j")
-albedo_color = Color(0, 0.627451, 0.819608, 1)
+albedo_texture = SubResource("CompressedTexture2D_iiy0e")
 metallic = 0.5
 emission_enabled = true
-emission = Color(0, 0.321569, 0.423529, 1)
-emission_energy_multiplier = 0.76
+emission = Color(1, 1, 1, 1)
 emission_operator = 1
-uv1_offset = Vector3(0, -0.073, 0)
-uv2_offset = Vector3(0, -0.073, 0)
+emission_texture = SubResource("CompressedTexture2D_03iqu")
+uv1_scale = Vector3(1.325, 1, 1)
+uv1_offset = Vector3(-1.157, -0.066, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_me5en"]
+resource_local_to_scene = true
+resource_name = "Material.001"
+next_pass = SubResource("StandardMaterial3D_c6sp7")
+albedo_color = Color(0, 0.627451, 0.819608, 1)
+metallic = 0.5
+metallic_specular = 1.0
+roughness = 0.5
+emission_enabled = true
+emission = Color(0, 0.321569, 0.423529, 1)
+emission_operator = 1
 
 [sub_resource type="SphereMesh" id="6"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_gxt7f")
+material = SubResource("StandardMaterial3D_me5en")
 radius = 1.284
 height = 2.203
 radial_segments = 16
@@ -59,6 +61,7 @@ rings = 8
 
 [sub_resource type="Animation" id="7"]
 resource_name = "speen"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -79,6 +82,7 @@ _data = {
 
 [sub_resource type="Animation" id="8"]
 resource_name = "speen"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -530,43 +534,43 @@ tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Head/Body:mesh:material:emission")
+tracks/1/path = NodePath("Head/Body:mesh:material:emission_energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0.627451, 0.819608, 1)]
+"values": [1.02, 0.14]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Head/Body:mesh:material:emission_energy")
+tracks/2/path = NodePath("Head/Head:mesh:material:emission")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.5, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.02, 0.14]
+"values": [Color(1, 1, 1, 1), Color(0, 0.321569, 0.423529, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Head/Head:mesh:material:emission")
+tracks/3/path = NodePath("Head/Gun:enabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.5, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0.321569, 0.423529, 1)]
+"update": 1,
+"values": [false, true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Head/Gun:enabled")
+tracks/4/path = NodePath("Head/Gun2:enabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -578,11 +582,11 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Head/Gun2:enabled")
+tracks/5/path = NodePath(".:activated")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -590,11 +594,11 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".:activated")
+tracks/6/path = NodePath("Head:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -602,7 +606,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Head:visible")
+tracks/7/path = NodePath("singleAxel:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -614,7 +618,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("singleAxel:visible")
+tracks/8/path = NodePath("singleAxel2:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -626,43 +630,43 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("singleAxel2:visible")
+tracks/9/path = NodePath("SpawnVortex:scale_amount_min")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 6.0, 0.0]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("SpawnVortex:scale_amount_min")
+tracks/10/path = NodePath("SpawnVortex:scale_amount_max")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 6.0, 0.0]
+"values": [0.0, 12.0, 0.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("SpawnVortex:scale_amount_max")
+tracks/11/path = NodePath("CollisionShape3D:disabled")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 12.0, 0.0]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("CollisionShape3D:disabled")
+tracks/12/path = NodePath("CollisionShape2:disabled")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -674,22 +678,10 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("CollisionShape2:disabled")
+tracks/13/path = NodePath("SpawnVortex:emitting")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("SpawnVortex:emitting")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -750,8 +742,10 @@ transform = Transform3D(0.429, 0, 0, 0, 0.45133, -0.112673, 0, 0.134693, 0.37754
 mesh = SubResource("6")
 
 [node name="Gun" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(-1.21353, -0.88168, 0, 0.88168, -1.21353, 0, 0, 0, 1.5, 1, 0.054, 0.75)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1, 0.054, 0.75)
 mesh = ExtResource("5")
+surface_material_override/0 = ExtResource("7_xm7pb")
+surface_material_override/1 = ExtResource("8_h4jxu")
 script = ExtResource("7_rjaq5")
 bullet = ExtResource("2")
 fireRateMin = 0.1
@@ -777,8 +771,10 @@ libraries = {
 }
 
 [node name="Gun2" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(-1.21353, 0.881678, 0, -0.881678, -1.21353, 0, 0, 0, 1.5, -1, 0.054, 0.75)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1, 0.054, 0.75)
 mesh = ExtResource("5")
+surface_material_override/0 = ExtResource("7_xm7pb")
+surface_material_override/1 = ExtResource("8_h4jxu")
 script = ExtResource("7_rjaq5")
 bullet = ExtResource("2")
 fireRateMin = 0.1

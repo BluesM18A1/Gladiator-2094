@@ -1,11 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dc2fglr43p278"]
 
 [resource]
 metallic = 0.53
 metallic_specular = 1.0
 roughness = 0.42
 emission_enabled = true
-emission = Color( 1, 1, 1, 1 )
-emission_energy = 0.1
-emission_operator = 0
-emission_on_uv2 = false
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1

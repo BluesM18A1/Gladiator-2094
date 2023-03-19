@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3]
+[gd_scene load_steps=26 format=3 uid="uid://jgft12hx0mkb"]
 
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemy.hit.wav" id="1"]
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_w5ak5"]
@@ -12,7 +12,7 @@
 [ext_resource type="Material" uid="uid://d2b32wxjsejr1" path="res://Materials/enemies/gun.buckshot.barrel.tres" id="10"]
 [ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="10_4h351"]
 [ext_resource type="AudioStream" uid="uid://j7yjgna5x5tg" path="res://Sounds/guns/buckshot.wav" id="11_l7gqs"]
-[ext_resource type="Material" path="res://Materials/enemies/gun.buckshot.stock.tres" id="12"]
+[ext_resource type="Material" uid="uid://miaddu01mbke" path="res://Materials/enemies/gun.buckshot.stock.tres" id="12"]
 [ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemy.spawn.wav" id="14_0qx6x"]
 [ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle.vortex.png" id="14_btxie"]
 
@@ -23,6 +23,7 @@ radius = 0.662235
 resource_local_to_scene = true
 albedo_color = Color(1, 0.494118, 0.168627, 1)
 metallic = 0.5
+metallic_specular = 1.0
 roughness = 0.5
 emission_enabled = true
 emission = Color(0.6, 0.282353, 0, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3]
+[gd_scene load_steps=30 format=3 uid="uid://b6s7wuugwpqpv"]
 
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_hpjkc"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="7_2rfor"]
 [ext_resource type="Material" path="res://Materials/enemies/siren.base.tres" id="8"]
 [ext_resource type="Material" path="res://Materials/gun.barrel.inside.tres" id="8_rlkg2"]
+[ext_resource type="Material" uid="uid://bfqcr6pb7rad3" path="res://Materials/metal.grey.material" id="9_fc34x"]
 [ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="10_hvpop"]
 [ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle.vortex.png" id="12_vyey8"]
 [ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemy.spawn.wav" id="14_2jie5"]
@@ -572,6 +573,7 @@ vOffset = 0.75
 [node name="Gun" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.26, -0.222002)
 mesh = ExtResource("2")
+surface_material_override/0 = ExtResource("9_fc34x")
 surface_material_override/1 = ExtResource("8_rlkg2")
 script = ExtResource("10_hvpop")
 parentPath = NodePath("../..")
