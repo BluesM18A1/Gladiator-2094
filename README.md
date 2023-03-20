@@ -18,4 +18,9 @@ TODO LIST:
 -Upgrade mechanics     
 -Networked multiplayer at long last?   
 
+MINIMUM REQUIREMENTS:   
+-A vulkan-capable GPU   
+-A CPU from after the year 2010, probably (intel sandybridge or equivalent)   
+The game may have thousands of projectiles flying at any given moment, but tests have been done to ensure you can still get a reliable 60+FPS on old hardware.
+
 Download the music here! https://bluesm18a1.bandcamp.com/album/gladiator-2094-ost
