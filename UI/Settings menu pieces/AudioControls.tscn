@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3]
+[gd_scene load_steps=46 format=3 uid="uid://btrnmemhq27xs"]
 
 [ext_resource type="Theme" uid="uid://dhun1kq4ag7ia" path="res://default_theme.tres" id="1_0rujk"]
 [ext_resource type="StyleBox" uid="uid://7dwf4b41mx3j" path="res://UI/theme components/stylebox.normal.tres" id="1_8i1sg"]
@@ -22,6 +22,21 @@
 [ext_resource type="AudioStream" uid="uid://dq1qtmko0ju1b" path="res://Sounds/guns/grenade.explosion.wav" id="19_1khip"]
 [ext_resource type="AudioStream" uid="uid://dlhgh5l01gegk" path="res://Sounds/guns/switch.wav" id="20_wj6df"]
 [ext_resource type="AudioStream" uid="uid://cm04je6mii1hu" path="res://Sounds/guns/sirenshot.wav" id="21_pjnox"]
+[ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemy.hit.wav" id="23_db11n"]
+[ext_resource type="AudioStream" uid="uid://cik44nybyv2bn" path="res://Sounds/enemy.die.wav" id="24_43dfb"]
+[ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemy.spawn.wav" id="25_75wrn"]
+[ext_resource type="AudioStream" uid="uid://dnlfcoeiibt7n" path="res://Sounds/player.hurt.wav" id="26_q7y08"]
+[ext_resource type="AudioStream" uid="uid://d4c23muvmqdel" path="res://Sounds/boss.roar.wav" id="27_uk48o"]
+[ext_resource type="AudioStream" uid="uid://dlr4wh3vn7nmw" path="res://Sounds/boss.shutdown.wav" id="28_vxtef"]
+[ext_resource type="AudioStream" uid="uid://b1lvmkd0g6b2h" path="res://Sounds/boss.explosion.wav" id="29_tjm6p"]
+[ext_resource type="AudioStream" uid="uid://b7b7x5aiwliam" path="res://Sounds/UI/gameover.wav" id="30_ofduc"]
+[ext_resource type="AudioStream" uid="uid://boe1qh4dd2x6j" path="res://Sounds/UI/bootup.wav" id="31_8dod2"]
+[ext_resource type="AudioStream" uid="uid://deqfs7eu3c7q7" path="res://Sounds/UI/button.hover.wav" id="32_sdxbp"]
+[ext_resource type="AudioStream" uid="uid://ck7vg71qfteyu" path="res://Sounds/UI/button.click.wav" id="33_0bkwe"]
+[ext_resource type="AudioStream" uid="uid://bnuea86jlcang" path="res://Sounds/pickups/pickup.health.wav" id="34_v7d4f"]
+[ext_resource type="AudioStream" uid="uid://cv01ejxrp6j4r" path="res://Sounds/pickups/pickup.repeater.wav" id="35_d31xg"]
+[ext_resource type="AudioStream" uid="uid://bgh2p0a1krspt" path="res://Sounds/pickups/pickup.buckshot.wav" id="36_ti16p"]
+[ext_resource type="AudioStream" uid="uid://cujokbc4xj1am" path="res://Sounds/pickups/pickup.grenade.wav" id="37_iu8th"]
 
 [sub_resource type="CanvasItemMaterial" id="37"]
 blend_mode = 3
@@ -459,7 +474,7 @@ text = "SFX: 00"
 icon = ExtResource("6_4oex7")
 expand_icon = true
 script = ExtResource("11_70cwh")
-fileList = Array[AudioStream]([ExtResource("12_o12cm"), ExtResource("13_h6if5"), ExtResource("14_6lfs5"), ExtResource("15_isj61"), ExtResource("16_wm07f"), ExtResource("17_3vhbk"), ExtResource("18_jwjcu"), ExtResource("19_1khip"), ExtResource("20_wj6df"), ExtResource("21_pjnox")])
+fileList = Array[AudioStream]([ExtResource("12_o12cm"), ExtResource("13_h6if5"), ExtResource("14_6lfs5"), ExtResource("15_isj61"), ExtResource("16_wm07f"), ExtResource("17_3vhbk"), ExtResource("18_jwjcu"), ExtResource("19_1khip"), ExtResource("20_wj6df"), ExtResource("21_pjnox"), ExtResource("23_db11n"), ExtResource("24_43dfb"), ExtResource("25_75wrn"), ExtResource("26_q7y08"), ExtResource("27_uk48o"), ExtResource("28_vxtef"), ExtResource("29_tjm6p"), ExtResource("30_ofduc"), ExtResource("31_8dod2"), ExtResource("32_sdxbp"), ExtResource("33_0bkwe"), ExtResource("34_v7d4f"), ExtResource("35_d31xg"), ExtResource("36_ti16p"), ExtResource("37_iu8th")])
 _asp = NodePath("AudioStreamPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SFX/SFX"]
