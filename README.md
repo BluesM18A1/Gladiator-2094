@@ -13,6 +13,8 @@ Today, it serves the purpose of being an open-source portfolio piece, and maybe 
 Feel free to use anything in here for your own projects, as long as I, or a link to this repository, is credited in-application.   
 Though keep in mind that some audio assets are 3rd party with unknown licensing terms (I am slowly working to replace them with in-house or CC0 assets).
 
+[![Watch the video](https://img.youtube.com/vi/Z41YgMjSsKQ/maxresdefault.jpg)](https://youtu.be/Z41YgMjSsKQ)
+
 TODO LIST:  
 -Airborne enemies  
 -Upgrade mechanics     
