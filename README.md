@@ -1,3 +1,8 @@
+# NOTICE  
+This project is no longer being maintained on GitHub. 
+Development has migrated to LavaForge.  
+https://lavaforge.org/BluesM18A1/Gladiator-2094
+
 # Gladiator-2094
 Arcade-style Bullet Hell FPS
 
