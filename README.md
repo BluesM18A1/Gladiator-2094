@@ -1,8 +1,3 @@
-# NOTICE  
-This project is no longer being maintained on GitHub. 
-Refer to my website to find out wherever I may host the source code next.  
-https://www.claymorelabs.xyz/glad94.html
-
 # Gladiator-2094
 Arcade-style Bullet Hell FPS
 
