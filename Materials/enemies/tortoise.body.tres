@@ -9,8 +9,7 @@ metallic_specular = 1.0
 roughness = 0.5
 emission_enabled = true
 emission = Color(0, 0.627451, 0.819608, 1)
-emission_energy_multiplier = 0.14
-emission_operator = 1
+emission_energy_multiplier = 0.0
 uv1_offset = Vector3(0, -0.073, 0)
 uv2_offset = Vector3(0, -0.073, 0)
 

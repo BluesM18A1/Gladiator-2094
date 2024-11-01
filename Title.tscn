@@ -359,7 +359,7 @@ offset_right = -2.84003
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-text = "Beta Version 0.3.0                                                                  Game by BluesM18A1"
+text = "Beta Version 0.3.0                                                            Game by Claymore Labs"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -413,6 +413,8 @@ text = "			< Gladiator 2094 Contributors: >
 							Gladiator series founder)
 -Bruce Heiner (Art, Sounds, player code, announcer VA)
 -Jonah Scanzon (Netcode (god bless his poor soul), UI)
+
+More info at www.claymorelabs.xyz/glad94.html
 
 						< Music >
 Ludwig van Beethoven
@@ -868,10 +870,10 @@ omni_range = 22.6
 environment = ExtResource("13")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arena"]
-autoplay = "rotate"
 libraries = {
 "": SubResource("AnimationLibrary_nuwtp")
 }
+autoplay = "rotate"
 
 [connection signal="button_down" from="UI/HBoxContainer2/Play" to="UI" method="ClickSnd"]
 [connection signal="focus_entered" from="UI/HBoxContainer2/Play" to="UI" method="HoverSnd"]

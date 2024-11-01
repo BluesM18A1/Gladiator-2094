@@ -6,7 +6,6 @@ public partial class ActionRebindList : VBoxContainer
 {
 	//This will help generate a list of all* available actions in your project settings
 	//For your in-game input rebinding menu.
-	Config config;
 	[Export]
     Control focusEater;
 	[Export]
@@ -16,12 +15,11 @@ public partial class ActionRebindList : VBoxContainer
 	Godot.Collections.Array<String> blacklist, filterNames; 
 	//Filters out actions by name. For example...
 	//The blacklist might contain "ui_" to keep out the engine's built-in actions
-	//And filterNames may contain "player_", not necessary but highly encouranged since the filterNames string(s) will also be removed from the label text for neatness and brevity.
+	//And filterNames may contain "player_", not necessary but highly encouranged since the filterNames string(s) will be removed from the label text for neatness and brevity.
 	//You could still add something specific like "player_secretbuttonorsomething" to the hypothetical blacklist after this and hide just that one action from the "player_" set
 
 	public override void _Ready()
 	{
-		config = GetNode<Config>("/root/Config");
 		GenerateActionList();
 	}
 	public void GenerateActionList()

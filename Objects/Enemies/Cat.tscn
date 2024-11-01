@@ -7,6 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
 [ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="4_2gnvt"]
 [ext_resource type="ArrayMesh" uid="uid://cakq5i2rkagtk" path="res://Models/catHead.obj" id="5"]
+[ext_resource type="Material" uid="uid://dv6lpl6i4hpsx" path="res://Materials/enemies/cat.head.tres" id="6_0qfuj"]
 [ext_resource type="Material" path="res://Materials/gun.barrel.inside.tres" id="8_3xxrl"]
 [ext_resource type="PackedScene" uid="uid://2tt7rbeqhl0s" path="res://Objects/Bullets/CatShot.tscn" id="9"]
 [ext_resource type="Material" uid="uid://d2b32wxjsejr1" path="res://Materials/enemies/gun.buckshot.barrel.tres" id="10"]
@@ -18,16 +19,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v04cq"]
 radius = 0.662235
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qac3p"]
-resource_local_to_scene = true
-albedo_color = Color(1, 0.494118, 0.168627, 1)
-metallic = 0.5
-metallic_specular = 1.0
-roughness = 0.5
-emission_enabled = true
-emission = Color(0.6, 0.282353, 0, 1)
-emission_operator = 1
 
 [sub_resource type="Animation" id="Animation_1eqag"]
 resource_name = "DeSpawn"
@@ -488,7 +479,7 @@ vOffset = 0.5
 [node name="catHead" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = ExtResource("5")
-surface_material_override/0 = SubResource("StandardMaterial3D_qac3p")
+surface_material_override/0 = ExtResource("6_0qfuj")
 
 [node name="Gun" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.6, 0.4, 0.346134, 0.297016)
@@ -533,10 +524,10 @@ bus = &"SFX"
 doppler_tracking = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Spawn"
 libraries = {
 "": SubResource("AnimationLibrary_ik4fi")
 }
+autoplay = "Spawn"
 
 [node name="SpawnVortex" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.661742, 0)

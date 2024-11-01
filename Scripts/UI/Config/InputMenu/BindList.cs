@@ -62,7 +62,6 @@ public partial class BindList : Control
         BindEntry newEntry = (BindEntry)bindEntry.Instantiate();
         newEntry.inputAction = inputAction;
         newEntry.index = index;
-        newEntry.focusEater = focusEater;
         newEntry.list = this;
         //else GD.Print(index);
         list.AddChild(newEntry, true);

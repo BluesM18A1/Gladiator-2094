@@ -746,11 +746,11 @@ omni_range = 20.0
 environment = ExtResource("23_3fnsa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
-autoplay = "new_animation"
-speed_scale = 0.1
 libraries = {
 "": SubResource("AnimationLibrary_mxank")
 }
+autoplay = "new_animation"
+speed_scale = 0.1
 
 [node name="Ceiling" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00073719, 63.0907, 0.0266612)

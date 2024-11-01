@@ -33,8 +33,11 @@ public partial class Player : Combatant
 	Arena arena;
 	private Camera3D camera;
 	public PlayerGun gun;
-	private RayCast3D floorChecker;
+	private RayCast3D floorChecker, buttonChecker;
 	private TextureProgressBar healthMeter, fuelMeter;
+	private TextureRect crosshairTexture;
+	//Texture2D defaultCrosshair = ResourceLoader.Load<Texture2D>("res://UI/crosshair.png"), interactableSighted = ResourceLoader.Load<Texture2D>("res://UI/pointerhand.png"), interactablePressed = ResourceLoader.Load<Texture2D>("res://UI/pointerhandpress.png");
+	private AnimationPlayer crosshairAni;
 	private Label healthNum;
 	private AnimationPlayer screenAni;
 	protected AudioStreamPlayer boostSnd, medSnd, hurtSnd, landSnd;
@@ -49,11 +52,14 @@ public partial class Player : Combatant
 		head = GetNode<Node3D>("Neck");
 		camera = GetNode<Camera3D>("Neck/Camera3D");
 		gun = GetNode<PlayerGun>("Neck/Gun");
+		//crosshairTexture = GetNode<TextureRect>("HUD/Crosshair");
+		crosshairAni = GetNode<AnimationPlayer>("HUD/Crosshair/AnimationPlayer");
 		healthMeter = GetNode<TextureProgressBar>("HUD/HealthMeter");
 		fuelMeter = GetNode<TextureProgressBar>("HUD/FuelMeter");
 		healthNum = GetNode<Label>("HUD/HealthMeter/HealthNum");
 		screenAni = GetNode<AnimationPlayer>("HUD/ScreenFlash/ScreenTransitions");
 		floorChecker = GetNode<RayCast3D>("floorchecker");
+		buttonChecker = GetNode<RayCast3D>("Neck/Camera3D/buttonchecker");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		HP = maxHP;
 		healthMeter.MaxValue = maxHP;
@@ -94,6 +100,18 @@ public partial class Player : Combatant
 			}
 		}
 		//else overheal = false;
+		if (buttonChecker.IsColliding())
+		{
+			if (!crosshairAni.IsPlaying())crosshairAni.Play("buttonhover");
+			if (Input.IsActionJustPressed("player_use"))
+			{
+				crosshairAni.Stop();
+				crosshairAni.Play("press");
+				Interactable button = buttonChecker.GetCollider() as Interactable;
+				button.OnInteract();
+			}
+		}
+		else if (crosshairAni.CurrentAnimation != "RESET" || crosshairAni.IsPlaying())crosshairAni.Play("RESET");
 	}
 	
 	public override void _PhysicsProcess(double delta)
@@ -147,10 +165,8 @@ public partial class Player : Combatant
 		if (alive)
 		{
 			//apply movement vector
-			dir += -camXform.Basis.Z.Normalized() * inputMovementVector.Y;
-			dir += camXform.Basis.X.Normalized() * inputMovementVector.X;
 			
-			
+			dir = new Vector3(inputMovementVector.X,0,-inputMovementVector.Y).Rotated(new Vector3(0,1,0), Rotation.Y);			
 			//  Jumping / Jetpack thrust
 			if (Input.IsActionPressed("player_jump") && fuelMeter.Value > 0)
 			{

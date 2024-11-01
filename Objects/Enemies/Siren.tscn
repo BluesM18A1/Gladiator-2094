@@ -551,10 +551,10 @@ omni_range = 0.605079
 omni_attenuation = 0.732043
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
-autoplay = "rotate"
 libraries = {
 "": SubResource("AnimationLibrary_4wsva")
 }
+autoplay = "rotate"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.652822, 0)
@@ -603,10 +603,10 @@ scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_dw65b")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Spawn"
 libraries = {
 "": SubResource("AnimationLibrary_mri68")
 }
+autoplay = "Spawn"
 
 [node name="hitsound" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"

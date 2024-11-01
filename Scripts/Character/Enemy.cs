@@ -20,7 +20,9 @@ public partial class Enemy : Combatant
 	public AnimationPlayer ani;
 	NavigationAgent3D nav;
 	[Export]
-	public float pathUpdateRate = 1;
+	//NOTE: DO NOT SET THE RANDOMNESS VALUE ANY HIGHER THAN THE UPDATE RATE
+	//I added randomness to the update rate to make sure that all path calculations for each enemy is spread out across different game ticks.
+	public float pathUpdateRate = 1, updateRateRandomness = 0.2f;
 	double updateTimer = 0;
 	int pathPoint = 0;
 	[Export]
@@ -78,7 +80,7 @@ public partial class Enemy : Combatant
 		);
 		
 		//inputMovementVector = inputMovementVector.Normalized();
-		dir = new Vector3(inputMovementVector.X, 0, inputMovementVector.Y);
+		dir = new Vector3(inputMovementVector.X, 0, inputMovementVector.Y).Normalized();
 		
 	}
 	public override async void UpdateHealth(int delta, string tag)
@@ -146,7 +148,7 @@ public partial class Enemy : Combatant
 		if (updateTimer >= pathUpdateRate) 
 		{
 			GetTarget();
-			updateTimer = 0;
+			updateTimer = GD.RandRange(-updateRateRandomness, updateRateRandomness);
 		}
 		//GD.Print(Position.DirectionTo(nav.GetNextPathPosition()));
 			

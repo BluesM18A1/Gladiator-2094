@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3]
+[gd_scene load_steps=55 format=3 uid="uid://cr4htq0mvfuje"]
 
 [ext_resource type="Script" path="res://Scripts/Character/Player.cs" id="1"]
 [ext_resource type="PackedScene" path="res://Objects/Parts/PlayerGun.tscn" id="2"]
@@ -25,7 +25,10 @@
 [ext_resource type="AudioStream" uid="uid://jyk7mws2mi4w" path="res://Sounds/player.spawn.wav" id="19"]
 [ext_resource type="AudioStream" uid="uid://bqfo63ajpo7pi" path="res://Sounds/player.land.wav" id="20"]
 [ext_resource type="Script" path="res://Scripts/UI/FPScounter.cs" id="22"]
+[ext_resource type="Texture2D" uid="uid://bwj5yo8ickwqk" path="res://UI/pointerhandpress.png" id="22_e4lda"]
 [ext_resource type="StyleBox" uid="uid://7dwf4b41mx3j" path="res://UI/theme components/stylebox.normal.tres" id="23_nd5ns"]
+[ext_resource type="Texture2D" uid="uid://cqfuw686hvtyg" path="res://UI/pointerhand.png" id="23_qtn6w"]
+[ext_resource type="AudioStream" uid="uid://ck7vg71qfteyu" path="res://Sounds/UI/button.click.wav" id="24_71b86"]
 [ext_resource type="Script" path="res://Scripts/UI/TipOfTheDay.gd" id="24_u7th3"]
 [ext_resource type="AudioStream" uid="uid://oeckksf54l7" path="res://Sounds/announcer/gameover.wav" id="25_1yxbc"]
 [ext_resource type="PackedScene" uid="uid://enpv42tn5ph5" path="res://UI/PauseMenu.tscn" id="25_7v7wn"]
@@ -357,6 +360,114 @@ _data = {
 [sub_resource type="FontVariation" id="FontVariation_5ctu4"]
 base_font = ExtResource("16_htvrl")
 
+[sub_resource type="Animation" id="Animation_6g0xb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_eyhey")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2jis1"]
+resource_name = "buttonhover"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_qtn6w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.349066, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1c2kf"]
+resource_name = "press"
+length = 0.5
+step = 0.00694444
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0902778, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 75281, 1e+06, 1, 1),
+"update": 0,
+"values": [0.0, -2.44346, 0.0, -2.58309, 0.0]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../spawnSnd")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("24_71b86")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("23_qtn6w"), ExtResource("22_e4lda"), ExtResource("23_qtn6w")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ctku5"]
+_data = {
+"RESET": SubResource("Animation_6g0xb"),
+"buttonhover": SubResource("Animation_2jis1"),
+"press": SubResource("Animation_1c2kf")
+}
+
 [sub_resource type="Gradient" id="Gradient_fxqvf"]
 offsets = PackedFloat32Array(0, 0.191057, 0.341463, 0.439024, 0.53252, 0.630081, 0.882114, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
@@ -408,10 +519,10 @@ script = ExtResource("17")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Axel"]
 root_node = NodePath("../Wheels")
-autoplay = "Spin"
 libraries = {
 "": SubResource("AnimationLibrary_2d6o6")
 }
+autoplay = "Spin"
 
 [node name="Wheels" type="MeshInstance3D" parent="Axel"]
 mesh = ExtResource("15")
@@ -433,6 +544,12 @@ current = true
 fov = 100.0
 size = 0.1
 near = 0.01
+
+[node name="buttonchecker" type="RayCast3D" parent="Neck/Camera3D"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 128
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Gun" parent="Neck" node_paths=PackedStringArray("player") instance=ExtResource("2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.7)
@@ -462,12 +579,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource("11")
 expand_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="ScreenTransitions" type="AnimationPlayer" parent="HUD/ScreenFlash"]
-autoplay = "Enter"
 libraries = {
 "": SubResource("AnimationLibrary_tn3jt")
 }
+autoplay = "Enter"
 
 [node name="WeaponBar" type="Panel" parent="HUD"]
 self_modulate = Color(0, 1, 0, 1)
@@ -550,6 +668,9 @@ offset_top = -128.0
 offset_right = -247.0
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 90.0
+radial_fill_degrees = 90.0
+radial_center_offset = Vector2(-20, 128)
 nine_patch_stretch = true
 stretch_margin_left = 2
 stretch_margin_top = 2
@@ -560,9 +681,6 @@ texture_over = ExtResource("17_osgoa")
 texture_progress = ExtResource("18_8ec61")
 tint_over = Color(0.419608, 0.376471, 0.709804, 1)
 tint_progress = Color(0, 0, 1, 1)
-radial_initial_angle = 90.0
-radial_fill_degrees = 90.0
-radial_center_offset = Vector2(-20, 128)
 
 [node name="HealthNum" type="Label" parent="HUD/HealthMeter"]
 use_parent_material = true
@@ -598,6 +716,9 @@ offset_right = 1220.0
 scale = Vector2(-1, 1)
 value = 100.0
 fill_mode = 5
+radial_initial_angle = 90.0
+radial_fill_degrees = 90.0
+radial_center_offset = Vector2(-20, 128)
 nine_patch_stretch = true
 stretch_margin_left = 2
 stretch_margin_top = 2
@@ -608,9 +729,6 @@ texture_over = ExtResource("17_osgoa")
 texture_progress = ExtResource("18_8ec61")
 tint_over = Color(0.709804, 0.376471, 0.376471, 1)
 tint_progress = Color(1, 0, 0, 1)
-radial_initial_angle = 90.0
-radial_fill_degrees = 90.0
-radial_center_offset = Vector2(-20, 128)
 
 [node name="AmmoNum" type="Label" parent="HUD/FuelMeter"]
 use_parent_material = true
@@ -652,17 +770,26 @@ script = ExtResource("22")
 [node name="Crosshair" type="TextureRect" parent="HUD"]
 self_modulate = Color(0, 1, 0, 1)
 use_parent_material = true
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -12.0
-offset_top = -12.0
-offset_right = 12.0
-offset_bottom = 12.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.491
+anchor_top = 0.487
+anchor_right = 0.509
+anchor_bottom = 0.512
+offset_left = -0.480042
+offset_top = 0.47998
+offset_right = 0.47998
+offset_bottom = 0.47998
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(12, 12)
 texture = ExtResource("18_eyhey")
-expand_mode = 1
+expand_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Crosshair"]
+libraries = {
+"": SubResource("AnimationLibrary_ctku5")
+}
 
 [node name="GameOver" type="Control" parent="."]
 visible = false
@@ -761,6 +888,8 @@ clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 2560.0
+offset_bottom = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_bb8vi")

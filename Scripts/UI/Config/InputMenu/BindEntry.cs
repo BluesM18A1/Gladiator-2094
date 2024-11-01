@@ -7,7 +7,6 @@ public partial class BindEntry : Button
     public string inputAction;
     [Export] //only exporting for debugging purposes
     public int index;
-    public Control focusEater;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {

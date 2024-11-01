@@ -73,6 +73,7 @@ public partial class EnemyGun : Gun
 			RigidBodyBullet rblt = newBullet as RigidBodyBullet;
 			rblt.speed = ToGlobal(Position).DistanceTo(player.Position);
 		}
+		newBullet.AddToGroup("Enemy");
 		GetTree().CurrentScene.AddChild(newBullet);
 		//parent.GetTarget(); //find a new target
 		//parent.UpdatePath(parent.targetNavPos); //start over pathfinding using new target

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://co02vn7cv0pm"]
 
 [ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1"]
 [ext_resource type="Material" uid="uid://k58ud2cd51bl" path="res://Materials/enemies/dreadnaught.antennae.red.tres" id="2_rhu1u"]
@@ -162,10 +162,10 @@ omni_range = 0.605079
 omni_attenuation = 0.732043
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
-autoplay = "rotate"
 libraries = {
 "": SubResource("AnimationLibrary_g362h")
 }
+autoplay = "rotate"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.652822, 0)
