@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://gyxgtbj5rbk2"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/Flame.cs" id="1_rqcgg"]
+[ext_resource type="Script" uid="uid://c6et8vdrctmvx" path="res://Scripts/Projectiles/Flame.cs" id="1_rqcgg"]
 [ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://bqd3h300p0yah" path="res://Sounds/guns/flame.wav" id="3"]
 
@@ -58,8 +58,8 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fo47y"]
 _data = {
-"Flame": SubResource("4"),
-"RESET": SubResource("Animation_qh78w")
+&"Flame": SubResource("4"),
+&"RESET": SubResource("Animation_qh78w")
 }
 
 [node name="CharacterBody3D" type="CharacterBody3D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://co02vn7cv0pm"]
 
-[ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1"]
+[ext_resource type="Script" uid="uid://cisik8jilei52" path="res://Scripts/Character/Enemy.cs" id="1"]
 [ext_resource type="Material" uid="uid://k58ud2cd51bl" path="res://Materials/enemies/dreadnaught.antennae.red.tres" id="2_rhu1u"]
 [ext_resource type="Material" uid="uid://uduu1jvehoay" path="res://Materials/enemies/dreadnaught.antennae.blue.tres" id="3_ufdwq"]
 [ext_resource type="Material" path="res://Materials/enemies/siren.base.tres" id="4_kt0u1"]
@@ -45,7 +45,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g362h"]
 _data = {
-"rotate": SubResource("6")
+&"rotate": SubResource("6")
 }
 
 [sub_resource type="CylinderMesh" id="7"]
@@ -105,7 +105,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wcrds"]
 _data = {
-"Hurt": SubResource("10")
+&"Hurt": SubResource("10")
 }
 
 [node name="Dummy" type="CharacterBody3D" groups=["Enemies"]]

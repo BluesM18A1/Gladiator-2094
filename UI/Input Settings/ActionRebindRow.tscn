@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bqp5fsbbn0ddc"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Config/InputMenu/BindList.cs" id="1_l0yyf"]
+[ext_resource type="Script" uid="uid://dmo5mpyva2e2m" path="res://Scripts/UI/Config/InputMenu/BindList.cs" id="1_l0yyf"]
 [ext_resource type="PackedScene" uid="uid://m5oxs1d365pd" path="res://UI/Input Settings/BindEntry.tscn" id="2_1qf51"]
 [ext_resource type="StyleBox" uid="uid://7dwf4b41mx3j" path="res://UI/theme components/stylebox.normal.tres" id="2_ms87b"]
 [ext_resource type="PackedScene" uid="uid://da7rgo61hlkjd" path="res://UI/Input Settings/NewBindPlaceholder.tscn" id="3_0ljq6"]

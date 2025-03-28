@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://27wyotfrxsc4"]
 
 [ext_resource type="Material" uid="uid://drh5hq48ksbdt" path="res://Materials/pfx.sparks.tres" id="1_kgpel"]
 
@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p2rpe"]
 _data = {
-"new_animation": SubResource("Animation_dkrtv")
+&"new_animation": SubResource("Animation_dkrtv")
 }
 
 [node name="CPUParticles3D" type="CPUParticles3D"]

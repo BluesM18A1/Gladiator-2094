@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://upsn6fd6kbkg"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1_j8nhq"]
+[ext_resource type="Script" uid="uid://b5o6mwjov6gny" path="res://Scripts/Projectiles/Bullet.cs" id="1_j8nhq"]
 [ext_resource type="Material" uid="uid://dpdqnkleupx7d" path="res://Materials/bullets/bullet.repeater.material" id="2"]
 
 [sub_resource type="SphereMesh" id="1"]

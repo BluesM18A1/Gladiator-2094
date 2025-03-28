@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://chhfjicw0xvlp"]
 
-[ext_resource type="Script" path="res://Scripts/ParticleDespawn.cs" id="1_mf4dw"]
+[ext_resource type="Script" uid="uid://dqh4mpr8k5gcc" path="res://Scripts/ParticleDespawn.cs" id="1_mf4dw"]
 [ext_resource type="PackedScene" path="res://Objects/Bullets/Player.Buckshot.tscn" id="2_afcv3"]
 
 [node name="ShotgunShell" type="CPUParticles3D"]

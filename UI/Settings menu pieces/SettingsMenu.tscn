@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://onk3sflotdis"]
 
 [ext_resource type="Theme" uid="uid://dhun1kq4ag7ia" path="res://default_theme.tres" id="1_1cacq"]
-[ext_resource type="PackedScene" uid="uid://b5dhjhihhfw35" path="res://UI/Settings menu pieces/ControlPanel.tscn" id="2_k4ode"]
+[ext_resource type="PackedScene" uid="uid://bjnlqdwq6m7af" path="res://UI/Settings menu pieces/ControlPanel.tscn" id="2_k4ode"]
 [ext_resource type="Texture2D" uid="uid://w121xv8ts4m1" path="res://UI/icons/settings.webp" id="15_4ycx5"]
-[ext_resource type="Script" path="res://Scripts/UI/Config/ConfigFileControlButton.cs" id="16_sib8r"]
+[ext_resource type="Script" uid="uid://blhkqenj78hh1" path="res://Scripts/UI/Config/ConfigFileControlButton.cs" id="16_sib8r"]
 [ext_resource type="Texture2D" uid="uid://u4lguqejyio" path="res://UI/icons/reset.webp" id="17_6j4sk"]
 [ext_resource type="Texture2D" uid="uid://b21mjtjjvcj3u" path="res://UI/icons/save.webp" id="18_6546x"]
 [ext_resource type="Texture2D" uid="uid://q1q84ny4jcua" path="res://UI/icons/exit.webp" id="19_g2tpo"]
-[ext_resource type="Script" path="res://Scripts/UI/VisibilityToggle.cs" id="20_wrn4w"]
+[ext_resource type="Script" uid="uid://dlw5k7dlrsmro" path="res://Scripts/UI/VisibilityToggle.cs" id="20_wrn4w"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3

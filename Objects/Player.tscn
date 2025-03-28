@@ -1,7 +1,7 @@
 [gd_scene load_steps=55 format=3 uid="uid://cr4htq0mvfuje"]
 
-[ext_resource type="Script" path="res://Scripts/Character/Player.cs" id="1"]
-[ext_resource type="PackedScene" path="res://Objects/Parts/PlayerGun.tscn" id="2"]
+[ext_resource type="Script" uid="uid://dcx8d4oh8cpse" path="res://Scripts/Character/Player.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://brppcyawhkx8f" path="res://Objects/Parts/PlayerGun.tscn" id="2"]
 [ext_resource type="Material" path="res://Materials/player.body.tres" id="2_lev32"]
 [ext_resource type="Texture2D" uid="uid://c550pddtc5rc3" path="res://UI/icons/icon.grenade.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c8sodcrovwjd" path="res://UI/icons/icon.flamethrower.png" id="5"]
@@ -18,18 +18,18 @@
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="15"]
 [ext_resource type="FontFile" uid="uid://jknatkcprhb2" path="res://UI/fonts/bitwise.ttf" id="16_htvrl"]
 [ext_resource type="Texture2D" uid="uid://c2r2l5oijwo2a" path="res://UI/meter.under.png" id="16_qtrl1"]
-[ext_resource type="Script" path="res://Scripts/Character/AxelAnimation.cs" id="17"]
+[ext_resource type="Script" uid="uid://qlovsfb5w13y" path="res://Scripts/Character/AxelAnimation.cs" id="17"]
 [ext_resource type="Texture2D" uid="uid://6u7i04dfkwwn" path="res://UI/meter.over.png" id="17_osgoa"]
 [ext_resource type="Texture2D" uid="uid://yioem2q1x4rq" path="res://UI/meter.fill.png" id="18_8ec61"]
 [ext_resource type="Texture2D" uid="uid://84ytppwgoysm" path="res://UI/crosshair.png" id="18_eyhey"]
 [ext_resource type="AudioStream" uid="uid://jyk7mws2mi4w" path="res://Sounds/player.spawn.wav" id="19"]
 [ext_resource type="AudioStream" uid="uid://bqfo63ajpo7pi" path="res://Sounds/player.land.wav" id="20"]
-[ext_resource type="Script" path="res://Scripts/UI/FPScounter.cs" id="22"]
+[ext_resource type="Script" uid="uid://c77aprq7hc7x1" path="res://Scripts/UI/FPScounter.cs" id="22"]
 [ext_resource type="Texture2D" uid="uid://bwj5yo8ickwqk" path="res://UI/pointerhandpress.png" id="22_e4lda"]
 [ext_resource type="StyleBox" uid="uid://7dwf4b41mx3j" path="res://UI/theme components/stylebox.normal.tres" id="23_nd5ns"]
 [ext_resource type="Texture2D" uid="uid://cqfuw686hvtyg" path="res://UI/pointerhand.png" id="23_qtn6w"]
 [ext_resource type="AudioStream" uid="uid://ck7vg71qfteyu" path="res://Sounds/UI/button.click.wav" id="24_71b86"]
-[ext_resource type="Script" path="res://Scripts/UI/TipOfTheDay.gd" id="24_u7th3"]
+[ext_resource type="Script" uid="uid://bfkhxoeqteyjn" path="res://Scripts/UI/TipOfTheDay.gd" id="24_u7th3"]
 [ext_resource type="AudioStream" uid="uid://oeckksf54l7" path="res://Sounds/announcer/gameover.wav" id="25_1yxbc"]
 [ext_resource type="PackedScene" uid="uid://enpv42tn5ph5" path="res://UI/PauseMenu.tscn" id="25_7v7wn"]
 
@@ -57,7 +57,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2d6o6"]
 _data = {
-"Spin": SubResource("4")
+&"Spin": SubResource("4")
 }
 
 [sub_resource type="SphereMesh" id="5"]
@@ -351,10 +351,10 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tn3jt"]
 _data = {
-"Death": SubResource("Animation_ybavb"),
-"Enter": SubResource("12"),
-"Hurt": SubResource("13"),
-"RESET": SubResource("Animation_m5mut")
+&"Death": SubResource("Animation_ybavb"),
+&"Enter": SubResource("12"),
+&"Hurt": SubResource("13"),
+&"RESET": SubResource("Animation_m5mut")
 }
 
 [sub_resource type="FontVariation" id="FontVariation_5ctu4"]
@@ -463,9 +463,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ctku5"]
 _data = {
-"RESET": SubResource("Animation_6g0xb"),
-"buttonhover": SubResource("Animation_2jis1"),
-"press": SubResource("Animation_1c2kf")
+&"RESET": SubResource("Animation_6g0xb"),
+&"buttonhover": SubResource("Animation_2jis1"),
+&"press": SubResource("Animation_1c2kf")
 }
 
 [sub_resource type="Gradient" id="Gradient_fxqvf"]

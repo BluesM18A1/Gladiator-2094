@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwbhjxlkt11uo"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/Bullet.cs" id="1"]
+[ext_resource type="Script" uid="uid://b5o6mwjov6gny" path="res://Scripts/Projectiles/Bullet.cs" id="1"]
 [ext_resource type="Material" uid="uid://dpdqnkleupx7d" path="res://Materials/bullets/bullet.repeater.material" id="2"]
 [ext_resource type="PackedScene" path="res://Objects/Effects/Sparks.Blue.GPU.tscn" id="2_74xwo"]
 

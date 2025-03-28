@@ -1,14 +1,14 @@
 [gd_scene load_steps=34 format=3 uid="uid://4qc5ir0e2f0g"]
 
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemy.hit.wav" id="1"]
-[ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_c36ak"]
+[ext_resource type="Script" uid="uid://cisik8jilei52" path="res://Scripts/Character/Enemy.cs" id="1_c36ak"]
 [ext_resource type="PackedScene" uid="uid://dus8ffj5u84qx" path="res://Objects/Bullets/Enemy.Repeater.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dnxkom1waq4pa" path="res://Objects/Effects/Explosion.Enemy.tscn" id="2_31d6g"]
 [ext_resource type="SphereMesh" uid="uid://d3pou1s4dy78t" path="res://Materials/enemies/tortoise.body.tres" id="3"]
-[ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="3_4wult"]
+[ext_resource type="Script" uid="uid://ips5idabqnfp" path="res://Scripts/Character/AutoAim.cs" id="3_4wult"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
 [ext_resource type="ArrayMesh" uid="uid://6mbugpm8uj35" path="res://Models/gatlingGun.obj" id="5"]
-[ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="7_rjaq5"]
+[ext_resource type="Script" uid="uid://dr7n0dv463r00" path="res://Scripts/Weapons/EnemyGun.cs" id="7_rjaq5"]
 [ext_resource type="Material" uid="uid://bfqcr6pb7rad3" path="res://Materials/metal.grey.material" id="7_xm7pb"]
 [ext_resource type="Material" path="res://Materials/gun.barrel.inside.tres" id="8_h4jxu"]
 [ext_resource type="AudioStream" uid="uid://cnvsvx36maue" path="res://Sounds/guns/repeater2.wav" id="9_e55cu"]
@@ -76,7 +76,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fibfu"]
 _data = {
-"speen": SubResource("7")
+&"speen": SubResource("7")
 }
 
 [sub_resource type="Animation" id="8"]
@@ -97,7 +97,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r6qob"]
 _data = {
-"speen": SubResource("8")
+&"speen": SubResource("8")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8e8o"]
@@ -689,10 +689,10 @@ tracks/13/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ytnxh"]
 _data = {
-"DeSpawn": SubResource("Animation_t1gvw"),
-"Hurt": SubResource("9"),
-"RESET": SubResource("Animation_ru8cm"),
-"Spawn": SubResource("Animation_meq1b")
+&"DeSpawn": SubResource("Animation_t1gvw"),
+&"Hurt": SubResource("9"),
+&"RESET": SubResource("Animation_ru8cm"),
+&"Spawn": SubResource("Animation_meq1b")
 }
 
 [node name="Tortoise" type="CharacterBody3D" groups=["Enemies"]]

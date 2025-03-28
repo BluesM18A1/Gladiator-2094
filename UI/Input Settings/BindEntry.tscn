@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://m5oxs1d365pd"]
 
 [ext_resource type="Texture2D" uid="uid://dpreb7jvcj8kv" path="res://UI/icons/minus.webp" id="5"]
-[ext_resource type="Script" path="res://Scripts/UI/Config/InputMenu/BindEntry.cs" id="7"]
+[ext_resource type="Script" uid="uid://fum4fjquxqt4" path="res://Scripts/UI/Config/InputMenu/BindEntry.cs" id="7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3t4k"]
 content_margin_left = 8.0

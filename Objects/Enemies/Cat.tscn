@@ -1,17 +1,17 @@
 [gd_scene load_steps=26 format=3 uid="uid://jgft12hx0mkb"]
 
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemy.hit.wav" id="1"]
-[ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_w5ak5"]
+[ext_resource type="Script" uid="uid://cisik8jilei52" path="res://Scripts/Character/Enemy.cs" id="1_w5ak5"]
 [ext_resource type="PackedScene" uid="uid://dnxkom1waq4pa" path="res://Objects/Effects/Explosion.Enemy.tscn" id="2_a4l0b"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="3"]
 [ext_resource type="ArrayMesh" uid="uid://dih0kmhih14lk" path="res://Models/singleAxel.obj" id="4"]
-[ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="4_2gnvt"]
+[ext_resource type="Script" uid="uid://ips5idabqnfp" path="res://Scripts/Character/AutoAim.cs" id="4_2gnvt"]
 [ext_resource type="ArrayMesh" uid="uid://cakq5i2rkagtk" path="res://Models/catHead.obj" id="5"]
 [ext_resource type="Material" uid="uid://dv6lpl6i4hpsx" path="res://Materials/enemies/cat.head.tres" id="6_0qfuj"]
 [ext_resource type="Material" path="res://Materials/gun.barrel.inside.tres" id="8_3xxrl"]
 [ext_resource type="PackedScene" uid="uid://2tt7rbeqhl0s" path="res://Objects/Bullets/CatShot.tscn" id="9"]
 [ext_resource type="Material" uid="uid://d2b32wxjsejr1" path="res://Materials/enemies/gun.buckshot.barrel.tres" id="10"]
-[ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="10_4h351"]
+[ext_resource type="Script" uid="uid://dr7n0dv463r00" path="res://Scripts/Weapons/EnemyGun.cs" id="10_4h351"]
 [ext_resource type="AudioStream" uid="uid://j7yjgna5x5tg" path="res://Sounds/guns/buckshot.wav" id="11_l7gqs"]
 [ext_resource type="Material" uid="uid://miaddu01mbke" path="res://Materials/enemies/gun.buckshot.stock.tres" id="12"]
 [ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemy.spawn.wav" id="14_0qx6x"]
@@ -425,10 +425,10 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ik4fi"]
 _data = {
-"DeSpawn": SubResource("Animation_1eqag"),
-"Hurt": SubResource("5"),
-"RESET": SubResource("Animation_0j8ig"),
-"Spawn": SubResource("Animation_ubhkr")
+&"DeSpawn": SubResource("Animation_1eqag"),
+&"Hurt": SubResource("5"),
+&"RESET": SubResource("Animation_0j8ig"),
+&"Spawn": SubResource("Animation_ubhkr")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7xxo"]

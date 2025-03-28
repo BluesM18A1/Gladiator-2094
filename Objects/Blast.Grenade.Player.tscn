@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://3tu3wy40q70b"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/Explosion.cs" id="1_qy0hk"]
+[ext_resource type="Script" uid="uid://dshvgsap13au" path="res://Scripts/Projectiles/Explosion.cs" id="1_qy0hk"]
 [ext_resource type="PackedScene" uid="uid://b3b2fdnmpbrrk" path="res://Objects/Effects/Explosion.Grenade.Player.tscn" id="2_acvw7"]
 [ext_resource type="Shader" uid="uid://cvjamfgny2rq7" path="res://Materials/shaders/grenade_blast.vishader.tres" id="3_t2uav"]
 
@@ -88,8 +88,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0jyqp"]
 _data = {
-"RESET": SubResource("Animation_rcpe7"),
-"poof": SubResource("Animation_3358f")
+&"RESET": SubResource("Animation_rcpe7"),
+&"poof": SubResource("Animation_3358f")
 }
 
 [node name="RigidBody3D" type="Area3D"]

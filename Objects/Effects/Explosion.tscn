@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://ckh3oj64axjp1"]
 
 [ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="1"]
 [ext_resource type="AudioStream" uid="uid://dq1qtmko0ju1b" path="res://Sounds/guns/grenade.explosion.wav" id="3"]
@@ -18,7 +18,7 @@ material = SubResource("1")
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="Curve" id="Curve_j32yc"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -42,7 +42,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p2rpe"]
 _data = {
-"new_animation": SubResource("Animation_dkrtv")
+&"new_animation": SubResource("Animation_dkrtv")
 }
 
 [node name="Explosion" type="CPUParticles3D"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://cxgeu5p35lsw6"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1"]
-[ext_resource type="PackedScene" path="res://Objects/Blast.Grenade.Player.tscn" id="2"]
+[ext_resource type="Script" uid="uid://crelm6gpo73v2" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://3tu3wy40q70b" path="res://Objects/Blast.Grenade.Player.tscn" id="2"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.grenade.tres" id="3"]
 
 [sub_resource type="SphereMesh" id="1"]

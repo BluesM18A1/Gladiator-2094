@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://bxqchyeyj2tx8"]
 
 [ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle.vortex.png" id="1_7d8k8"]
 
@@ -77,8 +77,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x635x"]
 _data = {
-"RESET": SubResource("Animation_4ptil"),
-"start": SubResource("Animation_li2pl")
+&"RESET": SubResource("Animation_4ptil"),
+&"start": SubResource("Animation_li2pl")
 }
 
 [node name="Node3D" type="CPUParticles3D"]

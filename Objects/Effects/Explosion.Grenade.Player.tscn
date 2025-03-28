@@ -18,8 +18,7 @@ material = SubResource("1")
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="Curve" id="Curve_oduqw"]
-min_value = -8.0
-max_value = 16.0
+_limits = [-8.0, 16.0, 0.0, 1.0]
 _data = [Vector2(0, 16), 0.0, 0.0, 0, 0, Vector2(0.281818, -8), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -28,7 +27,7 @@ offsets = PackedFloat32Array(0, 0.793651)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Curve" id="Curve_petvy"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -52,7 +51,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p2rpe"]
 _data = {
-"new_animation": SubResource("Animation_dkrtv")
+&"new_animation": SubResource("Animation_dkrtv")
 }
 
 [node name="Explosion" type="CPUParticles3D"]

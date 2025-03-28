@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://blnvfbsf3bul"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1_il6xd"]
+[ext_resource type="Script" uid="uid://crelm6gpo73v2" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1_il6xd"]
 [ext_resource type="PackedScene" uid="uid://dfabjpp8sqjr6" path="res://Objects/Blast.Grenade.Enemy.tscn" id="2_va6hu"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.grenade.tres" id="3"]
 

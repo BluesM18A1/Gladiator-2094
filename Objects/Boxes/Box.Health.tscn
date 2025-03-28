@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://dvn5ed5fbkyg"]
 
-[ext_resource type="Script" path="res://Scripts/ItemBox.cs" id="1"]
+[ext_resource type="Script" uid="uid://b7ogbxp8giwle" path="res://Scripts/ItemBox.cs" id="1"]
 [ext_resource type="ArrayMesh" uid="uid://bhyw0pu3mfehy" path="res://Models/itemBox.obj" id="2"]
 [ext_resource type="Material" path="res://Materials/items/icon.health.tres" id="3"]
 [ext_resource type="Material" path="res://Materials/items/box.health.tres" id="4"]
@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_26hbl"]
 _data = {
-"rotate": SubResource("4")
+&"rotate": SubResource("4")
 }
 
 [node name="Box_Health" type="Area3D"]

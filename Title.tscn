@@ -1,6 +1,6 @@
 [gd_scene load_steps=48 format=3 uid="uid://7lgl0xbdveud"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Title.cs" id="1"]
+[ext_resource type="Script" uid="uid://di8ei438msw0j" path="res://Scripts/UI/Title.cs" id="1"]
 [ext_resource type="Theme" uid="uid://dhun1kq4ag7ia" path="res://default_theme.tres" id="1_oi46c"]
 [ext_resource type="Material" uid="uid://bjghtco8legbw" path="res://Materials/grid.material" id="2"]
 [ext_resource type="Texture2D" uid="uid://k0llv3y5brlq" path="res://UI/logo.png" id="3_o12s8"]
@@ -8,15 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://cqdyof8tyaayc" path="res://UI/icons/arrow.left.hover.svg" id="6_yofpf"]
 [ext_resource type="Texture2D" uid="uid://dbk8gd2h38l7m" path="res://UI/icons/arrow.right.svg" id="7_54vi1"]
 [ext_resource type="Texture2D" uid="uid://d1w584fltn1lo" path="res://UI/icons/arrow.right.hover.svg" id="8_d06i6"]
-[ext_resource type="Script" path="res://Scripts/UI/DiffSlider.cs" id="9_px41v"]
+[ext_resource type="Script" uid="uid://b53si03nteylq" path="res://Scripts/UI/DiffSlider.cs" id="9_px41v"]
 [ext_resource type="AudioStream" uid="uid://boe1qh4dd2x6j" path="res://Sounds/UI/bootup.wav" id="10"]
-[ext_resource type="Script" path="res://Scripts/UI/VisibilityToggle.cs" id="10_yp60q"]
+[ext_resource type="Script" uid="uid://dlw5k7dlrsmro" path="res://Scripts/UI/VisibilityToggle.cs" id="10_yp60q"]
 [ext_resource type="AudioStream" uid="uid://ck7vg71qfteyu" path="res://Sounds/UI/button.click.wav" id="11_lipw4"]
 [ext_resource type="PackedScene" uid="uid://bjnlqdwq6m7af" path="res://UI/Settings menu pieces/ControlPanel.tscn" id="12_gahd1"]
 [ext_resource type="Environment" uid="uid://tisncrscuvnd" path="res://default_env.tres" id="13"]
 [ext_resource type="Texture2D" uid="uid://w121xv8ts4m1" path="res://UI/icons/settings.webp" id="13_m4pqr"]
 [ext_resource type="Texture2D" uid="uid://duwflolcp583s" path="res://UI/icons/icon.png" id="14_c8dyp"]
-[ext_resource type="Script" path="res://Scripts/UI/Config/ConfigFileControlButton.cs" id="14_q7khv"]
+[ext_resource type="Script" uid="uid://blhkqenj78hh1" path="res://Scripts/UI/Config/ConfigFileControlButton.cs" id="14_q7khv"]
 [ext_resource type="Material" uid="uid://bei3u6edkrih3" path="res://Materials/environment/outerWalls.tres" id="15_50q2k"]
 [ext_resource type="Texture2D" uid="uid://u4lguqejyio" path="res://UI/icons/reset.webp" id="15_ft3vb"]
 [ext_resource type="Texture2D" uid="uid://b21mjtjjvcj3u" path="res://UI/icons/save.webp" id="16_0rhbt"]
@@ -27,7 +27,7 @@
 [ext_resource type="Material" path="res://Materials/environment/blocks/block.blue.tres" id="19_81q68"]
 [ext_resource type="Material" uid="uid://llrqkmc51vuk" path="res://Materials/environment/bridge.RB.tres" id="21_xl4tb"]
 [ext_resource type="Material" uid="uid://bt5jpr4ac4btf" path="res://Materials/environment/bridge.YG.tres" id="22_mgmu3"]
-[ext_resource type="Script" path="res://Scripts/UI/WaveChanger.cs" id="23"]
+[ext_resource type="Script" uid="uid://166dlodqppq3" path="res://Scripts/UI/WaveChanger.cs" id="23"]
 
 [sub_resource type="Gradient" id="1"]
 offsets = PackedFloat32Array(1)
@@ -110,7 +110,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nuwtp"]
 _data = {
-"rotate": SubResource("29")
+&"rotate": SubResource("29")
 }
 
 [node name="Node3D" type="Node3D"]
@@ -871,7 +871,7 @@ environment = ExtResource("13")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Arena"]
 libraries = {
-"": SubResource("AnimationLibrary_nuwtp")
+&"": SubResource("AnimationLibrary_nuwtp")
 }
 autoplay = "rotate"
 

@@ -2,6 +2,21 @@
 
 [ext_resource type="FontFile" uid="uid://jknatkcprhb2" path="res://UI/fonts/bitwise.ttf" id="2_0s4p3"]
 
+[sub_resource type="Animation" id="Animation_swktx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 32)]
+}
+
 [sub_resource type="Animation" id="Animation_f77xt"]
 resource_name = "new_animation"
 tracks/0/type = "method"
@@ -31,25 +46,10 @@ tracks/1/keys = {
 "values": [Vector2(0, 32), Vector2(0, 128)]
 }
 
-[sub_resource type="Animation" id="Animation_swktx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 32)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqupg"]
 _data = {
-"RESET": SubResource("Animation_swktx"),
-"new_animation": SubResource("Animation_f77xt")
+&"RESET": SubResource("Animation_swktx"),
+&"new_animation": SubResource("Animation_f77xt")
 }
 
 [node name="pointsTag" type="Label3D"]

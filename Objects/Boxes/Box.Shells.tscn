@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://b58q5mg5nrhgp"]
 
-[ext_resource type="Script" path="res://Scripts/ItemBox.cs" id="1"]
+[ext_resource type="Script" uid="uid://b7ogbxp8giwle" path="res://Scripts/ItemBox.cs" id="1"]
 [ext_resource type="ArrayMesh" uid="uid://bhyw0pu3mfehy" path="res://Models/itemBox.obj" id="2"]
 [ext_resource type="Material" path="res://Materials/items/icon.shells.tres" id="3_ovaf7"]
 [ext_resource type="Material" path="res://Materials/items/box.shells.tres" id="4_k2s36"]
@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m716b"]
 _data = {
-"rotate": SubResource("4")
+&"rotate": SubResource("4")
 }
 
 [node name="Box_Ammo" type="Area3D"]

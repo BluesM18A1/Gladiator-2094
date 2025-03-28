@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dm02qlpsy2o1u"]
 
-[ext_resource type="Script" path="res://Scripts/UI/VisibilityToggle.cs" id="1_od4w2"]
+[ext_resource type="Script" uid="uid://dlw5k7dlrsmro" path="res://Scripts/UI/VisibilityToggle.cs" id="1_od4w2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1001"]
 bg_color = Color(0, 0, 0, 0.733333)

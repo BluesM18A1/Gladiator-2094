@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dfabjpp8sqjr6"]
 
-[ext_resource type="Script" path="res://Scripts/Projectiles/Explosion.cs" id="1_kltle"]
+[ext_resource type="Script" uid="uid://dshvgsap13au" path="res://Scripts/Projectiles/Explosion.cs" id="1_kltle"]
 [ext_resource type="PackedScene" uid="uid://bdhhd576abgqo" path="res://Objects/Effects/Explosion.Grenade.Enemy.tscn" id="2_crxe5"]
 [ext_resource type="Shader" uid="uid://cvjamfgny2rq7" path="res://Materials/shaders/grenade_blast.vishader.tres" id="3_qohao"]
 
@@ -87,8 +87,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0jyqp"]
 _data = {
-"RESET": SubResource("Animation_rcpe7"),
-"poof": SubResource("Animation_3358f")
+&"RESET": SubResource("Animation_rcpe7"),
+&"poof": SubResource("Animation_3358f")
 }
 
 [node name="Area3D" type="Area3D"]

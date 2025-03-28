@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://enpv42tn5ph5"]
 
 [ext_resource type="Theme" uid="uid://dhun1kq4ag7ia" path="res://default_theme.tres" id="1_sutc8"]
-[ext_resource type="Script" path="res://Scripts/UI/PauseScreen.cs" id="2_x8hej"]
+[ext_resource type="Script" uid="uid://xsdvmnyw54yv" path="res://Scripts/UI/PauseScreen.cs" id="2_x8hej"]
 [ext_resource type="AudioStream" uid="uid://deqfs7eu3c7q7" path="res://Sounds/UI/button.hover.wav" id="3_5jsih"]
 [ext_resource type="StyleBox" uid="uid://7dwf4b41mx3j" path="res://UI/theme components/stylebox.normal.tres" id="3_xkw5o"]
-[ext_resource type="PackedScene" path="res://UI/Settings menu pieces/ControlPanel.tscn" id="4_efjmx"]
+[ext_resource type="PackedScene" uid="uid://bjnlqdwq6m7af" path="res://UI/Settings menu pieces/ControlPanel.tscn" id="4_efjmx"]
 [ext_resource type="Texture2D" uid="uid://dv8eqq8tio112" path="res://UI/icons/play.webp" id="5_osojs"]
 [ext_resource type="Texture2D" uid="uid://q1q84ny4jcua" path="res://UI/icons/exit.webp" id="6_04kf0"]
 [ext_resource type="Texture2D" uid="uid://u4lguqejyio" path="res://UI/icons/reset.webp" id="6_idjrw"]
-[ext_resource type="Script" path="res://Scripts/UI/Config/ConfigFileControlButton.cs" id="7_mgv4q"]
+[ext_resource type="Script" uid="uid://blhkqenj78hh1" path="res://Scripts/UI/Config/ConfigFileControlButton.cs" id="7_mgv4q"]
 [ext_resource type="Texture2D" uid="uid://b21mjtjjvcj3u" path="res://UI/icons/save.webp" id="8_aqbnw"]
 
 [sub_resource type="Gradient" id="1"]

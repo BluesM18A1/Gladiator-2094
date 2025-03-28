@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://b6s7wuugwpqpv"]
 
-[ext_resource type="Script" path="res://Scripts/Character/Enemy.cs" id="1_hpjkc"]
+[ext_resource type="Script" uid="uid://cisik8jilei52" path="res://Scripts/Character/Enemy.cs" id="1_hpjkc"]
 [ext_resource type="ArrayMesh" uid="uid://blufyyhpfrumx" path="res://Models/basicGun.obj" id="2"]
 [ext_resource type="PackedScene" uid="uid://dnxkom1waq4pa" path="res://Objects/Effects/Explosion.Enemy.tscn" id="2_lps55"]
 [ext_resource type="Material" uid="uid://cxo7eotnrn1ov" path="res://Materials/enemies/siren.bulb.red.tres" id="3_wfcvo"]
@@ -8,11 +8,11 @@
 [ext_resource type="Material" uid="uid://5qw86yab78yt" path="res://Materials/enemies/siren.bulb.blue.tres" id="4_r4vvi"]
 [ext_resource type="AudioStream" uid="uid://cxrg7y62cfjh" path="res://Sounds/enemy.hit.wav" id="5"]
 [ext_resource type="Material" uid="uid://ucphe50m6lsk" path="res://Materials/enemies/siren.bulb.tres" id="7"]
-[ext_resource type="Script" path="res://Scripts/Character/AutoAim.cs" id="7_2rfor"]
+[ext_resource type="Script" uid="uid://ips5idabqnfp" path="res://Scripts/Character/AutoAim.cs" id="7_2rfor"]
 [ext_resource type="Material" path="res://Materials/enemies/siren.base.tres" id="8"]
 [ext_resource type="Material" path="res://Materials/gun.barrel.inside.tres" id="8_rlkg2"]
 [ext_resource type="Material" uid="uid://bfqcr6pb7rad3" path="res://Materials/metal.grey.material" id="9_fc34x"]
-[ext_resource type="Script" path="res://Scripts/Weapons/EnemyGun.cs" id="10_hvpop"]
+[ext_resource type="Script" uid="uid://dr7n0dv463r00" path="res://Scripts/Weapons/EnemyGun.cs" id="10_hvpop"]
 [ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle.vortex.png" id="12_vyey8"]
 [ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemy.spawn.wav" id="14_2jie5"]
 
@@ -48,7 +48,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4wsva"]
 _data = {
-"rotate": SubResource("6")
+&"rotate": SubResource("6")
 }
 
 [sub_resource type="CylinderMesh" id="7"]
@@ -483,10 +483,10 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mri68"]
 _data = {
-"DeSpawn": SubResource("Animation_i7r5e"),
-"Hurt": SubResource("10"),
-"RESET": SubResource("Animation_gvmfm"),
-"Spawn": SubResource("Animation_aperl")
+&"DeSpawn": SubResource("Animation_i7r5e"),
+&"Hurt": SubResource("10"),
+&"RESET": SubResource("Animation_gvmfm"),
+&"Spawn": SubResource("Animation_aperl")
 }
 
 [node name="Siren" type="CharacterBody3D" groups=["Enemies"]]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=16 format=3 uid="uid://nhopj6036jlq"]
 
 [ext_resource type="AudioStream" uid="uid://b1lvmkd0g6b2h" path="res://Sounds/boss.explosion.wav" id="3_5jaq3"]
 [ext_resource type="Texture2D" uid="uid://bn60b1vldyvg5" path="res://Textures/particle2.png" id="3_b1w71"]
@@ -26,7 +26,7 @@ offsets = PackedFloat32Array(0, 0.53012, 0.863454, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.899598, 1, 1, 1, 0.676621, 1, 1, 1, 0)
 
 [sub_resource type="Curve" id="3"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -160,8 +160,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ma1g7"]
 _data = {
-"RESET": SubResource("Animation_w8wlm"),
-"new_animation": SubResource("Animation_orqg7")
+&"RESET": SubResource("Animation_w8wlm"),
+&"new_animation": SubResource("Animation_orqg7")
 }
 
 [node name="CPUParticles3D" type="CPUParticles3D"]
