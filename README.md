@@ -1,5 +1,5 @@
 # Gladiator-2094
-Arcade-style Bullet Hell FPS
+Arcade-style boomer shooter.
 
 Based off of a school project done many years ago called "Gladiator 2092"  
   (more of that tale is told here: https://www.claymorelabs.xyz/glad94.html)
