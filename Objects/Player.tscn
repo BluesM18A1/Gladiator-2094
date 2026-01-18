@@ -196,10 +196,10 @@ tracks/8/path = NodePath("../../TVstatic:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 2.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="12"]
@@ -429,7 +429,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0902778, 0.1, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 75281, 1e+06, 1, 1),
+"transitions": PackedFloat32Array(1, 75281, 1000000, 1, 1),
 "update": 0,
 "values": [0.0, -2.44346, 0.0, -2.58309, 0.0]
 }
@@ -483,8 +483,8 @@ domain_warp_enabled = true
 resource_local_to_scene = true
 width = 256
 height = 240
-color_ramp = SubResource("Gradient_fxqvf")
 noise = SubResource("FastNoiseLite_6k7h3")
+color_ramp = SubResource("Gradient_fxqvf")
 
 [node name="Player" type="CharacterBody3D" groups=["Players"]]
 collision_layer = 2
@@ -520,7 +520,7 @@ script = ExtResource("17")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Axel"]
 root_node = NodePath("../Wheels")
 libraries = {
-"": SubResource("AnimationLibrary_2d6o6")
+&"": SubResource("AnimationLibrary_2d6o6")
 }
 autoplay = "Spin"
 
@@ -583,7 +583,7 @@ metadata/_edit_lock_ = true
 
 [node name="ScreenTransitions" type="AnimationPlayer" parent="HUD/ScreenFlash"]
 libraries = {
-"": SubResource("AnimationLibrary_tn3jt")
+&"": SubResource("AnimationLibrary_tn3jt")
 }
 autoplay = "Enter"
 
@@ -788,7 +788,7 @@ expand_mode = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Crosshair"]
 libraries = {
-"": SubResource("AnimationLibrary_ctku5")
+&"": SubResource("AnimationLibrary_ctku5")
 }
 
 [node name="GameOver" type="Control" parent="."]
@@ -888,8 +888,7 @@ clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2560.0
-offset_bottom = 1920.0
+offset_bottom = 0.0018310547
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_bb8vi")

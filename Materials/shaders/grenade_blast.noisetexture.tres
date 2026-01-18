@@ -6,5 +6,5 @@ frequency = 0.062
 [resource]
 width = 128
 height = 256
-in_3d_space = true
 noise = SubResource("FastNoiseLite_io8yp")
+in_3d_space = true
