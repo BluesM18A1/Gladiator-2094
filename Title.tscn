@@ -289,6 +289,7 @@ offset_right = 635.0
 offset_bottom = -58.0
 
 [node name="Multiplayer" type="Button" parent="UI/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Coming to this game at an unknown point in the future."
@@ -359,7 +360,7 @@ offset_right = -2.84003
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-text = "Beta Version 0.3.0                                                            Game by Claymore Labs"
+text = "Beta Version 0.3.3                                                            Game by Claymore Labs"
 horizontal_alignment = 1
 vertical_alignment = 1
 

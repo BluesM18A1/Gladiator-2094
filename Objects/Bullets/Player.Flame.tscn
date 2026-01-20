@@ -70,7 +70,7 @@ wall_min_slide_angle = 0.349066
 [node name="ProjectileAttackAttributes" type="Node" parent="."]
 script = ExtResource("2_8dohw")
 damage = -8
-speed = 100.0
+speed = 125.0
 randomSpread = 15.0
 lifetime = 0.3
 metadata/_custom_type_script = "uid://dsp00a6o7tj3y"
