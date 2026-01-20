@@ -29,8 +29,8 @@ public partial class DamageSurface : Area3D
 		if (body.HasMethod("UpdateHealth"))
 		{
 			bodies.Add(body);
-			if (!body.IsConnected(SignalName.DealDamage,new Callable(body,"UpdateHealth")))	
-				Connect(SignalName.DealDamage,new Callable(body,"UpdateHealth"));
+			if (IsConnected(SignalName.DealDamage,new Callable(body,"UpdateHealth")))	
+				Connect(SignalName.DealDamage,new Callable(body,"UpdateHealth"), (uint)ConnectFlags.ReferenceCounted);
 		}
 	}
 	private void _on_body_exited(Node body)

@@ -898,7 +898,7 @@ material = SubResource("StandardMaterial3D_i7sgg")
 [sub_resource type="Gradient" id="Gradient_andnu"]
 colors = PackedColorArray(0, 0, 1, 1, 1.5, 0, 0.2, 1)
 
-[node name="Dreadnaught" type="CharacterBody3D" groups=["Enemies"]]
+[node name="Dreadnaught" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 2071
 floor_constant_speed = true
@@ -932,7 +932,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.7
 material_override = ExtResource("5_wlmwc")
 mesh = SubResource("5")
 
-[node name="DamageSurface" type="Area3D" parent="Body/Brain"]
+[node name="DamageSurface" type="Area3D" parent="Body/Brain" groups=["Enemy"]]
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("7_vt5c6")
@@ -1092,13 +1092,13 @@ mesh = SubResource("21")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
 libraries = {
-"": SubResource("AnimationLibrary_u46t5")
+&"": SubResource("AnimationLibrary_u46t5")
 }
 autoplay = "spinGuns"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bcl3c")
+&"": SubResource("AnimationLibrary_bcl3c")
 }
 autoplay = "Spawn"
 

@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://chhfjicw0xvlp"]
 
-[ext_resource type="Script" uid="uid://dqh4mpr8k5gcc" path="res://Scripts/ParticleDespawn.cs" id="1_mf4dw"]
-[ext_resource type="PackedScene" path="res://Objects/Bullets/Player.Buckshot.tscn" id="2_afcv3"]
+[ext_resource type="Script" uid="uid://m56wnwn24ndp" path="res://Scripts/Sabot.cs" id="1_pfw1l"]
+[ext_resource type="PackedScene" uid="uid://d2bfhm42ttedi" path="res://Objects/Bullets/Player.Buckshot.tscn" id="2_afcv3"]
 
-[node name="ShotgunShell" type="CPUParticles3D"]
-script = ExtResource("1_mf4dw")
-lifeSpan = 10.0
+[node name="ShotgunShell" type="Node3D"]
+script = ExtResource("1_pfw1l")
 
 [node name="Bullet4" parent="." instance=ExtResource("2_afcv3")]
 transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, 0, 0, 0)

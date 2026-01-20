@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b03h0hmne14n1"]
+
+[ext_resource type="Script" uid="uid://m56wnwn24ndp" path="res://Scripts/Sabot.cs" id="1_abjov"]
+[ext_resource type="PackedScene" uid="uid://2tt7rbeqhl0s" path="res://Objects/Bullets/CatShot.tscn" id="2_abjov"]
+
+[node name="ShotgunShell" type="Node3D"]
+script = ExtResource("1_abjov")
+
+[node name="Bullet" parent="." instance=ExtResource("2_abjov")]
+
+[node name="Bullet2" parent="." instance=ExtResource("2_abjov")]
+transform = Transform3D(1, 0, 0, 0, 0.9993908, -0.03489949, 0, 0.03489949, 0.9993908, 0, 0, 0)
+
+[node name="Bullet3" parent="." instance=ExtResource("2_abjov")]
+transform = Transform3D(1, 0, 0, 0, 0.99939084, 0.034899496, 0, -0.034899496, 0.99939084, 0, 0, 0)
+
+[node name="Bullet4" parent="." instance=ExtResource("2_abjov")]
+transform = Transform3D(0.99939084, 0, 0.034899496, 0, 1, 0, -0.034899496, 0, 0.99939084, 0, 0, 0)
+
+[node name="Bullet5" parent="." instance=ExtResource("2_abjov")]
+transform = Transform3D(0.99939084, 0, -0.034899496, 0, 1, 0, 0.034899496, 0, 0.99939084, 0, 0, 0)

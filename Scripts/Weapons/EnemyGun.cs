@@ -68,12 +68,16 @@ public partial class EnemyGun : Gun
 		Node3D newBullet = (Node3D)bullet.Instantiate();
 		newBullet.Transform = GlobalTransform * barrels[i];
 		
-		if (newBullet is RigidBodyBullet && launchSpeedByDistance)
+		if (newBullet is RigidBody3D)
 		{
-			RigidBodyBullet rblt = newBullet as RigidBodyBullet;
+			ProjectileAttackAttributes rblt = newBullet.GetNode<ProjectileAttackAttributes>("ProjectileAttackAttributes");
 			rblt.speed = ToGlobal(Position).DistanceTo(player.Position);
 		}
 		newBullet.AddToGroup("Enemy");
+		foreach (Node child in newBullet.GetChildren())
+		{
+			child.AddToGroup("Enemy");
+		}
 		GetTree().CurrentScene.AddChild(newBullet);
 		//parent.GetTarget(); //find a new target
 		//parent.UpdatePath(parent.targetNavPos); //start over pathfinding using new target

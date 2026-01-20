@@ -9,11 +9,11 @@
 [ext_resource type="ArrayMesh" uid="uid://cakq5i2rkagtk" path="res://Models/catHead.obj" id="5"]
 [ext_resource type="Material" uid="uid://dv6lpl6i4hpsx" path="res://Materials/enemies/cat.head.tres" id="6_0qfuj"]
 [ext_resource type="Material" path="res://Materials/gun.barrel.inside.tres" id="8_3xxrl"]
-[ext_resource type="PackedScene" uid="uid://2tt7rbeqhl0s" path="res://Objects/Bullets/CatShot.tscn" id="9"]
 [ext_resource type="Material" uid="uid://d2b32wxjsejr1" path="res://Materials/enemies/gun.buckshot.barrel.tres" id="10"]
 [ext_resource type="Script" uid="uid://dr7n0dv463r00" path="res://Scripts/Weapons/EnemyGun.cs" id="10_4h351"]
 [ext_resource type="AudioStream" uid="uid://j7yjgna5x5tg" path="res://Sounds/guns/buckshot.wav" id="11_l7gqs"]
 [ext_resource type="Material" uid="uid://miaddu01mbke" path="res://Materials/enemies/gun.buckshot.stock.tres" id="12"]
+[ext_resource type="PackedScene" uid="uid://b03h0hmne14n1" path="res://Objects/Bullets/CatShot.Package.tscn" id="12_v7a60"]
 [ext_resource type="AudioStream" uid="uid://c46xq8q4d75bw" path="res://Sounds/enemy.spawn.wav" id="14_0qx6x"]
 [ext_resource type="Texture2D" uid="uid://bnk8a3osecai0" path="res://Textures/particle.vortex.png" id="14_btxie"]
 
@@ -488,11 +488,11 @@ surface_material_override/0 = ExtResource("10")
 surface_material_override/1 = ExtResource("8_3xxrl")
 surface_material_override/2 = ExtResource("12")
 script = ExtResource("10_4h351")
-bullet = ExtResource("9")
+bullet = ExtResource("12_v7a60")
 fireRateMax = 1.0
 parentPath = NodePath("../..")
 currentWeapon = 3
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.65)]
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun"]
 stream = ExtResource("11_l7gqs")
@@ -509,11 +509,11 @@ surface_material_override/0 = ExtResource("10")
 surface_material_override/1 = ExtResource("8_3xxrl")
 surface_material_override/2 = ExtResource("12")
 script = ExtResource("10_4h351")
-bullet = ExtResource("9")
+bullet = ExtResource("12_v7a60")
 fireRateMax = 1.0
 parentPath = NodePath("../..")
 currentWeapon = 3
-barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, -0.02, 0, 1, 0, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, 0.02, 0, 0, 1, 0, 0, -1.65), Transform3D(1, 0, 0, 0, 1, -0.02, 0, 0, 1, 0, 0, -1.65)]
+barrels = [Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65)]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Head/Gun2"]
 stream = ExtResource("11_l7gqs")
@@ -525,7 +525,7 @@ doppler_tracking = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ik4fi")
+&"": SubResource("AnimationLibrary_ik4fi")
 }
 autoplay = "Spawn"
 

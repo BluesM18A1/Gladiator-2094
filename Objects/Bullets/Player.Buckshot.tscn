@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d2bfhm42ttedi"]
 
-[ext_resource type="Script" uid="uid://b5o6mwjov6gny" path="res://Scripts/Projectiles/Bullet.cs" id="1_4fij1"]
+[ext_resource type="Script" uid="uid://dsp00a6o7tj3y" path="res://Scripts/Projectiles/ProjectileAttackAttributes.cs" id="1_n8l63"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.buckshot.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://djsfbxkc25qkr" path="res://Objects/Effects/Sparks.Yellow.tscn" id="2_x3tb3"]
 
@@ -18,10 +18,12 @@ height = 0.4
 [node name="Bullet" type="Area3D"]
 collision_layer = 2048
 collision_mask = 5
-script = ExtResource("1_4fij1")
+
+[node name="ProjectileAttackAttributes" type="Node" parent="."]
+script = ExtResource("1_n8l63")
 damage = -8
-speed = 100.0
-sparks = ExtResource("2_x3tb3")
+onCollisionFX = ExtResource("2_x3tb3")
+metadata/_custom_type_script = "uid://dsp00a6o7tj3y"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
@@ -31,4 +33,4 @@ mesh = SubResource("1")
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_s0k85")
 
-[connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]
+[connection signal="body_entered" from="." to="ProjectileAttackAttributes" method="_OnCollisionEnter"]

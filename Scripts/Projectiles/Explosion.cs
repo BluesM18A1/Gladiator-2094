@@ -7,8 +7,6 @@ public partial class Explosion : Area3D
 	[Export]
 	public int damage = -1;
 	[Export]
-	public float speed = 15;
-	[Export]
 	public float lifetime = 15;
 	[Export]
 	public PackedScene sparks;

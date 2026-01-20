@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://gyxgtbj5rbk2"]
 
-[ext_resource type="Script" uid="uid://c6et8vdrctmvx" path="res://Scripts/Projectiles/Flame.cs" id="1_rqcgg"]
 [ext_resource type="Texture2D" uid="uid://c0x3j51yihrik" path="res://Textures/particle.png" id="2"]
+[ext_resource type="Script" uid="uid://dsp00a6o7tj3y" path="res://Scripts/Projectiles/ProjectileAttackAttributes.cs" id="2_8dohw"]
 [ext_resource type="AudioStream" uid="uid://bqd3h300p0yah" path="res://Sounds/guns/flame.wav" id="3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mgaul"]
@@ -66,10 +66,14 @@ _data = {
 collision_layer = 0
 motion_mode = 1
 wall_min_slide_angle = 0.349066
-script = ExtResource("1_rqcgg")
+
+[node name="ProjectileAttackAttributes" type="Node" parent="."]
+script = ExtResource("2_8dohw")
 damage = -8
 speed = 100.0
+randomSpread = 15.0
 lifetime = 0.3
+metadata/_custom_type_script = "uid://dsp00a6o7tj3y"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_mgaul")
@@ -89,10 +93,10 @@ texture = ExtResource("2")
 shape = SubResource("3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bullet"]
-autoplay = "Flame"
 libraries = {
-"": SubResource("AnimationLibrary_fo47y")
+&"": SubResource("AnimationLibrary_fo47y")
 }
+autoplay = "Flame"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="Bullet"]
 stream = ExtResource("3")
@@ -100,4 +104,4 @@ volume_db = -7.0
 autoplay = true
 bus = &"SFX"
 
-[connection signal="body_entered" from="Bullet" to="." method="_OnCollisionEnter"]
+[connection signal="body_entered" from="Bullet" to="ProjectileAttackAttributes" method="_OnCollisionEnter"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://blnvfbsf3bul"]
 
-[ext_resource type="Script" uid="uid://crelm6gpo73v2" path="res://Scripts/Projectiles/RigidBodyBullet.cs" id="1_il6xd"]
+[ext_resource type="Script" uid="uid://dsp00a6o7tj3y" path="res://Scripts/Projectiles/ProjectileAttackAttributes.cs" id="1_ym1ot"]
 [ext_resource type="PackedScene" uid="uid://dfabjpp8sqjr6" path="res://Objects/Blast.Grenade.Enemy.tscn" id="2_va6hu"]
 [ext_resource type="Material" path="res://Materials/bullets/bullet.grenade.tres" id="3"]
 
@@ -18,12 +18,15 @@ radius = 0.1
 collision_layer = 4096
 collision_mask = 7
 gravity_scale = 3.0
-max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1_il6xd")
+max_contacts_reported = 1
+
+[node name="ProjectileAttackAttributes" type="Node" parent="."]
+script = ExtResource("1_ym1ot")
 damage = -10
 speed = 1.0
-sparks = ExtResource("2_va6hu")
+onCollisionFX = ExtResource("2_va6hu")
+metadata/_custom_type_script = "uid://dsp00a6o7tj3y"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("1")
@@ -31,4 +34,4 @@ mesh = SubResource("1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("3")
 
-[connection signal="body_entered" from="." to="." method="_OnCollisionEnter"]
+[connection signal="body_entered" from="." to="ProjectileAttackAttributes" method="_OnCollisionEnter"]
